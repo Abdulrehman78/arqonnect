@@ -1,0 +1,479 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  Section,
+  SectionHeader,
+  Card,
+  BtnPrimary,
+  BtnGhost,
+} from "@/components/ui/PageSection";
+import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
+import InteractiveBackdrop from "@/components/ui/InteractiveBackdrop";
+
+const tiers = [
+  { id: "starter", label: "Starter Voice", rate: 0.09, hint: "Best for early volume" },
+  { id: "premium", label: "Premium Voice", rate: 0.14, hint: "Natural, high-convert tone" },
+  { id: "multilingual", label: "Multilingual Voice", rate: 0.22, hint: "Multi-market coverage" },
+];
+
+const callouts = [
+  { lead: "Setup in", bold: "days", rest: ", not months" },
+  { lead: "One", bold: "login", rest: ", one bill" },
+  { lead: "Built & managed", bold: "for you", rest: "" },
+];
+
+const included = [
+  "CRM, funnels, forms & email",
+  "SMS, automations & courses",
+  "Call tracking & reputation",
+  "Analytics, communities & e-signatures",
+  "Branded mobile app",
+  "Chat + voice agents on every channel",
+];
+
+const replaceStack = [
+  { name: "CRM seat licenses", old: "$400" },
+  { name: "Funnel / form tools", old: "$250" },
+  { name: "SMS + email platform", old: "$320" },
+  { name: "Call tracking", old: "$180" },
+  { name: "Reputation + analytics", old: "$220" },
+  { name: "App / misc stack", old: "$230" },
+];
+
+const trust = [
+  {
+    title: "One flat rate",
+    desc: "No hidden per-seat fees. Cancel anytime, no lock-in contracts.",
+  },
+  {
+    title: "Live cost calculator",
+    desc: "See your exact monthly estimate before you talk to anyone.",
+  },
+  {
+    title: "$97/month mindset",
+    desc: "Transparent pricing for the full stack — built to replace $1,600+ of tools.",
+  },
+];
+
+export default function Pricing() {
+  const [minutes, setMinutes] = useState(500);
+  const [rate, setRate] = useState(0.09);
+
+  const voice = rate * 0.5;
+  const crm = rate * 0.33;
+  const tele = rate * 0.17;
+  const total = Math.round(rate * minutes);
+  const oldStack = 1600;
+  const savings = Math.max(0, oldStack - total);
+
+  const bars = [
+    { label: "Voice Engine", value: voice, color: "#22C55E", pct: 50 },
+    { label: "CRM & Automation", value: crm, color: "#34D399", pct: 33 },
+    { label: "Telephony", value: tele, color: "#6EE7B7", pct: 17 },
+  ];
+
+  return (
+    <>
+      {/* Hero */}
+      <section
+        id="pricing"
+        className="relative flex min-h-[88vh] items-center overflow-hidden bg-bg pt-28 pb-20"
+      >
+        <InteractiveBackdrop theme="pricing" />
+
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-8">
+          <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
+            <div className="inline-flex items-center gap-3 border border-emerald-400/25 bg-emerald-500/5 px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-emerald-300">
+              <span className="h-px w-6 bg-emerald-400/70" />
+              Why Switch
+            </div>
+
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
+              Everything you pay{" "}
+              <span className="relative inline-block text-emerald-300">
+                $1,600+
+                <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-emerald-400/50" />
+              </span>{" "}
+              for.
+              <br />
+              One price.
+            </h1>
+
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-dim sm:text-lg">
+              CRM, funnels, forms, email, SMS, automations, courses, call
+              tracking, reputation, analytics, communities, e-signatures and a
+              branded mobile app — replaced by one ArQonnect stack.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <BtnPrimary href="#calculator">Estimate your cost →</BtnPrimary>
+              <BtnGhost href="/contact">Book a Demo</BtnGhost>
+            </div>
+
+            <div className="mt-10 flex flex-wrap gap-3">
+              {callouts.map((c) => (
+                <span
+                  key={c.lead + c.bold}
+                  className="rounded-full border border-emerald-400/20 bg-emerald-500/5 px-4 py-2 text-sm text-text-dim"
+                >
+                  {c.lead}{" "}
+                  <b className="font-semibold text-emerald-300">{c.bold}</b>
+                  {c.rest}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            className="relative"
+          >
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-emerald-500/20 via-transparent to-lime-400/10 blur-2xl" />
+            <div className="relative overflow-hidden rounded-2xl border border-emerald-400/25 bg-panel/70 shadow-2xl shadow-black/40 backdrop-blur-xl">
+              <div className="flex items-center justify-between border-b border-line px-5 py-4">
+                <div>
+                  <div className="text-sm font-semibold text-text">
+                    Monthly stack cost
+                  </div>
+                  <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-emerald-300">
+                    Old tools vs ArQonnect
+                  </div>
+                </div>
+                <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-300">
+                  Save ~${savings.toLocaleString()}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 gap-px bg-line">
+                <div className="bg-bg/80 p-5">
+                  <span className="text-xs uppercase tracking-wider text-text-dimmer">
+                    Fragmented stack
+                  </span>
+                  <b className="mt-2 block text-3xl font-bold text-text-dim line-through decoration-red-400/60">
+                    $1,600+
+                  </b>
+                  <p className="mt-2 text-xs text-text-dimmer">
+                    Seats, SMS, CRM, tracking, apps
+                  </p>
+                </div>
+                <div className="bg-emerald-500/10 p-5">
+                  <span className="text-xs uppercase tracking-wider text-emerald-300">
+                    ArQonnect
+                  </span>
+                  <b className="mt-2 block text-3xl font-bold text-emerald-300">
+                    from $97
+                  </b>
+                  <p className="mt-2 text-xs text-text-dim">
+                    One bill. Full stack. Cancel anytime.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-2.5 p-4 sm:p-5">
+                {replaceStack.slice(0, 4).map((row) => (
+                  <div
+                    key={row.name}
+                    className="flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-3"
+                  >
+                    <span className="min-w-0 text-text-dim">{row.name}</span>
+                    <span className="shrink-0 font-mono text-xs text-text-dimmer">
+                      {row.old}
+                      <span className="ml-2 text-emerald-300">→ covered</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Comparison visual */}
+      <Section border alt id="compare">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <FadeUp>
+            <SectionHeader
+              accent="accent"
+              eyebrow="The Swap"
+              title="One login replaces the tool pile."
+              description="Stop paying for five products that never talk to each other. ArQonnect is the stack — chat, voice, CRM and growth under one bill."
+            />
+            <Stagger className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {included.map((item) => (
+                <MotionItem key={item}>
+                  <div className="flex items-center gap-3 rounded-xl border border-emerald-400/15 bg-panel/40 px-4 py-3 text-sm text-text-dim">
+                    <span className="text-emerald-300">✓</span>
+                    {item}
+                  </div>
+                </MotionItem>
+              ))}
+            </Stagger>
+          </FadeUp>
+
+          <FadeUp delay={0.1}>
+            <div className="overflow-hidden rounded-2xl border border-line bg-panel/40 shadow-2xl shadow-black/20">
+              <div className="relative aspect-[16/10]">
+                <Image
+                  src="/media/img_2.webp"
+                  alt="ArQonnect vs the old stack pricing comparison"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bg via-bg/50 to-transparent p-4">
+                  <div className="font-mono text-[11px] uppercase tracking-wider text-emerald-300">
+                    Side-by-side · Old stack vs ArQonnect
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+      </Section>
+
+      {/* Calculator */}
+      <Section id="calculator">
+        <SectionHeader
+          center
+          accent="accent"
+          eyebrow="Estimate Your Cost"
+          title="No surprise invoices."
+          description="Slide to your expected monthly call volume — the breakdown updates live."
+        />
+
+        <FadeUp>
+          <div className="overflow-hidden rounded-3xl border border-emerald-400/20 bg-gradient-to-br from-panel/80 via-panel/50 to-emerald-500/5 shadow-[0_0_80px_rgba(34,197,94,0.08)]">
+            <div className="grid gap-0 md:grid-cols-2">
+              <div className="border-b border-line p-6 md:border-b-0 md:border-r md:p-8">
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <label
+                      htmlFor="calcMinutes"
+                      className="text-sm text-text-dim"
+                    >
+                      Monthly voice minutes
+                    </label>
+                    <div className="mt-2 text-3xl font-bold tracking-tight text-text">
+                      {minutes.toLocaleString()}
+                      <span className="ml-2 text-base font-medium text-text-dimmer">
+                        min
+                      </span>
+                    </div>
+                  </div>
+                  <span
+                    id="calcMinutesValue"
+                    className="rounded-full border border-emerald-400/25 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300"
+                  >
+                    Live estimate
+                  </span>
+                </div>
+
+                <input
+                  type="range"
+                  id="calcMinutes"
+                  min={50}
+                  max={5000}
+                  step={50}
+                  value={minutes}
+                  onChange={(e) => setMinutes(parseInt(e.target.value, 10))}
+                  className="mt-6 w-full accent-[#22C55E]"
+                />
+                <div className="mt-2 flex justify-between font-mono text-[11px] text-text-dimmer">
+                  <span>50</span>
+                  <span>5,000</span>
+                </div>
+
+                <div className="mt-8 space-y-2">
+                  <span className="text-xs uppercase tracking-[0.16em] text-text-dimmer">
+                    Voice tier
+                  </span>
+                  <div className="grid gap-2">
+                    {tiers.map((t) => {
+                      const active = rate === t.rate;
+                      return (
+                        <button
+                          key={t.id}
+                          type="button"
+                          className={`calc-tier flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left transition-all ${
+                            active
+                              ? "active border-emerald-400/40 bg-emerald-500/15"
+                              : "border-line bg-bg/40 hover:border-emerald-400/20"
+                          }`}
+                          data-rate={t.rate}
+                          onClick={() => setRate(t.rate)}
+                        >
+                          <div>
+                            <div
+                              className={`text-sm font-semibold ${
+                                active ? "text-emerald-300" : "text-text"
+                              }`}
+                            >
+                              {t.label}
+                            </div>
+                            <div className="mt-0.5 text-xs text-text-dimmer">
+                              {t.hint}
+                            </div>
+                          </div>
+                          <span
+                            className={`font-mono text-sm ${
+                              active ? "text-emerald-300" : "text-text-dim"
+                            }`}
+                          >
+                            ${t.rate.toFixed(2)}/min
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <p className="mt-6 text-xs leading-relaxed text-text-dimmer">
+                  Rates shown are illustrative estimates for planning. Final
+                  pricing is confirmed on your demo call.
+                </p>
+              </div>
+
+              <div className="relative p-6 md:p-8">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,197,94,0.12),transparent_55%)]" />
+                <div className="relative">
+                  <span className="text-xs uppercase tracking-[0.16em] text-text-dimmer">
+                    Estimated Cost Per Minute
+                  </span>
+                  <div className="calc-cpm mt-3 flex items-baseline gap-1">
+                    <span className="text-xl text-text-dim">$</span>
+                    <b
+                      id="calcCPM"
+                      className="text-5xl font-bold tracking-tight text-text md:text-6xl"
+                    >
+                      {rate.toFixed(3)}
+                    </b>
+                  </div>
+
+                  <div className="calc-breakdown mt-8 space-y-4 border-t border-line pt-5">
+                    {bars.map((bar) => (
+                      <div key={bar.label} className="calc-line">
+                        <div className="mb-1.5 flex justify-between text-sm">
+                          <span className="text-text-dim">{bar.label}</span>
+                          <em
+                            id={
+                              bar.label === "Voice Engine"
+                                ? "calcVoiceCost"
+                                : bar.label === "CRM & Automation"
+                                  ? "calcCrmCost"
+                                  : "calcTeleCost"
+                            }
+                            className="not-italic text-text"
+                          >
+                            ${bar.value.toFixed(3)}/min
+                          </em>
+                        </div>
+                        <div className="h-1.5 overflow-hidden rounded-full bg-bg">
+                          <div
+                            className="h-full rounded-full transition-all duration-300"
+                            style={{
+                              width: `${bar.pct}%`,
+                              background: bar.color,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="calc-total-row mt-8 rounded-2xl border border-emerald-400/25 bg-emerald-500/10 p-5">
+                    <div className="flex items-baseline justify-between">
+                      <span className="text-text-dim">
+                        Total{" "}
+                        <em className="not-italic text-text-dimmer">
+                          per month
+                        </em>
+                      </span>
+                      <b
+                        id="calcTotal"
+                        className="text-3xl font-bold text-emerald-300 md:text-4xl"
+                      >
+                        ${total.toLocaleString()}
+                      </b>
+                    </div>
+                    <p className="mt-2 text-xs text-text-dimmer">
+                      vs ~$1,600 fragmented stack · save ~$
+                      {savings.toLocaleString()}/mo at this volume
+                    </p>
+                  </div>
+
+                  <BtnPrimary
+                    href="/contact"
+                    className="calc-cta mt-6 w-full justify-center"
+                  >
+                    Lock In This Rate →
+                  </BtnPrimary>
+                </div>
+              </div>
+            </div>
+          </div>
+        </FadeUp>
+      </Section>
+
+      {/* Trust */}
+      <Section border alt id="pricing-trust">
+        <SectionHeader
+          center
+          accent="accent"
+          eyebrow="Transparent Pricing"
+          title="$97/month replaces $1,600 of tools."
+          description="Transparent, flat pricing for the full stack. Use the calculator to see your exact monthly cost before you talk to anyone."
+        />
+        <Stagger className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {trust.map((item, i) => (
+            <MotionItem key={item.title}>
+              <Card className="h-full border-emerald-400/10 bg-gradient-to-b from-panel/70 to-panel/30">
+                <span className="font-mono text-xs text-emerald-300">
+                  0{i + 1}
+                </span>
+                <h3 className="mt-3 text-lg font-semibold text-text">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-text-dim">
+                  {item.desc}
+                </p>
+              </Card>
+            </MotionItem>
+          ))}
+        </Stagger>
+      </Section>
+
+      {/* CTA */}
+      <section className="relative overflow-hidden border-t border-line px-6 py-24 md:py-28">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
+        <FadeUp className="relative mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-text md:text-5xl">
+            One stack. One bill. No surprises.
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-base text-text-dim">
+            Lock in a rate that replaces the tool pile — and put chat, voice and
+            CRM on autopilot.
+          </p>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-bg transition-all hover:bg-accent-dim hover:shadow-[0_0_32px_rgba(34,197,94,0.4)] no-underline"
+            >
+              Book a Demo →
+            </Link>
+            <Link
+              href="/enterprise"
+              className="inline-flex items-center rounded-full border border-line bg-panel/60 px-7 py-3.5 text-sm font-semibold text-text backdrop-blur-sm transition-all hover:border-emerald-400/40 no-underline"
+            >
+              Enterprise options
+            </Link>
+          </div>
+        </FadeUp>
+      </section>
+    </>
+  );
+}
