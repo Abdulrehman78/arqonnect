@@ -132,7 +132,7 @@ export function BtnPrimary({
   return (
     <Link
       href={href}
-      className={`inline-flex items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-bg transition-all hover:bg-accent-dim hover:shadow-[0_0_24px_rgba(34,197,94,0.35)] no-underline ${className}`}
+      className={`inline-flex items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-accent-dim hover:shadow-[0_0_24px_rgba(59,130,246,0.35)] no-underline ${className}`}
     >
       {children}
     </Link>
@@ -173,7 +173,7 @@ export function Chip({
       onClick={onClick}
       className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all ${
         active
-          ? "bg-accent text-bg"
+          ? "bg-accent text-white"
           : "border border-line bg-panel/60 text-text-dim hover:text-text"
       }`}
     >

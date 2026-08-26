@@ -3,157 +3,126 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import InteractiveBackdrop from "@/components/ui/InteractiveBackdrop";
+import HeroDemoChat from "@/components/HeroDemoChat";
+import AiAmbient from "@/components/ui/AiAmbient";
+import ZoomBackdrop from "@/components/ui/ZoomBackdrop";
+import { GiggleText, useWelcomeReady } from "@/components/ui/GiggleText";
+import { scrim } from "@/lib/themeColors";
 
-function Waveform({ bars = 24 }: { bars?: number }) {
-  return (
-    <div className="flex h-5 items-center gap-[2px] sm:h-6 sm:gap-[3px]">
-      {Array.from({ length: bars }).map((_, i) => (
-        <div
-          key={i}
-          className="w-[2px] origin-bottom rounded-full bg-accent sm:w-[3px]"
-          style={{
-            height: "100%",
-            animation: "waveBar 1.2s ease-in-out infinite",
-            animationDelay: `${i * 0.05}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
+const textShadowSub = [
+  "0 1px 2px rgb(var(--shadow-rgb) / 0.95)",
+  "0 4px 24px rgb(var(--shadow-rgb) / 0.85)",
+  "0 8px 40px rgb(var(--shadow-rgb) / 0.6)",
+].join(", ");
 
-export default function Hero({
-  embedded = false,
-  fullscreenSlide = false,
-}: {
-  embedded?: boolean;
-  fullscreenSlide?: boolean;
-}): React.ReactElement {
-  const fullBleed = embedded || fullscreenSlide;
+export default function Hero(): React.ReactElement {
+  const ready = useWelcomeReady();
 
   return (
-    <section
-      className={`relative w-full overflow-hidden bg-bg ${
-        fullBleed
-          ? "flex min-h-[100svh] items-center py-20 md:h-full md:min-h-full md:py-0"
-          : "min-h-screen pt-28 pb-20"
-      }`}
-    >
-      <InteractiveBackdrop theme="home" />
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+    <section className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-bg pt-28 pb-16 md:pt-32 md:pb-24">
+      <ZoomBackdrop
+        src="/images/hero-banner.jpg"
+        priority
+        veil={[
+          `linear-gradient(180deg, ${scrim(0.72)} 0%, ${scrim(0.48)} 26%, ${scrim(0.42)} 52%, ${scrim(0.78)} 100%)`,
+          `radial-gradient(ellipse 70% 55% at 50% 38%, ${scrim(0.48)} 0%, ${scrim(0.18)} 45%, ${scrim(0.62)} 100%)`,
+        ].join(",")}
+      >
+        <AiAmbient intensity="hero" className="z-[2]" />
+      </ZoomBackdrop>
+
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
           <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-left"
+            animate={
+              ready
+                ? { opacity: [0.85, 1, 0.85], textShadow: [
+                    "0 0 18px rgba(56,189,248,0.35)",
+                    "0 0 28px rgba(56,189,248,0.7)",
+                    "0 0 18px rgba(56,189,248,0.35)",
+                  ] }
+                : undefined
+            }
+            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           >
-            <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-[11px] font-semibold text-accent sm:px-4 sm:text-xs">
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-              </span>
-              <span className="truncate">AI Agency · Every Lead. Every Time.</span>
-            </span>
+            <GiggleText
+              as="p"
+              text="ArQonnect"
+              mode="chars"
+              active={ready}
+              className="ai-shimmer-text text-sm font-medium tracking-tight"
+            />
+          </motion.div>
 
-            <h1 className="mt-5 text-3xl font-extrabold leading-[1.08] tracking-tight text-text sm:mt-6 sm:text-5xl lg:text-6xl">
-              The AI agency built to{" "}
-              <span className="bg-gradient-to-r from-accent via-emerald-300 to-violet bg-clip-text text-transparent">
-                never lose a lead
-              </span>
-            </h1>
+          <GiggleText
+            as="h1"
+            text="Speak human to every customer"
+            mode="chars"
+            active={ready}
+            startDelay={0.35}
+            className="banner-heading mt-4 text-4xl sm:text-5xl lg:text-6xl"
+          />
 
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-text-dim sm:mt-6 sm:text-base lg:text-lg">
-              ArQonnect is an AI agency — our product is the bot and the agent.
-              Somewhere right now, a customer is messaging a business that won&apos;t
-              reply until Monday. We build the agent that answers instead — a
-              humanoid chatbot and voice agent that wins the chat, takes the call,
-              and books the appointment before your competitor even picks up the
-              phone.
-            </p>
+          <GiggleText
+            as="p"
+            text="Build and deploy voice and chat agents that answer every call, win every chat, and book the appointment — before your competitor picks up."
+            mode="words"
+            active={ready}
+            startDelay={1.4}
+            className="room-body mx-auto mt-5 max-w-xl text-base leading-relaxed sm:text-lg"
+            style={{ textShadow: textShadowSub }}
+          />
 
-            <div className="mt-6 flex flex-wrap gap-3 sm:mt-8 sm:gap-4">
+          <motion.div
+            className="mt-8 flex flex-wrap items-center justify-center gap-3"
+            initial={{ opacity: 0, y: 16 }}
+            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={{ delay: 2.4, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.div
+              className="ai-cta-breath"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Link
+                href="/demo"
+                className="inline-flex items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white no-underline shadow-[0_8px_32px_rgb(var(--shadow-rgb)/0.55),0_0_28px_rgba(59,130,246,0.4)] transition-all hover:bg-accent-dim hover:shadow-[0_10px_40px_rgb(var(--shadow-rgb)/0.6),0_0_36px_rgba(59,130,246,0.5)]"
+              >
+                Try Our Live Demo
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="/contact"
-                className="inline-flex items-center rounded-full bg-accent px-5 py-3 text-sm font-bold text-bg no-underline transition-all hover:bg-accent-dim hover:shadow-[0_0_32px_rgba(34,197,94,0.4)] sm:px-7 sm:py-3.5"
+                className="room-heading inline-flex items-center rounded-full border border-text/30 bg-bg/50 px-6 py-3 text-sm font-semibold no-underline shadow-[0_8px_28px_rgb(var(--shadow-rgb)/0.55)] backdrop-blur-sm transition-all hover:border-text/45 hover:bg-bg/65"
               >
-                Book a Demo →
+                Book a Demo
               </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center rounded-full border border-line bg-panel/60 px-5 py-3 text-sm font-semibold text-text no-underline backdrop-blur-sm transition-all hover:border-accent/40 hover:bg-panel sm:px-7 sm:py-3.5"
-              >
-                Explore Services
-              </Link>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 1, y: 0, scale: 1 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            className="relative"
-          >
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent/20 via-transparent to-violet/20 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-line bg-panel/80 shadow-2xl shadow-black/40 backdrop-blur-xl">
-              <div className="flex items-start justify-between gap-3 border-b border-line px-4 py-3 sm:items-center sm:px-6 sm:py-4">
-                <div className="min-w-0">
-                  <div className="truncate text-sm font-semibold text-text">
-                    ArQonnect AI Voice Assistant
-                  </div>
-                  <div className="mt-0.5 font-mono text-[10px] text-accent sm:text-xs">
-                    RECORDING LIVE · &lt;500ms
-                  </div>
-                </div>
-                <span className="shrink-0 rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-[10px] font-semibold text-accent">
-                  ● REC
-                </span>
-              </div>
-
-              <div className="flex items-center justify-center gap-3 overflow-hidden border-b border-line bg-bg/50 px-4 py-4 sm:gap-4 sm:px-6 sm:py-5">
-                <Waveform bars={16} />
-                <span className="shrink-0 font-mono text-[10px] text-text-dimmer sm:text-xs">
-                  Live feed
-                </span>
-                <div className="hidden sm:block">
-                  <Waveform bars={16} />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-px bg-line p-px">
-                {[
-                  { value: "20+", label: "AI-Run Services" },
-                  { value: "$1,600+", label: "Stack Replaced" },
-                  { value: "24/7", label: "Agent Uptime" },
-                  { value: "3", label: "US · UK · AU", accent: true },
-                ].map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="flex flex-col items-center bg-panel/90 px-3 py-4 text-center sm:px-4 sm:py-6"
-                  >
-                    <b
-                      className={`text-xl font-extrabold tracking-tight sm:text-2xl ${
-                        stat.accent ? "text-accent" : "text-text"
-                      }`}
-                    >
-                      {stat.value}
-                    </b>
-                    <span className="mt-1 text-[11px] leading-snug text-text-dim sm:text-xs">
-                      {stat.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex items-center justify-between border-t border-line px-4 py-3 font-mono text-[10px] text-text-dimmer sm:px-6 sm:text-xs">
-                <span className="flex items-center gap-2">
-                  <span className="h-2 w-2 animate-ping rounded-full bg-accent" />
-                  ARQ · 01 — THE ARRIVAL
-                </span>
-                <span className="hidden sm:inline">Scroll ↓</span>
-              </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
+
+        <HeroDemoChat ready={ready} enterDelay={2.1} />
+
+        <motion.p
+          className="room-caption mt-12 text-center font-mono text-[11px] uppercase tracking-[0.28em]"
+          initial={{ opacity: 0 }}
+          animate={ready ? { opacity: [0.65, 1, 0.65] } : { opacity: 0 }}
+          transition={
+            ready
+              ? { delay: 2.6, duration: 2.4, repeat: Infinity, ease: "easeInOut" }
+              : { delay: 2.6, duration: 0.6 }
+          }
+        >
+          Scroll to enter
+        </motion.p>
+        <motion.div
+          className="ai-scroll-line mx-auto mt-3 flex h-8 w-px justify-center bg-gradient-to-b from-accent/70 to-transparent"
+          initial={{ scaleY: 0, opacity: 0 }}
+          animate={ready ? { scaleY: 1, opacity: 1 } : { scaleY: 0, opacity: 0 }}
+          transition={{ delay: 2.75, duration: 0.5 }}
+          style={{ originY: 0 }}
+        />
       </div>
     </section>
   );

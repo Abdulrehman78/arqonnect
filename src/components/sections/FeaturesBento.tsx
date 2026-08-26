@@ -2,93 +2,82 @@
 
 import Link from "next/link";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
+import AiAmbient from "@/components/ui/AiAmbient";
+import ZoomBackdrop from "@/components/ui/ZoomBackdrop";
+import { scrim } from "@/lib/themeColors";
 
-const features = [
+const pillars = [
   {
-    title: "Humanoid Chat + Voice Agents",
+    num: "01",
+    title: "Build agents that sound human",
     description:
-      "A humanoid chatbot and voice agent that wins the chat, takes the call, and books the appointment — on every channel.",
-    accent: "accent",
+      "Humanoid chat and voice agents that win the conversation, take the call, and book the appointment — on every channel.",
   },
   {
-    title: "Twenty AI-Run Services",
+    num: "02",
+    title: "Deploy across the full stack",
     description:
-      "Chat and voice agents, websites and funnels, CRM automation, SEO/AEO/GEO and ready-made agent templates — built to run themselves.",
-    accent: "violet",
+      "Twenty AI-run services: agents, websites and funnels, CRM automation, SEO/AEO/GEO — built to run themselves.",
   },
   {
-    title: "Every Lead Updates Itself",
+    num: "03",
+    title: "Measure what converts",
     description:
-      "ArQonnect wires agents directly into HubSpot, Salesforce or your CRM, so calls, chats and bookings write themselves in.",
-    accent: "cyan",
-  },
-  {
-    title: "SEO, AEO, GEO & AIO",
-    description:
-      "AI search visibility handled together — so your business shows up wherever customers are looking, including AI overviews.",
-    accent: "accent",
-  },
-  {
-    title: "Enterprise Guardrails",
-    description:
-      "Security guardrails, analytics and dedicated deployment support for organizations that can't afford surprises.",
-    accent: "violet",
-  },
-  {
-    title: "$97/month Replaces $1,600",
-    description:
-      "Transparent, flat pricing for the full stack. One flat rate, no hidden per-seat fees, cancel anytime.",
-    accent: "cyan",
+      "Every lead updates itself in HubSpot, Salesforce, or your CRM. One record across chat, voice, SMS, and social.",
   },
 ];
 
-const accentMap: Record<string, string> = {
-  accent: "text-accent border-accent/30 bg-accent/10",
-  violet: "text-violet border-violet/30 bg-violet/10",
-  cyan: "text-cyan border-cyan/30 bg-cyan/10",
-};
-
 export default function FeaturesBento() {
   return (
-    <section className="relative bg-bg px-6 py-10 md:py-12">
-      <div className="mx-auto max-w-6xl">
-        <FadeUp className="text-center">
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
-            The Platform
+    <section className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden border-b border-line bg-bg px-4 py-20 sm:px-6 md:py-28">
+      <ZoomBackdrop
+        src="/images/features-banner.jpg"
+        position="60% center"
+        delaySec={18}
+        veil={[
+          `linear-gradient(90deg, ${scrim(0.82)} 0%, ${scrim(0.65)} 38%, ${scrim(0.32)} 70%, ${scrim(0.48)} 100%)`,
+          `linear-gradient(180deg, ${scrim(0.48)} 0%, ${scrim(0.28)} 40%, ${scrim(0.65)} 100%)`,
+        ].join(",")}
+      >
+        <AiAmbient intensity="room" className="z-[2] opacity-60" />
+      </ZoomBackdrop>
+
+      <div className="relative z-10 mx-auto w-full max-w-6xl">
+        <FadeUp className="max-w-2xl">
+          <span className="room-label text-xs font-medium uppercase tracking-[0.18em]">
+            Unified platform
           </span>
-          <h2 className="mt-3 text-2xl font-bold tracking-tight text-text md:text-4xl">
-            One stack, twenty AI-run services.
+          <h2 className="banner-heading mt-4 text-3xl sm:text-4xl">
+            One platform for all your agents.
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm text-text-dim md:text-base">
-            Chat and voice agents, websites and funnels, CRM automation,
-            SEO/AEO/GEO and ready-made agent templates — built to run themselves.
+          <p className="room-body mt-4 text-base leading-relaxed">
+            Orchestration, CRM sync, and growth visibility — so you go from prompt
+            to production without a tool pile.
           </p>
         </FadeUp>
 
-        <Stagger className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((f) => (
-            <MotionItem key={f.title}>
-              <div className="group h-full rounded-2xl border border-line bg-panel/40 p-4 transition-all duration-300 hover:border-accent/20 hover:bg-panel/80 md:p-5">
-                <div
-                  className={`inline-flex rounded-xl border px-3 py-1 text-xs font-medium ${accentMap[f.accent]}`}
-                >
-                  ArQonnect
-                </div>
-                <h3 className="mt-3 text-base font-semibold text-text md:text-lg">{f.title}</h3>
-                <p className="mt-1.5 text-xs leading-relaxed text-text-dim md:text-sm">
-                  {f.description}
+        <Stagger className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+          {pillars.map((p) => (
+            <MotionItem key={p.num}>
+              <div className="h-full border-t border-text/20 pt-6">
+                <span className="room-label font-mono text-xs">{p.num}</span>
+                <h3 className="room-heading mt-3 text-lg font-semibold tracking-tight">
+                  {p.title}
+                </h3>
+                <p className="room-body mt-3 text-sm leading-relaxed">
+                  {p.description}
                 </p>
               </div>
             </MotionItem>
           ))}
         </Stagger>
 
-        <FadeUp className="mt-8 text-center" delay={0.2}>
+        <FadeUp className="mt-12" delay={0.15}>
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 text-sm font-medium text-accent no-underline transition-colors hover:text-accent-dim"
+            className="room-label inline-flex items-center gap-2 text-sm font-medium no-underline transition-colors hover:text-sky-100"
           >
-            Explore all 20+ services <span aria-hidden="true">→</span>
+            Explore all services <span aria-hidden="true">→</span>
           </Link>
         </FadeUp>
       </div>

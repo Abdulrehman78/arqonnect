@@ -1,49 +1,73 @@
 "use client";
 
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
+import AiAmbient from "@/components/ui/AiAmbient";
+import ZoomBackdrop from "@/components/ui/ZoomBackdrop";
+import { scrim } from "@/lib/themeColors";
 
 const channels = [
   {
-    title: "Voice AI",
-    description: "Humanoid voice agents that take the call and book the appointment.",
+    num: "01",
+    title: "Voice",
+    description:
+      "Humanoid voice agents that take the call and book the appointment.",
   },
   {
-    title: "Chat Widget / Conversation AI",
-    description: "AI-powered chat that wins the conversation before your competitor picks up.",
+    num: "02",
+    title: "Chat",
+    description: "AI conversation that wins before your competitor picks up.",
   },
   {
-    title: "CRM Integration",
-    description: "HubSpot, Salesforce or your CRM — every lead, every channel, one record.",
+    num: "03",
+    title: "CRM",
+    description: "HubSpot, Salesforce, or yours — every lead, one record.",
   },
   {
-    title: "Inbound SMS & Social DMs",
-    description: "Missed call text-back, social planner, and DMs handled automatically.",
+    num: "04",
+    title: "SMS & Social",
+    description: "Missed-call text-back and DMs handled automatically.",
   },
 ];
 
 export default function Integrations() {
   return (
-    <section className="relative bg-bg px-6 py-10 md:py-12">
-      <div className="mx-auto max-w-6xl">
-        <FadeUp className="text-center">
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-cyan">
-            Core AI Services
+    <section className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden border-b border-line bg-bg px-4 py-20 sm:px-6 md:py-28">
+      <ZoomBackdrop
+        src="/images/markets-banner.jpg"
+        delaySec={24}
+        veil={[
+          `linear-gradient(180deg, ${scrim(0.72)} 0%, ${scrim(0.48)} 40%, ${scrim(0.72)} 100%)`,
+          `radial-gradient(ellipse 80% 60% at 50% 40%, ${scrim(0.15)} 0%, ${scrim(0.62)} 100%)`,
+        ].join(",")}
+      >
+        <AiAmbient intensity="room" className="z-[2] opacity-60" />
+      </ZoomBackdrop>
+
+      <div className="relative z-10 mx-auto w-full max-w-6xl">
+        <FadeUp className="mx-auto max-w-2xl text-center">
+          <span className="room-label text-xs font-medium uppercase tracking-[0.18em]">
+            Channels
           </span>
-          <h2 className="mt-3 text-2xl font-bold tracking-tight text-text md:text-4xl">
-            Chat, voice, CRM and growth — all pointed at one job
+          <h2 className="banner-heading mt-4 text-3xl sm:text-4xl">
+            True omni-channel communication.
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-text-dim md:text-base">
-            Don&apos;t let the lead go quiet. One agent stack across every channel
-            your leads use.
+          <p className="room-body mt-4 text-base">
+            Chat, voice, CRM and growth — all pointed at one job: don&apos;t let
+            the lead go quiet.
           </p>
         </FadeUp>
 
-        <Stagger className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <Stagger className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {channels.map((c) => (
             <MotionItem key={c.title}>
-              <div className="group h-full rounded-2xl border border-line bg-panel/40 p-5 transition-all hover:border-cyan/30 hover:bg-panel/70">
-                <h3 className="text-base font-semibold text-text">{c.title}</h3>
-                <p className="mt-2 text-sm text-text-dim">{c.description}</p>
+              <div className="h-full border-t border-text/20 pt-6">
+                <span className="room-label font-mono text-xs">{c.num}</span>
+                <h3 className="room-heading mt-3 text-lg font-semibold tracking-tight">
+                  {c.title}
+                </h3>
+                <p className="room-body mt-3 text-sm leading-relaxed">
+                  {c.description}
+                </p>
               </div>
             </MotionItem>
           ))}

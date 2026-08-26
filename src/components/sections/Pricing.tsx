@@ -317,8 +317,8 @@ export default function Pricing() {
                             </div>
                             <div className="mt-0.5 text-xs text-text-dimmer">
                               {t.hint}
-                            </div>
-                          </div>
+  </div>
+    </div>
                           <span
                             className={`font-mono text-sm ${
                               active ? "text-emerald-300" : "text-text-dim"
@@ -329,8 +329,8 @@ export default function Pricing() {
                         </button>
                       );
                     })}
-                  </div>
-                </div>
+    </div>
+  </div>
 
                 <p className="mt-6 text-xs leading-relaxed text-text-dimmer">
                   Rates shown are illustrative estimates for planning. Final
@@ -371,7 +371,7 @@ export default function Pricing() {
                           >
                             ${bar.value.toFixed(3)}/min
                           </em>
-                        </div>
+      </div>
                         <div className="h-1.5 overflow-hidden rounded-full bg-bg">
                           <div
                             className="h-full rounded-full transition-all duration-300"
@@ -380,8 +380,8 @@ export default function Pricing() {
                               background: bar.color,
                             }}
                           />
-                        </div>
-                      </div>
+      </div>
+    </div>
                     ))}
                   </div>
 
@@ -412,10 +412,10 @@ export default function Pricing() {
                   >
                     Lock In This Rate →
                   </BtnPrimary>
-                </div>
-              </div>
-            </div>
-          </div>
+      </div>
+      </div>
+    </div>
+  </div>
         </FadeUp>
       </Section>
 
@@ -473,7 +473,7 @@ export default function Pricing() {
             </Link>
           </div>
         </FadeUp>
-      </section>
+</section>
     </>
   );
 }

@@ -51,20 +51,34 @@ export default function Demo() {
   const voiceSecondsRef = useRef(0);
   const voiceIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const sendChat = useCallback((text: string) => {
+  const sendChat = useCallback(async (text: string) => {
     if (!text.trim()) return;
-    setMessages((m) => [...m, { who: "user", text }]);
+    const history = messages
+      .filter((m) => m.who === "user" || m.who === "bot")
+      .map((m) => ({
+        role: m.who === "user" ? ("user" as const) : ("assistant" as const),
+        content: m.text,
+      }));
+    setMessages((m) => [...m, { who: "user", text }, { who: "typing", text: "" }]);
     setInput("");
-    setTimeout(() => {
-      setMessages((m) => [...m, { who: "typing", text: "" }]);
-      setTimeout(() => {
-        setMessages((m) => [
-          ...m.filter((x) => x.who !== "typing"),
-          { who: "bot", text: chatReplyFor(text) },
-        ]);
-      }, 900);
-    }, 100);
-  }, []);
+    try {
+      const res = await fetch("/api/demo-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, history }),
+      });
+      const data = (await res.json()) as { reply?: string };
+      setMessages((m) => [
+        ...m.filter((x) => x.who !== "typing"),
+        { who: "bot", text: data.reply?.trim() || chatReplyFor(text) },
+      ]);
+    } catch {
+      setMessages((m) => [
+        ...m.filter((x) => x.who !== "typing"),
+        { who: "bot", text: chatReplyFor(text) },
+      ]);
+    }
+  }, [messages]);
 
   useEffect(() => {
     chatBodyRef.current?.scrollTo({ top: chatBodyRef.current.scrollHeight });

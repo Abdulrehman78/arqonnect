@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { navAccents, themeFromPath } from "@/lib/pageThemes";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const links = [
   { href: "/", label: "Home" },
@@ -27,7 +28,7 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -51,20 +52,20 @@ export default function Nav() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || menuOpen
-          ? "bg-bg/90 backdrop-blur-xl border-b border-line"
-          : "bg-transparent border-b border-transparent"
+          ? "border-b border-line bg-bg/90 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-2 px-4 py-3 sm:gap-3 sm:px-6 lg:px-8">
-        <Link href="/" className="flex min-w-0 shrink-0 items-center gap-2 no-underline sm:gap-2.5">
+      <div className="mx-auto grid max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-2 px-4 py-3.5 sm:gap-3 sm:px-6 lg:px-8">
+        <Link href="/" className="flex min-w-0 shrink-0 items-center gap-2.5 no-underline">
           <Image
             src="/logo.png"
             alt="ArQonnect"
-            width={36}
-            height={36}
-            className="h-8 w-auto sm:h-9"
+            width={32}
+            height={32}
+            className="h-8 w-auto"
           />
-          <span className="truncate text-base font-semibold tracking-tight text-text sm:text-lg">
+          <span className="truncate text-[15px] font-semibold tracking-tight text-text">
             ArQonnect
           </span>
         </Link>
@@ -73,7 +74,7 @@ export default function Nav() {
           className="hidden min-w-0 xl:flex xl:justify-center"
           aria-label="Main navigation"
         >
-          <ul className="flex items-center gap-1 xl:gap-1.5 2xl:gap-2">
+          <ul className="flex items-center gap-0.5">
             {links.map((l) => {
               const active = isActivePath(pathname, l.href);
               return (
@@ -81,17 +82,15 @@ export default function Nav() {
                   <Link
                     href={l.href}
                     aria-current={active ? "page" : undefined}
-                    className={`relative whitespace-nowrap rounded-full px-2.5 py-2 text-[12px] font-medium no-underline transition-colors 2xl:px-3.5 2xl:text-sm ${
+                    className={`relative whitespace-nowrap rounded-lg px-3 py-2 text-[13px] font-medium no-underline transition-colors ${
                       active
-                        ? `${accent.linkBg} ${accent.linkText}`
+                        ? "text-text"
                         : "text-text-dim hover:text-text"
                     }`}
                   >
                     {l.label}
                     {active && (
-                      <span
-                        className={`absolute inset-x-2.5 -bottom-0.5 hidden h-px 2xl:block ${accent.underline}`}
-                      />
+                      <span className="absolute inset-x-3 -bottom-0.5 h-px bg-accent/80" />
                     )}
                   </Link>
                 </li>
@@ -101,10 +100,11 @@ export default function Nav() {
         </nav>
 
         <div className="flex shrink-0 items-center justify-end gap-2">
+          <ThemeToggle />
           <Link
             href="/contact"
             aria-current={contactActive ? "page" : undefined}
-            className={`hidden md:inline-flex items-center whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold no-underline transition-all lg:px-5 lg:py-2.5 lg:text-sm ${
+            className={`ai-cta-breath hidden md:inline-flex items-center whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold no-underline transition-all lg:px-5 lg:text-sm ${
               contactActive
                 ? accent.ctaActive
                 : `${accent.ctaDefault} ${accent.ctaHover}`
@@ -135,8 +135,8 @@ export default function Nav() {
 
       {menuOpen && (
         <div className="max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-t border-line bg-bg/95 backdrop-blur-xl xl:hidden">
-          <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6" aria-label="Mobile navigation">
-            <ul className="flex flex-col gap-1">
+          <nav className="mx-auto max-w-6xl px-4 py-4 sm:px-6" aria-label="Mobile navigation">
+            <ul className="flex flex-col gap-0.5">
               {links.map((l) => {
                 const active = isActivePath(pathname, l.href);
                 return (

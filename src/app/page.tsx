@@ -1,30 +1,44 @@
+import ScrollFadeSections from "@/components/ui/ScrollFadeSections";
 import Hero from "@/components/sections/Hero";
 import LogoCloud from "@/components/sections/LogoCloud";
 import StatsStrip from "@/components/sections/StatsStrip";
 import FeaturesBento from "@/components/sections/FeaturesBento";
 import Integrations from "@/components/sections/Integrations";
 import Testimonials from "@/components/sections/Testimonials";
-import PagePreviews from "@/components/PagePreviews";
-import StoryPreviews from "@/components/StoryPreviews";
 import HomeFinalCta from "@/components/HomeFinalCta";
-import ScrollFadeSections from "@/components/ui/ScrollFadeSections";
+
+function Room({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="scene-slide relative min-h-[100dvh] w-full bg-bg">
+      {children}
+    </div>
+  );
+}
 
 export default function HomePage() {
   return (
-    <>
-      <ScrollFadeSections>
-        <Hero embedded fullscreenSlide />
-        <div>
-          <LogoCloud />
-          <StatsStrip />
-        </div>
+    <ScrollFadeSections id="home-rooms">
+      <Room>
+        <Hero />
+      </Room>
+      <Room>
+        <LogoCloud />
+      </Room>
+      <Room>
+        <StatsStrip />
+      </Room>
+      <Room>
         <FeaturesBento />
+      </Room>
+      <Room>
         <Integrations />
+      </Room>
+      <Room>
         <Testimonials />
-      </ScrollFadeSections>
-      <PagePreviews />
-      <StoryPreviews />
-      <HomeFinalCta />
-    </>
+      </Room>
+      <Room>
+        <HomeFinalCta />
+      </Room>
+    </ScrollFadeSections>
   );
 }

@@ -33,49 +33,44 @@ const panels: Record<string, Array<{ num: string; title: string; desc: string }>
     { num: "10", title: "Ad Manager", desc: "Google, Meta & Instagram, reported." },
   ],
   growth: [
-    { num: "①", title: "SMM — Social Media Marketing", desc: "Content that shows up, on schedule." },
-    { num: "②", title: "SEO — Search Engine Optimization", desc: "Found first, ranked right." },
-    { num: "③", title: "AEO — Answer Engine Optimization", desc: "Show up in Perplexity & AI answers." },
-    { num: "④", title: "GEO — Generative Engine Optimization", desc: "Optimized for how AI cites sources." },
-    { num: "⑤", title: "AIO — AI Overview Optimization", desc: "Ranked inside Google's AI Overviews." },
-    { num: "⑥", title: "Email Marketing Automation", desc: "Sequences and newsletters that get opened." },
-    { num: "⑦", title: "Sales Funnel Automation", desc: "Lead nurture that runs while you sleep." },
+    { num: "01", title: "SMM — Social Media Marketing", desc: "Content that shows up, on schedule." },
+    { num: "02", title: "SEO — Search Engine Optimization", desc: "Found first, ranked right." },
+    { num: "03", title: "AEO — Answer Engine Optimization", desc: "Show up in Perplexity & AI answers." },
+    { num: "04", title: "GEO — Generative Engine Optimization", desc: "Optimized for how AI cites sources." },
+    { num: "05", title: "AIO — AI Overview Optimization", desc: "Ranked inside Google's AI Overviews." },
+    { num: "06", title: "Email Marketing Automation", desc: "Sequences and newsletters that get opened." },
+    { num: "07", title: "Sales Funnel Automation", desc: "Lead nurture that runs while you sleep." },
   ],
   build: [
-    { num: "①", title: "AI-Powered Web Development", desc: "Full builds, engineered with AI." },
-    { num: "②", title: "iOS App Development", desc: "Native Apple apps, shipped faster." },
-    { num: "③", title: "Android App Development", desc: "Native Android apps, built with AI tooling." },
-    { num: "④", title: "Business Website Development", desc: "Corporate sites that actually convert." },
-    { num: "⑤", title: "Landing Page Development", desc: "High-converting pages for every campaign." },
+    { num: "01", title: "AI-Powered Web Development", desc: "Full builds, engineered with AI." },
+    { num: "02", title: "iOS App Development", desc: "Native Apple apps, shipped faster." },
+    { num: "03", title: "Android App Development", desc: "Native Android apps, built with AI tooling." },
+    { num: "04", title: "Business Website Development", desc: "Corporate sites that actually convert." },
+    { num: "05", title: "Landing Page Development", desc: "High-converting pages for every campaign." },
   ],
   automation: [
-    { num: "①", title: "Business Process Automation", desc: "Manual steps, removed for good." },
-    { num: "②", title: "Workflow Automation", desc: "Tools that talk to each other automatically." },
-    { num: "③", title: "HubSpot CRM Integration", desc: "Every lead synced, no manual entry." },
-    { num: "④", title: "Salesforce CRM Integration", desc: "Enterprise CRM, wired into your AI agent." },
+    { num: "01", title: "Business Process Automation", desc: "Manual steps, removed for good." },
+    { num: "02", title: "Workflow Automation", desc: "Tools that talk to each other automatically." },
+    { num: "03", title: "HubSpot CRM Integration", desc: "Every lead synced, no manual entry." },
+    { num: "04", title: "Salesforce CRM Integration", desc: "Enterprise CRM, wired into your AI agent." },
   ],
   strategy: [
-    { num: "①", title: "AI Business Consulting", desc: "Advisory that knows the business." },
-    { num: "②", title: "Enterprise Digital Transformation", desc: "Modernization, mapped and managed." },
-    { num: "③", title: "Technical Writing", desc: "Docs and content that sound human." },
-    { num: "④", title: "Documentation & Knowledge Bases", desc: "Everything your team needs, written down." },
+    { num: "01", title: "AI Business Consulting", desc: "Advisory that knows the business." },
+    { num: "02", title: "Enterprise Digital Transformation", desc: "Modernization, mapped and managed." },
+    { num: "03", title: "Technical Writing", desc: "Docs and content that sound human." },
+    { num: "04", title: "Documentation & Knowledge Bases", desc: "Everything your team needs, written down." },
   ],
 };
 
-export default function Capabilities({ embedded = false }: { embedded?: boolean }) {
+export default function Capabilities() {
   const [active, setActive] = useState("core");
   const activeTab = tabs.find((t) => t.id === active) ?? tabs[0];
 
   return (
-    <Section
-      border={!embedded}
-      id="capabilities"
-      className={`bg-bg-alt ${embedded ? "!py-0 h-auto w-full" : ""}`}
-    >
+    <Section border id="capabilities" className="bg-bg-alt">
       <SectionHeader
-        compact={embedded}
-        accent="orange"
-        eyebrow="Down The Hall"
+        accent="accent"
+        eyebrow="Capabilities"
         title={
           <>
             Whatever&apos;s slowing you down,
@@ -95,46 +90,28 @@ export default function Capabilities({ embedded = false }: { embedded?: boolean 
               </Chip>
             ))}
           </div>
-          <span className="hidden font-mono text-[11px] uppercase tracking-[0.18em] text-orange-300/70 sm:inline">
-            {activeTab.label} · {panels[active].length} rooms
+          <span className="hidden font-mono text-[11px] uppercase tracking-[0.14em] text-text-dimmer sm:inline">
+            {activeTab.label} · {panels[active].length}
           </span>
         </div>
 
         <Stagger className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {panels[active].map((card) => (
             <MotionItem key={card.title}>
-              <Card
-                className={`h-full border-line bg-panel/40 transition-all hover:border-orange-400/35 hover:bg-orange-500/[0.04] ${
-                  embedded ? "!p-4" : ""
-                }`}
-              >
-                <span className="font-mono text-xs text-orange-300">{card.num}</span>
-                <h4
-                  className={`font-semibold text-text ${
-                    embedded ? "mt-1 text-sm" : "mt-2"
-                  }`}
-                >
-                  {card.title}
-                </h4>
-                <p
-                  className={`text-text-dim ${
-                    embedded ? "mt-0.5 text-xs" : "mt-1.5 text-sm"
-                  }`}
-                >
-                  {card.desc}
-                </p>
+              <Card className="h-full border-line bg-panel/40 transition-colors hover:border-white/15">
+                <span className="font-mono text-xs text-accent">{card.num}</span>
+                <h4 className="mt-2 font-semibold text-text">{card.title}</h4>
+                <p className="mt-1.5 text-sm text-text-dim">{card.desc}</p>
               </Card>
             </MotionItem>
           ))}
         </Stagger>
       </FadeUp>
 
-      {!embedded && (
-        <FadeUp className="mt-12 flex flex-wrap items-center gap-4">
-          <BtnPrimary href="/contact">Talk through your stack →</BtnPrimary>
-          <BtnGhost href="#templates">See agent templates</BtnGhost>
-        </FadeUp>
-      )}
+      <FadeUp className="mt-12 flex flex-wrap items-center gap-4">
+        <BtnPrimary href="/contact">Talk through your stack →</BtnPrimary>
+        <BtnGhost href="#templates">See agent templates</BtnGhost>
+      </FadeUp>
     </Section>
   );
 }

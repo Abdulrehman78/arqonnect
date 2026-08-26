@@ -2,51 +2,55 @@
 
 import Link from "next/link";
 import { FadeUp } from "@/components/ui/Motion";
+import AiAmbient from "@/components/ui/AiAmbient";
+import ZoomBackdrop from "@/components/ui/ZoomBackdrop";
+import { scrim } from "@/lib/themeColors";
 
 export default function Testimonials() {
   return (
-    <section className="relative border-t border-line bg-bg-alt px-6 py-10 md:py-12">
-      <div className="mx-auto max-w-4xl">
+    <section className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden border-b border-line bg-bg px-4 py-20 sm:px-6 md:py-28">
+      <ZoomBackdrop
+        src="/images/testimonials-banner.jpg"
+        delaySec={30}
+        veil={[
+          `linear-gradient(180deg, ${scrim(0.62)} 0%, ${scrim(0.38)} 35%, ${scrim(0.48)} 65%, ${scrim(0.75)} 100%)`,
+          `radial-gradient(ellipse 70% 55% at 50% 40%, ${scrim(0.28)} 0%, ${scrim(0.58)} 100%)`,
+        ].join(",")}
+      >
+        <AiAmbient intensity="room" className="z-[2] opacity-55" />
+      </ZoomBackdrop>
+
+      <div className="relative z-10 mx-auto w-full max-w-3xl">
         <FadeUp className="text-center">
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-violet">
-            Before / After
+          <span className="room-label text-xs font-medium uppercase tracking-[0.18em]">
+            Proven impact
           </span>
-          <h2 className="mt-3 text-2xl font-bold tracking-tight text-text md:text-4xl">
-            The gap between &ldquo;we&apos;re busy&rdquo; and &ldquo;we&apos;re organized.&rdquo;
+          <h2 className="banner-heading mt-4 text-3xl sm:text-4xl">
+            Real conversations. Real outcomes.
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-text-dim md:text-base">
-            We&apos;re early — real client case studies are being documented as
-            engagements complete. Here&apos;s the shape every one follows.
-          </p>
         </FadeUp>
 
-        <FadeUp delay={0.1}>
-          <div className="mt-8 rounded-2xl border border-line bg-panel/50 p-6 md:p-8">
-            <blockquote className="text-sm leading-relaxed text-text-dim md:text-base">
+        <FadeUp delay={0.08}>
+          <blockquote className="mt-12 border-l-2 border-sky-400/60 pl-6 md:pl-8">
+            <p className="room-body text-lg leading-relaxed md:text-xl">
               &ldquo;This is where your story goes. Once the first engagement wraps,
               we&apos;ll swap this for a real quote, a real name, and a real
               result.&rdquo;
-            </blockquote>
-            <div className="mt-5 flex items-center gap-4 border-t border-line pt-5">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-panel-2 text-sm font-bold text-text-dim">
-                ?
-              </span>
-              <div>
-                <div className="font-semibold text-text">Reserved for you</div>
-                <div className="text-sm text-text-dimmer">
-                  Founding client, ArQonnect
-                </div>
-              </div>
-            </div>
-            <p className="mt-4 text-sm text-text-dimmer">
-              Illustrative, based on the workflow every ArQonnect client moves
-              through — ask us for real client results on your first call.
             </p>
+            <footer className="mt-6">
+              <div className="room-heading font-semibold">Reserved for you</div>
+              <div className="room-caption mt-0.5 text-sm">
+                Founding client, ArQonnect
+              </div>
+            </footer>
+          </blockquote>
+
+          <div className="mt-8 text-center">
             <Link
               href="/case-studies"
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent no-underline transition-colors hover:text-accent-dim"
+              className="room-label inline-flex items-center gap-1.5 text-sm font-medium no-underline hover:text-sky-100"
             >
-              See Case Studies <span aria-hidden="true">→</span>
+              See case studies <span aria-hidden="true">→</span>
             </Link>
           </div>
         </FadeUp>

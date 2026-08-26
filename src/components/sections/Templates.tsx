@@ -91,39 +91,15 @@ const panels: Record<
   ],
 };
 
-function WaveBars() {
-  return (
-    <div className="mb-4 flex h-6 items-end gap-1">
-      {[1, 2, 3, 4, 5].map((n) => (
-        <span
-          key={n}
-          className="w-1 origin-bottom rounded-full bg-orange-400"
-          style={{
-            height: "100%",
-            animation: "waveBar 1.2s ease-in-out infinite",
-            animationDelay: `${n * 0.1}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-export default function Templates({ embedded = false }: { embedded?: boolean }) {
+export default function Templates() {
   const [active, setActive] = useState("support");
 
   return (
     <>
-      <Section
-        border={!embedded}
-        id="templates"
-        alt
-        className={`${embedded ? "!py-0 h-auto w-full" : ""}`}
-      >
+      <Section border id="templates">
         <SectionHeader
-          compact={embedded}
-          accent="orange"
-          eyebrow="One Platform, Every Function"
+          accent="accent"
+          eyebrow="Templates"
           title={
             <>
               An agent for whatever&apos;s
@@ -150,18 +126,15 @@ export default function Templates({ embedded = false }: { embedded?: boolean }) 
           <Stagger className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
             {panels[active].map((card) => (
               <MotionItem key={card.title}>
-                <Card className="group h-full border-line bg-panel/40 transition-all hover:border-orange-400/35 hover:bg-orange-500/[0.04]">
-                  <div className="flex items-start justify-between gap-3">
-                    <WaveBars />
-                    <span className="rounded-full border border-orange-400/25 bg-orange-500/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-orange-300">
-                      {card.tag}
-                    </span>
-                  </div>
-                  <h4 className="mt-1 font-semibold text-text">{card.title}</h4>
+                <Card className="group h-full border-line bg-panel/40 transition-colors hover:border-white/15">
+                  <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-text-dimmer">
+                    {card.tag}
+                  </span>
+                  <h4 className="mt-4 font-semibold text-text">{card.title}</h4>
                   <p className="mt-2 text-sm leading-relaxed text-text-dim">
                     {card.desc}
                   </p>
-                  <span className="mt-5 inline-block text-sm text-orange-300 transition-transform group-hover:translate-x-1">
+                  <span className="mt-5 inline-block text-sm text-accent transition-transform group-hover:translate-x-1">
                     Deploy →
                   </span>
                 </Card>
@@ -171,34 +144,38 @@ export default function Templates({ embedded = false }: { embedded?: boolean }) 
         </FadeUp>
       </Section>
 
-      {!embedded && (
-        <section className="relative overflow-hidden border-t border-line px-6 py-24 md:py-28">
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-orange-500/10 via-transparent to-rose-500/5" />
-          <FadeUp className="relative mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-text md:text-5xl">
-              Ready to open a room?
-            </h2>
-            <p className="mx-auto mt-5 max-w-xl text-base text-text-dim">
-              Tell us which bottleneck is loudest — we&apos;ll map the stack and
-              get the first agent live.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-bg no-underline transition-all hover:bg-accent-dim hover:shadow-[0_0_32px_rgba(34,197,94,0.4)]"
-              >
-                Book a Demo →
-              </Link>
-              <Link
-                href="/pricing"
-                className="inline-flex items-center rounded-full border border-line bg-panel/60 px-7 py-3.5 text-sm font-semibold text-text no-underline backdrop-blur-sm transition-all hover:border-orange-400/40"
-              >
-                See pricing
-              </Link>
-            </div>
-          </FadeUp>
-        </section>
-      )}
+      <section className="relative overflow-hidden border-t border-line px-4 py-24 sm:px-6 md:py-28">
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(59,130,246,0.1), transparent 60%)",
+          }}
+        />
+        <FadeUp className="relative mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-text md:text-4xl">
+            Ready to open a room?
+          </h2>
+          <p className="mx-auto mt-4 max-w-lg text-base text-text-dim">
+            Tell us which bottleneck is loudest — we&apos;ll map the stack and
+            get the first agent live.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/contact"
+              className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white no-underline transition-all hover:bg-accent-dim"
+            >
+              Book a Demo →
+            </Link>
+            <Link
+              href="/pricing"
+              className="inline-flex items-center rounded-full border border-line bg-panel/60 px-7 py-3.5 text-sm font-semibold text-text no-underline transition-all hover:border-white/20"
+            >
+              See pricing
+            </Link>
+          </div>
+        </FadeUp>
+      </section>
     </>
   );
 }
