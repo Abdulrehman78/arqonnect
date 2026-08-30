@@ -1,61 +1,67 @@
 "use client";
 
 import Image from "next/image";
-import { HERO_BANNER } from "@/lib/brand";
-import { useEffect, useState } from "react";
+import { LOADER_VIDEO } from "@/lib/brand";
+import { useEffect, useRef, useState } from "react";
 
-const MIN_MS = 800;
-const EXIT_MS = 700;
-const SAFETY_MS = 4000;
+const MIN_MS = 900;
+const EXIT_MS = 680;
+const SAFETY_MS = 1800;
 
-function MapLayer(): React.ReactElement {
-  return (
-    <>
-      <div className="preloader-map-zoom">
-        <Image
-          src={HERO_BANNER}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-      </div>
-      <div className="preloader-map-veil" />
-    </>
-  );
+const STAGES = [
+  { until: 34, label: "Connecting" },
+  { until: 68, label: "Loading workspace" },
+  { until: 99, label: "Syncing agents" },
+  { until: 101, label: "Ready" },
+];
+
+function stageLabel(pct: number): string {
+  return STAGES.find((s) => pct < s.until)?.label ?? "Ready";
 }
 
 export default function Preloader(): React.ReactElement | null {
   const [mounted, setMounted] = useState(true);
   const [exiting, setExiting] = useState(false);
-  const [progress, setProgress] = useState(8);
+  const [progress, setProgress] = useState(0);
+  const targetRef = useRef(10);
+  const displayRef = useRef(0);
+  const rafRef = useRef(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     let finished = false;
     let fadeTimer: ReturnType<typeof setTimeout> | undefined;
     let hideTimer: ReturnType<typeof setTimeout> | undefined;
     let safetyTimer: ReturnType<typeof setTimeout> | undefined;
-    let progressTimer: ReturnType<typeof setInterval> | undefined;
+    let bumpTimer: ReturnType<typeof setInterval> | undefined;
     const started = Date.now();
 
     document.documentElement.classList.add("preloader-active");
     document.body.style.overflow = "hidden";
+    videoRef.current?.play().catch(() => {});
 
-    progressTimer = setInterval(() => {
-      setProgress((p) => {
-        if (p >= 92) return p;
-        return Math.min(92, p + 6 + Math.random() * 10);
-      });
-    }, 80);
+    const tick = () => {
+      const next = displayRef.current + (targetRef.current - displayRef.current) * 0.12;
+      displayRef.current = next;
+      setProgress(next);
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+
+    bumpTimer = setInterval(() => {
+      if (targetRef.current >= 90) return;
+      targetRef.current = Math.min(90, targetRef.current + 5 + Math.random() * 4);
+    }, 140);
 
     const reveal = () => {
       if (finished) return;
       finished = true;
-      clearInterval(progressTimer);
-      setProgress(100);
-      const wait = Math.max(80, MIN_MS - (Date.now() - started));
+      clearInterval(bumpTimer);
+      targetRef.current = 100;
+
+      const wait = Math.max(220, MIN_MS - (Date.now() - started));
       fadeTimer = setTimeout(() => {
+        videoRef.current?.pause();
         setExiting(true);
         hideTimer = setTimeout(() => {
           setMounted(false);
@@ -65,19 +71,20 @@ export default function Preloader(): React.ReactElement | null {
       }, wait);
     };
 
-    if (document.readyState === "complete") {
+    if (document.readyState === "interactive" || document.readyState === "complete") {
       reveal();
     } else {
-      window.addEventListener("load", reveal, { once: true });
+      document.addEventListener("DOMContentLoaded", reveal, { once: true });
       safetyTimer = setTimeout(reveal, SAFETY_MS);
     }
 
     return () => {
-      window.removeEventListener("load", reveal);
+      document.removeEventListener("DOMContentLoaded", reveal);
+      cancelAnimationFrame(rafRef.current);
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
       clearTimeout(safetyTimer);
-      clearInterval(progressTimer);
+      clearInterval(bumpTimer);
       document.body.style.overflow = "";
       document.documentElement.classList.remove("preloader-active");
     };
@@ -85,32 +92,73 @@ export default function Preloader(): React.ReactElement | null {
 
   if (!mounted) return null;
 
+  const pct = Math.min(100, Math.round(progress));
+
   return (
     <div
       className={`preloader-root fixed inset-0 z-[9999] ${exiting ? "preloader-root--exit" : ""}`}
-      aria-hidden={exiting}
       role="status"
-      aria-label="Loading ArQonnect"
+      aria-live="polite"
+      aria-label={`Loading ArQonnect, ${pct} percent`}
     >
-      <div className="preloader-panel preloader-panel--tl">
-        <MapLayer />
+      <div className="preloader-video" aria-hidden>
+        <video
+          ref={videoRef}
+          src={LOADER_VIDEO}
+          className="absolute inset-0 h-full w-full object-cover"
+          playsInline
+          muted
+          loop
+          autoPlay
+          preload="auto"
+        />
       </div>
-      <div className="preloader-panel preloader-panel--br">
-        <MapLayer />
+      <div className="preloader-tint" aria-hidden />
+      <div className="preloader-veil" aria-hidden />
+      <div className="preloader-theme" aria-hidden>
+        <span className="section-idle-orb section-idle-orb--a" />
+        <span className="section-idle-orb section-idle-orb--b" />
+        <span className="section-idle-scan" />
+        <span className="section-idle-node" style={{ left: "12%", top: "22%" }} />
+        <span className="section-idle-node" style={{ left: "86%", top: "28%", animationDelay: "0.8s" }} />
+        <span className="section-idle-node" style={{ left: "18%", top: "74%", animationDelay: "1.4s" }} />
+        <span className="section-idle-node" style={{ left: "82%", top: "78%", animationDelay: "2s" }} />
       </div>
+      <div className="preloader-glow" aria-hidden />
 
-      <div
-        className={`preloader-core relative z-10 flex flex-col items-center ${
-          exiting ? "preloader-core--exit" : ""
-        }`}
-      >
-        <p className="preloader-brand">ArQonnect</p>
-        <div className="preloader-track mt-8">
-          <div
-            className="preloader-progress"
-            style={{ width: `${progress}%` }}
+      <div className={`preloader-core ${exiting ? "preloader-core--exit" : ""}`}>
+        <div className="preloader-mark" aria-hidden>
+          <span className="preloader-ring" />
+          <Image
+            src="/logo.png"
+            alt=""
+            width={44}
+            height={44}
+            className="relative z-[1] h-11 w-11"
+            priority
           />
         </div>
+
+        <p className="preloader-brand">ArQonnect</p>
+        <span className="preloader-rule" aria-hidden />
+
+        <div
+          className="preloader-track"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={pct}
+        >
+          <div className="preloader-progress" style={{ width: `${Math.min(100, progress)}%` }} />
+        </div>
+
+        <p className="preloader-meta">
+          <span className="preloader-stage">
+            <span className="ai-live-dot" />
+            {stageLabel(pct)}
+          </span>
+          <span className="preloader-pct">{String(pct).padStart(2, "0")}%</span>
+        </p>
       </div>
     </div>
   );

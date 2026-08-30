@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import HeroDemoChat from "@/components/HeroDemoChat";
 import HeroVideoBackdrop from "@/components/ui/HeroVideoBackdrop";
 import { GiggleText, useWelcomeReady } from "@/components/ui/GiggleText";
+import { useCheapMotion } from "@/components/ui/Motion";
 
 const textShadowSub = [
   "0 1px 2px rgb(var(--shadow-rgb) / 0.95)",
@@ -15,6 +16,7 @@ const textShadowSub = [
 
 export default function Hero(): React.ReactElement {
   const ready = useWelcomeReady();
+  const cheap = useCheapMotion();
 
   return (
     <section className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-bg pt-28 pb-16 md:pt-32 md:pb-24">
@@ -25,12 +27,8 @@ export default function Hero(): React.ReactElement {
           <motion.div
             className="inline-flex items-center justify-center"
             animate={
-              ready
-                ? { opacity: [0.85, 1, 0.85], textShadow: [
-                    "0 0 18px rgba(234,164,107,0.4)",
-                    "0 0 28px rgba(234,164,107,0.75)",
-                    "0 0 18px rgba(200,125,70,0.4)",
-                  ] }
+              !cheap && ready
+                ? { opacity: [0.85, 1, 0.85] }
                 : undefined
             }
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
@@ -50,7 +48,7 @@ export default function Hero(): React.ReactElement {
             text="Speak human to every customer"
             mode="chars"
             active={ready}
-            startDelay={0.35}
+            startDelay={cheap ? 0 : 0.35}
             className="banner-heading mt-4 text-4xl sm:text-5xl lg:text-6xl"
           />
           <span className="ai-title-line mx-auto mt-5" />
@@ -60,16 +58,16 @@ export default function Hero(): React.ReactElement {
             text="Build and deploy voice and chat agents that answer every call, win every chat, and book the appointment — before your competitor picks up."
             mode="words"
             active={ready}
-            startDelay={1.4}
+            startDelay={cheap ? 0 : 0.55}
             className="room-body mx-auto mt-5 max-w-xl text-base leading-relaxed sm:text-lg"
             style={{ textShadow: textShadowSub }}
           />
 
           <motion.div
             className="mt-8 flex flex-wrap items-center justify-center gap-3"
-            initial={{ opacity: 0, y: 16 }}
+            initial={false}
             animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            transition={{ delay: 2.4, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: cheap ? 0.1 : 0.55, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.div
               className="ai-cta-breath"
@@ -95,7 +93,7 @@ export default function Hero(): React.ReactElement {
           </motion.div>
         </div>
 
-        <HeroDemoChat ready={ready} enterDelay={2.1} />
+        <HeroDemoChat ready={ready} enterDelay={cheap ? 0.15 : 0.7} />
 
         <motion.p
           className="room-caption mt-12 text-center font-mono text-[11px] uppercase tracking-[0.28em]"

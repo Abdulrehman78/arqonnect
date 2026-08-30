@@ -1,8 +1,8 @@
 "use client";
 
 import { useContext, useEffect, useRef, useState } from "react";
-import { RoomActiveContext } from "@/components/ui/Motion";
-import { HERO_BANNER, HERO_VIDEO } from "@/lib/brand";
+import { RoomActiveContext, useCheapMotion } from "@/components/ui/Motion";
+import { HERO_VIDEO } from "@/lib/brand";
 
 type HeroVideoBackdropProps = {
   ready?: boolean;
@@ -13,17 +13,23 @@ export default function HeroVideoBackdrop({
 }: HeroVideoBackdropProps): React.ReactElement {
   const videoRef = useRef<HTMLVideoElement>(null);
   const roomActive = useContext(RoomActiveContext);
+  const cheap = useCheapMotion();
   const inHero = roomActive !== false;
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
   const [blocked, setBlocked] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    if (!ready || !inHero) {
+    if (cheap) {
       video.pause();
       return;
+    }
+
+    if (!inHero) {
+      const t = window.setTimeout(() => video.pause(), 240);
+      return () => clearTimeout(t);
     }
 
     const attempt = video.play();
@@ -34,7 +40,19 @@ export default function HeroVideoBackdrop({
       setBlocked(true);
       video.play().catch(() => {});
     });
-  }, [ready, inHero]);
+  }, [inHero, cheap]);
+
+  useEffect(() => {
+    if (!ready || cheap || !inHero) return;
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = false;
+    video.play().then(() => setMuted(false)).catch(() => {
+      video.muted = true;
+      setMuted(true);
+      setBlocked(true);
+    });
+  }, [ready, cheap, inHero]);
 
   useEffect(() => {
     if (videoRef.current) videoRef.current.muted = muted;
@@ -55,17 +73,16 @@ export default function HeroVideoBackdrop({
 
   return (
     <>
-      <div className="pointer-events-none absolute inset-0 z-0 min-h-[100dvh] overflow-hidden isolate">
+      <div className="pointer-events-none absolute inset-0 z-0 min-h-[100dvh] overflow-hidden isolate bg-[#0B0F12]">
         <video
           ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover"
-          src={HERO_VIDEO}
-          poster={HERO_BANNER}
+          src={cheap ? undefined : HERO_VIDEO}
           playsInline
           loop
-          autoPlay
+          autoPlay={!cheap}
           muted={muted}
-          preload="auto"
+          preload={cheap ? "none" : "auto"}
           aria-hidden
         />
         <div
@@ -79,6 +96,7 @@ export default function HeroVideoBackdrop({
         />
       </div>
 
+      {!cheap && (
       <button
         type="button"
         onClick={toggleMute}
@@ -90,6 +108,7 @@ export default function HeroVideoBackdrop({
       >
         {showUnmute ? <SpeakerOffIcon /> : <SpeakerOnIcon />}
       </button>
+      )}
     </>
   );
 }

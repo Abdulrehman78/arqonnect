@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactElement } from "react";
-import { useReducedMotion } from "framer-motion";
+import { useCheapMotion } from "@/components/ui/Motion";
 
 type SchemeOverlayProps = {
   className?: string;
@@ -16,7 +16,7 @@ export default function SchemeOverlay({
   intensity = "room",
   quiet = false,
 }: SchemeOverlayProps): ReactElement {
-  const reduce = useReducedMotion();
+  const cheap = useCheapMotion();
   const hero = intensity === "hero";
 
   return (
@@ -29,7 +29,7 @@ export default function SchemeOverlay({
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/70" />
 
-      {!reduce && (
+      {!cheap && (
         <div className="section-idle">
           <span className="section-idle-orb section-idle-orb--a" />
           <span className="section-idle-orb section-idle-orb--b" />

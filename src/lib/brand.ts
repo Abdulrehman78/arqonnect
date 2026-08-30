@@ -1,6 +1,10 @@
 /** Original site banner. */
 export const HERO_BANNER = "/images/hero-banner.jpg";
 export const HERO_VIDEO = "/videos/hero-banner.mp4";
+export const LOADER_VIDEO = "/videos/loader.mp4";
+export const MARKETS_VIDEO = "/videos/markets-bg.mp4";
+/** Reuses loader orb clip — same asset, one download via cache. */
+export const STATS_VIDEO = LOADER_VIDEO;
 
 export const palette = {
   bg: "#0B0F12",

@@ -4,11 +4,12 @@ import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from
 import { RoomActiveContext } from "@/components/ui/Motion";
 
 type RoomStyle = {
-  clipPath: string;
   transform: string;
   opacity: number;
   zIndex: number;
   pointerEvents: "auto" | "none";
+  borderRadius: string;
+  boxShadow: string;
 };
 
 function clamp(value: number, min: number, max: number): number {
@@ -16,29 +17,19 @@ function clamp(value: number, min: number, max: number): number {
 }
 
 const DWELL_VH = 0.1;
-/** Room-to-room enter distance (iris open / close) */
-const ENTER_VH = 0.72;
+/** Cinematic fly — long enough to read, short enough not to hang mid-card */
+const ENTER_VH = 0.62;
 /** Pin after the last CTA is fully shown, before the footer takes over */
-const LAST_HOLD_VH = 0.7;
+const LAST_HOLD_VH = 0.5;
 /** Settled time on the last CTA so it can be read and clicked */
-const LAST_DWELL_VH = 1;
-const SMOOTH = 10;
-
-const FULL_CLIP = "inset(0 0 0 0)";
-
-/** CSS circle() % covers corners at ~100%. Do not overshoot or reverse sits dead. */
-function irisRadius(d: number): number {
-  return 3 + d * 97;
-}
-
-function smootherstep(t: number): number {
-  const x = clamp(t, 0, 1);
-  return x * x * x * (x * (x * 6 - 15) + 10);
-}
+const LAST_DWELL_VH = 0.7;
+/** Critically damped camera. Lower = heavier / smoother. */
+const SPRING_OMEGA = 8.2;
+const SPRING_ZETA = 1.08;
 
 /**
- * Sticky rooms: outgoing zooms, incoming opens with a circular iris.
- * Same motion for banner → next and every later room.
+ * ALCHE-style 3D coverflow: current room sits behind; the next room flies
+ * in as a rounded card from depth, then fills the viewport.
  */
 function getRoomStyle(
   index: number,
@@ -48,13 +39,17 @@ function getRoomStyle(
 ): RoomStyle {
   const baseZ = total - index;
   const raw = clamp(depth, 0, 1);
-  const d = smootherstep(raw);
+  const d = raw * raw * (3 - 2 * raw);
   const entering = raw > 0.01 && active < total - 1;
+  const rest = {
+    transform: "translate3d(0,0,0)",
+    borderRadius: "0px",
+    boxShadow: "none",
+  };
 
   if (index < active) {
     return {
-      clipPath: FULL_CLIP,
-      transform: "scale(1)",
+      ...rest,
       opacity: 0,
       zIndex: baseZ,
       pointerEvents: "none",
@@ -63,17 +58,21 @@ function getRoomStyle(
 
   if (index === active) {
     if (entering) {
+      const fromBanner = index === 0;
+      const hide = clamp(raw / (fromBanner ? 0.1 : 0.32), 0, 1);
       return {
-        clipPath: FULL_CLIP,
-        transform: `scale(${1 + d * 0.42})`,
-        opacity: 1 - d * 0.22,
+        transform: fromBanner
+          ? `translate3d(0, 0, ${-24 * hide}px)`
+          : `translate3d(0, 0, ${-48 * d}px) scale(${1 - d * 0.04})`,
+        opacity: 1 - hide,
         zIndex: baseZ + 5,
-        pointerEvents: d < 0.08 ? "auto" : "none",
+        pointerEvents: hide < 0.08 ? "auto" : "none",
+        borderRadius: "0px",
+        boxShadow: "none",
       };
     }
     return {
-      clipPath: FULL_CLIP,
-      transform: "scale(1)",
+      ...rest,
       opacity: 1,
       zIndex: total + 20,
       pointerEvents: "auto",
@@ -83,26 +82,36 @@ function getRoomStyle(
   if (index === active + 1) {
     if (!entering) {
       return {
-        clipPath: "circle(0% at 50% 48%)",
-        transform: "scale(1)",
+        transform: "translate3d(0, 0, -360px) scale(0.48) rotateX(7deg)",
         opacity: 0,
         zIndex: baseZ,
         pointerEvents: "none",
+        borderRadius: "24px",
+        boxShadow: "none",
       };
     }
-    const radius = irisRadius(raw);
+    const scale = 0.48 + d * 0.52;
+    const z = -360 * (1 - d);
+    const tilt = (1 - d) * 7;
+    const radius = (1 - d) * 24;
+    const gold = (1 - d) * 0.48;
+    const far = 1 - d;
     return {
-      clipPath: `circle(${radius}% at 50% 48%)`,
-      transform: "scale(1)",
-      opacity: 1,
+      transform: `translate3d(0, 0, ${z}px) scale(${scale}) rotateX(${tilt}deg)`,
+      opacity: clamp(raw / 0.1, 0, 1),
       zIndex: total + 40,
-      pointerEvents: d > 0.9 ? "auto" : "none",
+      pointerEvents: d > 0.88 ? "auto" : "none",
+      borderRadius: `${radius}px`,
+      boxShadow: [
+        `0 0 0 1px rgba(234,164,107,${gold})`,
+        `0 28px 80px rgba(0,0,0,${0.48 * far})`,
+        `0 0 44px rgba(234,164,107,${0.16 * far})`,
+      ].join(", "),
     };
   }
 
   return {
-    clipPath: FULL_CLIP,
-    transform: "scale(1)",
+    ...rest,
     opacity: 0,
     zIndex: baseZ,
     pointerEvents: "none",
@@ -150,6 +159,8 @@ export default function ScrollFadeSections({
   const budgetsRef = useRef(budgets);
   const targetRef = useRef<ScrollTarget>({ active: 0, depth: 0, offset: 0 });
   const currentRef = useRef<ScrollTarget>({ active: 0, depth: 0, offset: 0 });
+  const velRef = useRef(0);
+  const offsetVelRef = useRef(0);
   const rafRef = useRef(0);
   const lastTsRef = useRef(0);
 
@@ -157,10 +168,15 @@ export default function ScrollFadeSections({
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
-    const apply = () => setIsDesktop(mq.matches);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setIsDesktop(mq.matches && !reduce.matches);
     apply();
     mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
+    reduce.addEventListener("change", apply);
+    return () => {
+      mq.removeEventListener("change", apply);
+      reduce.removeEventListener("change", apply);
+    };
   }, []);
 
   const measure = useCallback(() => {
@@ -277,55 +293,93 @@ export default function ScrollFadeSections({
 
       const target = targetRef.current;
       const cur = currentRef.current;
-      const alpha = 1 - Math.exp(-SMOOTH * dt);
-
       const targetP = target.active + target.depth;
       let curP = cur.active + cur.depth;
-      const deltaP = targetP - curP;
       const lastIdx = Math.max(0, count - 1);
       const arrivingAtLast =
         target.active === lastIdx && target.depth === 0 && curP < lastIdx;
+      const skip = arrivingAtLast || Math.abs(targetP - curP) > 1.25;
 
-      // Last CTA: snap forward so a fast flick still lands on the full section.
-      // Reverse stays lerped so the iris can close.
-      if (arrivingAtLast || Math.abs(deltaP) > 1.2) {
+      if (skip) {
         curP = targetP;
+        velRef.current = 0;
+        offsetVelRef.current = 0;
+        cur.offset = target.offset;
       } else {
-        curP += deltaP * alpha;
-        if (Math.abs(targetP - curP) < 0.0008) curP = targetP;
+        const acc =
+          SPRING_OMEGA * SPRING_OMEGA * (targetP - curP) -
+          2 * SPRING_ZETA * SPRING_OMEGA * velRef.current;
+        velRef.current += acc * dt;
+        curP += velRef.current * dt;
+
+        const oAcc =
+          SPRING_OMEGA * SPRING_OMEGA * (target.offset - cur.offset) -
+          2 * SPRING_ZETA * SPRING_OMEGA * offsetVelRef.current;
+        offsetVelRef.current += oAcc * dt;
+        cur.offset += offsetVelRef.current * dt;
+      }
+
+      if (Math.abs(targetP - curP) < 0.0005 && Math.abs(velRef.current) < 0.01) {
+        curP = targetP;
+        velRef.current = 0;
+      }
+      if (Math.abs(target.offset - cur.offset) < 0.2 && Math.abs(offsetVelRef.current) < 0.4) {
+        cur.offset = target.offset;
+        offsetVelRef.current = 0;
       }
 
       const maxIdx = Math.max(0, count - 1);
-      const clampedP = clamp(curP, 0, maxIdx);
+      if (curP < 0 || curP > maxIdx) {
+        curP = clamp(curP, 0, maxIdx);
+        velRef.current = 0;
+      }
+      const clampedP = curP;
       const nextActive = Math.min(maxIdx, Math.floor(clampedP + 1e-6));
       cur.active = nextActive;
       cur.depth = clamp(clampedP - nextActive, 0, 1);
-      cur.offset += (target.offset - cur.offset) * alpha;
-
-      if (Math.abs(target.offset - cur.offset) < 0.25) cur.offset = target.offset;
 
       setActive((prev) => (prev === cur.active ? prev : cur.active));
-      setDepth((prev) => (Math.abs(prev - cur.depth) < 0.0005 ? prev : cur.depth));
+      setDepth((prev) => (Math.abs(prev - cur.depth) < 0.0004 ? prev : cur.depth));
       setContentOffset((prev) =>
-        Math.abs(prev - cur.offset) < 0.2 ? prev : cur.offset
+        Math.abs(prev - cur.offset) < 0.15 ? prev : cur.offset
       );
+
+      const settled =
+        curP === targetP &&
+        cur.offset === target.offset &&
+        velRef.current === 0 &&
+        offsetVelRef.current === 0;
+      if (settled) {
+        rafRef.current = 0;
+        return;
+      }
 
       rafRef.current = requestAnimationFrame(tick);
     };
 
+    const kick = () => {
+      syncTarget();
+      if (!rafRef.current) {
+        lastTsRef.current = 0;
+        rafRef.current = requestAnimationFrame(tick);
+      }
+    };
+
     syncTarget();
     currentRef.current = { ...targetRef.current };
+    velRef.current = 0;
+    offsetVelRef.current = 0;
     lastTsRef.current = 0;
     rafRef.current = requestAnimationFrame(tick);
 
-    const onScroll = () => syncTarget();
+    const onScroll = () => kick();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", syncTarget);
+    window.addEventListener("resize", kick);
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", syncTarget);
+      window.removeEventListener("resize", kick);
     };
   }, [isDesktop, readScrollTarget, budgets]);
 
@@ -336,7 +390,7 @@ export default function ScrollFadeSections({
         className="scroll-fade-stack scroll-fade-stack--flow relative bg-bg"
       >
         {slides.map((child, i) => (
-          <div key={i} className="relative w-full overflow-hidden">
+          <div key={i} className="relative w-full overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_100vh]">
             {child}
           </div>
         ))}
@@ -351,7 +405,13 @@ export default function ScrollFadeSections({
       className="scroll-fade-stack relative bg-bg"
       style={{ height: totalHeight }}
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden pointer-events-none bg-bg">
+      <div
+        className="sticky top-0 h-screen w-full overflow-hidden pointer-events-none bg-bg"
+        style={{
+          perspective: "1600px",
+          perspectiveOrigin: "50% 42%",
+        }}
+      >
         {slides.map((child, i) => {
           const style = getRoomStyle(i, active, depth, count);
           const contentHeight = heights[i] > 0 ? heights[i] : vh;
@@ -360,21 +420,26 @@ export default function ScrollFadeSections({
           const y = i === active ? topPad - contentOffset : topPad;
 
           const shown = i === active || (i === active + 1 && depth > 0.01);
+          const settled = i === active && depth < 0.08;
 
           return (
             <div
               key={i}
-              className="absolute inset-0 overflow-hidden will-change-[clip-path,transform] bg-bg"
+              className="absolute inset-0 overflow-hidden bg-bg"
               data-room-shown={shown ? "true" : "false"}
+              data-room-settled={settled ? "true" : "false"}
               style={{
-                clipPath: style.clipPath,
                 transform: style.transform,
                 opacity: style.opacity,
                 zIndex: style.zIndex,
                 pointerEvents: "none",
-                transformOrigin: "center center",
-                backgroundColor: "#050505",
+                transformOrigin: "50% 50%",
+                borderRadius: style.borderRadius,
+                boxShadow: style.boxShadow,
+                backgroundColor: "#0B0F12",
                 backfaceVisibility: "hidden",
+                visibility: i === active || i === active + 1 ? "visible" : "hidden",
+                willChange: shown ? "transform, opacity" : "auto",
               }}
             >
               <div
@@ -385,7 +450,7 @@ export default function ScrollFadeSections({
                   ref={(node) => {
                     measureRefs.current[i] = node;
                   }}
-                  className="w-full will-change-transform"
+                  className="w-full"
                   style={{
                     transform: `translate3d(0, ${y}px, 0)`,
                   }}
@@ -399,98 +464,13 @@ export default function ScrollFadeSections({
           );
         })}
 
-        {/* Soft inward depth during iris transitions */}
-        {depth > 0.01 && (
-          (() => {
-            const d = smootherstep(clamp(depth, 0, 1));
-            const startPulse = Math.sin(Math.PI * Math.min(1, d * 1.35));
-            const insetSpread = 24 + d * 72;
-            const insetBlur = 40 + d * 64;
-            return (
-              <div
-                className="pointer-events-none absolute inset-0 z-[92]"
-                style={{
-                  opacity: startPulse * 0.75,
-                  boxShadow: [
-                    `inset 0 0 ${insetBlur}px ${insetSpread}px rgba(0,0,0,0.72)`,
-                    `inset 0 0 ${insetBlur * 0.55}px ${insetSpread * 0.35}px rgba(0,0,0,0.45)`,
-                    `inset 0 0 40px 8px rgba(234,164,107,${0.08 + d * 0.1})`,
-                    `inset 0 0 28px 4px rgba(200,125,70,${0.05 + d * 0.06})`,
-                  ].join(", "),
-                }}
-              />
-            );
-          })()
-        )}
-
-        {/* Circular iris ring — same geometry as the reveal clip */}
         {depth > 0.02 && active < count - 1 && (
-          (() => {
-            const d = smootherstep(clamp(depth, 0, 1));
-            const radiusPct = irisRadius(clamp(depth, 0, 1));
-            const ringFade = Math.min(1, (1 - d) * 1.55 + 0.2);
-            const r = `${radiusPct}%`;
-            return (
-              <div
-                className="pointer-events-none absolute inset-0 z-[95]"
-                style={{
-                  opacity: ringFade,
-                  clipPath: `circle(${radiusPct}% at 50% 48%)`,
-                }}
-              >
-                <svg
-                  className="absolute inset-0 h-full w-full overflow-visible"
-                  aria-hidden
-                >
-                  <circle
-                    cx="50%"
-                    cy="48%"
-                    r={r}
-                    fill="none"
-                    stroke="rgba(0,0,0,0.85)"
-                    strokeWidth={40 + d * 44}
-                    style={{ filter: "blur(14px)" }}
-                  />
-                  <circle
-                    cx="50%"
-                    cy="48%"
-                    r={r}
-                    fill="none"
-                    stroke="rgba(0,0,0,0.55)"
-                    strokeWidth={18 + d * 22}
-                    style={{ filter: "blur(6px)" }}
-                  />
-                  <circle
-                    cx="50%"
-                    cy="48%"
-                    r={r}
-                    fill="none"
-                    stroke="rgba(234,164,107,0.92)"
-                    strokeWidth={3}
-                  />
-                  <circle
-                    cx="50%"
-                    cy="48%"
-                    r={r}
-                    fill="none"
-                    stroke="rgba(234,164,107,0.45)"
-                    strokeWidth={1.25}
-                  />
-                </svg>
-              </div>
-            );
-          })()
-        )}
-
-        {/* Blackish wash while rooms exchange */}
-        {depth > 0.01 && (
           <div
             className="pointer-events-none absolute inset-0 z-[90]"
             style={{
-              opacity:
-                Math.sin(Math.PI * smootherstep(clamp(depth, 0, 1))) * 0.7,
+              opacity: Math.sin(Math.PI * clamp(depth, 0, 1)) * 0.22,
               background:
-                "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.65) 100%)",
+                "radial-gradient(ellipse 48% 42% at 50% 46%, rgba(234,164,107,0.14), transparent 70%)",
             }}
           />
         )}

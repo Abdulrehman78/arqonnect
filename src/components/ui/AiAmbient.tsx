@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useCheapMotion } from "@/components/ui/Motion";
 
 type AiAmbientProps = {
   /** denser particles for hero, lighter for other rooms */
@@ -26,7 +27,7 @@ export default function AiAmbient({
   intensity = "room",
   className = "",
 }: AiAmbientProps): React.ReactElement | null {
-  const reduce = useReducedMotion();
+  const cheap = useCheapMotion();
   const count = intensity === "hero" ? 18 : intensity === "site" ? 10 : 12;
 
   const particles = useMemo(
@@ -42,7 +43,7 @@ export default function AiAmbient({
     [count]
   );
 
-  if (reduce) return null;
+  if (cheap) return null;
 
   return (
     <div

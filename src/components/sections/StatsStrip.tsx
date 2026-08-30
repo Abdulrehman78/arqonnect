@@ -2,8 +2,9 @@
 
 import { FadeUp } from "@/components/ui/Motion";
 import { GiggleText } from "@/components/ui/GiggleText";
-import ZoomBackdrop from "@/components/ui/ZoomBackdrop";
-import { ROOM_VEIL } from "@/lib/brand";
+import RoomVideoBackdrop from "@/components/ui/RoomVideoBackdrop";
+import SchemeOverlay from "@/components/ui/SchemeOverlay";
+import { STATS_VIDEO } from "@/lib/brand";
 
 const metrics = [
   { value: "20+", label: "AI-run services" },
@@ -15,13 +16,8 @@ const metrics = [
 export default function StatsStrip() {
   return (
     <section className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden border-b border-line bg-bg px-4 py-20 sm:px-6 md:py-28">
-      <ZoomBackdrop
-        src="/images/stats-banner.jpg"
-        position="70% center"
-        zoom={false}
-        quiet
-        veil={ROOM_VEIL}
-      />
+      <RoomVideoBackdrop src={STATS_VIDEO} />
+      <SchemeOverlay className="z-[1]" intensity="room" quiet />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl">
         <div className="max-w-xl text-left sm:max-w-2xl">

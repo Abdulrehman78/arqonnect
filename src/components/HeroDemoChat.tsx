@@ -163,16 +163,16 @@ export default function HeroDemoChat({
   return (
     <motion.div
       className="mx-auto mt-14 w-full max-w-3xl"
-      initial={{ opacity: 0, y: 56, scale: 0.9, filter: "blur(8px)" }}
+      initial={{ opacity: 0, y: 28 }}
       animate={
         showPanel
-          ? { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }
-          : { opacity: 0, y: 56, scale: 0.9, filter: "blur(8px)" }
+          ? { opacity: 1, y: 0 }
+          : { opacity: 0, y: 28 }
       }
       transition={{ type: "spring", stiffness: 110, damping: 18, mass: 0.85 }}
     >
       <motion.div
-        className="relative flex h-[min(30rem,68vh)] flex-col overflow-hidden rounded-3xl bg-panel/92 backdrop-blur-2xl sm:h-[min(28rem,62vh)]"
+      className="relative flex h-[min(30rem,68vh)] flex-col overflow-hidden rounded-3xl bg-panel/92 sm:h-[min(28rem,62vh)] md:backdrop-blur-2xl"
         data-ai-tilt
         data-ai-sheen
         style={{

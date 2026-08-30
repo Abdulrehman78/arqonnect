@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
-import React, { useContext, useEffect, useState } from "react";
-import { RoomActiveContext } from "@/components/ui/Motion";
+import { motion, type Variants } from "framer-motion";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { RoomActiveContext, useCheapMotion } from "@/components/ui/Motion";
 
 /** True once the site preloader has finished (or if it never mounted). */
 export function useWelcomeReady(): boolean {
@@ -66,14 +66,13 @@ const tones: Record<
   rise: {
     unit: "chars",
     variants: {
-      hidden: { opacity: 0, y: 26, filter: "blur(8px)" },
+      hidden: { opacity: 0, y: 18 },
       visible: ({ index, base }: { index: number; base: number }) => ({
         opacity: 1,
         y: 0,
-        filter: "blur(0px)",
         transition: {
-          delay: base + index * 0.028,
-          duration: 0.52,
+          delay: base + index * 0.018,
+          duration: 0.4,
           ease: EASE,
         },
       }),
@@ -98,14 +97,13 @@ const tones: Record<
   blur: {
     unit: "words",
     variants: {
-      hidden: { opacity: 0, y: 14, filter: "blur(12px)" },
+      hidden: { opacity: 0, y: 12 },
       visible: ({ index, base }: { index: number; base: number }) => ({
         opacity: 1,
         y: 0,
-        filter: "blur(0px)",
         transition: {
-          delay: base + index * 0.065,
-          duration: 0.55,
+          delay: base + index * 0.05,
+          duration: 0.4,
           ease: EASE,
         },
       }),
@@ -196,29 +194,22 @@ type GiggleTextProps = {
 };
 
 /**
- * Play the entrance when a home room becomes visible.
- * Remounts on each enter so the letters run again; stay put while leaving.
+ * Play the entrance once when a home room first shows. Stay visible after —
+ * remounting on every lerp flicker is what made headings blink.
  */
 function useRoomReplay(controlled?: boolean): {
   active: boolean;
-  gen: number;
   inRoom: boolean;
 } {
   const roomActive = useContext(RoomActiveContext);
-  const [gen, setGen] = useState(0);
-
-  useEffect(() => {
-    if (controlled !== undefined) return;
-    if (roomActive !== true) return;
-    const t = window.setTimeout(() => setGen((g) => g + 1), 140);
-    return () => clearTimeout(t);
-  }, [roomActive, controlled]);
+  const seen = useRef(roomActive === true);
+  if (roomActive === true) seen.current = true;
 
   if (controlled !== undefined) {
-    return { active: controlled, gen: 0, inRoom: roomActive !== null };
+    return { active: controlled, inRoom: roomActive !== null };
   }
-  if (roomActive === null) return { active: true, gen: 0, inRoom: false };
-  return { active: gen > 0, gen, inRoom: true };
+  if (roomActive === null) return { active: true, inRoom: false };
+  return { active: seen.current, inRoom: true };
 }
 
 export function GiggleText({
@@ -231,8 +222,9 @@ export function GiggleText({
   startDelay = 0,
   active: activeProp,
 }: GiggleTextProps): React.ReactElement {
-  const reduce = useReducedMotion();
-  const { active, gen, inRoom } = useRoomReplay(activeProp);
+  const cheap = useCheapMotion();
+  const { active, inRoom } = useRoomReplay(activeProp);
+  const skipLetters = cheap || (inRoom && activeProp === undefined);
   const preset = tones[tone];
   const unit = mode ?? preset.unit;
   const variants =
@@ -240,7 +232,7 @@ export function GiggleText({
 
   const lines = text.split("\n");
 
-  if (reduce) {
+  if (skipLetters) {
     return (
       <Tag className={className} style={style}>
         {lines.map((line, i) => (
@@ -257,7 +249,7 @@ export function GiggleText({
     ? { animate: active ? "visible" : ("hidden" as const) }
     : {
         whileInView: "visible" as const,
-        viewport: { once: true, amount: 0.45, margin: "-40px" },
+        viewport: { once: true, amount: 0.2, margin: "-24px" },
       };
 
   let charIndex = 0;
@@ -283,7 +275,6 @@ export function GiggleText({
             custom={{ index: idx, base: startDelay }}
             variants={variants}
             initial="hidden"
-            style={{ willChange: "transform, opacity, filter" }}
             {...playProps}
           >
             {unitToken}
@@ -315,7 +306,6 @@ export function GiggleText({
                 custom={{ index: idx, base: startDelay }}
                 variants={variants}
                 initial="hidden"
-                style={{ willChange: "transform, opacity, filter" }}
                 {...playProps}
               >
                 {ch}
@@ -329,7 +319,7 @@ export function GiggleText({
 
   return (
     <Tag className={className} style={style} aria-label={text.replace(/\n/g, " ")}>
-      <span key={gen} className="inline">
+      <span className="inline">
         {lines.map((line, i) => (
           <React.Fragment key={i}>
             {i > 0 ? <br /> : null}

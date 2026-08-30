@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
+import { useCheapMotion } from "@/components/ui/Motion";
 
 type ZoomBackdropProps = {
   src: string;
@@ -42,8 +43,9 @@ export default function ZoomBackdrop({
   priority = false,
   children,
 }: ZoomBackdropProps): React.ReactElement {
+  const cheap = useCheapMotion();
   const cover = fit !== "contain";
-  const kenBurns = zoom ?? cover;
+  const kenBurns = !cheap && (zoom ?? cover);
   return (
     <div
       className={`pointer-events-none absolute inset-0 min-h-[100dvh] overflow-hidden isolate ${className}`}
@@ -62,7 +64,7 @@ export default function ZoomBackdrop({
           className={cover ? "object-cover" : "object-contain"}
           style={{
             objectPosition: position,
-            ...(tint
+            ...(tint && !cheap
               ? { filter: "hue-rotate(158deg) saturate(0.88) brightness(0.86)" }
               : {}),
           }}

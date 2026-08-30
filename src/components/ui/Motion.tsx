@@ -1,12 +1,35 @@
 "use client";
 
-import { createContext, useContext, useRef } from "react";
+import { createContext, useContext, useSyncExternalStore } from "react";
 import {
   motion,
   useReducedMotion,
   type Variants,
 } from "framer-motion";
 import React from "react";
+
+function subscribeCheap(onChange: () => void): () => void {
+  const mqs = [
+    window.matchMedia("(pointer: coarse)"),
+    window.matchMedia("(max-width: 767px)"),
+    window.matchMedia("(prefers-reduced-motion: reduce)"),
+  ];
+  mqs.forEach((mq) => mq.addEventListener("change", onChange));
+  return () => mqs.forEach((mq) => mq.removeEventListener("change", onChange));
+}
+
+function cheapSnapshot(): boolean {
+  return (
+    window.matchMedia("(pointer: coarse)").matches ||
+    window.matchMedia("(max-width: 767px)").matches ||
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
+/** Phones, touch, and reduced-motion — skip GPU-heavy looping FX. */
+export function useCheapMotion(): boolean {
+  return useSyncExternalStore(subscribeCheap, cheapSnapshot, () => true);
+}
 
 /** True when this home-room is on screen. null = normal page (use whileInView). */
 export const RoomActiveContext = createContext<boolean | null>(null);
@@ -56,19 +79,12 @@ type MotionProps = {
 };
 
 function useRevealControl(): {
-  reduce: boolean | null;
+  reduce: boolean;
   roomActive: boolean | null;
 } {
-  const reduce = useReducedMotion();
+  const reduce = useCheapMotion();
   const roomActive = useContext(RoomActiveContext);
-  return { reduce: reduce ?? false, roomActive };
-}
-
-/** Stay visible after the first enter so iris/scroll lerp cannot flicker content. */
-function useRevealLatch(roomActive: boolean): boolean {
-  const seen = useRef(roomActive);
-  if (roomActive) seen.current = true;
-  return seen.current;
+  return { reduce, roomActive };
 }
 
 export function FadeUp({
@@ -77,7 +93,6 @@ export function FadeUp({
   delay = 0,
 }: MotionProps): React.ReactElement {
   const { reduce, roomActive } = useRevealControl();
-  const seen = useRevealLatch(roomActive === true);
   const variants = {
     ...fadeUp,
     visible: {
@@ -90,21 +105,8 @@ export function FadeUp({
     },
   };
 
-  if (reduce) {
+  if (reduce || roomActive !== null) {
     return <div className={className}>{children}</div>;
-  }
-
-  if (roomActive !== null) {
-    return (
-      <motion.div
-        className={className}
-        initial="hidden"
-        animate={seen ? "visible" : "hidden"}
-        variants={variants}
-      >
-        {children}
-      </motion.div>
-    );
   }
 
   return (
@@ -125,23 +127,13 @@ export function Stagger({
   className,
 }: MotionProps): React.ReactElement {
   const { reduce, roomActive } = useRevealControl();
-  const seen = useRevealLatch(roomActive === true);
 
   if (reduce) {
     return <div className={className}>{children}</div>;
   }
 
   if (roomActive !== null) {
-    return (
-      <motion.div
-        className={className}
-        initial="hidden"
-        animate={seen ? "visible" : "hidden"}
-        variants={staggerContainer}
-      >
-        {children}
-      </motion.div>
-    );
+    return <div className={className}>{children}</div>;
   }
 
   return (
@@ -172,7 +164,6 @@ export function MotionItem({
           ? undefined
           : { y: -6, transition: { duration: 0.35, ease: EASE } }
       }
-      style={{ willChange: "transform" }}
     >
       {children}
     </motion.div>
@@ -185,7 +176,7 @@ export function Float({
   className,
   delay = 0,
 }: MotionProps): React.ReactElement {
-  const reduce = useReducedMotion();
+  const reduce = useCheapMotion();
   if (reduce) {
     return <div className={className}>{children}</div>;
   }
