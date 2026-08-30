@@ -1,10 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { FadeUp } from "@/components/ui/Motion";
-import AiAmbient from "@/components/ui/AiAmbient";
+import { GiggleText } from "@/components/ui/GiggleText";
 import ZoomBackdrop from "@/components/ui/ZoomBackdrop";
-import { scrim } from "@/lib/themeColors";
+import { ROOM_VEIL } from "@/lib/brand";
 
 const metrics = [
   { value: "20+", label: "AI-run services" },
@@ -19,45 +18,43 @@ export default function StatsStrip() {
       <ZoomBackdrop
         src="/images/stats-banner.jpg"
         position="70% center"
-        delaySec={12}
-        veil={[
-          `linear-gradient(90deg, ${scrim(0.62)} 0%, ${scrim(0.38)} 42%, ${scrim(0.12)} 100%)`,
-          `linear-gradient(180deg, ${scrim(0.42)} 0%, ${scrim(0.22)} 40%, ${scrim(0.55)} 100%)`,
-        ].join(",")}
-      >
-        <AiAmbient intensity="room" className="z-[2] opacity-65" />
-      </ZoomBackdrop>
+        zoom={false}
+        quiet
+        veil={ROOM_VEIL}
+      />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl">
-        <FadeUp className="max-w-xl text-left sm:max-w-2xl">
-          <h2 className="banner-heading text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-            Everyday calls.
+        <div className="max-w-xl text-left sm:max-w-2xl">
+          <h2 className="ai-title banner-heading text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+            <GiggleText as="span" text="Everyday calls." tone="rise" />
             <br />
-            <span className="banner-heading-muted">Extraordinary outcomes.</span>
+            <GiggleText
+              as="span"
+              text="Extraordinary outcomes."
+              tone="rise"
+              startDelay={0.4}
+              className="banner-heading-muted"
+            />
+            <span className="ai-title-line" />
           </h2>
-        </FadeUp>
+        </div>
 
-        <FadeUp delay={0.08}>
+        <FadeUp delay={0.35}>
           <div className="mt-14 grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-6">
             {metrics.map((m, i) => (
-              <motion.div
-                key={m.label}
-                className="text-center"
-                animate={{ y: [0, -4, 0] }}
-                transition={{
-                  duration: 3.2 + i * 0.35,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.2,
-                }}
-              >
-                <div className="banner-heading text-3xl sm:text-4xl md:text-5xl">
-                  {m.value}
-                </div>
+              <div key={m.label} className="text-center">
+                <GiggleText
+                  as="span"
+                  text={m.value}
+                  tone="rise"
+                  startDelay={0.55 + i * 0.1}
+                  className="banner-heading text-3xl sm:text-4xl md:text-5xl"
+                />
+                <span className="ai-stat-bar" />
                 <div className="room-caption mt-2 text-xs font-medium uppercase tracking-[0.14em] sm:text-sm sm:normal-case sm:tracking-normal">
                   {m.label}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </FadeUp>

@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
 import InteractiveBackdrop from "@/components/ui/InteractiveBackdrop";
+import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 const tiers = [
   { id: "starter", label: "Starter Voice", rate: 0.09, hint: "Best for early volume" },
@@ -71,9 +72,9 @@ export default function Pricing() {
   const savings = Math.max(0, oldStack - total);
 
   const bars = [
-    { label: "Voice Engine", value: voice, color: "#22C55E", pct: 50 },
-    { label: "CRM & Automation", value: crm, color: "#34D399", pct: 33 },
-    { label: "Telephony", value: tele, color: "#6EE7B7", pct: 17 },
+    { label: "Voice Engine", value: voice, color: "#EAA46B", pct: 50 },
+    { label: "CRM & Automation", value: crm, color: "#C87D46", pct: 33 },
+    { label: "Telephony", value: tele, color: "#EAA46B", pct: 17 },
   ];
 
   return (
@@ -87,16 +88,16 @@ export default function Pricing() {
 
         <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-8">
           <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-            <div className="inline-flex items-center gap-3 border border-emerald-400/25 bg-emerald-500/5 px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-emerald-300">
-              <span className="h-px w-6 bg-emerald-400/70" />
+            <div className="inline-flex items-center gap-3 border border-gold/25 bg-accent/5 px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-gold">
+              <span className="ai-live-dot !mr-0" />
               Why Switch
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
               Everything you pay{" "}
-              <span className="relative inline-block text-emerald-300">
+              <span className="relative inline-block text-gold">
                 $1,600+
-                <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-emerald-400/50" />
+                <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gold/50" />
               </span>{" "}
               for.
               <br />
@@ -118,10 +119,10 @@ export default function Pricing() {
               {callouts.map((c) => (
                 <span
                   key={c.lead + c.bold}
-                  className="rounded-full border border-emerald-400/20 bg-emerald-500/5 px-4 py-2 text-sm text-text-dim"
+                  className="rounded-full border border-gold/20 bg-accent/5 px-4 py-2 text-sm text-text-dim"
                 >
                   {c.lead}{" "}
-                  <b className="font-semibold text-emerald-300">{c.bold}</b>
+                  <b className="font-semibold text-gold">{c.bold}</b>
                   {c.rest}
                 </span>
               ))}
@@ -133,18 +134,18 @@ export default function Pricing() {
             animate={{ opacity: 1 }}
             className="relative"
           >
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-emerald-500/20 via-transparent to-lime-400/10 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-emerald-400/25 bg-panel/70 shadow-2xl shadow-black/40 backdrop-blur-xl">
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent/20 via-transparent to-gold/10 blur-2xl" />
+            <div className="relative overflow-hidden rounded-2xl border border-gold/25 bg-panel/70 shadow-2xl shadow-black/40 backdrop-blur-xl">
               <div className="flex items-center justify-between border-b border-line px-5 py-4">
                 <div>
                   <div className="text-sm font-semibold text-text">
                     Monthly stack cost
                   </div>
-                  <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-emerald-300">
+                  <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-gold">
                     Old tools vs ArQonnect
                   </div>
                 </div>
-                <span className="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-300">
+                <span className="rounded-full border border-gold/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-gold">
                   Save ~${savings.toLocaleString()}
                 </span>
               </div>
@@ -161,11 +162,11 @@ export default function Pricing() {
                     Seats, SMS, CRM, tracking, apps
                   </p>
                 </div>
-                <div className="bg-emerald-500/10 p-5">
-                  <span className="text-xs uppercase tracking-wider text-emerald-300">
+                <div className="bg-accent/10 p-5">
+                  <span className="text-xs uppercase tracking-wider text-gold">
                     ArQonnect
                   </span>
-                  <b className="mt-2 block text-3xl font-bold text-emerald-300">
+                  <b className="mt-2 block text-3xl font-bold text-gold">
                     from $97
                   </b>
                   <p className="mt-2 text-xs text-text-dim">
@@ -183,7 +184,7 @@ export default function Pricing() {
                     <span className="min-w-0 text-text-dim">{row.name}</span>
                     <span className="shrink-0 font-mono text-xs text-text-dimmer">
                       {row.old}
-                      <span className="ml-2 text-emerald-300">→ covered</span>
+                      <span className="ml-2 text-gold">→ covered</span>
                     </span>
                   </div>
                 ))}
@@ -206,8 +207,8 @@ export default function Pricing() {
             <Stagger className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
               {included.map((item) => (
                 <MotionItem key={item}>
-                  <div className="flex items-center gap-3 rounded-xl border border-emerald-400/15 bg-panel/40 px-4 py-3 text-sm text-text-dim">
-                    <span className="text-emerald-300">✓</span>
+                  <div className="flex items-center gap-3 rounded-xl border border-gold/15 bg-panel/40 px-4 py-3 text-sm text-text-dim">
+                    <span className="text-gold">✓</span>
                     {item}
                   </div>
                 </MotionItem>
@@ -226,7 +227,7 @@ export default function Pricing() {
                   priority
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bg via-bg/50 to-transparent p-4">
-                  <div className="font-mono text-[11px] uppercase tracking-wider text-emerald-300">
+                  <div className="font-mono text-[11px] uppercase tracking-wider text-gold">
                     Side-by-side · Old stack vs ArQonnect
                   </div>
                 </div>
@@ -247,7 +248,7 @@ export default function Pricing() {
         />
 
         <FadeUp>
-          <div className="overflow-hidden rounded-3xl border border-emerald-400/20 bg-gradient-to-br from-panel/80 via-panel/50 to-emerald-500/5 shadow-[0_0_80px_rgba(34,197,94,0.08)]">
+          <div className="overflow-hidden rounded-3xl border border-gold/20 bg-gradient-to-br from-panel/80 via-panel/50 to-accent/5 shadow-[0_0_80px_rgba(234,164,107,0.08)]">
             <div className="grid gap-0 md:grid-cols-2">
               <div className="border-b border-line p-6 md:border-b-0 md:border-r md:p-8">
                 <div className="flex items-end justify-between gap-4">
@@ -267,7 +268,7 @@ export default function Pricing() {
                   </div>
                   <span
                     id="calcMinutesValue"
-                    className="rounded-full border border-emerald-400/25 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300"
+                    className="rounded-full border border-gold/25 bg-accent/10 px-3 py-1 text-xs font-medium text-gold"
                   >
                     Live estimate
                   </span>
@@ -281,7 +282,7 @@ export default function Pricing() {
                   step={50}
                   value={minutes}
                   onChange={(e) => setMinutes(parseInt(e.target.value, 10))}
-                  className="mt-6 w-full accent-[#22C55E]"
+                  className="mt-6 w-full accent-[#EAA46B]"
                 />
                 <div className="mt-2 flex justify-between font-mono text-[11px] text-text-dimmer">
                   <span>50</span>
@@ -301,8 +302,8 @@ export default function Pricing() {
                           type="button"
                           className={`calc-tier flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left transition-all ${
                             active
-                              ? "active border-emerald-400/40 bg-emerald-500/15"
-                              : "border-line bg-bg/40 hover:border-emerald-400/20"
+                              ? "active border-gold/40 bg-accent/15"
+                              : "border-line bg-bg/40 hover:border-gold/20"
                           }`}
                           data-rate={t.rate}
                           onClick={() => setRate(t.rate)}
@@ -310,7 +311,7 @@ export default function Pricing() {
                           <div>
                             <div
                               className={`text-sm font-semibold ${
-                                active ? "text-emerald-300" : "text-text"
+                                active ? "text-gold" : "text-text"
                               }`}
                             >
                               {t.label}
@@ -321,7 +322,7 @@ export default function Pricing() {
     </div>
                           <span
                             className={`font-mono text-sm ${
-                              active ? "text-emerald-300" : "text-text-dim"
+                              active ? "text-gold" : "text-text-dim"
                             }`}
                           >
                             ${t.rate.toFixed(2)}/min
@@ -339,7 +340,7 @@ export default function Pricing() {
               </div>
 
               <div className="relative p-6 md:p-8">
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,197,94,0.12),transparent_55%)]" />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(234,164,107,0.12),transparent_55%)]" />
                 <div className="relative">
                   <span className="text-xs uppercase tracking-[0.16em] text-text-dimmer">
                     Estimated Cost Per Minute
@@ -348,7 +349,7 @@ export default function Pricing() {
                     <span className="text-xl text-text-dim">$</span>
                     <b
                       id="calcCPM"
-                      className="text-5xl font-bold tracking-tight text-text md:text-6xl"
+                      className="ai-num-glow text-5xl font-bold tracking-tight text-text md:text-6xl"
                     >
                       {rate.toFixed(3)}
                     </b>
@@ -385,7 +386,7 @@ export default function Pricing() {
                     ))}
                   </div>
 
-                  <div className="calc-total-row mt-8 rounded-2xl border border-emerald-400/25 bg-emerald-500/10 p-5">
+                  <div className="calc-total-row mt-8 rounded-2xl border border-gold/25 bg-accent/10 p-5">
                     <div className="flex items-baseline justify-between">
                       <span className="text-text-dim">
                         Total{" "}
@@ -395,7 +396,7 @@ export default function Pricing() {
                       </span>
                       <b
                         id="calcTotal"
-                        className="text-3xl font-bold text-emerald-300 md:text-4xl"
+                        className="ai-num-glow text-3xl font-bold text-gold md:text-4xl"
                       >
                         ${total.toLocaleString()}
                       </b>
@@ -431,8 +432,8 @@ export default function Pricing() {
         <Stagger className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {trust.map((item, i) => (
             <MotionItem key={item.title}>
-              <Card className="h-full border-emerald-400/10 bg-gradient-to-b from-panel/70 to-panel/30">
-                <span className="font-mono text-xs text-emerald-300">
+              <Card className="h-full border-gold/10 bg-gradient-to-b from-panel/70 to-panel/30">
+                <span className="font-mono text-xs text-gold">
                   0{i + 1}
                 </span>
                 <h3 className="mt-3 text-lg font-semibold text-text">
@@ -449,10 +450,11 @@ export default function Pricing() {
 
       {/* CTA */}
       <section className="relative overflow-hidden border-t border-line px-6 py-24 md:py-28">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-500/10 via-transparent to-transparent" />
+        <SchemeOverlay />
         <FadeUp className="relative mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-text md:text-5xl">
+          <h2 className="ai-title text-3xl font-bold tracking-tight text-text md:text-5xl">
             One stack. One bill. No surprises.
+            <span className="ai-title-line mx-auto" />
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base text-text-dim">
             Lock in a rate that replaces the tool pile — and put chat, voice and
@@ -461,13 +463,13 @@ export default function Pricing() {
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-bg transition-all hover:bg-accent-dim hover:shadow-[0_0_32px_rgba(34,197,94,0.4)] no-underline"
+              className="ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-7 py-3.5 text-sm font-semibold text-[#0B0F12] transition-all hover:bg-[#C87D46] hover:shadow-[0_0_32px_rgba(234,164,107,0.4)] no-underline"
             >
               Book a Demo →
             </Link>
             <Link
               href="/enterprise"
-              className="inline-flex items-center rounded-full border border-line bg-panel/60 px-7 py-3.5 text-sm font-semibold text-text backdrop-blur-sm transition-all hover:border-emerald-400/40 no-underline"
+              className="inline-flex items-center rounded-full border border-line bg-panel/60 px-7 py-3.5 text-sm font-semibold text-text backdrop-blur-sm transition-all hover:border-gold/40 no-underline"
             >
               Enterprise options
             </Link>

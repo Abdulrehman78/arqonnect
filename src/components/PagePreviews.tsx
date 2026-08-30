@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { FadeUp } from "@/components/ui/Motion";
+import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 type Preview = {
   href: string;
@@ -27,7 +28,7 @@ const previews: Preview[] = [
       "SEO, AEO, GEO and AIO handled together",
       "Ready-made agent templates by industry",
     ],
-    accent: "#22C55E",
+    accent: "#EAA46B",
   },
   {
     href: "/crm",
@@ -41,7 +42,7 @@ const previews: Preview[] = [
       "No manual data entry, ever",
       "Automation triggers on every conversation",
     ],
-    accent: "#8B5CF6",
+    accent: "#C87D46",
   },
   {
     href: "/case-studies",
@@ -55,7 +56,7 @@ const previews: Preview[] = [
       "Industries: healthcare, real estate, ecommerce",
       "Verified outcomes, not projections",
     ],
-    accent: "#06B6D4",
+    accent: "#EAA46B",
   },
   {
     href: "/pricing",
@@ -69,7 +70,7 @@ const previews: Preview[] = [
       "Live cost calculator",
       "Cancel anytime, no lock-in contracts",
     ],
-    accent: "#22C55E",
+    accent: "#EAA46B",
   },
   {
     href: "/enterprise",
@@ -83,7 +84,7 @@ const previews: Preview[] = [
       "Real-time analytics across every agent",
       "Dedicated deployment support",
     ],
-    accent: "#8B5CF6",
+    accent: "#C87D46",
   },
   {
     href: "/resources",
@@ -97,7 +98,7 @@ const previews: Preview[] = [
       "Straight answers to common objections",
       "Updated as the industry moves",
     ],
-    accent: "#06B6D4",
+    accent: "#EAA46B",
   },
   {
     href: "/contact",
@@ -111,7 +112,7 @@ const previews: Preview[] = [
       "Same-week demo scheduling",
       "Real specialists, not a ticket queue",
     ],
-    accent: "#22C55E",
+    accent: "#EAA46B",
   },
 ];
 
@@ -142,8 +143,9 @@ function MockPanel({ icon, accent }: { icon: string; accent: string }) {
 
 export default function PagePreviews() {
   return (
-    <section className="border-t border-line px-6 py-24 md:py-32">
-      <div className="mx-auto max-w-6xl">
+    <section className="relative overflow-hidden border-t border-line px-6 py-24 md:py-32">
+      <SchemeOverlay />
+      <div className="relative mx-auto max-w-6xl">
         <FadeUp>
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-text-dimmer">
             Explore ArQonnect

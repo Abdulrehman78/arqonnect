@@ -77,14 +77,15 @@ export default function Locations() {
 
         <div className="relative z-10 mx-auto w-full max-w-4xl px-6 text-center lg:px-8">
           <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-sky-300">
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-electric-2">
+              <span className="ai-live-dot" />
               Where We Work
             </span>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
               Book a demo,
               <br />
-              <span className="bg-gradient-to-r from-sky-300 via-cyan to-accent bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gold via-cyan to-electric-2 bg-clip-text text-transparent">
                 talk to a human.
               </span>
             </h1>
@@ -161,7 +162,7 @@ export default function Locations() {
                 }`}
               >
                 <div className="relative flex h-28 items-center justify-center bg-bg-alt">
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,197,94,0.12),transparent_70%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(234,164,107,0.12),transparent_70%)]" />
                   <Image
                     src={loc.flag}
                     alt={`${loc.name} flag`}
@@ -171,7 +172,7 @@ export default function Locations() {
                     unoptimized
                   />
                   {loc.hq && (
-                    <span className="absolute right-3 top-3 rounded-full border border-accent/40 bg-accent/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-accent">
+                    <span className="ai-chip-breathe absolute right-3 top-3 rounded-full border border-accent/40 bg-accent/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-accent">
                       HQ
                     </span>
                   )}

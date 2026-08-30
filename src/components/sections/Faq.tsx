@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Section, SectionHeader } from "@/components/ui/PageSection";
 import { FadeUp } from "@/components/ui/Motion";
+import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 type FaqItem = { q: string; a: string };
 type FaqGroup = { label: string; items: FaqItem[] };
@@ -164,10 +165,11 @@ export default function Faq() {
       </Section>
 
       <section className="relative overflow-hidden border-t border-line px-6 py-24 md:py-28">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-cyan/10 via-transparent to-accent/5" />
+        <SchemeOverlay />
         <FadeUp className="relative mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-text md:text-5xl">
+          <h2 className="ai-title text-3xl font-bold tracking-tight text-text md:text-5xl">
             Still have a question?
+            <span className="ai-title-line mx-auto" />
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base text-text-dim">
             Book a demo and ask a specialist — same-week scheduling, real answers,
@@ -176,7 +178,7 @@ export default function Faq() {
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-bg transition-all hover:bg-accent-dim hover:shadow-[0_0_32px_rgba(34,197,94,0.4)] no-underline"
+              className="ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-7 py-3.5 text-sm font-semibold text-[#0B0F12] transition-all hover:bg-[#C87D46] hover:shadow-[0_0_32px_rgba(234,164,107,0.4)] no-underline"
             >
               Book a Demo →
             </Link>

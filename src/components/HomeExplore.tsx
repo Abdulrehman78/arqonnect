@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
+import SchemeOverlay from "@/components/ui/SchemeOverlay";
+import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
 
 type Card = {
   href: string;
@@ -105,55 +109,63 @@ const story: Card[] = [
 
 function CardGrid({ items }: { items: Card[] }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {items.map((c) => (
-        <div
-          key={c.href}
-          className="group flex flex-col justify-between rounded-[18px] border border-white/10 bg-panel/60 p-6 transition-colors hover:border-electric/50 hover:bg-panel-2"
-        >
-          <div>
-            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-electric-2">
-              <Icon name={c.icon} />
+        <MotionItem key={c.href}>
+          <div className="motion-card group flex h-full flex-col justify-between rounded-[18px] border border-white/10 bg-panel/60 p-6 transition-colors hover:border-accent/50 hover:bg-panel-2">
+            <div>
+              <div className="ai-icon-float mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-electric-2">
+                <Icon name={c.icon} />
+              </div>
+              <h3 className="font-display text-lg text-text">{c.label}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-text-dim">
+                {c.highlight}
+              </p>
             </div>
-            <h3 className="font-display text-lg text-text">{c.label}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-text-dim">
-              {c.highlight}
-            </p>
+            <Link
+              href={c.href}
+              className="ai-link-arrow mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-electric-2 no-underline transition-transform group-hover:translate-x-1"
+            >
+              Explore <span aria-hidden="true">→</span>
+            </Link>
           </div>
-          <Link
-            href={c.href}
-            className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-electric-2 no-underline transition-transform group-hover:translate-x-1"
-          >
-            Explore <span aria-hidden="true">→</span>
-          </Link>
-        </div>
+        </MotionItem>
       ))}
-    </div>
+    </Stagger>
   );
 }
 
 export default function HomeExplore() {
   return (
-    <section className="px-6 py-20 md:py-28">
-      <div className="mx-auto max-w-6xl">
-        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dimmer">
-          Explore ArQonnect
-        </span>
-        <h2 className="mt-3 max-w-2xl text-3xl md:text-4xl font-display text-text">
-          Everything the AI workforce does, one page each.
-        </h2>
+    <section className="relative overflow-hidden px-6 py-20 md:py-28">
+      <SchemeOverlay />
+      <div className="relative mx-auto max-w-6xl">
+        <FadeUp>
+          <span className="inline-flex items-center font-mono text-[11px] uppercase tracking-[0.2em] text-text-dimmer">
+            <span className="ai-live-dot" />
+            Explore ArQonnect
+          </span>
+          <h2 className="ai-title mt-3 max-w-2xl text-3xl md:text-4xl font-display text-text">
+            Everything the AI workforce does, one page each.
+            <span className="ai-title-line" />
+          </h2>
+        </FadeUp>
 
         <div className="mt-12">
-          <h3 className="mb-5 text-sm font-mono uppercase tracking-[0.14em] text-text-dimmer">
-            The Platform
-          </h3>
+          <FadeUp>
+            <h3 className="mb-5 text-sm font-mono uppercase tracking-[0.14em] text-text-dimmer">
+              The Platform
+            </h3>
+          </FadeUp>
           <CardGrid items={platform} />
         </div>
 
         <div className="mt-14">
-          <h3 className="mb-5 text-sm font-mono uppercase tracking-[0.14em] text-text-dimmer">
-            Our Story
-          </h3>
+          <FadeUp>
+            <h3 className="mb-5 text-sm font-mono uppercase tracking-[0.14em] text-text-dimmer">
+              Our Story
+            </h3>
+          </FadeUp>
           <CardGrid items={story} />
         </div>
       </div>

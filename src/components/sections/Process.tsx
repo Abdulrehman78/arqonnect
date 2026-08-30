@@ -30,7 +30,7 @@ export default function Process() {
         {steps.map((s) => (
           <MotionItem key={s.num}>
             <Card className="h-full">
-              <span className="font-mono text-xs font-semibold text-accent">{s.num}</span>
+              <span className="ai-num-glow font-mono text-xs font-semibold text-accent">{s.num}</span>
               <h4 className="mt-3 text-lg font-semibold text-text">{s.title}</h4>
               <p className="mt-2 text-sm leading-relaxed text-text-dim">{s.desc}</p>
             </Card>

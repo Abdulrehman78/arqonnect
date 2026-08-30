@@ -93,15 +93,15 @@ export default function Blog() {
 
         <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-8">
           <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-            <div className="inline-flex items-center gap-3 border border-amber-400/25 bg-amber-500/5 px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-amber-300">
-              <span className="h-px w-6 bg-amber-400/70" />
+            <div className="inline-flex items-center gap-3 border border-gold/25 bg-gold/5 px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-gold">
+              <span className="ai-live-dot !mr-0" />
               Insights & News
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
               Guides, insight,
               <br />
-              <span className="bg-gradient-to-r from-amber-200 via-orange-300 to-yellow-200 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gold via-orange-300 to-electric-2 bg-clip-text text-transparent">
                 and straight answers.
               </span>
             </h1>
@@ -118,7 +118,7 @@ export default function Blog() {
                   key={t}
                   className="flex items-center gap-2.5 text-sm text-text-dim"
                 >
-                  <span className="text-amber-300">✓</span>
+                  <span className="text-gold">✓</span>
                   {t}
                 </li>
               ))}
@@ -135,18 +135,18 @@ export default function Blog() {
             animate={{ opacity: 1 }}
             className="relative"
           >
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-amber-500/20 via-transparent to-orange-400/10 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-amber-400/25 bg-panel/70 shadow-2xl shadow-black/40 backdrop-blur-xl">
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-gold/20 via-transparent to-orange-400/10 blur-2xl" />
+            <div className="relative overflow-hidden rounded-2xl border border-gold/25 bg-panel/70 shadow-2xl shadow-black/40 backdrop-blur-xl">
               <div className="flex items-center justify-between border-b border-line px-5 py-4">
                 <div>
                   <div className="text-sm font-semibold text-text">
                     Resource library
                   </div>
-                  <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-amber-300">
+                  <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-gold">
                     What you&apos;ll find here
                   </div>
                 </div>
-                <span className="rounded-full border border-amber-400/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-300">
+                <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-semibold text-gold">
                   Free
                 </span>
               </div>
@@ -155,9 +155,9 @@ export default function Blog() {
                 {topics.map((t, i) => (
                   <div
                     key={t.label}
-                    className="flex items-start gap-4 px-5 py-4 transition-colors hover:bg-amber-500/5"
+                    className="flex items-start gap-4 px-5 py-4 transition-colors hover:bg-gold/5"
                   >
-                    <span className="mt-0.5 font-mono text-xs text-amber-300/70">
+                    <span className="mt-0.5 font-mono text-xs text-gold/70">
                       0{i + 1}
                     </span>
                     <div>
@@ -172,7 +172,7 @@ export default function Blog() {
                 ))}
               </div>
 
-              <div className="border-t border-line bg-amber-500/5 px-5 py-4">
+              <div className="border-t border-line bg-gold/5 px-5 py-4">
                 <p className="text-xs leading-relaxed text-text-dim">
                   New pieces as the industry moves — voice, CRM, and AI search
                   visibility in one place.
@@ -184,15 +184,15 @@ export default function Blog() {
       </section>
 
       {/* Pulse ticker */}
-      <div className="border-y border-amber-400/15 bg-[#0c0a06] py-4">
+      <div className="border-y border-gold/15 bg-bg-alt py-4">
         <div className="overflow-hidden">
           <div className="flex w-max animate-marquee items-center gap-10 px-6">
             {[...pulseItems, ...pulseItems].map((item, i) => (
               <span
                 key={`${item}-${i}`}
-                className="flex items-center gap-3 whitespace-nowrap font-mono text-xs uppercase tracking-[0.18em] text-amber-200/45"
+                className="flex items-center gap-3 whitespace-nowrap font-mono text-xs uppercase tracking-[0.18em] text-gold/55"
               >
-                <span className="h-1 w-1 rounded-full bg-amber-400/60" />
+                <span className="h-1 w-1 rounded-full bg-gold/60" />
                 {item}
               </span>
             ))}
@@ -219,10 +219,10 @@ export default function Blog() {
           <FadeUp>
             <a
               href="#faq"
-              className="group relative block h-full overflow-hidden rounded-2xl border border-amber-400/25 bg-gradient-to-br from-amber-500/10 via-panel/50 to-panel/30 p-8 no-underline transition-all hover:border-amber-400/45 md:p-10"
+              className="group relative block h-full overflow-hidden rounded-2xl border border-gold/25 bg-gradient-to-br from-gold/10 via-panel/50 to-panel/30 p-8 no-underline transition-all hover:border-gold/45 md:p-10"
             >
-              <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-amber-400/10 blur-3xl transition-opacity group-hover:opacity-80" />
-              <span className="rounded-full border border-amber-400/35 bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-300">
+              <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gold/10 blur-3xl transition-opacity group-hover:opacity-80" />
+              <span className="rounded-full border border-gold/35 bg-gold/10 px-3 py-1 text-xs font-medium text-gold">
                 Featured
               </span>
               <h3 className="relative mt-5 text-2xl font-bold tracking-tight text-text md:text-3xl">
@@ -235,7 +235,7 @@ export default function Blog() {
                 close rates on our own demos doubled — the story of the pivot,
                 and what it means for how you should be evaluating any AI vendor.
               </p>
-              <div className="relative mt-8 flex items-center justify-between text-sm text-amber-300">
+              <div className="relative mt-8 flex items-center justify-between text-sm text-gold">
                 <span>10 min read</span>
                 <span className="transition-transform group-hover:translate-x-1">
                   →
@@ -249,9 +249,9 @@ export default function Blog() {
               <MotionItem key={p.title}>
                 <a
                   href="#faq"
-                  className="group block rounded-2xl border border-line bg-panel/40 p-5 no-underline transition-all hover:border-amber-400/30 hover:bg-panel/70"
+                  className="group block rounded-2xl border border-line bg-panel/40 p-5 no-underline transition-all hover:border-gold/30 hover:bg-panel/70"
                 >
-                  <span className="text-xs font-medium uppercase tracking-[0.12em] text-amber-300/80">
+                  <span className="text-xs font-medium uppercase tracking-[0.12em] text-gold/80">
                     {p.tag}
                   </span>
                   <h4 className="mt-2 font-semibold leading-snug text-text">
@@ -259,7 +259,7 @@ export default function Blog() {
                   </h4>
                   <div className="mt-4 flex items-center justify-between text-xs text-text-dimmer">
                     <span>{p.read}</span>
-                    <span className="text-amber-300 transition-transform group-hover:translate-x-1">
+                    <span className="text-gold transition-transform group-hover:translate-x-1">
                       →
                     </span>
                   </div>
@@ -272,9 +272,9 @@ export default function Blog() {
         <Stagger className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {posts.slice(3).map((p) => (
             <MotionItem key={p.title}>
-              <Card className="group h-full border-line bg-panel/40 transition-all hover:border-amber-400/30 hover:bg-panel/70">
+              <Card className="group h-full border-line bg-panel/40 transition-all hover:border-gold/30 hover:bg-panel/70">
                 <a href="#faq" className="block h-full no-underline">
-                  <span className="text-xs font-medium uppercase tracking-[0.12em] text-amber-300/80">
+                  <span className="text-xs font-medium uppercase tracking-[0.12em] text-gold/80">
                     {p.tag}
                   </span>
                   <h4 className="mt-3 text-base font-semibold leading-snug text-text">
@@ -285,7 +285,7 @@ export default function Blog() {
                   </p>
                   <div className="mt-5 flex items-center justify-between text-xs text-text-dimmer">
                     <span>{p.read}</span>
-                    <span className="text-amber-300 transition-transform group-hover:translate-x-1">
+                    <span className="text-gold transition-transform group-hover:translate-x-1">
                       →
                     </span>
                   </div>
@@ -311,9 +311,9 @@ export default function Blog() {
             <MotionItem key={t.label}>
               <a
                 href="#insights"
-                className="group block h-full rounded-2xl border border-amber-400/15 bg-panel/40 p-6 no-underline transition-all hover:border-amber-400/40 hover:bg-amber-500/5"
+                className="group block h-full rounded-2xl border border-gold/15 bg-panel/40 p-6 no-underline transition-all hover:border-gold/40 hover:bg-gold/5"
               >
-                <span className="font-mono text-xs text-amber-300/60">
+                <span className="font-mono text-xs text-gold/60">
                   0{i + 1}
                 </span>
                 <h3 className="mt-3 text-lg font-semibold text-text">
@@ -322,7 +322,7 @@ export default function Blog() {
                 <p className="mt-2 text-sm leading-relaxed text-text-dim">
                   {t.desc}
                 </p>
-                <span className="mt-5 inline-block text-sm text-amber-300 transition-transform group-hover:translate-x-1">
+                <span className="mt-5 inline-block text-sm text-gold transition-transform group-hover:translate-x-1">
                   Explore →
                 </span>
               </a>
@@ -334,13 +334,13 @@ export default function Blog() {
       {/* Newsletter */}
       <Section id="newsletter">
         <FadeUp>
-          <div className="relative overflow-hidden rounded-3xl border border-amber-400/20 bg-gradient-to-br from-panel/80 via-panel/50 to-amber-500/5 p-8 shadow-[0_0_80px_rgba(251,191,36,0.06)] md:p-12">
-            <div className="pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-amber-400/10 blur-3xl" />
+          <div className="relative overflow-hidden rounded-3xl border border-gold/20 bg-gradient-to-br from-panel/80 via-panel/50 to-gold/5 p-8 shadow-[0_0_80px_rgba(234,164,107,0.08)] md:p-12">
+            <div className="pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-gold/10 blur-3xl" />
             <div className="pointer-events-none absolute -left-16 bottom-0 h-48 w-48 rounded-full bg-orange-500/10 blur-3xl" />
 
             <div className="relative grid gap-8 md:grid-cols-2 md:items-center">
               <div>
-                <span className="font-mono text-xs uppercase tracking-[0.2em] text-amber-300">
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-gold">
                   Stay In The Loop
                 </span>
                 <h3 className="mt-4 text-2xl font-bold tracking-tight text-text md:text-3xl">
@@ -361,11 +361,11 @@ export default function Blog() {
                   type="email"
                   placeholder="you@company.com"
                   required
-                  className="flex-1 rounded-full border border-line bg-bg px-5 py-3 text-sm text-text outline-none placeholder:text-text-dimmer focus:border-amber-400/50"
+                  className="flex-1 rounded-full border border-line bg-bg px-5 py-3 text-sm text-text outline-none placeholder:text-text-dimmer focus:border-gold/50"
                 />
                 <button
                   type="submit"
-                  className="inline-flex shrink-0 items-center justify-center rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-bg transition-all hover:bg-amber-300"
+                  className="ai-cta-shine inline-flex shrink-0 items-center justify-center rounded-full bg-[#EAA46B] px-6 py-3 text-sm font-semibold text-[#0B0F12] transition-all hover:bg-[#C87D46]"
                 >
                   Subscribe →
                 </button>
@@ -379,8 +379,9 @@ export default function Blog() {
       <Section alt border>
         <FadeUp>
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-text md:text-4xl">
+            <h2 className="ai-title text-3xl font-bold tracking-tight text-text md:text-4xl">
               Prefer a conversation over a post?
+              <span className="ai-title-line mx-auto" />
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base text-text-dim">
               Bring your stack questions — we&apos;ll map voice, CRM, and AI
@@ -394,7 +395,7 @@ export default function Blog() {
               Or skim the{" "}
               <Link
                 href="#faq"
-                className="text-amber-300 no-underline hover:underline"
+                className="text-gold no-underline hover:underline"
               >
                 FAQ
               </Link>{" "}

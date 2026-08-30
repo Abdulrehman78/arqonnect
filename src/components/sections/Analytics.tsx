@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Section, SectionHeader, Card } from "@/components/ui/PageSection";
 import { FadeUp } from "@/components/ui/Motion";
+import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 export default function Analytics() {
   return (
@@ -34,8 +35,8 @@ export default function Analytics() {
                 >
                   <defs>
                     <linearGradient id="resGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#22C55E" stopOpacity="0.35" />
-                      <stop offset="100%" stopColor="#22C55E" stopOpacity="0" />
+                      <stop offset="0%" stopColor="#EAA46B" stopOpacity="0.35" />
+                      <stop offset="100%" stopColor="#EAA46B" stopOpacity="0" />
                     </linearGradient>
                   </defs>
                   <path
@@ -45,13 +46,13 @@ export default function Analytics() {
                   <path
                     d="M0 60 L25 55 L50 58 L75 42 L100 45 L125 30 L150 35 L175 22 L200 26 L225 15 L250 18 L275 8 L300 10"
                     fill="none"
-                    stroke="#22C55E"
+                    stroke="#EAA46B"
                     strokeWidth="2.5"
                   />
                 </svg>
               </div>
               <div className="mt-4 flex items-baseline gap-2">
-                <b className="text-2xl font-bold text-text">92%</b>
+                <b className="ai-num-glow text-2xl font-bold text-text">92%</b>
                 <span className="text-sm text-text-dim">
                   resolved without a human
                 </span>
@@ -69,8 +70,8 @@ export default function Analytics() {
                 >
                   <defs>
                     <linearGradient id="csatGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.35" />
-                      <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0" />
+                      <stop offset="0%" stopColor="#EAA46B" stopOpacity="0.35" />
+                      <stop offset="100%" stopColor="#EAA46B" stopOpacity="0" />
                     </linearGradient>
                   </defs>
                   <path
@@ -80,13 +81,13 @@ export default function Analytics() {
                   <path
                     d="M0 50 L25 48 L50 52 L75 40 L100 44 L125 32 L150 36 L175 24 L200 28 L225 20 L250 22 L275 14 L300 16"
                     fill="none"
-                    stroke="#8B5CF6"
+                    stroke="#EAA46B"
                     strokeWidth="2.5"
                   />
                 </svg>
               </div>
               <div className="mt-4 flex items-baseline gap-2">
-                <b className="text-2xl font-bold text-text">4.6/5</b>
+                <b className="ai-num-glow text-2xl font-bold text-text">4.6/5</b>
                 <span className="text-sm text-text-dim">
                   average satisfaction score
                 </span>
@@ -98,10 +99,10 @@ export default function Analytics() {
               </span>
               <div className="mt-4 space-y-3">
                 {[
-                  { label: "Voice", pct: 38, color: "#22C55E" },
-                  { label: "Web Chat", pct: 29, color: "#06B6D4" },
+                  { label: "Voice", pct: 38, color: "#EAA46B" },
+                  { label: "Web Chat", pct: 29, color: "#EAA46B" },
                   { label: "WhatsApp", pct: 18, color: "#25D366" },
-                  { label: "SMS & Social DM", pct: 15, color: "#8B5CF6" },
+                  { label: "SMS & Social DM", pct: 15, color: "#C87D46" },
                 ].map((row) => (
                   <div
                     key={row.label}
@@ -124,7 +125,7 @@ export default function Analytics() {
                 ))}
               </div>
               <div className="mt-4 flex items-baseline gap-2">
-                <b className="text-2xl font-bold text-text">4</b>
+                <b className="ai-num-glow text-2xl font-bold text-text">4</b>
                 <span className="text-sm text-text-dim">
                   channels, one dashboard
                 </span>
@@ -139,10 +140,11 @@ export default function Analytics() {
       </Section>
 
       <section className="relative overflow-hidden border-t border-line px-6 py-20 md:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-cyan/8 via-transparent to-transparent" />
+        <SchemeOverlay />
         <FadeUp className="relative mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-text md:text-4xl">
+          <h2 className="ai-title text-2xl font-bold tracking-tight text-text md:text-4xl">
             Ready when your security team is.
+            <span className="ai-title-line mx-auto" />
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm text-text-dim md:text-base">
             Walk through guardrails, analytics and deployment support on a
@@ -150,7 +152,7 @@ export default function Analytics() {
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-bg transition-all hover:bg-accent-dim hover:shadow-[0_0_32px_rgba(34,197,94,0.4)] no-underline"
+            className="ai-cta-shine mt-8 inline-flex items-center rounded-full bg-[#EAA46B] px-7 py-3.5 text-sm font-semibold text-[#0B0F12] transition-all hover:bg-[#C87D46] hover:shadow-[0_0_32px_rgba(234,164,107,0.4)] no-underline"
           >
             Book an Enterprise Demo →
           </Link>

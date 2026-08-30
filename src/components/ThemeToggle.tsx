@@ -26,7 +26,11 @@ export function applyTheme(mode: ThemeMode) {
   }
 }
 
-export default function ThemeToggle() {
+export default function ThemeToggle({
+  className = "",
+}: {
+  className?: string;
+}) {
   const [theme, setTheme] = useState<ThemeMode>("dark");
   const [ready, setReady] = useState(false);
 
@@ -50,7 +54,9 @@ export default function ThemeToggle() {
       onClick={toggle}
       aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
       title={theme === "dark" ? "Light mode" : "Dark mode"}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-bg/40 text-text backdrop-blur-sm transition-colors hover:bg-panel"
+      className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border backdrop-blur-sm transition-colors ${
+        className || "border-line bg-bg/40 text-text hover:bg-panel"
+      }`}
     >
       {!ready ? (
         <span className="h-4 w-4" />

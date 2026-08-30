@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { RoomActiveContext } from "@/components/ui/Motion";
 
 type RoomStyle = {
   clipPath: string;
@@ -14,14 +15,21 @@ function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }
 
-const DWELL_VH = 0.12;
-/** Room-to-room enter distance (iris open) */
-const ENTER_VH = 1.2;
-const LAST_HOLD_VH = 1;
-const LAST_DWELL_VH = 0.75;
-const SMOOTH = 9;
+const DWELL_VH = 0.1;
+/** Room-to-room enter distance (iris open / close) */
+const ENTER_VH = 0.72;
+/** Pin after the last CTA is fully shown, before the footer takes over */
+const LAST_HOLD_VH = 0.7;
+/** Settled time on the last CTA so it can be read and clicked */
+const LAST_DWELL_VH = 1;
+const SMOOTH = 10;
 
 const FULL_CLIP = "inset(0 0 0 0)";
+
+/** CSS circle() % covers corners at ~100%. Do not overshoot or reverse sits dead. */
+function irisRadius(d: number): number {
+  return 3 + d * 97;
+}
 
 function smootherstep(t: number): number {
   const x = clamp(t, 0, 1);
@@ -41,7 +49,7 @@ function getRoomStyle(
   const baseZ = total - index;
   const raw = clamp(depth, 0, 1);
   const d = smootherstep(raw);
-  const entering = raw > 0.02 && active < total - 1;
+  const entering = raw > 0.01 && active < total - 1;
 
   if (index < active) {
     return {
@@ -57,8 +65,8 @@ function getRoomStyle(
     if (entering) {
       return {
         clipPath: FULL_CLIP,
-        transform: `scale(${1 + d * 1.85})`,
-        opacity: 1 - d * 0.35,
+        transform: `scale(${1 + d * 0.42})`,
+        opacity: 1 - d * 0.22,
         zIndex: baseZ + 5,
         pointerEvents: d < 0.08 ? "auto" : "none",
       };
@@ -82,7 +90,7 @@ function getRoomStyle(
         pointerEvents: "none",
       };
     }
-    const radius = 4 + d * 146;
+    const radius = irisRadius(raw);
     return {
       clipPath: `circle(${radius}% at 50% 48%)`,
       transform: "scale(1)",
@@ -271,19 +279,30 @@ export default function ScrollFadeSections({
       const cur = currentRef.current;
       const alpha = 1 - Math.exp(-SMOOTH * dt);
 
-      if (cur.active !== target.active) {
-        cur.active = target.active;
-        cur.depth = target.depth;
-        cur.offset = target.offset;
-      } else {
-        cur.depth += (target.depth - cur.depth) * alpha;
-        cur.offset += (target.offset - cur.offset) * alpha;
+      const targetP = target.active + target.depth;
+      let curP = cur.active + cur.depth;
+      const deltaP = targetP - curP;
+      const lastIdx = Math.max(0, count - 1);
+      const arrivingAtLast =
+        target.active === lastIdx && target.depth === 0 && curP < lastIdx;
 
-        if (Math.abs(target.depth - cur.depth) < 0.001) cur.depth = target.depth;
-        if (Math.abs(target.offset - cur.offset) < 0.25) cur.offset = target.offset;
-        // Hard-settle at rest so the banner doesn’t micro-flicker
-        if (target.depth < 0.015) cur.depth = 0;
+      // Last CTA: snap forward so a fast flick still lands on the full section.
+      // Reverse stays lerped so the iris can close.
+      if (arrivingAtLast || Math.abs(deltaP) > 1.2) {
+        curP = targetP;
+      } else {
+        curP += deltaP * alpha;
+        if (Math.abs(targetP - curP) < 0.0008) curP = targetP;
       }
+
+      const maxIdx = Math.max(0, count - 1);
+      const clampedP = clamp(curP, 0, maxIdx);
+      const nextActive = Math.min(maxIdx, Math.floor(clampedP + 1e-6));
+      cur.active = nextActive;
+      cur.depth = clamp(clampedP - nextActive, 0, 1);
+      cur.offset += (target.offset - cur.offset) * alpha;
+
+      if (Math.abs(target.offset - cur.offset) < 0.25) cur.offset = target.offset;
 
       setActive((prev) => (prev === cur.active ? prev : cur.active));
       setDepth((prev) => (Math.abs(prev - cur.depth) < 0.0005 ? prev : cur.depth));
@@ -340,10 +359,13 @@ export default function ScrollFadeSections({
             contentHeight < vh ? Math.max(0, (vh - contentHeight) / 2) : 0;
           const y = i === active ? topPad - contentOffset : topPad;
 
+          const shown = i === active || (i === active + 1 && depth > 0.01);
+
           return (
             <div
               key={i}
               className="absolute inset-0 overflow-hidden will-change-[clip-path,transform] bg-bg"
+              data-room-shown={shown ? "true" : "false"}
               style={{
                 clipPath: style.clipPath,
                 transform: style.transform,
@@ -352,7 +374,6 @@ export default function ScrollFadeSections({
                 pointerEvents: "none",
                 transformOrigin: "center center",
                 backgroundColor: "#050505",
-                // Keep in GPU layer without visibility toggles (those caused banner flicker)
                 backfaceVisibility: "hidden",
               }}
             >
@@ -369,7 +390,9 @@ export default function ScrollFadeSections({
                     transform: `translate3d(0, ${y}px, 0)`,
                   }}
                 >
-                  {child}
+                  <RoomActiveContext.Provider value={shown}>
+                    {child}
+                  </RoomActiveContext.Provider>
                 </div>
               </div>
             </div>
@@ -391,7 +414,8 @@ export default function ScrollFadeSections({
                   boxShadow: [
                     `inset 0 0 ${insetBlur}px ${insetSpread}px rgba(0,0,0,0.72)`,
                     `inset 0 0 ${insetBlur * 0.55}px ${insetSpread * 0.35}px rgba(0,0,0,0.45)`,
-                    `inset 0 0 40px 8px rgba(59,130,246,${0.06 + d * 0.08})`,
+                    `inset 0 0 40px 8px rgba(234,164,107,${0.08 + d * 0.1})`,
+                    `inset 0 0 28px 4px rgba(200,125,70,${0.05 + d * 0.06})`,
                   ].join(", "),
                 }}
               />
@@ -403,7 +427,7 @@ export default function ScrollFadeSections({
         {depth > 0.02 && active < count - 1 && (
           (() => {
             const d = smootherstep(clamp(depth, 0, 1));
-            const radiusPct = 4 + d * 146;
+            const radiusPct = irisRadius(clamp(depth, 0, 1));
             const ringFade = Math.min(1, (1 - d) * 1.55 + 0.2);
             const r = `${radiusPct}%`;
             return (
@@ -441,7 +465,7 @@ export default function ScrollFadeSections({
                     cy="48%"
                     r={r}
                     fill="none"
-                    stroke="rgba(96,165,250,0.9)"
+                    stroke="rgba(234,164,107,0.92)"
                     strokeWidth={3}
                   />
                   <circle
@@ -449,7 +473,7 @@ export default function ScrollFadeSections({
                     cy="48%"
                     r={r}
                     fill="none"
-                    stroke="rgba(186,230,253,0.35)"
+                    stroke="rgba(234,164,107,0.45)"
                     strokeWidth={1.25}
                   />
                 </svg>
@@ -458,18 +482,15 @@ export default function ScrollFadeSections({
           })()
         )}
 
-        {/* Soft blue wash while rooms exchange */}
+        {/* Blackish wash while rooms exchange */}
         {depth > 0.01 && (
           <div
             className="pointer-events-none absolute inset-0 z-[90]"
             style={{
               opacity:
-                Math.sin(Math.PI * smootherstep(clamp(depth, 0, 1))) * 0.5,
-              background: [
-                `radial-gradient(circle at 50% 48%, rgba(56,189,248,${0.28 + depth * 0.12}) 0%, transparent 40%)`,
-                `radial-gradient(ellipse 90% 70% at 50% 50%, rgba(59,130,246,${0.14 + depth * 0.18}) 0%, rgba(37,99,235,0.08) 45%, rgba(5,5,5,0.4) 75%)`,
-              ].join(","),
-              mixBlendMode: "screen",
+                Math.sin(Math.PI * smootherstep(clamp(depth, 0, 1))) * 0.7,
+              background:
+                "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.65) 100%)",
             }}
           />
         )}

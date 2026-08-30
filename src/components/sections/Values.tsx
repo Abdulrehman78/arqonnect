@@ -25,7 +25,7 @@ export default function Values() {
         {values.map((v) => (
           <MotionItem key={v.title}>
             <Card className="h-full">
-              <span className="text-2xl">{v.icon}</span>
+              <span className="ai-icon-float inline-block text-2xl">{v.icon}</span>
               <h4 className="mt-4 text-lg font-semibold text-text">{v.title}</h4>
               <p className="mt-2 text-sm leading-relaxed text-text-dim">{v.desc}</p>
             </Card>

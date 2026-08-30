@@ -1,6 +1,7 @@
 "use client";
 
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
+import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 type Service = {
   key: string;
@@ -160,14 +161,17 @@ export default function ServicesStory() {
   return (
     <>
       {/* Catalog */}
-      <section id="catalog" className="border-b border-line bg-bg px-4 py-16 sm:px-6 md:py-24">
-        <div className="mx-auto max-w-6xl">
+      <section id="catalog" className="relative overflow-hidden border-b border-line bg-bg px-4 py-16 sm:px-6 md:py-24">
+        <SchemeOverlay />
+        <div className="relative mx-auto max-w-6xl">
           <FadeUp className="max-w-2xl">
-            <span className="text-xs font-medium uppercase tracking-[0.18em] text-accent">
+            <span className="inline-flex items-center text-xs font-medium uppercase tracking-[0.18em] text-accent">
+              <span className="ai-live-dot" />
               Service catalog
             </span>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-text sm:text-4xl">
+            <h2 className="ai-title mt-3 text-3xl font-bold tracking-tight text-text sm:text-4xl">
               Everything in the stack.
+              <span className="ai-title-line" />
             </h2>
             <p className="mt-3 text-base text-text-dim">
               Same offerings as before — presented as a quiet product catalog,
@@ -178,7 +182,7 @@ export default function ServicesStory() {
           <Stagger className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
             {services.map((s) => (
               <MotionItem key={s.key}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-panel/40 transition-colors hover:border-white/15 hover:bg-panel/70">
+                <article className="motion-card group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-panel/40 transition-colors hover:border-white/15 hover:bg-panel/70">
                   <div className="relative border-b border-line bg-bg/60 p-4">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -189,7 +193,7 @@ export default function ServicesStory() {
                   </div>
                   <div className="flex flex-1 flex-col p-5 sm:p-6">
                     <div className="flex items-center justify-between gap-3">
-                      <span className="font-mono text-[11px] text-accent">
+                      <span className="ai-num-glow font-mono text-[11px] text-accent">
                         {s.index} · {s.room}
                       </span>
                     </div>
@@ -203,7 +207,7 @@ export default function ServicesStory() {
                       {s.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full border border-line px-2.5 py-1 text-[11px] font-medium text-text-dimmer"
+                          className="ai-chip-breathe rounded-full border border-line px-2.5 py-1 text-[11px] font-medium text-text-dimmer"
                         >
                           {tag}
                         </span>

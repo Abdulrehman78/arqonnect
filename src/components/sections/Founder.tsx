@@ -1,6 +1,6 @@
 "use client";
 
-import { Section, SectionHeader } from "@/components/ui/PageSection";
+import { Section } from "@/components/ui/PageSection";
 import { FadeUp } from "@/components/ui/Motion";
 
 export default function Founder() {
@@ -19,7 +19,7 @@ export default function Founder() {
             </div>
             <button
               type="button"
-              className="play-btn absolute inset-0 m-auto flex h-14 w-14 items-center justify-center rounded-full bg-accent text-bg shadow-lg transition-transform group-hover:scale-110"
+              className="play-btn ai-play-pulse absolute inset-0 m-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#EAA46B] text-[#0B0F12] shadow-lg transition-transform group-hover:scale-110"
               aria-label="Play founder video"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 ml-1">
@@ -30,9 +30,18 @@ export default function Founder() {
           </div>
         </FadeUp>
         <FadeUp delay={0.1}>
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent">A Word From The Founder</span>
-          <h2 className="mt-4 text-3xl font-bold text-text md:text-4xl">Why we built ArQonnect</h2>
-          <p className="mt-6 text-base leading-relaxed text-text-dim">
+          <span className="inline-flex items-center text-xs font-medium uppercase tracking-[0.2em] text-accent">
+            <span className="ai-live-dot" />
+            A Word From The Founder
+          </span>
+          <h2 className="ai-title mt-4 text-3xl font-bold text-text md:text-4xl">
+            Why we built ArQonnect
+            <span className="ai-title-line" />
+          </h2>
+          <span className="ai-quote-mark" aria-hidden>
+            “
+          </span>
+          <p className="mt-2 text-base leading-relaxed text-text-dim">
             &ldquo;We started ArQonnect because most agencies were selling businesses software they had to babysit. We wanted to sell them a workforce instead — one that answers the phone, replies to the DM, and books the appointment, at the standard we&apos;d want for our own business.&rdquo;
           </p>
           <div className="mt-8 border-t border-line pt-6">

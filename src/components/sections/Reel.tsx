@@ -27,8 +27,8 @@ export default function Reel() {
           <div className="reel-grid grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
             <div className="reel-phone-wrap">
               <div className="mb-4 flex gap-2">
-                <span className="reel-chip rounded-full border border-line bg-panel/60 px-3 py-1 text-xs">💬 WhatsApp</span>
-                <span className="reel-chip rounded-full border border-line bg-panel/60 px-3 py-1 text-xs">📷 Instagram</span>
+                <span className="reel-chip ai-chip-breathe rounded-full border border-line bg-panel/60 px-3 py-1 text-xs">💬 WhatsApp</span>
+                <span className="reel-chip ai-chip-breathe rounded-full border border-line bg-panel/60 px-3 py-1 text-xs">📷 Instagram</span>
               </div>
               <div className="reel-phone overflow-hidden rounded-2xl border border-line bg-panel/80">
                 <div className="reel-phone-head flex items-center gap-3 border-b border-line px-4 py-3">

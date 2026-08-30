@@ -9,6 +9,7 @@ import {
   Chip,
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
+import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 const tabs = [
   { id: "support", label: "Support" },
@@ -145,16 +146,11 @@ export default function Templates() {
       </Section>
 
       <section className="relative overflow-hidden border-t border-line px-4 py-24 sm:px-6 md:py-28">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(59,130,246,0.1), transparent 60%)",
-          }}
-        />
+        <SchemeOverlay />
         <FadeUp className="relative mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-text md:text-4xl">
+          <h2 className="ai-title text-3xl font-bold tracking-tight text-text md:text-4xl">
             Ready to open a room?
+            <span className="ai-title-line mx-auto" />
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-base text-text-dim">
             Tell us which bottleneck is loudest — we&apos;ll map the stack and
@@ -163,7 +159,7 @@ export default function Templates() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white no-underline transition-all hover:bg-accent-dim"
+              className="ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-7 py-3.5 text-sm font-semibold text-[#0B0F12] no-underline transition-all hover:bg-[#C87D46]"
             >
               Book a Demo →
             </Link>

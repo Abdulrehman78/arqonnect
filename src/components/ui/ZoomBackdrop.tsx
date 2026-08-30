@@ -1,13 +1,23 @@
 "use client";
 
 import Image from "next/image";
+import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 type ZoomBackdropProps = {
   src: string;
   /** object-position, e.g. "center" or "70% center" */
   position?: string;
+  /** cover fills the banner; contain letterboxes */
+  fit?: "cover" | "contain";
+  /** Slow Ken Burns zoom. On by default for cover. */
+  zoom?: boolean;
+  /** Color overlay — mix-blend-color so photo structure stays, hue matches scheme */
+  tint?: string;
   /** Scrim layers (gradients) drawn over the image */
   veil?: string;
+  overlay?: "hero" | "room";
+  /** Static overlay only — no scan line or drifting orbs */
+  quiet?: boolean;
   /** Stagger Ken Burns start so rooms don't zoom in sync (seconds) */
   delaySec?: number;
   className?: string;
@@ -21,20 +31,27 @@ type ZoomBackdropProps = {
 export default function ZoomBackdrop({
   src,
   position = "center",
+  fit = "cover",
+  zoom,
+  tint,
   veil,
+  overlay = "room",
+  quiet = false,
   delaySec = 0,
   className = "",
   priority = false,
   children,
 }: ZoomBackdropProps): React.ReactElement {
+  const cover = fit !== "contain";
+  const kenBurns = zoom ?? cover;
   return (
     <div
-      className={`pointer-events-none absolute inset-0 min-h-[100dvh] overflow-hidden ${className}`}
+      className={`pointer-events-none absolute inset-0 min-h-[100dvh] overflow-hidden isolate ${className}`}
       aria-hidden
     >
       <div
-        className="hero-kenburns"
-        style={{ animationDelay: `${-delaySec}s` }}
+        className={kenBurns ? "hero-kenburns" : "absolute inset-0"}
+        style={kenBurns ? { animationDelay: `${-delaySec}s` } : undefined}
       >
         <Image
           src={src}
@@ -42,14 +59,28 @@ export default function ZoomBackdrop({
           fill
           priority={priority}
           sizes="100vw"
-          className="object-cover"
-          style={{ objectPosition: position }}
+          className={cover ? "object-cover" : "object-contain"}
+          style={{
+            objectPosition: position,
+            ...(tint
+              ? { filter: "hue-rotate(158deg) saturate(0.88) brightness(0.86)" }
+              : {}),
+          }}
         />
       </div>
+      {tint ? (
+        <div
+          className="absolute inset-0 z-[1]"
+          style={{ background: tint, mixBlendMode: "color" }}
+        />
+      ) : null}
       {veil ? (
         <div className="absolute inset-0 z-[1]" style={{ background: veil }} />
-      ) : null}
+      ) : (
+        <div className="absolute inset-0 z-[1] bg-black/55" />
+      )}
       {children}
+      <SchemeOverlay className="z-[3]" intensity={overlay} quiet={quiet} />
     </div>
   );
 }

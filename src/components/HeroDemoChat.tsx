@@ -24,14 +24,14 @@ function BotAvatar({ size = "md" }: { size?: "sm" | "md" }) {
   const dim = size === "sm" ? "h-7 w-7 text-[10px]" : "h-10 w-10 text-sm";
   return (
     <motion.span
-      className={`relative flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-blue-600 font-bold text-white shadow-[0_0_24px_rgba(59,130,246,0.45)] ${dim}`}
+      className={`relative flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold to-accent-dim font-bold text-on-accent shadow-[0_0_24px_rgba(234,164,107,0.5)] ${dim}`}
       animate={{
         y: [0, -4, 0, -2, 0],
         rotate: [0, -5, 4, -2, 0],
         boxShadow: [
-          "0 0 16px rgba(59,130,246,0.35)",
-          "0 0 28px rgba(56,189,248,0.55)",
-          "0 0 16px rgba(59,130,246,0.35)",
+          "0 0 16px rgba(234,164,107,0.4)",
+          "0 0 28px rgba(234,164,107,0.4)",
+          "0 0 16px rgba(234,164,107,0.4)",
         ],
       }}
       transition={{
@@ -43,7 +43,7 @@ function BotAvatar({ size = "md" }: { size?: "sm" | "md" }) {
     >
       A
       <motion.span
-        className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400"
+        className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-gold"
         animate={{ scale: [1, 1.25, 1], opacity: [0.8, 1, 0.8] }}
         transition={{ duration: 1.4, repeat: Infinity }}
       />
@@ -173,17 +173,19 @@ export default function HeroDemoChat({
     >
       <motion.div
         className="relative flex h-[min(30rem,68vh)] flex-col overflow-hidden rounded-3xl bg-panel/92 backdrop-blur-2xl sm:h-[min(28rem,62vh)]"
+        data-ai-tilt
+        data-ai-sheen
         style={{
           boxShadow:
-            "0 0 0 1px rgb(var(--line-rgb) / 0.12), 0 24px 80px rgb(var(--shadow-rgb) / 0.65), 0 0 60px rgba(59,130,246,0.2)",
+            "0 0 0 1px rgb(var(--line-rgb) / 0.12), 0 24px 80px rgb(var(--shadow-rgb) / 0.65), 0 0 60px rgba(234,164,107,0.2)",
         }}
         animate={
           showPanel
             ? {
                 boxShadow: [
-                  "0 0 0 1px rgb(var(--line-rgb) / 0.12), 0 24px 80px rgb(var(--shadow-rgb) / 0.65), 0 0 48px rgba(59,130,246,0.18)",
-                  "0 0 0 1px rgba(147,197,253,0.28), 0 28px 90px rgb(var(--shadow-rgb) / 0.7), 0 0 72px rgba(59,130,246,0.32)",
-                  "0 0 0 1px rgb(var(--line-rgb) / 0.12), 0 24px 80px rgb(var(--shadow-rgb) / 0.65), 0 0 48px rgba(59,130,246,0.18)",
+                  "0 0 0 1px rgb(var(--line-rgb) / 0.12), 0 24px 80px rgb(var(--shadow-rgb) / 0.65), 0 0 48px rgba(234,164,107,0.22)",
+                  "0 0 0 1px rgba(234,164,107,0.4), 0 28px 90px rgb(var(--shadow-rgb) / 0.7), 0 0 72px rgba(234,164,107,0.2)",
+                  "0 0 0 1px rgb(var(--line-rgb) / 0.12), 0 24px 80px rgb(var(--shadow-rgb) / 0.65), 0 0 48px rgba(234,164,107,0.22)",
                 ],
               }
             : undefined
@@ -192,7 +194,7 @@ export default function HeroDemoChat({
       >
         {/* Soft ambient wash — keeps panel readable on black */}
         <motion.div
-          className="pointer-events-none absolute -inset-10 rounded-[2.5rem] bg-sky-500/20 blur-3xl"
+          className="pointer-events-none absolute -inset-10 rounded-[2.5rem] bg-accent/20 blur-3xl"
           animate={{ opacity: [0.35, 0.6, 0.35], scale: [0.96, 1.05, 0.96] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -200,7 +202,7 @@ export default function HeroDemoChat({
           className="pointer-events-none absolute inset-0"
           style={{
             background: [
-              "radial-gradient(ellipse 90% 55% at 15% -10%, rgba(59,130,246,0.28), transparent 55%)",
+              "radial-gradient(ellipse 90% 55% at 15% -10%, rgba(234,164,107,0.24), transparent 55%)",
               "linear-gradient(180deg, rgba(255,255,255,0.04), transparent 28%)",
             ].join(","),
           }}
@@ -211,7 +213,7 @@ export default function HeroDemoChat({
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           style={{
             background:
-              "radial-gradient(ellipse 70% 40% at 80% 100%, rgba(56,189,248,0.12), transparent 50%)",
+              "radial-gradient(ellipse 70% 40% at 80% 100%, rgba(234,164,107,0.14), transparent 50%)",
           }}
         />
 
@@ -230,7 +232,7 @@ export default function HeroDemoChat({
                   Ava
                 </h2>
                 <motion.span
-                  className="rounded-md bg-sky-400/20 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-sky-200"
+                  className="rounded-md bg-accent/20 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-electric-2"
                   animate={{ opacity: [0.75, 1, 0.75] }}
                   transition={{ duration: 2.2, repeat: Infinity }}
                 >
@@ -239,8 +241,8 @@ export default function HeroDemoChat({
               </div>
               <p className="mt-0.5 flex items-center gap-1.5 text-[12px] text-text/75">
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-gold" />
                 </span>
                 Online · replies instantly
               </p>
@@ -267,9 +269,9 @@ export default function HeroDemoChat({
                   >
                     <BotAvatar size="sm" />
                     <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-text/10 px-4 py-3">
-                      <span className="hero-chat-dot h-1.5 w-1.5 rounded-full bg-sky-300/90" />
-                      <span className="hero-chat-dot hero-chat-dot--2 h-1.5 w-1.5 rounded-full bg-sky-300/90" />
-                      <span className="hero-chat-dot hero-chat-dot--3 h-1.5 w-1.5 rounded-full bg-sky-300/90" />
+                      <span className="hero-chat-dot h-1.5 w-1.5 rounded-full bg-gold/90" />
+                      <span className="hero-chat-dot hero-chat-dot--2 h-1.5 w-1.5 rounded-full bg-electric-2/90" />
+                      <span className="hero-chat-dot hero-chat-dot--3 h-1.5 w-1.5 rounded-full bg-gold/90" />
                     </div>
                   </motion.div>
                 );
@@ -294,7 +296,7 @@ export default function HeroDemoChat({
                   <motion.div
                     className={`max-w-[78%] px-3.5 py-2.5 text-[13px] leading-relaxed sm:max-w-[70%] sm:text-sm ${
                       mine
-                        ? "rounded-2xl rounded-br-md bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-[0_10px_28px_rgba(37,99,235,0.4)]"
+                        ? "rounded-2xl rounded-br-md bg-gradient-to-br from-accent to-accent-dim text-on-accent shadow-[0_10px_28px_rgba(234,164,107,0.4)]"
                         : "rounded-2xl rounded-bl-md bg-panel-2 text-text shadow-[0_8px_24px_rgb(var(--shadow-rgb)/0.35)]"
                     }`}
                     whileHover={{ scale: 1.01 }}
@@ -332,7 +334,7 @@ export default function HeroDemoChat({
                   }}
                   whileHover={{ scale: 1.06, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="rounded-full bg-text/12 px-3 py-1.5 text-left text-[11px] text-text/90 transition-colors hover:bg-sky-500/25 hover:text-text"
+                  className="rounded-full bg-text/12 px-3 py-1.5 text-left text-[11px] text-text/90 transition-colors hover:bg-accent/25 hover:text-text"
                 >
                   {s}
                 </motion.button>
@@ -352,8 +354,8 @@ export default function HeroDemoChat({
             className="flex items-center gap-2 rounded-2xl bg-bg-alt p-1.5 pl-3.5 transition-shadow"
             animate={{
               boxShadow: focused
-                ? "0 0 0 1px rgba(56,189,248,0.35), 0 0 28px rgba(59,130,246,0.2)"
-                : "0 0 0 0 rgba(56,189,248,0)",
+                ? "0 0 0 1px rgba(234,164,107,0.35), 0 0 28px rgba(234,164,107,0.2)"
+                : "0 0 0 0 rgba(234,164,107,0)",
             }}
             onSubmit={(e) => {
               e.preventDefault();
@@ -379,7 +381,7 @@ export default function HeroDemoChat({
               whileTap={{ scale: 0.9, rotate: -12 }}
               animate={
                 input.trim() && !busy
-                  ? { scale: [1, 1.05, 1], boxShadow: ["0 0 0 rgba(59,130,246,0)", "0 0 18px rgba(59,130,246,0.45)", "0 0 0 rgba(59,130,246,0)"] }
+                  ? { scale: [1, 1.05, 1], boxShadow: ["0 0 0 rgba(234,164,107,0)", "0 0 18px rgba(234,164,107,0.45)", "0 0 0 rgba(234,164,107,0)"] }
                   : undefined
               }
               transition={
@@ -387,18 +389,18 @@ export default function HeroDemoChat({
                   ? { duration: 1.6, repeat: Infinity, ease: "easeInOut" }
                   : undefined
               }
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent text-white transition-colors hover:bg-accent-dim disabled:cursor-not-allowed disabled:bg-text/10 disabled:text-text/30"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#EAA46B] text-[#0B0F12] transition-colors hover:bg-[#C87D46] disabled:cursor-not-allowed disabled:bg-text/10 disabled:text-text/30"
             >
               <SendIcon />
             </motion.button>
           </motion.form>
           <p className="mt-2.5 text-center text-[10px] tracking-wide text-text/50">
             Demo agent ·{" "}
-            <Link href="/contact" className="text-sky-400/80 no-underline hover:text-sky-300">
+            <Link href="/contact" className="text-electric-2/80 no-underline hover:text-electric-2">
               Book a human demo
             </Link>
             {" · "}
-            <Link href="/demo" className="text-sky-400/80 no-underline hover:text-sky-300">
+            <Link href="/demo" className="text-electric-2/80 no-underline hover:text-electric-2">
               Full demo
             </Link>
           </p>

@@ -28,7 +28,8 @@ export default function Why() {
         {stats.map((s) => (
           <MotionItem key={s.value}>
             <Card className="h-full text-center sm:text-left">
-              <b className="block text-2xl font-bold text-accent">{s.value}</b>
+              <b className="ai-num-glow block text-2xl font-bold text-accent">{s.value}</b>
+              <span className="ai-stat-bar mx-0" />
               <span className="mt-2 block text-sm leading-relaxed text-text-dim">
                 {s.label}
               </span>

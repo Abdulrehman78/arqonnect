@@ -4,10 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import HeroDemoChat from "@/components/HeroDemoChat";
-import AiAmbient from "@/components/ui/AiAmbient";
-import ZoomBackdrop from "@/components/ui/ZoomBackdrop";
+import HeroVideoBackdrop from "@/components/ui/HeroVideoBackdrop";
 import { GiggleText, useWelcomeReady } from "@/components/ui/GiggleText";
-import { scrim } from "@/lib/themeColors";
 
 const textShadowSub = [
   "0 1px 2px rgb(var(--shadow-rgb) / 0.95)",
@@ -20,31 +18,24 @@ export default function Hero(): React.ReactElement {
 
   return (
     <section className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden bg-bg pt-28 pb-16 md:pt-32 md:pb-24">
-      <ZoomBackdrop
-        src="/images/hero-banner.jpg"
-        priority
-        veil={[
-          `linear-gradient(180deg, ${scrim(0.72)} 0%, ${scrim(0.48)} 26%, ${scrim(0.42)} 52%, ${scrim(0.78)} 100%)`,
-          `radial-gradient(ellipse 70% 55% at 50% 38%, ${scrim(0.48)} 0%, ${scrim(0.18)} 45%, ${scrim(0.62)} 100%)`,
-        ].join(",")}
-      >
-        <AiAmbient intensity="hero" className="z-[2]" />
-      </ZoomBackdrop>
+      <HeroVideoBackdrop ready={ready} />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <motion.div
+            className="inline-flex items-center justify-center"
             animate={
               ready
                 ? { opacity: [0.85, 1, 0.85], textShadow: [
-                    "0 0 18px rgba(56,189,248,0.35)",
-                    "0 0 28px rgba(56,189,248,0.7)",
-                    "0 0 18px rgba(56,189,248,0.35)",
+                    "0 0 18px rgba(234,164,107,0.4)",
+                    "0 0 28px rgba(234,164,107,0.75)",
+                    "0 0 18px rgba(200,125,70,0.4)",
                   ] }
                 : undefined
             }
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           >
+            <span className="ai-live-dot" />
             <GiggleText
               as="p"
               text="ArQonnect"
@@ -62,6 +53,7 @@ export default function Hero(): React.ReactElement {
             startDelay={0.35}
             className="banner-heading mt-4 text-4xl sm:text-5xl lg:text-6xl"
           />
+          <span className="ai-title-line mx-auto mt-5" />
 
           <GiggleText
             as="p"
@@ -83,15 +75,16 @@ export default function Hero(): React.ReactElement {
               className="ai-cta-breath"
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.98 }}
+              data-magnetic
             >
               <Link
                 href="/demo"
-                className="inline-flex items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white no-underline shadow-[0_8px_32px_rgb(var(--shadow-rgb)/0.55),0_0_28px_rgba(59,130,246,0.4)] transition-all hover:bg-accent-dim hover:shadow-[0_10px_40px_rgb(var(--shadow-rgb)/0.6),0_0_36px_rgba(59,130,246,0.5)]"
+                className="ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-6 py-3 text-sm font-semibold text-[#0B0F12] no-underline shadow-[0_8px_32px_rgb(var(--shadow-rgb)/0.55),0_0_28px_rgba(234,164,107,0.5)] transition-all hover:bg-[#C87D46] hover:shadow-[0_10px_40px_rgb(var(--shadow-rgb)/0.6),0_0_36px_rgba(234,164,107,0.6)]"
               >
                 Try Our Live Demo
               </Link>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.98 }}>
+            <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.98 }} data-magnetic>
               <Link
                 href="/contact"
                 className="room-heading inline-flex items-center rounded-full border border-text/30 bg-bg/50 px-6 py-3 text-sm font-semibold no-underline shadow-[0_8px_28px_rgb(var(--shadow-rgb)/0.55)] backdrop-blur-sm transition-all hover:border-text/45 hover:bg-bg/65"

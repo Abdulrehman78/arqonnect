@@ -3,7 +3,7 @@ export default function Ps() {
     <>
 <section className="ps-section">
   <div className="section-head reveal-3d">
-    <span className="eyebrow">The Problem, Solved</span>
+    <span className="eyebrow inline-flex items-center"><span className="ai-live-dot" />The Problem, Solved</span>
     <h2>You already know what's broken.<br />Here's what fixes it.</h2>
     <p>Five problems every growing business runs into — and exactly what ArQonnect does about each one.</p>
   </div>

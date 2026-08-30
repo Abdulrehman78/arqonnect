@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { HERO_BANNER } from "@/lib/brand";
 import { useEffect, useState } from "react";
 
 const MIN_MS = 800;
@@ -12,12 +13,12 @@ function MapLayer(): React.ReactElement {
     <>
       <div className="preloader-map-zoom">
         <Image
-          src="/images/hero-banner.jpg"
+          src={HERO_BANNER}
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[50%_40%]"
+          className="object-cover object-center"
         />
       </div>
       <div className="preloader-map-veil" />

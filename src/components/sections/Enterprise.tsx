@@ -87,14 +87,15 @@ export default function Enterprise() {
 
         <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
           <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-            <span className="inline-flex rounded-sm border border-sky-400/30 bg-sky-500/10 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-300">
+            <span className="inline-flex items-center rounded-sm border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-electric-2">
+              <span className="ai-live-dot !mr-2" />
               Built For Enterprises
             </span>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
               The bigger you get,
               <br />
-              <span className="bg-gradient-to-r from-sky-300 via-indigo-300 to-violet-200 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gold via-cyan to-electric-2 bg-clip-text text-transparent">
                 the less it should worry you.
               </span>
             </h1>
@@ -107,7 +108,7 @@ export default function Enterprise() {
             <ul className="mt-6 space-y-2">
               {bullets.map((b) => (
                 <li key={b} className="flex items-center gap-2 text-sm text-text-dim">
-                  <span className="text-sky-300">✓</span>
+                  <span className="ai-check text-electric-2">✓</span>
                   {b}
                 </li>
               ))}
@@ -124,18 +125,18 @@ export default function Enterprise() {
             animate={{ opacity: 1 }}
             className="relative"
           >
-            <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-sky-500/20 via-transparent to-indigo-500/20 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-sky-400/20 bg-panel/70 p-6 shadow-2xl shadow-black/30 backdrop-blur-xl md:p-8">
+            <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-accent/20 via-transparent to-gold/20 blur-2xl" />
+            <div className="relative overflow-hidden rounded-2xl border border-gold/20 bg-panel/70 p-6 shadow-2xl shadow-black/30 backdrop-blur-xl md:p-8">
               <div className="flex items-center justify-between border-b border-line pb-4">
                 <div>
                   <div className="text-sm font-semibold text-text">
                     Enterprise control plane
                   </div>
-                  <div className="mt-0.5 font-mono text-xs text-sky-300">
+                  <div className="mt-0.5 font-mono text-xs text-gold">
                     SSO · RBAC · GUARDRAILS · LIVE
                   </div>
                 </div>
-                <span className="rounded-sm border border-sky-400/30 bg-sky-500/10 px-3 py-1 font-mono text-[10px] font-semibold text-sky-300">
+                <span className="ai-chip-breathe rounded-sm border border-gold/30 bg-gold/10 px-3 py-1 font-mono text-[10px] font-semibold text-gold">
                   ENT
                 </span>
               </div>
@@ -180,7 +181,7 @@ export default function Enterprise() {
           {features.map((f) => (
             <MotionItem key={f.title}>
               <Card className="h-full">
-                <span className="font-mono text-xs font-semibold text-violet">
+                <span className="ai-num-glow font-mono text-xs font-semibold text-violet">
                   {f.num}
                 </span>
                 <h3 className="mt-4 font-semibold text-text">{f.title}</h3>

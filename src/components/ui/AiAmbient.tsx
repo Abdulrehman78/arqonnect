@@ -51,7 +51,7 @@ export default function AiAmbient({
     >
       {/* Soft breathing orbs */}
       <motion.div
-        className="absolute -left-[15%] top-[10%] h-[42vmin] w-[42vmin] rounded-full bg-sky-500/10 blur-3xl"
+        className="absolute -left-[15%] top-[10%] h-[42vmin] w-[42vmin] rounded-full bg-gold/15 blur-3xl"
         animate={{
           x: [0, 40, -20, 0],
           y: [0, 30, -15, 0],
@@ -61,7 +61,7 @@ export default function AiAmbient({
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute -right-[10%] bottom-[5%] h-[48vmin] w-[48vmin] rounded-full bg-blue-600/10 blur-3xl"
+        className="absolute -right-[10%] bottom-[5%] h-[48vmin] w-[48vmin] rounded-full bg-gold-dim/15 blur-3xl"
         animate={{
           x: [0, -35, 25, 0],
           y: [0, -25, 20, 0],
@@ -75,13 +75,13 @@ export default function AiAmbient({
       {(intensity === "hero" ? HERO_NODES : HERO_NODES.slice(0, 6)).map((n, i) => (
         <motion.span
           key={`n-${i}`}
-          className="absolute rounded-full bg-sky-300/80"
+          className={`absolute rounded-full ${i % 2 === 0 ? "bg-gold" : "bg-electric"}`}
           style={{
             left: `${n.x}%`,
             top: `${n.y}%`,
             width: n.s,
             height: n.s,
-            boxShadow: "0 0 10px rgba(56,189,248,0.65)",
+            boxShadow: "0 0 10px rgba(234,164,107,0.7)",
           }}
           animate={{
             opacity: [0.25, 0.95, 0.35, 0.25],
@@ -124,7 +124,7 @@ export default function AiAmbient({
       {/* Slow scan / signal sweep */}
       {intensity !== "site" && (
         <motion.div
-          className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-sky-400/40 to-transparent"
+          className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent"
           animate={{ top: ["8%", "88%", "8%"], opacity: [0, 0.7, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -132,7 +132,7 @@ export default function AiAmbient({
 
       {/* Data stream ticks (hero only) */}
       {intensity === "hero" && (
-        <div className="absolute bottom-8 left-6 hidden font-mono text-[10px] tracking-widest text-sky-300/35 sm:block">
+        <div className="absolute bottom-8 left-6 hidden font-mono text-[10px] tracking-widest text-gold/50 sm:block">
           <motion.span
             animate={{ opacity: [0.25, 0.85, 0.25] }}
             transition={{ duration: 2.2, repeat: Infinity }}

@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { FadeUp } from "@/components/ui/Motion";
+import { GiggleText } from "@/components/ui/GiggleText";
 import AiAmbient from "@/components/ui/AiAmbient";
 import ZoomBackdrop from "@/components/ui/ZoomBackdrop";
-import { scrim } from "@/lib/themeColors";
+import { ROOM_VEIL } from "@/lib/brand";
 
 const flags = [
   { name: "United States", src: "https://flagcdn.com/w160/us.png" },
@@ -106,22 +107,23 @@ export default function LogoCloud() {
       <ZoomBackdrop
         src="/images/markets-banner.jpg"
         delaySec={6}
-        veil={[
-          `linear-gradient(180deg, ${scrim(0.75)} 0%, ${scrim(0.55)} 40%, ${scrim(0.65)} 100%)`,
-          `radial-gradient(ellipse 80% 60% at 50% 50%, ${scrim(0.25)} 0%, ${scrim(0.7)} 100%)`,
-        ].join(",")}
+        veil={ROOM_VEIL}
       >
         <AiAmbient intensity="room" className="z-[2] opacity-70" />
       </ZoomBackdrop>
 
       <div className="relative z-10 w-full">
-        <FadeUp className="text-center">
-          <p className="room-caption text-xs font-medium uppercase tracking-[0.18em]">
-            Trusted across markets and industries
+        <div className="text-center">
+          <p className="room-caption inline-flex items-center text-xs font-medium uppercase tracking-[0.18em]">
+            <span className="ai-live-dot" />
+            <GiggleText
+              text="Trusted across markets and industries"
+              tone="wave"
+            />
           </p>
-        </FadeUp>
+        </div>
 
-        <div className="mt-8 flex flex-col gap-6">
+        <FadeUp delay={0.12} className="mt-8 flex flex-col gap-6">
           {/* Flags — faster loop, left */}
           <MarqueeRow>
             {flagItems.map((item, i) => (
@@ -147,7 +149,7 @@ export default function LogoCloud() {
             {industryItems.map((item, i) => (
               <span
                 key={`${item.name}-${i}`}
-                className="inline-flex h-10 shrink-0 items-center gap-2.5 rounded-md border border-accent/30 bg-panel/90 px-3.5 shadow-[0_0_20px_rgba(59,130,246,0.12)] backdrop-blur-sm"
+                className="ai-chip-breathe inline-flex h-10 shrink-0 items-center gap-2.5 rounded-md border border-accent/30 bg-panel/90 px-3.5 shadow-[0_0_20px_rgba(234,164,107,0.12)] backdrop-blur-sm"
                 title={item.name}
               >
                 <MarkIcon mark={item.mark} />
@@ -157,7 +159,7 @@ export default function LogoCloud() {
               </span>
             ))}
           </MarqueeRow>
-        </div>
+        </FadeUp>
       </div>
     </section>
   );

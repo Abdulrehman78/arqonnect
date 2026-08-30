@@ -1,9 +1,10 @@
 "use client";
 
-import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
+import { Stagger, MotionItem } from "@/components/ui/Motion";
+import { GiggleText } from "@/components/ui/GiggleText";
 import AiAmbient from "@/components/ui/AiAmbient";
 import ZoomBackdrop from "@/components/ui/ZoomBackdrop";
-import { scrim } from "@/lib/themeColors";
+import { ROOM_VEIL } from "@/lib/brand";
 
 const channels = [
   {
@@ -35,33 +36,39 @@ export default function Integrations() {
       <ZoomBackdrop
         src="/images/markets-banner.jpg"
         delaySec={24}
-        veil={[
-          `linear-gradient(180deg, ${scrim(0.72)} 0%, ${scrim(0.48)} 40%, ${scrim(0.72)} 100%)`,
-          `radial-gradient(ellipse 80% 60% at 50% 40%, ${scrim(0.15)} 0%, ${scrim(0.62)} 100%)`,
-        ].join(",")}
+        veil={ROOM_VEIL}
       >
         <AiAmbient intensity="room" className="z-[2] opacity-60" />
       </ZoomBackdrop>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl">
-        <FadeUp className="mx-auto max-w-2xl text-center">
-          <span className="room-label text-xs font-medium uppercase tracking-[0.18em]">
-            Channels
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="room-label inline-flex items-center text-xs font-medium uppercase tracking-[0.18em]">
+            <span className="ai-live-dot" />
+            <GiggleText text="Channels" tone="wave" />
           </span>
-          <h2 className="banner-heading mt-4 text-3xl sm:text-4xl">
-            True omni-channel communication.
+          <h2 className="ai-title banner-heading mt-4 text-3xl sm:text-4xl">
+            <GiggleText
+              as="span"
+              text="True omni-channel communication."
+              tone="slide"
+            />
+            <span className="ai-title-line mx-auto" />
           </h2>
-          <p className="room-body mt-4 text-base">
-            Chat, voice, CRM and growth — all pointed at one job: don&apos;t let
-            the lead go quiet.
-          </p>
-        </FadeUp>
+          <GiggleText
+            as="p"
+            text="Chat, voice, CRM and growth — all pointed at one job: don't let the lead go quiet."
+            tone="slide"
+            startDelay={0.35}
+            className="room-body mt-4 text-base"
+          />
+        </div>
 
         <Stagger className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {channels.map((c) => (
             <MotionItem key={c.title}>
-              <div className="h-full border-t border-text/20 pt-6">
-                <span className="room-label font-mono text-xs">{c.num}</span>
+              <div className="motion-card h-full border-t border-text/20 pt-6">
+                <span className="ai-num-glow room-label font-mono text-xs">{c.num}</span>
                 <h3 className="room-heading mt-3 text-lg font-semibold tracking-tight">
                   {c.title}
                 </h3>

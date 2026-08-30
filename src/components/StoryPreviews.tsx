@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
+import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 const story = [
   {
@@ -51,8 +52,9 @@ const story = [
 
 export default function StoryPreviews() {
   return (
-    <section className="border-t border-line px-6 py-24 md:py-32">
-      <div className="mx-auto max-w-6xl">
+    <section className="relative overflow-hidden border-t border-line px-6 py-24 md:py-32">
+      <SchemeOverlay />
+      <div className="relative mx-auto max-w-6xl">
         <FadeUp>
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-text-dimmer">
             Our Story

@@ -10,17 +10,19 @@ export default function CtaContact() {
 
   return (
     <Section border id="contact" className="overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-accent/5 via-transparent to-violet/5" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/55" />
 
       <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-start">
         <FadeUp>
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-accent">
+          <span className="inline-flex items-center text-xs font-medium uppercase tracking-[0.2em] text-accent">
+            <span className="ai-live-dot" />
             Last Call
           </span>
-          <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-text md:text-5xl">
+          <h2 className="ai-title mt-4 text-3xl font-bold leading-tight tracking-tight text-text md:text-5xl">
             Somewhere, right now,
             <br />
             your phone is ringing.
+            <span className="ai-title-line" />
           </h2>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-text-dim">
             Every minute it goes unanswered, that lead is calling someone else.
@@ -30,15 +32,15 @@ export default function CtaContact() {
 
           <ul className="mt-8 space-y-3 text-sm text-text-dim">
             <li className="flex gap-2">
-              <span className="text-accent">✓</span>
+              <span className="ai-check text-accent">✓</span>
               Same-week demo scheduling
             </li>
             <li className="flex gap-2">
-              <span className="text-accent">✓</span>
+              <span className="ai-check text-accent">✓</span>
               Real specialists, not a ticket queue
             </li>
             <li className="flex gap-2">
-              <span className="text-accent">✓</span>
+              <span className="ai-check text-accent">✓</span>
               Live across US · UK · Canada · Australia · Europe
             </li>
           </ul>
@@ -60,7 +62,7 @@ export default function CtaContact() {
         </FadeUp>
 
         <FadeUp delay={0.1}>
-          <div className="rounded-2xl border border-line bg-panel/50 p-6 md:p-8">
+          <div className="motion-card rounded-2xl border border-line bg-panel/50 p-6 md:p-8">
             {submitted ? (
               <div className="py-10 text-center">
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-accent/30 bg-accent/10 text-accent">
@@ -169,7 +171,7 @@ export default function CtaContact() {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-bg transition-all hover:bg-accent-dim hover:shadow-[0_0_32px_rgba(34,197,94,0.35)]"
+                  className="ai-cta-shine inline-flex w-full items-center justify-center rounded-full bg-[#EAA46B] px-6 py-3.5 text-sm font-semibold text-[#0B0F12] transition-all hover:bg-[#C87D46] hover:shadow-[0_0_32px_rgba(234,164,107,0.35)]"
                 >
                   Book a Demo →
                 </button>

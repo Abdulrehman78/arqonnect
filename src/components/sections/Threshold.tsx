@@ -57,7 +57,7 @@ export default function Threshold(): React.ReactElement {
               display: "inline-flex",
               alignItems: "center",
               gap: 10,
-              color: "#60A5FA",
+              color: "#EAA46B",
               fontFamily: "JetBrains Mono, monospace",
               fontSize: 11.5,
               letterSpacing: "0.22em",

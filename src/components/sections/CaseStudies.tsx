@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
 import InteractiveBackdrop from "@/components/ui/InteractiveBackdrop";
+import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 const before = [
   "Calls and DMs answered whenever someone had time",
@@ -76,14 +77,14 @@ export default function CaseStudies() {
         <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-8">
           <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
             <div className="inline-flex items-center gap-3 border border-cyan/25 bg-cyan/5 px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-cyan">
-              <span className="h-px w-6 bg-cyan/70" />
+              <span className="ai-live-dot !mr-0" />
               Before / After
             </div>
 
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
               The gap between &ldquo;we&apos;re busy&rdquo;
               <br />
-              <span className="bg-gradient-to-r from-cyan to-teal-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gold to-accent-dim bg-clip-text text-transparent">
                 and &ldquo;we&apos;re organized.&rdquo;
               </span>
             </h1>
@@ -117,7 +118,7 @@ export default function CaseStudies() {
             animate={{ opacity: 1 }}
             className="relative"
           >
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-cyan/20 via-transparent to-teal-500/10 blur-2xl" />
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-gold/20 via-transparent to-gold-dim/10 blur-2xl" />
             <div className="relative overflow-hidden rounded-2xl border border-cyan/25 bg-panel/70 shadow-2xl shadow-black/40 backdrop-blur-xl">
               <div className="flex items-center justify-between border-b border-line px-5 py-4">
                 <div>
@@ -252,7 +253,7 @@ export default function CaseStudies() {
             <ol className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 md:gap-4">
               {shapeSteps.map((step) => (
                 <li key={step.num} className="relative text-center">
-                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-cyan/30 bg-bg font-mono text-sm font-semibold text-cyan shadow-[0_0_40px_rgba(6,182,212,0.2)]">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-cyan/30 bg-bg font-mono text-sm font-semibold text-cyan shadow-[0_0_40px_rgba(234,164,107,0.22)]">
                     {step.num}
                   </div>
                   <h3 className="mt-5 text-base font-semibold text-text">
@@ -306,7 +307,7 @@ export default function CaseStudies() {
       {/* Founding spotlight */}
       <Section id="spotlight">
         <FadeUp>
-          <div className="overflow-hidden rounded-3xl border border-cyan/20 bg-gradient-to-br from-panel/80 via-panel/50 to-cyan/5 shadow-[0_0_80px_rgba(6,182,212,0.06)]">
+          <div className="overflow-hidden rounded-3xl border border-cyan/20 bg-gradient-to-br from-panel/80 via-panel/50 to-cyan/5 shadow-[0_0_80px_rgba(234,164,107,0.08)]">
             <div className="grid gap-0 md:grid-cols-[1.4fr_0.8fr]">
               <div className="p-8 md:p-10">
                 <span className="inline-block rounded-full border border-line bg-panel-2 px-3 py-1 text-xs text-text-dimmer">
@@ -340,7 +341,7 @@ export default function CaseStudies() {
                 <span className="text-sm text-text-dim">Be the first case study</span>
                 <Link
                   href="/contact"
-                  className="mt-2 inline-flex items-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-bg no-underline transition-all hover:bg-accent-dim"
+                  className="ai-cta-shine mt-2 inline-flex items-center rounded-full bg-[#EAA46B] px-5 py-2.5 text-sm font-semibold text-[#0B0F12] no-underline transition-all hover:bg-[#C87D46]"
                 >
                   Claim this spot →
                 </Link>
@@ -352,10 +353,11 @@ export default function CaseStudies() {
 
       {/* CTA */}
       <section className="relative overflow-hidden border-t border-line px-6 py-24 md:py-28">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-cyan/10 via-transparent to-teal-500/5" />
+        <SchemeOverlay />
         <FadeUp className="relative mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-text md:text-5xl">
+          <h2 className="ai-title text-3xl font-bold tracking-tight text-text md:text-5xl">
             Your before-and-after could be next.
+            <span className="ai-title-line mx-auto" />
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base text-text-dim">
             Put an AI workforce on the follow-up — then let the numbers speak
@@ -364,7 +366,7 @@ export default function CaseStudies() {
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-bg no-underline transition-all hover:bg-accent-dim hover:shadow-[0_0_32px_rgba(34,197,94,0.4)]"
+              className="ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-7 py-3.5 text-sm font-semibold text-[#0B0F12] no-underline transition-all hover:bg-[#C87D46] hover:shadow-[0_0_32px_rgba(234,164,107,0.4)]"
             >
               Book a Demo →
             </Link>

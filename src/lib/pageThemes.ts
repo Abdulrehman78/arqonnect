@@ -9,14 +9,14 @@ export type NavAccent = {
   ctaHover: string;
 };
 
-/** Quiet product nav — single blue accent across routes */
+/** Product nav — orange CTA */
 const productAccent: NavAccent = {
-  linkBg: "bg-accent/10",
-  linkText: "text-accent",
-  underline: "bg-accent/70",
-  ctaActive: "bg-accent-dim text-white ring-2 ring-accent/40",
-  ctaDefault: "bg-accent text-white",
-  ctaHover: "hover:bg-accent-dim hover:shadow-[0_0_24px_rgba(59,130,246,0.35)]",
+  linkBg: "bg-gold/10",
+  linkText: "text-gold",
+  underline: "bg-gold/80",
+  ctaActive: "bg-[#C87D46] text-[#0B0F12] ring-2 ring-gold/40",
+  ctaDefault: "bg-[#EAA46B] text-[#0B0F12]",
+  ctaHover: "hover:bg-[#C87D46] hover:shadow-[0_0_24px_rgba(234,164,107,0.45)]",
 };
 
 export const navAccents: Record<BannerTheme, NavAccent> = {

@@ -99,7 +99,7 @@ export default function Capabilities() {
           {panels[active].map((card) => (
             <MotionItem key={card.title}>
               <Card className="h-full border-line bg-panel/40 transition-colors hover:border-white/15">
-                <span className="font-mono text-xs text-accent">{card.num}</span>
+                <span className="ai-num-glow font-mono text-xs text-accent">{card.num}</span>
                 <h4 className="mt-2 font-semibold text-text">{card.title}</h4>
                 <p className="mt-1.5 text-sm text-text-dim">{card.desc}</p>
               </Card>

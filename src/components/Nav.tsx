@@ -47,6 +47,7 @@ export default function Nav() {
 
   const contactActive = isActivePath(pathname, "/contact");
   const accent = navAccents[themeFromPath(pathname)];
+  const overMedia = !scrolled && !menuOpen;
 
   return (
     <header
@@ -65,7 +66,7 @@ export default function Nav() {
             height={32}
             className="h-8 w-auto"
           />
-          <span className="truncate text-[15px] font-semibold tracking-tight text-text">
+          <span className={`truncate text-[15px] font-semibold tracking-tight ${overMedia ? "text-white" : "text-text"}`}>
             ArQonnect
           </span>
         </Link>
@@ -84,8 +85,12 @@ export default function Nav() {
                     aria-current={active ? "page" : undefined}
                     className={`relative whitespace-nowrap rounded-lg px-3 py-2 text-[13px] font-medium no-underline transition-colors ${
                       active
-                        ? "text-text"
-                        : "text-text-dim hover:text-text"
+                        ? overMedia
+                          ? "text-white"
+                          : "text-text"
+                        : overMedia
+                          ? "text-white/75 hover:text-white"
+                          : "text-text-dim hover:text-text"
                     }`}
                   >
                     {l.label}
@@ -100,22 +105,29 @@ export default function Nav() {
         </nav>
 
         <div className="flex shrink-0 items-center justify-end gap-2">
-          <ThemeToggle />
+          <ThemeToggle
+            className={
+              overMedia
+                ? "border-white/35 bg-white/10 text-white hover:bg-white/20"
+                : undefined
+            }
+          />
           <Link
             href="/contact"
             aria-current={contactActive ? "page" : undefined}
-            className={`ai-cta-breath hidden md:inline-flex items-center whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold no-underline transition-all lg:px-5 lg:text-sm ${
+            className={`ai-cta-breath ai-cta-shine hidden md:inline-flex items-center whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold no-underline transition-all lg:px-5 lg:text-sm ${
               contactActive
                 ? accent.ctaActive
                 : `${accent.ctaDefault} ${accent.ctaHover}`
             }`}
+            data-magnetic
           >
             Book a Demo
           </Link>
 
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-line text-text xl:hidden"
+            className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border ${overMedia ? "border-white/35 text-white" : "border-line text-text"} xl:hidden`}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((o) => !o)}

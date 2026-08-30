@@ -715,8 +715,8 @@ export default function SiteScripts() {
               b = nodes[j];
             const d = Math.hypot(a.x - b.x, a.y - b.y);
             if (d < 160 * devicePixelRatio) {
-              ctx.strokeStyle = `rgba(79,127,255,${
-                0.16 * (1 - d / (160 * devicePixelRatio))
+              ctx.strokeStyle = `rgba(234,164,107,${
+                0.18 * (1 - d / (160 * devicePixelRatio))
               })`;
               ctx.lineWidth = 1;
               ctx.beginPath();
@@ -728,7 +728,7 @@ export default function SiteScripts() {
         }
         nodes.forEach((n) => {
           ctx.beginPath();
-          ctx.fillStyle = "rgba(143,180,255,0.75)";
+          ctx.fillStyle = "rgba(234,164,107,0.8)";
           ctx.arc(n.x, n.y, n.r * devicePixelRatio, 0, Math.PI * 2);
           ctx.fill();
         });

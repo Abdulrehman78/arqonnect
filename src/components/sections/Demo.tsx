@@ -185,14 +185,14 @@ export default function Demo() {
               </div>
               <div id="chatSuggestions" className="flex flex-wrap gap-2 border-t border-line px-4 py-3">
                 {["What does it cost?", "Book a demo", "Do you do voice calls?"].map((s) => (
-                  <button key={s} type="button" className="chip suggestion rounded-full border border-line bg-panel/60 px-3 py-1.5 text-xs text-text-dim hover:text-text" onClick={() => sendChat(s)}>
+                  <button key={s} type="button" className="ai-chip-breathe chip suggestion rounded-full border border-line bg-panel/60 px-3 py-1.5 text-xs text-text-dim hover:text-text" onClick={() => sendChat(s)}>
                     {s}
                   </button>
                 ))}
               </div>
               <form id="chatDemoForm" className="flex gap-2 border-t border-line p-3" onSubmit={(e) => { e.preventDefault(); sendChat(input); }}>
                 <input id="chatDemoInput" type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Type a message…" autoComplete="off" className="flex-1 rounded-xl border border-line bg-bg px-4 py-2.5 text-sm text-text outline-none focus:border-accent/50" />
-                <button type="submit" className="rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-bg">→</button>
+                <button type="submit" className="ai-cta-shine rounded-xl bg-[#EAA46B] px-4 py-2.5 text-sm font-semibold text-[#0B0F12]">→</button>
               </form>
             </div>
           ) : (
@@ -213,7 +213,7 @@ export default function Demo() {
                   type="button"
                   id="voiceCallBtn"
                   onClick={toggleVoice}
-                  className="inline-flex items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-bg transition-all hover:bg-accent-dim"
+                  className="ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-6 py-3 text-sm font-semibold text-[#0B0F12] transition-all hover:bg-[#C87D46]"
                 >
                   {voiceActive ? "End Call" : "Start Demo Call →"}
                 </button>

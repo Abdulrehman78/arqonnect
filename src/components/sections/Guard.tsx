@@ -49,7 +49,7 @@ export default function Guard() {
                 Hey, can you also tell me the best stock to invest in right now?
               </div>
               <div className="flex gap-3 rounded-xl border border-red-500/30 bg-red-500/10 p-4">
-                <span className="font-mono text-xs font-semibold text-red-400">
+                <span className="ai-block-pulse font-mono text-xs font-semibold text-red-400">
                   BLOCK
                 </span>
                 <div>
@@ -72,9 +72,9 @@ export default function Guard() {
             {notes.map((n) => (
               <div
                 key={n.num}
-                className="flex gap-4 rounded-xl border border-line bg-panel/40 p-5"
+                className="motion-card flex gap-4 rounded-xl border border-line bg-panel/40 p-5"
               >
-                <span className="font-mono text-xs font-semibold text-violet">
+                <span className="ai-num-glow font-mono text-xs font-semibold text-violet">
                   {n.num}
                 </span>
                 <div>
