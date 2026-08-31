@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { LOADER_VIDEO } from "@/lib/brand";
+import { preloadVideos } from "@/lib/preloadVideos";
 import { useEffect, useRef, useState } from "react";
 
-const MIN_MS = 900;
+const MIN_MS = 1100;
 const EXIT_MS = 680;
-const SAFETY_MS = 1800;
+const ASSET_TIMEOUT_MS = 6000;
 
 const STAGES = [
   { until: 34, label: "Connecting" },
@@ -17,6 +18,13 @@ const STAGES = [
 
 function stageLabel(pct: number): string {
   return STAGES.find((s) => pct < s.until)?.label ?? "Ready";
+}
+
+function waitForWindowLoad(): Promise<void> {
+  if (document.readyState === "complete") return Promise.resolve();
+  return new Promise((resolve) => {
+    window.addEventListener("load", () => resolve(), { once: true });
+  });
 }
 
 export default function Preloader(): React.ReactElement | null {
@@ -40,6 +48,9 @@ export default function Preloader(): React.ReactElement | null {
     document.body.style.overflow = "hidden";
     videoRef.current?.play().catch(() => {});
 
+    // Warm banner clips while the loader is visible.
+    void preloadVideos(undefined, ASSET_TIMEOUT_MS);
+
     const tick = () => {
       const next = displayRef.current + (targetRef.current - displayRef.current) * 0.12;
       displayRef.current = next;
@@ -49,8 +60,8 @@ export default function Preloader(): React.ReactElement | null {
     rafRef.current = requestAnimationFrame(tick);
 
     bumpTimer = setInterval(() => {
-      if (targetRef.current >= 90) return;
-      targetRef.current = Math.min(90, targetRef.current + 5 + Math.random() * 4);
+      if (targetRef.current >= 92) return;
+      targetRef.current = Math.min(92, targetRef.current + 4 + Math.random() * 3);
     }, 140);
 
     const reveal = () => {
@@ -59,7 +70,7 @@ export default function Preloader(): React.ReactElement | null {
       clearInterval(bumpTimer);
       targetRef.current = 100;
 
-      const wait = Math.max(220, MIN_MS - (Date.now() - started));
+      const wait = Math.max(280, MIN_MS - (Date.now() - started));
       fadeTimer = setTimeout(() => {
         videoRef.current?.pause();
         setExiting(true);
@@ -71,15 +82,17 @@ export default function Preloader(): React.ReactElement | null {
       }, wait);
     };
 
-    if (document.readyState === "interactive" || document.readyState === "complete") {
-      reveal();
-    } else {
-      document.addEventListener("DOMContentLoaded", reveal, { once: true });
-      safetyTimer = setTimeout(reveal, SAFETY_MS);
-    }
+    const ready = Promise.all([
+      waitForWindowLoad(),
+      preloadVideos(undefined, ASSET_TIMEOUT_MS),
+      new Promise<void>((resolve) => {
+        safetyTimer = setTimeout(resolve, ASSET_TIMEOUT_MS + MIN_MS);
+      }),
+    ]).then(reveal);
+
+    void ready;
 
     return () => {
-      document.removeEventListener("DOMContentLoaded", reveal);
       cancelAnimationFrame(rafRef.current);
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);

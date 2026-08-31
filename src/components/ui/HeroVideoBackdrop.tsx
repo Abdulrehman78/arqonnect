@@ -2,7 +2,7 @@
 
 import { useContext, useEffect, useRef, useState } from "react";
 import { RoomActiveContext, useCheapMotion } from "@/components/ui/Motion";
-import { HERO_VIDEO } from "@/lib/brand";
+import { HERO_BANNER, HERO_VIDEO } from "@/lib/brand";
 
 type HeroVideoBackdropProps = {
   ready?: boolean;
@@ -20,10 +20,8 @@ export default function HeroVideoBackdrop({
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
-
-    if (cheap) {
-      video.pause();
+    if (!video || cheap) {
+      video?.pause();
       return;
     }
 
@@ -32,9 +30,7 @@ export default function HeroVideoBackdrop({
       return () => clearTimeout(t);
     }
 
-    const attempt = video.play();
-    if (!attempt) return;
-    attempt.catch(() => {
+    video.play().catch(() => {
       video.muted = true;
       setMuted(true);
       setBlocked(true);
@@ -78,6 +74,7 @@ export default function HeroVideoBackdrop({
           ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover"
           src={cheap ? undefined : HERO_VIDEO}
+          poster={HERO_BANNER}
           playsInline
           loop
           autoPlay={!cheap}

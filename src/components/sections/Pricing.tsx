@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   Section,
   SectionHeader,
@@ -12,7 +11,7 @@ import {
   BtnGhost,
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
-import InteractiveBackdrop from "@/components/ui/InteractiveBackdrop";
+import PageBanner, { PageBannerPanel } from "@/components/ui/PageBanner";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 const tiers = [
@@ -79,120 +78,85 @@ export default function Pricing() {
 
   return (
     <>
-      {/* Hero */}
-      <section
+      <PageBanner
         id="pricing"
-        className="relative flex min-h-[88vh] items-center overflow-hidden bg-bg pt-28 pb-20"
-      >
-        <InteractiveBackdrop theme="pricing" />
-
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-8">
-          <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-            <div className="inline-flex items-center gap-3 border border-gold/25 bg-accent/5 px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-gold">
-              <span className="ai-live-dot !mr-0" />
-              Why Switch
+        banner="pricing"
+        minHeight="min-h-[88vh]"
+        eyebrow="Why Switch"
+        title="Everything you pay $1,600+ for."
+        titleMuted="One price."
+        description="CRM, funnels, forms, email, SMS, automations, courses, call tracking, reputation, analytics, communities, e-signatures and a branded mobile app — replaced by one ArQonnect stack."
+        aside={
+          <PageBannerPanel>
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+              <div>
+                <div className="room-heading text-sm font-semibold">
+                  Monthly stack cost
+                </div>
+                <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-accent/90">
+                  Old tools vs ArQonnect
+                </div>
+              </div>
+              <span className="rounded-full border border-accent/35 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                Save ~${savings.toLocaleString()}
+              </span>
             </div>
-
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
-              Everything you pay{" "}
-              <span className="relative inline-block text-gold">
-                $1,600+
-                <span className="absolute -bottom-1 left-0 right-0 h-[3px] bg-gold/50" />
-              </span>{" "}
-              for.
-              <br />
-              One price.
-            </h1>
-
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-dim sm:text-lg">
-              CRM, funnels, forms, email, SMS, automations, courses, call
-              tracking, reputation, analytics, communities, e-signatures and a
-              branded mobile app — replaced by one ArQonnect stack.
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <BtnPrimary href="#calculator">Estimate your cost →</BtnPrimary>
-              <BtnGhost href="/contact">Book a Demo</BtnGhost>
-            </div>
-
-            <div className="mt-10 flex flex-wrap gap-3">
-              {callouts.map((c) => (
-                <span
-                  key={c.lead + c.bold}
-                  className="rounded-full border border-gold/20 bg-accent/5 px-4 py-2 text-sm text-text-dim"
-                >
-                  {c.lead}{" "}
-                  <b className="font-semibold text-gold">{c.bold}</b>
-                  {c.rest}
+            <div className="grid grid-cols-2 gap-px bg-white/10">
+              <div className="bg-black/20 p-5">
+                <span className="room-caption text-xs uppercase tracking-wider">
+                  Fragmented stack
                 </span>
+                <b className="banner-heading-muted mt-2 block text-3xl line-through decoration-red-400/60">
+                  $1,600+
+                </b>
+                <p className="room-caption mt-2 text-xs">
+                  Seats, SMS, CRM, tracking, apps
+                </p>
+              </div>
+              <div className="bg-accent/10 p-5">
+                <span className="room-caption text-xs uppercase tracking-wider text-accent">
+                  ArQonnect
+                </span>
+                <b className="banner-heading mt-2 block text-3xl">from $97</b>
+                <p className="room-body mt-2 text-xs">
+                  One bill. Full stack. Cancel anytime.
+                </p>
+              </div>
+            </div>
+            <div className="space-y-2.5 p-4 sm:p-5">
+              {replaceStack.slice(0, 4).map((row) => (
+                <div
+                  key={row.name}
+                  className="flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-3"
+                >
+                  <span className="room-body min-w-0">{row.name}</span>
+                  <span className="shrink-0 font-mono text-xs text-white/55">
+                    {row.old}
+                    <span className="ml-2 text-accent">→ covered</span>
+                  </span>
+                </div>
               ))}
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            className="relative"
-          >
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent/20 via-transparent to-gold/10 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-gold/25 bg-panel/70 shadow-2xl shadow-black/40 backdrop-blur-xl">
-              <div className="flex items-center justify-between border-b border-line px-5 py-4">
-                <div>
-                  <div className="text-sm font-semibold text-text">
-                    Monthly stack cost
-                  </div>
-                  <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-gold">
-                    Old tools vs ArQonnect
-                  </div>
-                </div>
-                <span className="rounded-full border border-gold/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-gold">
-                  Save ~${savings.toLocaleString()}
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-px bg-line">
-                <div className="bg-bg/80 p-5">
-                  <span className="text-xs uppercase tracking-wider text-text-dimmer">
-                    Fragmented stack
-                  </span>
-                  <b className="mt-2 block text-3xl font-bold text-text-dim line-through decoration-red-400/60">
-                    $1,600+
-                  </b>
-                  <p className="mt-2 text-xs text-text-dimmer">
-                    Seats, SMS, CRM, tracking, apps
-                  </p>
-                </div>
-                <div className="bg-accent/10 p-5">
-                  <span className="text-xs uppercase tracking-wider text-gold">
-                    ArQonnect
-                  </span>
-                  <b className="mt-2 block text-3xl font-bold text-gold">
-                    from $97
-                  </b>
-                  <p className="mt-2 text-xs text-text-dim">
-                    One bill. Full stack. Cancel anytime.
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-2.5 p-4 sm:p-5">
-                {replaceStack.slice(0, 4).map((row) => (
-                  <div
-                    key={row.name}
-                    className="flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-3"
-                  >
-                    <span className="min-w-0 text-text-dim">{row.name}</span>
-                    <span className="shrink-0 font-mono text-xs text-text-dimmer">
-                      {row.old}
-                      <span className="ml-2 text-gold">→ covered</span>
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+          </PageBannerPanel>
+        }
+      >
+        <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
+          <BtnPrimary href="#calculator">Estimate your cost →</BtnPrimary>
+          <BtnGhost href="/contact">Book a Demo</BtnGhost>
         </div>
-      </section>
+        <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
+          {callouts.map((c) => (
+            <span
+              key={c.lead + c.bold}
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"
+            >
+              {c.lead}{" "}
+              <b className="font-semibold text-accent">{c.bold}</b>
+              {c.rest}
+            </span>
+          ))}
+        </div>
+      </PageBanner>
 
       {/* Comparison visual */}
       <Section border alt id="compare">

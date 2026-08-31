@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import SiteChrome from "@/components/SiteChrome";
 import SiteScripts from "@/components/SiteScripts";
 import Preloader from "@/components/Preloader";
+import { BOOT_VIDEOS } from "@/lib/preloadVideos";
 
 export const metadata: Metadata = {
   title: {
@@ -40,6 +41,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
+        {BOOT_VIDEOS.map((src) => (
+          <link key={src} rel="preload" href={src} as="video" type="video/mp4" />
+        ))}
       </head>
       <body className="relative">
         <Preloader />

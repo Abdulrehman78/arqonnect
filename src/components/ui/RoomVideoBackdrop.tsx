@@ -17,7 +17,6 @@ export default function RoomVideoBackdrop({
   const roomActive = useContext(RoomActiveContext);
   const cheap = useCheapMotion();
   const active = roomActive !== false;
-  const shouldLoad = !cheap && active;
 
   useEffect(() => {
     const video = videoRef.current;
@@ -39,12 +38,12 @@ export default function RoomVideoBackdrop({
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
-        src={shouldLoad ? src : undefined}
+        src={cheap ? undefined : src}
         playsInline
         loop
         muted
-        autoPlay={shouldLoad}
-        preload={shouldLoad ? "auto" : "none"}
+        autoPlay={!cheap}
+        preload={cheap ? "none" : "auto"}
         aria-hidden
       />
       <div

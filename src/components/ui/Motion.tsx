@@ -18,15 +18,22 @@ function subscribeCheap(onChange: () => void): () => void {
   return () => mqs.forEach((mq) => mq.removeEventListener("change", onChange));
 }
 
+function isMacOS(): boolean {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent;
+  return /Mac OS X|Macintosh|MacIntel/i.test(ua);
+}
+
 function cheapSnapshot(): boolean {
   return (
     window.matchMedia("(pointer: coarse)").matches ||
     window.matchMedia("(max-width: 767px)").matches ||
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    isMacOS()
   );
 }
 
-/** Phones, touch, and reduced-motion — skip GPU-heavy looping FX. */
+/** Phones, touch, Safari desktop, and reduced-motion — skip GPU-heavy looping FX. */
 export function useCheapMotion(): boolean {
   return useSyncExternalStore(subscribeCheap, cheapSnapshot, () => true);
 }

@@ -9,8 +9,7 @@ import {
   BtnGhost,
 } from "@/components/ui/PageSection";
 import { Stagger, MotionItem } from "@/components/ui/Motion";
-import InteractiveBackdrop from "@/components/ui/InteractiveBackdrop";
-import { motion } from "framer-motion";
+import PageBanner from "@/components/ui/PageBanner";
 
 type Location = {
   name: string;
@@ -69,74 +68,53 @@ const highlights = [
 export default function Locations() {
   return (
     <>
-      <section
+      <PageBanner
         id="locations"
-        className="relative flex min-h-[70vh] items-center overflow-hidden bg-bg pt-28 pb-16"
+        banner="contact"
+        center
+        minHeight="min-h-[70vh]"
+        eyebrow="Where We Work"
+        title="Book a demo,"
+        titleMuted="talk to a human."
+        description="Built in Lahore, running for clients across the US, UK, Canada, Australia and Europe. Find where we work — and get on the calendar this week."
       >
-        <InteractiveBackdrop theme="contact" />
-
-        <div className="relative z-10 mx-auto w-full max-w-4xl px-6 text-center lg:px-8">
-          <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-electric-2">
-              <span className="ai-live-dot" />
-              Where We Work
-            </span>
-
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
-              Book a demo,
-              <br />
-              <span className="bg-gradient-to-r from-gold via-cyan to-electric-2 bg-clip-text text-transparent">
-                talk to a human.
-              </span>
-            </h1>
-
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-text-dim sm:text-lg">
-              Built in Lahore, running for clients across the US, UK, Canada,
-              Australia and Europe. Find where we work — and get on the calendar
-              this week.
-            </p>
-
-            <ul className="mx-auto mt-6 flex max-w-2xl flex-col gap-2 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-6">
-              {highlights.map((h) => (
-                <li
-                  key={h}
-                  className="flex items-center justify-center gap-2 text-sm text-text-dim"
-                >
-                  <span className="text-accent">✓</span>
-                  {h}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <BtnPrimary href="#contact">Book a Demo →</BtnPrimary>
-              <BtnGhost href="#markets">See markets</BtnGhost>
-            </div>
-
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-              {locations.map((loc) => (
-                <span
-                  key={loc.code}
-                  className="inline-flex items-center gap-2 rounded-full border border-line bg-panel/50 px-3 py-1.5"
-                  title={loc.name}
-                >
-                  <Image
-                    src={loc.flag}
-                    alt={`${loc.name} flag`}
-                    width={24}
-                    height={16}
-                    className="h-4 w-6 rounded-[2px] object-cover"
-                    unoptimized
-                  />
-                  <span className="font-mono text-[11px] tracking-wide text-text-dim">
-                    {loc.code}
-                  </span>
-                </span>
-              ))}
-            </div>
-          </motion.div>
+        <ul className="mx-auto flex max-w-2xl flex-col gap-2 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-6">
+          {highlights.map((h) => (
+            <li
+              key={h}
+              className="flex items-center justify-center gap-2 text-sm text-white/85"
+            >
+              <span className="text-accent">✓</span>
+              {h}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <BtnPrimary href="#contact">Book a Demo →</BtnPrimary>
+          <BtnGhost href="#markets">See markets</BtnGhost>
         </div>
-      </section>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          {locations.map((loc) => (
+            <span
+              key={loc.code}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5"
+              title={loc.name}
+            >
+              <Image
+                src={loc.flag}
+                alt={`${loc.name} flag`}
+                width={24}
+                height={16}
+                className="h-4 w-6 rounded-[2px] object-cover"
+                unoptimized
+              />
+              <span className="font-mono text-[11px] tracking-wide text-white/70">
+                {loc.code}
+              </span>
+            </span>
+          ))}
+        </div>
+      </PageBanner>
 
       <Section border alt id="markets">
         <SectionHeader

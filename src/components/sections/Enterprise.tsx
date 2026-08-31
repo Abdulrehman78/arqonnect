@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Section,
   SectionHeader,
@@ -9,7 +8,10 @@ import {
   BtnGhost,
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
-import InteractiveBackdrop from "@/components/ui/InteractiveBackdrop";
+import PageBanner, {
+  PageBannerChecks,
+  PageBannerPanel,
+} from "@/components/ui/PageBanner";
 
 const features = [
   {
@@ -78,95 +80,59 @@ const bullets = [
 export default function Enterprise() {
   return (
     <>
-      {/* Hero */}
-      <section
+      <PageBanner
         id="enterprise"
-        className="relative flex min-h-[78vh] items-center overflow-hidden bg-bg pt-28 pb-16"
-      >
-        <InteractiveBackdrop theme="enterprise" />
-
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-          <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-            <span className="inline-flex items-center rounded-sm border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-electric-2">
-              <span className="ai-live-dot !mr-2" />
-              Built For Enterprises
-            </span>
-
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
-              The bigger you get,
-              <br />
-              <span className="bg-gradient-to-r from-gold via-cyan to-electric-2 bg-clip-text text-transparent">
-                the less it should worry you.
-              </span>
-            </h1>
-
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-dim sm:text-lg">
-              Everything a growing team needs to deploy AI agents without a
-              security review turning into a six-month delay.
-            </p>
-
-            <ul className="mt-6 space-y-2">
-              {bullets.map((b) => (
-                <li key={b} className="flex items-center gap-2 text-sm text-text-dim">
-                  <span className="ai-check text-electric-2">✓</span>
-                  {b}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <BtnPrimary href="/contact">Talk to Enterprise →</BtnPrimary>
-              <BtnGhost href="#compare">Compare plans</BtnGhost>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            className="relative"
-          >
-            <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-accent/20 via-transparent to-gold/20 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-gold/20 bg-panel/70 p-6 shadow-2xl shadow-black/30 backdrop-blur-xl md:p-8">
-              <div className="flex items-center justify-between border-b border-line pb-4">
-                <div>
-                  <div className="text-sm font-semibold text-text">
-                    Enterprise control plane
-                  </div>
-                  <div className="mt-0.5 font-mono text-xs text-gold">
-                    SSO · RBAC · GUARDRAILS · LIVE
-                  </div>
+        banner="enterprise"
+        minHeight="min-h-[78vh]"
+        eyebrow="Built For Enterprises"
+        title="The bigger you get,"
+        titleMuted="the less it should worry you."
+        description="Everything a growing team needs to deploy AI agents without a security review turning into a six-month delay."
+        aside={
+          <PageBannerPanel>
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 md:px-6">
+              <div>
+                <div className="room-heading text-sm font-semibold">
+                  Enterprise control plane
                 </div>
-                <span className="ai-chip-breathe rounded-sm border border-gold/30 bg-gold/10 px-3 py-1 font-mono text-[10px] font-semibold text-gold">
-                  ENT
-                </span>
+                <div className="mt-0.5 font-mono text-xs text-accent/90">
+                  SSO · RBAC · GUARDRAILS · LIVE
+                </div>
               </div>
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                {[
-                  { label: "Uptime SLA", value: "99.9%" },
-                  { label: "First agent live", value: "< 7 days" },
-                  { label: "Support", value: "24/7" },
-                  { label: "Access", value: "SSO + RBAC" },
-                ].map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="rounded-xl border border-line bg-bg/50 p-4"
-                  >
-                    <div className="text-xs text-text-dimmer">{stat.label}</div>
-                    <div className="mt-1 text-lg font-bold text-text">
-                      {stat.value}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-5 text-xs leading-relaxed text-text-dimmer">
-                Built for scale and control — security guardrails, analytics and
-                dedicated deployment support for organizations that can&apos;t
-                afford surprises.
-              </p>
+              <span className="rounded-sm border border-accent/35 bg-accent/10 px-3 py-1 font-mono text-[10px] font-semibold text-accent">
+                ENT
+              </span>
             </div>
-          </motion.div>
+            <div className="grid grid-cols-2 gap-3 p-5 md:p-6">
+              {[
+                { label: "Uptime SLA", value: "99.9%" },
+                { label: "First agent live", value: "< 7 days" },
+                { label: "Support", value: "24/7" },
+                { label: "Access", value: "SSO + RBAC" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-xl border border-white/10 bg-black/20 p-4"
+                >
+                  <div className="room-caption text-xs">{stat.label}</div>
+                  <div className="banner-heading mt-1 text-lg">{stat.value}</div>
+                </div>
+              ))}
+            </div>
+            <p className="room-caption border-t border-white/10 px-5 py-4 text-xs leading-relaxed md:px-6">
+              Built for scale and control — security guardrails, analytics and
+              dedicated deployment support for organizations that can&apos;t
+              afford surprises.
+            </p>
+          </PageBannerPanel>
+        }
+      >
+        <PageBannerChecks items={bullets} />
+        <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
+          <BtnPrimary href="/contact">Talk to Enterprise →</BtnPrimary>
+          <BtnGhost href="#compare">Compare plans</BtnGhost>
         </div>
-      </section>
+      </PageBanner>
 
       {/* Feature grid */}
       <Section border alt id="enterprise-features">

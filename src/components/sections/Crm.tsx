@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   Section,
   SectionHeader,
@@ -12,7 +11,10 @@ import {
   BtnGhost,
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
-import InteractiveBackdrop from "@/components/ui/InteractiveBackdrop";
+import PageBanner, {
+  PageBannerChecks,
+  PageBannerPanel,
+} from "@/components/ui/PageBanner";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 const features = [
@@ -77,111 +79,73 @@ const liveStats = [
 export default function Crm() {
   return (
     <>
-      {/* Hero */}
-      <section
+      <PageBanner
         id="crm"
-        className="relative flex min-h-[88vh] items-center overflow-hidden bg-bg pt-28 pb-20"
-      >
-        <InteractiveBackdrop theme="crm" />
-
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:px-8">
-          <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-            <div className="inline-flex items-center gap-3 border border-cyan/25 bg-accent/5 px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-cyan">
-              <span className="ai-live-dot !mr-0" />
-              Command Center
-            </div>
-
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
-              One CRM.
-              <br />
-              <span className="bg-gradient-to-r from-gold via-cyan to-electric-2 bg-clip-text text-transparent">
-                Every conversation, tracked.
+        banner="crm"
+        minHeight="min-h-[88vh]"
+        eyebrow="Command Center"
+        title="One CRM."
+        titleMuted="Every conversation, tracked."
+        description="Pipelines, reviews, reputation and reporting live in a single dashboard — fed automatically by every chatbot and voice call your AI workforce handles."
+        aside={
+          <PageBannerPanel>
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+              <div>
+                <div className="room-heading text-sm font-semibold">
+                  Pipeline snapshot
+                </div>
+                <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-accent/90">
+                  Live · All channels
+                </div>
+              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/35 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+                Syncing
               </span>
-            </h1>
-
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-dim sm:text-lg">
-              Pipelines, reviews, reputation and reporting live in a single
-              dashboard — fed automatically by every chatbot and voice call your
-              AI workforce handles.
-            </p>
-
-            <ul className="mt-8 flex max-w-xl flex-col gap-2.5">
-              {[
-                "Auto-logged from chat, voice, SMS & DMs",
-                "Sentiment + recap on every touch",
-                "Syncs to HubSpot, Salesforce, or yours",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-2.5 text-sm text-text-dim"
-                >
-                  <span className="text-cyan">✓</span>
-                  {item}
-                </li>
+            </div>
+            <div className="grid grid-cols-3 gap-px bg-white/10">
+              {liveStats.map((s) => (
+                <div key={s.label} className="bg-black/20 px-2 py-3 text-center sm:px-4 sm:py-4">
+                  <div className="banner-heading text-base sm:text-lg md:text-xl">
+                    {s.value}
+                  </div>
+                  <div className="room-caption mt-1 text-[9px] uppercase leading-tight tracking-wider sm:text-[10px]">
+                    {s.label}
+                  </div>
+                </div>
               ))}
-            </ul>
-
-            <div className="mt-9 flex flex-wrap gap-4">
-              <BtnPrimary href="/contact">Book a Demo →</BtnPrimary>
-              <BtnGhost href="/demo">See it live</BtnGhost>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            className="relative"
-          >
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent/25 via-transparent to-violet/15 blur-2xl" />
-
-            <div className="relative overflow-hidden rounded-2xl border border-cyan/25 bg-panel/70 shadow-2xl shadow-black/40 backdrop-blur-xl">
-              <div className="flex items-center justify-between border-b border-line px-5 py-4">
-                <div>
-                  <div className="text-sm font-semibold text-text">
-                    Pipeline snapshot
-                  </div>
-                  <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-cyan">
-                    Live · All channels
-                  </div>
-                </div>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-cyan">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan" />
-                  Syncing
-                </span>
-              </div>
-
-              <div className="grid grid-cols-3 gap-px bg-line">
-                {liveStats.map((s) => (
-                  <div key={s.label} className="bg-bg/80 px-2 py-3 text-center sm:px-4 sm:py-4">
-                    <div className="text-base font-bold text-cyan sm:text-lg md:text-xl">
-                      {s.value}
-                    </div>
-                    <div className="mt-1 text-[9px] uppercase leading-tight tracking-wider text-text-dimmer sm:text-[10px]">
-                      {s.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="relative aspect-[16/10] bg-bg-alt">
-                <Image
-                  src="/media/img_7.webp"
-                  alt="ArQonnect CRM dashboard"
-                  fill
-                  className="object-cover object-top"
-                  priority
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bg via-bg/50 to-transparent p-3 sm:p-4">
-                  <div className="flex flex-col gap-1 font-mono text-[10px] uppercase tracking-wider text-text-dimmer sm:flex-row sm:items-center sm:justify-between sm:text-xs">
-                    <span className="text-cyan">Deal board preview</span>
-                    <span className="truncate">HubSpot · Salesforce · Custom</span>
-                  </div>
+            <div className="relative aspect-[16/10] bg-bg-alt">
+              <Image
+                src="/media/img_7.webp"
+                alt="ArQonnect CRM dashboard"
+                fill
+                className="object-cover object-top"
+                priority
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 sm:p-4">
+                <div className="flex flex-col gap-1 font-mono text-[10px] uppercase tracking-wider text-white/60 sm:flex-row sm:items-center sm:justify-between sm:text-xs">
+                  <span className="text-accent">Deal board preview</span>
+                  <span className="truncate">HubSpot · Salesforce · Custom</span>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </PageBannerPanel>
+        }
+      >
+        <PageBannerChecks
+          className="max-w-xl"
+          items={[
+            "Auto-logged from chat, voice, SMS & DMs",
+            "Sentiment + recap on every touch",
+            "Syncs to HubSpot, Salesforce, or yours",
+          ]}
+        />
+        <div className="mt-9 flex flex-wrap justify-center gap-4 lg:justify-start">
+          <BtnPrimary href="/contact">Book a Demo →</BtnPrimary>
+          <BtnGhost href="/demo">See it live</BtnGhost>
         </div>
-      </section>
+      </PageBanner>
 
       {/* Feature deep-dive */}
       <Section border id="crm-features" alt>

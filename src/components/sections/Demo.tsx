@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { Section, SectionHeader, Chip } from "@/components/ui/PageSection";
+import { Section, Chip } from "@/components/ui/PageSection";
 import { FadeUp } from "@/components/ui/Motion";
+import PageBanner from "@/components/ui/PageBanner";
 
 type ChatMsg = { text: string; who: "user" | "bot" | "typing" };
 
@@ -129,20 +130,17 @@ export default function Demo() {
   }, []);
 
   return (
-    <Section first id="demo">
-      <SectionHeader
-        eyebrow="Try It, Don't Just Watch It"
-        title={
-          <>
-            Every agency says their AI is good.
-            <br />
-            Prove it yourself, right here.
-          </>
-        }
-        description="This is the actual agent — not a mockup. Type a message or start a call and see how it responds."
+    <>
+      <PageBanner
+        id="demo"
+        banner="demo"
         center
+        eyebrow="Try It, Don't Just Watch It"
+        title="Every agency says their AI is good."
+        titleMuted="Prove it yourself, right here."
+        description="This is the actual agent — not a mockup. Type a message or start a call and see how it responds."
       />
-
+      <Section id="demo-widget">
       <FadeUp>
         <div className="mx-auto flex max-w-md justify-center gap-2">
           <Chip active={tab === "chat"} onClick={() => setTab("chat")}>💬 Chat Widget</Chip>
@@ -235,5 +233,6 @@ export default function Demo() {
         </div>
       </FadeUp>
     </Section>
+    </>
   );
 }

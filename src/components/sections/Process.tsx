@@ -1,7 +1,8 @@
 "use client";
 
-import { Section, SectionHeader, Card } from "@/components/ui/PageSection";
+import { Section, Card } from "@/components/ui/PageSection";
 import { Stagger, MotionItem } from "@/components/ui/Motion";
+import PageBanner from "@/components/ui/PageBanner";
 
 const steps = [
   { num: "01", title: "Discover", desc: "We map your current stack, leads and bottlenecks on a single call." },
@@ -14,29 +15,29 @@ const steps = [
 
 export default function Process() {
   return (
-    <Section first id="process">
-      <SectionHeader
+    <>
+      <PageBanner
+        id="process"
+        banner="process"
+        center
         eyebrow="How It Works"
-        title={
-          <>
-            No black box between
-            <br />
-            &ldquo;yes&rdquo; and &ldquo;it&apos;s live.&rdquo;
-          </>
-        }
+        title={`No black box between "yes"`}
+        titleMuted={`and "it's live."`}
         description="The same six steps, every engagement — no surprises, no scope creep."
       />
-      <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {steps.map((s) => (
-          <MotionItem key={s.num}>
-            <Card className="h-full">
-              <span className="ai-num-glow font-mono text-xs font-semibold text-accent">{s.num}</span>
-              <h4 className="mt-3 text-lg font-semibold text-text">{s.title}</h4>
-              <p className="mt-2 text-sm leading-relaxed text-text-dim">{s.desc}</p>
-            </Card>
-          </MotionItem>
-        ))}
-      </Stagger>
-    </Section>
+      <Section id="process-content">
+        <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {steps.map((s) => (
+            <MotionItem key={s.num}>
+              <Card className="h-full">
+                <span className="ai-num-glow font-mono text-xs font-semibold text-accent">{s.num}</span>
+                <h4 className="mt-3 text-lg font-semibold text-text">{s.title}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-text-dim">{s.desc}</p>
+              </Card>
+            </MotionItem>
+          ))}
+        </Stagger>
+      </Section>
+    </>
   );
 }

@@ -51,30 +51,16 @@ export default function Threshold(): React.ReactElement {
     <section ref={sectionRef} className="threshold" id="threshold">
       <div className="threshold-stage">
         <div className="threshold-content" id="thresholdText" ref={textRef}>
-          <span
-            className="eyebrow"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 10,
-              color: "#EAA46B",
-              fontFamily: "JetBrains Mono, monospace",
-              fontSize: 11.5,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              marginBottom: 18,
-              justifyContent: "center",
-              width: "100%",
-            }}
-          >
-            — The ArQonnect Stack
+          <span className="room-label inline-flex w-full items-center justify-center text-xs font-medium uppercase tracking-[0.18em]">
+            <span className="ai-live-dot" />
+            The ArQonnect Stack
           </span>
-          <h2>
+          <h2 className="banner-heading mt-4 text-3xl sm:text-4xl md:text-5xl">
             Fourteen rooms.
             <br />
-            One workforce.
+            <span className="banner-heading-muted">One workforce.</span>
           </h2>
-          <p>
+          <p className="room-body mx-auto mt-4 max-w-xl text-base leading-relaxed sm:text-lg">
             Keep scrolling — every door opens into a service built to run
             itself, lit its own way.
           </p>

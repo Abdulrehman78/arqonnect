@@ -1,122 +1,13 @@
 "use client";
 
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { RoomActiveContext } from "@/components/ui/Motion";
-
-type RoomStyle = {
-  transform: string;
-  opacity: number;
-  zIndex: number;
-  pointerEvents: "auto" | "none";
-  borderRadius: string;
-  boxShadow: string;
-};
-
-function clamp(value: number, min: number, max: number): number {
-  return Math.min(max, Math.max(min, value));
-}
-
-const DWELL_VH = 0.1;
-/** Cinematic fly — long enough to read, short enough not to hang mid-card */
-const ENTER_VH = 0.62;
-/** Pin after the last CTA is fully shown, before the footer takes over */
-const LAST_HOLD_VH = 0.5;
-/** Settled time on the last CTA so it can be read and clicked */
-const LAST_DWELL_VH = 0.7;
-/** Critically damped camera. Lower = heavier / smoother. */
-const SPRING_OMEGA = 8.2;
-const SPRING_ZETA = 1.08;
-
-/**
- * ALCHE-style 3D coverflow: current room sits behind; the next room flies
- * in as a rounded card from depth, then fills the viewport.
- */
-function getRoomStyle(
-  index: number,
-  active: number,
-  depth: number,
-  total: number
-): RoomStyle {
-  const baseZ = total - index;
-  const raw = clamp(depth, 0, 1);
-  const d = raw * raw * (3 - 2 * raw);
-  const entering = raw > 0.01 && active < total - 1;
-  const rest = {
-    transform: "translate3d(0,0,0)",
-    borderRadius: "0px",
-    boxShadow: "none",
-  };
-
-  if (index < active) {
-    return {
-      ...rest,
-      opacity: 0,
-      zIndex: baseZ,
-      pointerEvents: "none",
-    };
-  }
-
-  if (index === active) {
-    if (entering) {
-      const fromBanner = index === 0;
-      const hide = clamp(raw / (fromBanner ? 0.1 : 0.32), 0, 1);
-      return {
-        transform: fromBanner
-          ? `translate3d(0, 0, ${-24 * hide}px)`
-          : `translate3d(0, 0, ${-48 * d}px) scale(${1 - d * 0.04})`,
-        opacity: 1 - hide,
-        zIndex: baseZ + 5,
-        pointerEvents: hide < 0.08 ? "auto" : "none",
-        borderRadius: "0px",
-        boxShadow: "none",
-      };
-    }
-    return {
-      ...rest,
-      opacity: 1,
-      zIndex: total + 20,
-      pointerEvents: "auto",
-    };
-  }
-
-  if (index === active + 1) {
-    if (!entering) {
-      return {
-        transform: "translate3d(0, 0, -360px) scale(0.48) rotateX(7deg)",
-        opacity: 0,
-        zIndex: baseZ,
-        pointerEvents: "none",
-        borderRadius: "24px",
-        boxShadow: "none",
-      };
-    }
-    const scale = 0.48 + d * 0.52;
-    const z = -360 * (1 - d);
-    const tilt = (1 - d) * 7;
-    const radius = (1 - d) * 24;
-    const gold = (1 - d) * 0.48;
-    const far = 1 - d;
-    return {
-      transform: `translate3d(0, 0, ${z}px) scale(${scale}) rotateX(${tilt}deg)`,
-      opacity: clamp(raw / 0.1, 0, 1),
-      zIndex: total + 40,
-      pointerEvents: d > 0.88 ? "auto" : "none",
-      borderRadius: `${radius}px`,
-      boxShadow: [
-        `0 0 0 1px rgba(234,164,107,${gold})`,
-        `0 28px 80px rgba(0,0,0,${0.48 * far})`,
-        `0 0 44px rgba(234,164,107,${0.16 * far})`,
-      ].join(", "),
-    };
-  }
-
-  return {
-    ...rest,
-    opacity: 0,
-    zIndex: baseZ,
-    pointerEvents: "none",
-  };
-}
 
 type SectionBudget = {
   start: number;
@@ -136,12 +27,28 @@ type ScrollFadeSectionsProps = {
   id?: string;
 };
 
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
+}
+
+const DWELL_VH = 0.1;
+const ENTER_VH = 0.42;
+const LAST_HOLD_VH = 0.5;
+const LAST_DWELL_VH = 0.7;
+
 export default function ScrollFadeSections({
   children,
   id,
 }: ScrollFadeSectionsProps): React.ReactElement {
   const containerRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
+  const shellRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const innerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const measureRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const heightsRef = useRef<number[]>([]);
+  const vhRef = useRef(800);
+
   const slides = React.Children.toArray(children);
   const count = slides.length;
 
@@ -149,22 +56,18 @@ export default function ScrollFadeSections({
   const [heights, setHeights] = useState<number[]>(() =>
     Array.from({ length: count }, () => 0)
   );
+  /** React state only for dots + room context — updated on coarse steps, not every px */
   const [active, setActive] = useState(0);
   const [depth, setDepth] = useState(0);
-  const [contentOffset, setContentOffset] = useState(0);
+  const [shownNext, setShownNext] = useState(false);
   const [vh, setVh] = useState(800);
   const [budgets, setBudgets] = useState<SectionBudget[]>([]);
   const [totalHeight, setTotalHeight] = useState(800);
 
   const budgetsRef = useRef(budgets);
-  const targetRef = useRef<ScrollTarget>({ active: 0, depth: 0, offset: 0 });
-  const currentRef = useRef<ScrollTarget>({ active: 0, depth: 0, offset: 0 });
-  const velRef = useRef(0);
-  const offsetVelRef = useRef(0);
-  const rafRef = useRef(0);
-  const lastTsRef = useRef(0);
-
   budgetsRef.current = budgets;
+  heightsRef.current = heights;
+  vhRef.current = vh;
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
@@ -184,8 +87,11 @@ export default function ScrollFadeSections({
       if (!node) return window.innerHeight;
       return Math.max(node.scrollHeight, node.offsetHeight);
     });
+    heightsRef.current = next;
     setHeights(next);
-    setVh(window.innerHeight || 800);
+    const nextVh = window.innerHeight || 800;
+    vhRef.current = nextVh;
+    setVh(nextVh);
   }, []);
 
   useLayoutEffect(() => {
@@ -229,9 +135,7 @@ export default function ScrollFadeSections({
       cursor += readScroll + enterDist;
     }
 
-    // Extra pin distance so the final CTA stays on screen
     cursor += LAST_HOLD_VH * view;
-
     setBudgets(next);
     setTotalHeight(Math.max(view, cursor));
   }, [heights, vh, count, isDesktop]);
@@ -279,109 +183,101 @@ export default function ScrollFadeSections({
     return { active: nextActive, depth: nextDepth, offset: nextOffset };
   }, [count]);
 
+  const applyFrame = useCallback(
+    (target: ScrollTarget) => {
+      const stage = stageRef.current;
+      if (stage) {
+        stage.style.setProperty("--depth", String(target.depth));
+        stage.dataset.scrolling =
+          target.depth > 0.02 && target.depth < 0.98 ? "true" : "false";
+      }
+
+      if (glowRef.current) {
+        glowRef.current.style.opacity =
+          target.depth > 0.02 && target.active < count - 1
+            ? String(Math.sin(Math.PI * target.depth) * 0.12)
+            : "0";
+      }
+
+      const view = vhRef.current;
+      for (let i = 0; i < count; i++) {
+        const shell = shellRefs.current[i];
+        if (!shell) continue;
+
+        let state: "current" | "next" | "hidden" = "hidden";
+        if (i === target.active) state = "current";
+        else if (i === target.active + 1 && target.depth > 0.001) state = "next";
+
+        shell.dataset.roomState = state;
+        shell.dataset.heroExit =
+          i === 0 && target.active === 0 && target.depth > 0.01 ? "true" : "false";
+        shell.dataset.roomReady = target.depth > 0.88 ? "true" : "false";
+        shell.dataset.roomShown = state !== "hidden" ? "true" : "false";
+        shell.dataset.roomSettled =
+          i === target.active && target.depth < 0.08 ? "true" : "false";
+
+        const inner = innerRefs.current[i];
+        if (inner && i === target.active) {
+          const contentHeight = heightsRef.current[i] || view;
+          const topPad =
+            contentHeight < view ? Math.max(0, (view - contentHeight) / 2) : 0;
+          inner.style.transform = `translate3d(0, ${topPad - target.offset}px, 0)`;
+        }
+      }
+    },
+    [count]
+  );
+
   useEffect(() => {
     if (!isDesktop) return;
 
-    const syncTarget = () => {
-      targetRef.current = readScrollTarget();
-    };
+    let raf = 0;
+    let lastActive = -1;
+    let lastDepthQ = -1;
+    let lastShownNext = false;
+    let scrollIdle: ReturnType<typeof setTimeout> | undefined;
 
-    const tick = (ts: number) => {
-      if (!lastTsRef.current) lastTsRef.current = ts;
-      const dt = Math.min(0.05, (ts - lastTsRef.current) / 1000);
-      lastTsRef.current = ts;
+    const sync = () => {
+      raf = 0;
+      const target = readScrollTarget();
+      applyFrame(target);
 
-      const target = targetRef.current;
-      const cur = currentRef.current;
-      const targetP = target.active + target.depth;
-      let curP = cur.active + cur.depth;
-      const lastIdx = Math.max(0, count - 1);
-      const arrivingAtLast =
-        target.active === lastIdx && target.depth === 0 && curP < lastIdx;
-      const skip = arrivingAtLast || Math.abs(targetP - curP) > 1.25;
+      const depthQ = Math.round(target.depth * 50) / 50;
+      const nextShown = target.depth > 0.01;
 
-      if (skip) {
-        curP = targetP;
-        velRef.current = 0;
-        offsetVelRef.current = 0;
-        cur.offset = target.offset;
-      } else {
-        const acc =
-          SPRING_OMEGA * SPRING_OMEGA * (targetP - curP) -
-          2 * SPRING_ZETA * SPRING_OMEGA * velRef.current;
-        velRef.current += acc * dt;
-        curP += velRef.current * dt;
-
-        const oAcc =
-          SPRING_OMEGA * SPRING_OMEGA * (target.offset - cur.offset) -
-          2 * SPRING_ZETA * SPRING_OMEGA * offsetVelRef.current;
-        offsetVelRef.current += oAcc * dt;
-        cur.offset += offsetVelRef.current * dt;
+      if (target.active !== lastActive) {
+        lastActive = target.active;
+        setActive(target.active);
       }
-
-      if (Math.abs(targetP - curP) < 0.0005 && Math.abs(velRef.current) < 0.01) {
-        curP = targetP;
-        velRef.current = 0;
+      if (depthQ !== lastDepthQ) {
+        lastDepthQ = depthQ;
+        setDepth(depthQ);
       }
-      if (Math.abs(target.offset - cur.offset) < 0.2 && Math.abs(offsetVelRef.current) < 0.4) {
-        cur.offset = target.offset;
-        offsetVelRef.current = 0;
-      }
-
-      const maxIdx = Math.max(0, count - 1);
-      if (curP < 0 || curP > maxIdx) {
-        curP = clamp(curP, 0, maxIdx);
-        velRef.current = 0;
-      }
-      const clampedP = curP;
-      const nextActive = Math.min(maxIdx, Math.floor(clampedP + 1e-6));
-      cur.active = nextActive;
-      cur.depth = clamp(clampedP - nextActive, 0, 1);
-
-      setActive((prev) => (prev === cur.active ? prev : cur.active));
-      setDepth((prev) => (Math.abs(prev - cur.depth) < 0.0004 ? prev : cur.depth));
-      setContentOffset((prev) =>
-        Math.abs(prev - cur.offset) < 0.15 ? prev : cur.offset
-      );
-
-      const settled =
-        curP === targetP &&
-        cur.offset === target.offset &&
-        velRef.current === 0 &&
-        offsetVelRef.current === 0;
-      if (settled) {
-        rafRef.current = 0;
-        return;
-      }
-
-      rafRef.current = requestAnimationFrame(tick);
-    };
-
-    const kick = () => {
-      syncTarget();
-      if (!rafRef.current) {
-        lastTsRef.current = 0;
-        rafRef.current = requestAnimationFrame(tick);
+      if (nextShown !== lastShownNext) {
+        lastShownNext = nextShown;
+        setShownNext(nextShown);
       }
     };
 
-    syncTarget();
-    currentRef.current = { ...targetRef.current };
-    velRef.current = 0;
-    offsetVelRef.current = 0;
-    lastTsRef.current = 0;
-    rafRef.current = requestAnimationFrame(tick);
+    const onScroll = () => {
+      if (scrollIdle) clearTimeout(scrollIdle);
+      scrollIdle = setTimeout(() => {
+        stageRef.current?.setAttribute("data-scrolling", "false");
+      }, 120);
+      if (!raf) raf = requestAnimationFrame(sync);
+    };
 
-    const onScroll = () => kick();
+    sync();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", kick);
+    window.addEventListener("resize", onScroll);
 
     return () => {
-      cancelAnimationFrame(rafRef.current);
+      cancelAnimationFrame(raf);
+      if (scrollIdle) clearTimeout(scrollIdle);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", kick);
+      window.removeEventListener("resize", onScroll);
     };
-  }, [isDesktop, readScrollTarget, budgets]);
+  }, [isDesktop, readScrollTarget, budgets, applyFrame]);
 
   if (!isDesktop) {
     return (
@@ -390,7 +286,10 @@ export default function ScrollFadeSections({
         className="scroll-fade-stack scroll-fade-stack--flow relative bg-bg"
       >
         {slides.map((child, i) => (
-          <div key={i} className="relative w-full overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_100vh]">
+          <div
+            key={i}
+            className="relative w-full overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_100vh]"
+          >
             {child}
           </div>
         ))}
@@ -406,54 +305,42 @@ export default function ScrollFadeSections({
       style={{ height: totalHeight }}
     >
       <div
-        className="sticky top-0 h-screen w-full overflow-hidden pointer-events-none bg-bg"
-        style={{
-          perspective: "1600px",
-          perspectiveOrigin: "50% 42%",
-        }}
+        ref={stageRef}
+        className="scroll-fade-stage sticky top-0 h-screen w-full overflow-hidden pointer-events-none bg-bg"
+        style={{ "--depth": depth } as React.CSSProperties}
       >
         {slides.map((child, i) => {
-          const style = getRoomStyle(i, active, depth, count);
-          const contentHeight = heights[i] > 0 ? heights[i] : vh;
-          const topPad =
-            contentHeight < vh ? Math.max(0, (vh - contentHeight) / 2) : 0;
-          const y = i === active ? topPad - contentOffset : topPad;
-
-          const shown = i === active || (i === active + 1 && depth > 0.01);
-          const settled = i === active && depth < 0.08;
+          const shown =
+            i === active || (i === active + 1 && shownNext);
 
           return (
             <div
               key={i}
-              className="absolute inset-0 overflow-hidden bg-bg"
-              data-room-shown={shown ? "true" : "false"}
-              data-room-settled={settled ? "true" : "false"}
-              style={{
-                transform: style.transform,
-                opacity: style.opacity,
-                zIndex: style.zIndex,
-                pointerEvents: "none",
-                transformOrigin: "50% 50%",
-                borderRadius: style.borderRadius,
-                boxShadow: style.boxShadow,
-                backgroundColor: "#0B0F12",
-                backfaceVisibility: "hidden",
-                visibility: i === active || i === active + 1 ? "visible" : "hidden",
-                willChange: shown ? "transform, opacity" : "auto",
+              ref={(node) => {
+                shellRefs.current[i] = node;
               }}
+              className="scroll-fade-room"
+              data-room-state={
+                i === active
+                  ? "current"
+                  : i === active + 1 && depth > 0.001
+                    ? "next"
+                    : "hidden"
+              }
+              data-room-shown={shown ? "true" : "false"}
+              data-room-settled={i === active && depth < 0.08 ? "true" : "false"}
+              data-hero-exit={
+                i === 0 && active === 0 && depth > 0.01 ? "true" : "false"
+              }
+              data-room-ready={depth > 0.88 ? "true" : "false"}
             >
-              <div
-                className="relative h-full w-full overflow-hidden"
-                style={{ pointerEvents: style.pointerEvents }}
-              >
+              <div className="scroll-fade-room-inner relative h-full w-full overflow-hidden">
                 <div
                   ref={(node) => {
+                    innerRefs.current[i] = node;
                     measureRefs.current[i] = node;
                   }}
                   className="w-full"
-                  style={{
-                    transform: `translate3d(0, ${y}px, 0)`,
-                  }}
                 >
                   <RoomActiveContext.Provider value={shown}>
                     {child}
@@ -464,19 +351,16 @@ export default function ScrollFadeSections({
           );
         })}
 
-        {depth > 0.02 && active < count - 1 && (
-          <div
-            className="pointer-events-none absolute inset-0 z-[90]"
-            style={{
-              opacity: Math.sin(Math.PI * clamp(depth, 0, 1)) * 0.22,
-              background:
-                "radial-gradient(ellipse 48% 42% at 50% 46%, rgba(234,164,107,0.14), transparent 70%)",
-            }}
-          />
-        )}
+        <div
+          ref={glowRef}
+          className="scroll-fade-room-glow pointer-events-none absolute inset-0 z-[90]"
+          style={{
+            background:
+              "radial-gradient(ellipse 48% 42% at 50% 46%, rgba(234,164,107,0.1), transparent 70%)",
+          }}
+        />
       </div>
 
-      {/* Section dots — hide on hero, show once inside */}
       {count > 1 && active > 0 && (
         <div className="pointer-events-auto fixed right-4 top-1/2 z-[200] hidden -translate-y-1/2 flex-col gap-2 md:flex">
           {slides.map((_, i) => (

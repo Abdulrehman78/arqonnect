@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   Section,
   SectionHeader,
@@ -10,7 +9,10 @@ import {
   BtnGhost,
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
-import InteractiveBackdrop from "@/components/ui/InteractiveBackdrop";
+import PageBanner, {
+  PageBannerChecks,
+  PageBannerPanel,
+} from "@/components/ui/PageBanner";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 
 const before = [
@@ -67,115 +69,80 @@ const shapeSteps = [
 export default function CaseStudies() {
   return (
     <>
-      {/* Hero */}
-      <section
+      <PageBanner
         id="case-studies"
-        className="relative flex min-h-[88vh] items-center overflow-hidden bg-bg pt-28 pb-20"
-      >
-        <InteractiveBackdrop theme="cases" />
-
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-8">
-          <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-            <div className="inline-flex items-center gap-3 border border-cyan/25 bg-cyan/5 px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-cyan">
-              <span className="ai-live-dot !mr-0" />
-              Before / After
-            </div>
-
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
-              The gap between &ldquo;we&apos;re busy&rdquo;
-              <br />
-              <span className="bg-gradient-to-r from-gold to-accent-dim bg-clip-text text-transparent">
-                and &ldquo;we&apos;re organized.&rdquo;
+        banner="cases"
+        minHeight="min-h-[88vh]"
+        eyebrow="Before / After"
+        title={`The gap between "we're busy"`}
+        titleMuted={`and "we're organized."`}
+        description="We're early — real client case studies are being documented as engagements complete. Here's the shape every one follows, illustrated."
+        aside={
+          <PageBannerPanel>
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+              <div>
+                <div className="room-heading text-sm font-semibold">
+                  Engagement arc
+                </div>
+                <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-accent/90">
+                  Illustrative · Typical path
+                </div>
+              </div>
+              <span className="rounded-full border border-accent/35 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                Preview
               </span>
-            </h1>
-
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-dim sm:text-lg">
-              We&apos;re early — real client case studies are being documented as
-              engagements complete. Here&apos;s the shape every one follows,
-              illustrated.
-            </p>
-
-            <ul className="mt-8 flex max-w-xl flex-col gap-2.5">
-              {proofPoints.map((point) => (
-                <li
-                  key={point}
-                  className="flex items-center gap-2.5 text-sm text-text-dim"
-                >
-                  <span className="text-cyan">✓</span>
-                  {point}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-9 flex flex-wrap gap-4">
-              <BtnPrimary href="/contact">Be the first case study →</BtnPrimary>
-              <BtnGhost href="/demo">Try the Live Demo</BtnGhost>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            className="relative"
-          >
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-gold/20 via-transparent to-gold-dim/10 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-cyan/25 bg-panel/70 shadow-2xl shadow-black/40 backdrop-blur-xl">
-              <div className="flex items-center justify-between border-b border-line px-5 py-4">
-                <div>
-                  <div className="text-sm font-semibold text-text">
-                    Engagement arc
-                  </div>
-                  <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-cyan">
-                    Illustrative · Typical path
-                  </div>
-                </div>
-                <span className="rounded-full border border-cyan/30 bg-cyan/10 px-3 py-1 text-xs font-semibold text-cyan">
-                  Preview
+            <div className="space-y-3 p-5">
+              <div className="rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-3.5">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-red-400">
+                  Before
                 </span>
+                <p className="room-body mt-1.5 text-sm">
+                  Missed calls. Manual follow-up. No shared record.
+                </p>
               </div>
-
-              <div className="space-y-3 p-5">
-                <div className="rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-3.5">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-red-400">
-                    Before
-                  </span>
-                  <p className="mt-1.5 text-sm text-text-dim">
-                    Missed calls. Manual follow-up. No shared record.
-                  </p>
-                </div>
-                <div className="flex items-center justify-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan">
-                  <span className="h-px w-8 bg-cyan/40" />
-                  ArQonnect
-                  <span className="h-px w-8 bg-cyan/40" />
-                </div>
-                <div className="rounded-xl border border-cyan/25 bg-cyan/10 px-4 py-3.5">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-cyan">
-                    After
-                  </span>
-                  <p className="mt-1.5 text-sm text-text-dim">
-                    Answered in seconds. Automated. One CRM.
-                  </p>
-                </div>
+              <div className="flex items-center justify-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+                <span className="h-px w-8 bg-accent/40" />
+                ArQonnect
+                <span className="h-px w-8 bg-accent/40" />
               </div>
-
-              <div className="grid grid-cols-3 gap-px border-t border-line bg-line">
-                {[
-                  { v: "∞", l: "Channels" },
-                  { v: "1", l: "CRM" },
-                  { v: "0", l: "Dropped" },
-                ].map((s) => (
-                  <div key={s.l} className="bg-bg/80 px-2 py-3 text-center sm:px-3 sm:py-3.5">
-                    <div className="text-sm font-bold text-cyan sm:text-base">{s.v}</div>
-                    <div className="mt-0.5 text-[9px] uppercase leading-tight tracking-wider text-text-dimmer sm:text-[10px]">
-                      {s.l}
-                    </div>
-                  </div>
-                ))}
+              <div className="rounded-xl border border-accent/25 bg-accent/10 px-4 py-3.5">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-accent">
+                  After
+                </span>
+                <p className="room-body mt-1.5 text-sm">
+                  Answered in seconds. Automated. One CRM.
+                </p>
               </div>
             </div>
-          </motion.div>
+            <div className="grid grid-cols-3 gap-px border-t border-white/10 bg-white/10">
+              {[
+                { v: "∞", l: "Channels" },
+                { v: "1", l: "CRM" },
+                { v: "0", l: "Dropped" },
+              ].map((s) => (
+                <div
+                  key={s.l}
+                  className="bg-black/20 px-2 py-3 text-center sm:px-3 sm:py-3.5"
+                >
+                  <div className="text-sm font-bold text-accent sm:text-base">
+                    {s.v}
+                  </div>
+                  <div className="room-caption mt-0.5 text-[9px] uppercase leading-tight sm:text-[10px]">
+                    {s.l}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </PageBannerPanel>
+        }
+      >
+        <PageBannerChecks items={proofPoints} className="max-w-xl" />
+        <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
+          <BtnPrimary href="/contact">Be the first case study →</BtnPrimary>
+          <BtnGhost href="/demo">Try the Live Demo</BtnGhost>
         </div>
-      </section>
+      </PageBanner>
 
       {/* Before / After comparison */}
       <Section border alt id="before-after">

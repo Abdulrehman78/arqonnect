@@ -1,7 +1,8 @@
 "use client";
 
-import { Section, SectionHeader, Card } from "@/components/ui/PageSection";
+import { Section, Card } from "@/components/ui/PageSection";
 import { Stagger, MotionItem } from "@/components/ui/Motion";
+import PageBanner from "@/components/ui/PageBanner";
 
 const values = [
   { icon: "⚡", title: "Speed", desc: "Live in days, not quarters. Your first agent is answering calls before most vendors finish onboarding." },
@@ -14,24 +15,28 @@ const values = [
 
 export default function Values() {
   return (
-    <Section first id="values">
-      <SectionHeader
+    <>
+      <PageBanner
+        id="values"
+        banner="values"
+        center
         eyebrow="What You Get"
         title="The ArQonnect Standard"
         description="Every engagement runs on the same six commitments — no exceptions, no fine print."
-        accent="violet"
       />
-      <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {values.map((v) => (
-          <MotionItem key={v.title}>
-            <Card className="h-full">
-              <span className="ai-icon-float inline-block text-2xl">{v.icon}</span>
-              <h4 className="mt-4 text-lg font-semibold text-text">{v.title}</h4>
-              <p className="mt-2 text-sm leading-relaxed text-text-dim">{v.desc}</p>
-            </Card>
-          </MotionItem>
-        ))}
-      </Stagger>
-    </Section>
+      <Section id="values-content">
+        <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {values.map((v) => (
+            <MotionItem key={v.title}>
+              <Card className="h-full">
+                <span className="ai-icon-float inline-block text-2xl">{v.icon}</span>
+                <h4 className="mt-4 text-lg font-semibold text-text">{v.title}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-text-dim">{v.desc}</p>
+              </Card>
+            </MotionItem>
+          ))}
+        </Stagger>
+      </Section>
+    </>
   );
 }

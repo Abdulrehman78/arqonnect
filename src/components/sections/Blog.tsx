@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   Section,
   SectionHeader,
@@ -10,7 +9,10 @@ import {
   BtnGhost,
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
-import InteractiveBackdrop from "@/components/ui/InteractiveBackdrop";
+import PageBanner, {
+  PageBannerChecks,
+  PageBannerPanel,
+} from "@/components/ui/PageBanner";
 
 const pulseItems = [
   "GEO / AEO guides",
@@ -84,104 +86,64 @@ const library = [
 export default function Blog() {
   return (
     <>
-      {/* Hero */}
-      <section
+      <PageBanner
         id="resources"
-        className="relative flex min-h-[88vh] items-center overflow-hidden bg-bg pt-28 pb-20"
-      >
-        <InteractiveBackdrop theme="resources" />
-
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:px-8">
-          <motion.div initial={{ opacity: 1 }} animate={{ opacity: 1 }}>
-            <div className="inline-flex items-center gap-3 border border-gold/25 bg-gold/5 px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-gold">
-              <span className="ai-live-dot !mr-0" />
-              Insights & News
-            </div>
-
-            <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-text sm:text-5xl lg:text-6xl">
-              Guides, insight,
-              <br />
-              <span className="bg-gradient-to-r from-gold via-orange-300 to-electric-2 bg-clip-text text-transparent">
-                and straight answers.
+        banner="resources"
+        minHeight="min-h-[88vh]"
+        eyebrow="Insights & News"
+        title="Guides, insight,"
+        titleMuted="and straight answers."
+        description="Industry breakdowns and the FAQ we actually get asked — no gated whitepapers, just the answers. What we're learning building AI agents that book appointments — and what's moving in AI search."
+        aside={
+          <PageBannerPanel>
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+              <div>
+                <div className="room-heading text-sm font-semibold">
+                  Resource library
+                </div>
+                <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-accent/90">
+                  What you&apos;ll find here
+                </div>
+              </div>
+              <span className="rounded-full border border-accent/35 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                Free
               </span>
-            </h1>
-
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-text-dim sm:text-lg">
-              Industry breakdowns and the FAQ we actually get asked — no gated
-              whitepapers, just the answers. What we&apos;re learning building AI
-              agents that book appointments — and what&apos;s moving in AI search.
-            </p>
-
-            <ul className="mt-8 flex max-w-xl flex-col gap-2.5">
-              {library.map((t) => (
-                <li
-                  key={t}
-                  className="flex items-center gap-2.5 text-sm text-text-dim"
-                >
-                  <span className="text-gold">✓</span>
-                  {t}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <BtnPrimary href="#insights">Browse insights →</BtnPrimary>
-              <BtnGhost href="#faq">Jump to FAQ</BtnGhost>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            className="relative"
-          >
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-gold/20 via-transparent to-orange-400/10 blur-2xl" />
-            <div className="relative overflow-hidden rounded-2xl border border-gold/25 bg-panel/70 shadow-2xl shadow-black/40 backdrop-blur-xl">
-              <div className="flex items-center justify-between border-b border-line px-5 py-4">
-                <div>
-                  <div className="text-sm font-semibold text-text">
-                    Resource library
-                  </div>
-                  <div className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-gold">
-                    What you&apos;ll find here
+            <div className="divide-y divide-white/10">
+              {topics.map((t, i) => (
+                <div
+                  key={t.label}
+                  className="flex items-start gap-4 px-5 py-4 transition-colors hover:bg-white/5"
+                >
+                  <span className="mt-0.5 font-mono text-xs text-accent/70">
+                    0{i + 1}
+                  </span>
+                  <div>
+                    <div className="room-heading text-sm font-semibold">
+                      {t.label}
+                    </div>
+                    <p className="room-caption mt-1 text-xs leading-relaxed">
+                      {t.desc}
+                    </p>
                   </div>
                 </div>
-                <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-xs font-semibold text-gold">
-                  Free
-                </span>
-              </div>
-
-              <div className="divide-y divide-line">
-                {topics.map((t, i) => (
-                  <div
-                    key={t.label}
-                    className="flex items-start gap-4 px-5 py-4 transition-colors hover:bg-gold/5"
-                  >
-                    <span className="mt-0.5 font-mono text-xs text-gold/70">
-                      0{i + 1}
-                    </span>
-                    <div>
-                      <div className="text-sm font-semibold text-text">
-                        {t.label}
-                      </div>
-                      <p className="mt-1 text-xs leading-relaxed text-text-dim">
-                        {t.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="border-t border-line bg-gold/5 px-5 py-4">
-                <p className="text-xs leading-relaxed text-text-dim">
-                  New pieces as the industry moves — voice, CRM, and AI search
-                  visibility in one place.
-                </p>
-              </div>
+              ))}
             </div>
-          </motion.div>
+            <div className="border-t border-white/10 bg-accent/5 px-5 py-4">
+              <p className="room-caption text-xs leading-relaxed">
+                New pieces as the industry moves — voice, CRM, and AI search
+                visibility in one place.
+              </p>
+            </div>
+          </PageBannerPanel>
+        }
+      >
+        <PageBannerChecks items={library} className="max-w-xl" />
+        <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
+          <BtnPrimary href="#insights">Browse insights →</BtnPrimary>
+          <BtnGhost href="#faq">Jump to FAQ</BtnGhost>
         </div>
-      </section>
+      </PageBanner>
 
       {/* Pulse ticker */}
       <div className="border-y border-gold/15 bg-bg-alt py-4">

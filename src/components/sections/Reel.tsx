@@ -2,27 +2,23 @@
 
 import type React from "react";
 import Image from "next/image";
-import { Section, SectionHeader, BtnPrimary } from "@/components/ui/PageSection";
+import { Section, BtnPrimary } from "@/components/ui/PageSection";
 import { FadeUp } from "@/components/ui/Motion";
+import PageBanner from "@/components/ui/PageBanner";
 
 export default function Reel() {
   return (
     <>
-      <Section first id="reel" className="overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-violet/5" />
-        <SectionHeader
-          eyebrow="See It Work"
-          title={
-            <>
-              A lead messages your business
-              <br />
-              at <span className="text-accent">11:41 PM.</span>
-            </>
-          }
-          description="Here's exactly what happens next — no one on your team touches a thing."
-          center
-        />
-
+      <PageBanner
+        id="reel"
+        banner="reel"
+        center
+        eyebrow="See It Work"
+        title="A lead messages your business"
+        titleMuted="at 11:41 PM."
+        description="Here's exactly what happens next — no one on your team touches a thing."
+      />
+      <Section id="reel-content" className="overflow-hidden">
         <FadeUp>
           <div className="reel-grid grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
             <div className="reel-phone-wrap">
