@@ -34,7 +34,7 @@ export default function RoomVideoBackdrop({
   }, [active, cheap]);
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-0 min-h-[100dvh] overflow-hidden isolate bg-[#0B0F12]">
+    <div className="pointer-events-none absolute inset-0 z-0 min-h-[100dvh] overflow-hidden isolate bg-backdrop-base">
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover"
@@ -46,15 +46,7 @@ export default function RoomVideoBackdrop({
         preload={cheap ? "none" : "auto"}
         aria-hidden
       />
-      <div
-        className="absolute inset-0 z-[1]"
-        style={{
-          background: veil ?? [
-            "linear-gradient(180deg, rgba(11,15,18,0.72) 0%, rgba(11,15,18,0.48) 38%, rgba(11,15,18,0.55) 62%, rgba(11,15,18,0.82) 100%)",
-            "radial-gradient(ellipse 70% 55% at 50% 42%, rgba(11,15,18,0.15), rgba(11,15,18,0.65) 100%)",
-          ].join(","),
-        }}
-      />
+      <div className="absolute inset-0 z-[1] bg-video-veil" />
       <div
         className="absolute inset-0 z-[2] opacity-50"
         style={{

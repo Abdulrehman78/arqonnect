@@ -98,7 +98,7 @@ export default function Capabilities() {
         <Stagger className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {panels[active].map((card) => (
             <MotionItem key={card.title}>
-              <Card className="h-full border-line bg-panel/40 transition-colors hover:border-white/15">
+              <Card className="h-full border-line bg-panel/40 transition-colors hover:border-glass">
                 <span className="ai-num-glow font-mono text-xs text-accent">{card.num}</span>
                 <h4 className="mt-2 font-semibold text-text">{card.title}</h4>
                 <p className="mt-1.5 text-sm text-text-dim">{card.desc}</p>

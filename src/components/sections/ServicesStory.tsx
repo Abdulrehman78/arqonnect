@@ -182,7 +182,7 @@ export default function ServicesStory() {
           <Stagger className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
             {services.map((s) => (
               <MotionItem key={s.key}>
-                <article className="motion-card group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-panel/40 transition-colors hover:border-white/15 hover:bg-panel/70">
+                <article className="motion-card group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-panel/40 transition-colors hover:border-glass hover:bg-panel/70">
                   <div className="relative border-b border-line bg-bg/60 p-4">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img

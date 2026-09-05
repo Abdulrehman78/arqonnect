@@ -3,7 +3,7 @@
 import type { ReactElement, ReactNode } from "react";
 import { GiggleText } from "@/components/ui/GiggleText";
 import BannerBackdrop from "@/components/ui/BannerBackdrop";
-import { PAGE_BANNERS, ROOM_VEIL, type PageBannerKey } from "@/lib/brand";
+import { PAGE_BANNERS, type PageBannerKey } from "@/lib/brand";
 
 export type PageBannerProps = {
   id?: string;
@@ -74,7 +74,7 @@ export default function PageBanner({
         video={clip}
         position={position}
         quiet
-        veil={ROOM_VEIL}
+        veil
         priority
       />
 
@@ -133,7 +133,7 @@ export function PageBannerChecks({
       {items.map((item) => (
         <li
           key={item}
-          className="flex items-center gap-2.5 text-sm text-white/85"
+          className="flex items-center gap-2.5 text-sm room-muted"
         >
           <span className="text-accent">✓</span>
           {item}

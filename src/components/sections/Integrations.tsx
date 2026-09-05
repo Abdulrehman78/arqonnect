@@ -156,7 +156,7 @@ export default function Integrations(): ReactElement {
                   {c.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white/65"
+                      className="rounded-full border border-glass bg-glass-inner px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-stat-ink"
                     >
                       {tag}
                     </li>
@@ -167,15 +167,15 @@ export default function Integrations(): ReactElement {
           </div>
         </FadeUp>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.16em] text-white/70">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.16em] text-stat-ink">
           <span>
             <span className="text-accent">4</span> channels
           </span>
-          <span className="hidden h-3 w-px bg-white/15 sm:block" />
+          <span className="hidden h-3 w-px bg-stat-divider sm:block" />
           <span>
             <span className="text-accent">1</span> lead record
           </span>
-          <span className="hidden h-3 w-px bg-white/15 sm:block" />
+          <span className="hidden h-3 w-px bg-stat-divider sm:block" />
           <span>
             <span className="text-accent">24/7</span> coverage
           </span>

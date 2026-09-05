@@ -1,4 +1,5 @@
 import ScrollFadeSections from "@/components/ui/ScrollFadeSections";
+import LanguageRail from "@/components/ui/LanguageRail";
 import Hero from "@/components/sections/Hero";
 import LogoCloud from "@/components/sections/LogoCloud";
 import StatsStrip from "@/components/sections/StatsStrip";
@@ -17,7 +18,9 @@ function Room({ children }: { children: React.ReactNode }) {
 
 export default function HomePage() {
   return (
-    <ScrollFadeSections id="home-rooms">
+    <>
+      <LanguageRail />
+      <ScrollFadeSections id="home-rooms" mode="flow">
       <Room>
         <Hero />
       </Room>
@@ -40,5 +43,6 @@ export default function HomePage() {
         <HomeFinalCta />
       </Room>
     </ScrollFadeSections>
+    </>
   );
 }

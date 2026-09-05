@@ -134,7 +134,7 @@ export default function FeaturesBento(): ReactElement {
                   {p.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white/65"
+                      className="rounded-full border border-glass bg-glass-inner px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-stat-ink"
                     >
                       {tag}
                     </li>
@@ -145,7 +145,7 @@ export default function FeaturesBento(): ReactElement {
           </div>
         </FadeUp>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.16em] text-white/70">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.16em] text-stat-ink">
           <span>
             <span className="text-accent">20+</span> AI-run services
           </span>

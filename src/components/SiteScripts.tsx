@@ -547,41 +547,7 @@ export default function SiteScripts() {
       });
     }
 
-    // language ticker (two counter-scrolling rows)
-    const langsRow1: Array<[string, string]> = [
-      ["🇺🇸", "English"],
-      ["🇮🇳", "Hindi"],
-      ["🇸🇪", "Swedish"],
-      ["🇫🇷", "French"],
-      ["🇨🇿", "Czech"],
-    ];
-    const langsRow2: Array<[string, string]> = [
-      ["🇵🇹", "Portuguese"],
-      ["🇸🇰", "Slovak"],
-      ["🇪🇸", "Spanish"],
-      ["🇳🇱", "Dutch"],
-      ["🇩🇪", "German"],
-      ["🇮🇹", "Italian"],
-    ];
-    const fillLangTicker = (id: string, arr: Array<[string, string]>) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      [...arr, ...arr].forEach(([flag, name]) => {
-        const sEl = document.createElement("span");
-        sEl.className = "lang-chip";
-        sEl.innerHTML = `<span class="flag">${flag}</span>${name}`;
-        el.appendChild(sEl);
-      });
-    };
-    fillLangTicker("langTicker", langsRow1);
-    fillLangTicker("langTicker2", langsRow2);
-    cleanups.push(() => {
-      const a = document.getElementById("langTicker");
-      const b = document.getElementById("langTicker2");
-      if (a) a.innerHTML = "";
-      if (b) b.innerHTML = "";
-    });
-
+    // language ticker — rendered by LanguageTicker component (home + proof)
     // industry pulse ticker
     const pulseItems = [
       "AI Overviews are changing how people search — GEO is no longer optional",

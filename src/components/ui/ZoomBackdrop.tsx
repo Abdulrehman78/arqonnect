@@ -77,9 +77,9 @@ export default function ZoomBackdrop({
         />
       ) : null}
       {veil ? (
-        <div className="absolute inset-0 z-[1]" style={{ background: veil }} />
+        <div className="absolute inset-0 z-[1] bg-room-veil" />
       ) : (
-        <div className="absolute inset-0 z-[1] bg-black/55" />
+        <div className="absolute inset-0 z-[1] media-scrim-base" />
       )}
       {children}
       <SchemeOverlay className="z-[3]" intensity={overlay} quiet={quiet} />

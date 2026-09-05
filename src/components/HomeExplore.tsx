@@ -112,9 +112,9 @@ function CardGrid({ items }: { items: Card[] }) {
     <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {items.map((c) => (
         <MotionItem key={c.href}>
-          <div className="motion-card group flex h-full flex-col justify-between rounded-[18px] border border-white/10 bg-panel/60 p-6 transition-colors hover:border-accent/50 hover:bg-panel-2">
+          <div className="motion-card group flex h-full flex-col justify-between rounded-[18px] border border-glass bg-panel/60 p-6 transition-colors hover:border-accent/50 hover:bg-panel-2">
             <div>
-              <div className="ai-icon-float mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-electric-2">
+              <div className="ai-icon-float mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-glass bg-glass-inner text-electric-2">
                 <Icon name={c.icon} />
               </div>
               <h3 className="font-display text-lg text-text">{c.label}</h3>

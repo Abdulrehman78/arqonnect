@@ -96,7 +96,7 @@ export default function Blog() {
         description="Industry breakdowns and the FAQ we actually get asked — no gated whitepapers, just the answers. What we're learning building AI agents that book appointments — and what's moving in AI search."
         aside={
           <PageBannerPanel>
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+            <div className="flex items-center justify-between border-b border-glass px-5 py-4">
               <div>
                 <div className="room-heading text-sm font-semibold">
                   Resource library
@@ -109,11 +109,11 @@ export default function Blog() {
                 Free
               </span>
             </div>
-            <div className="divide-y divide-white/10">
+            <div className="divide-y divide-glass">
               {topics.map((t, i) => (
                 <div
                   key={t.label}
-                  className="flex items-start gap-4 px-5 py-4 transition-colors hover:bg-white/5"
+                  className="flex items-start gap-4 px-5 py-4 transition-colors hover:bg-glass-hover"
                 >
                   <span className="mt-0.5 font-mono text-xs text-accent/70">
                     0{i + 1}
@@ -129,7 +129,7 @@ export default function Blog() {
                 </div>
               ))}
             </div>
-            <div className="border-t border-white/10 bg-accent/5 px-5 py-4">
+            <div className="border-t border-glass bg-accent/5 px-5 py-4">
               <p className="room-caption text-xs leading-relaxed">
                 New pieces as the industry moves — voice, CRM, and AI search
                 visibility in one place.

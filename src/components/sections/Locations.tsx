@@ -82,7 +82,7 @@ export default function Locations() {
           {highlights.map((h) => (
             <li
               key={h}
-              className="flex items-center justify-center gap-2 text-sm text-white/85"
+              className="flex items-center justify-center gap-2 text-sm room-muted"
             >
               <span className="text-accent">✓</span>
               {h}
@@ -97,7 +97,7 @@ export default function Locations() {
           {locations.map((loc) => (
             <span
               key={loc.code}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5"
+              className="inline-flex items-center gap-2 rounded-full border border-glass bg-glass-inner px-3 py-1.5"
               title={loc.name}
             >
               <Image
@@ -108,7 +108,7 @@ export default function Locations() {
                 className="h-4 w-6 rounded-[2px] object-cover"
                 unoptimized
               />
-              <span className="font-mono text-[11px] tracking-wide text-white/70">
+              <span className="font-mono text-[11px] tracking-wide text-stat-ink">
                 {loc.code}
               </span>
             </span>
@@ -146,7 +146,7 @@ export default function Locations() {
                     alt={`${loc.name} flag`}
                     width={96}
                     height={64}
-                    className="relative z-10 h-14 w-auto rounded-md border border-line object-cover shadow-lg shadow-black/40"
+                    className="relative z-10 h-14 w-auto rounded-md border border-line object-cover shadow-lg shadow-[0_20px_40px_rgb(var(--shadow-rgb)/0.12)]"
                     unoptimized
                   />
                   {loc.hq && (

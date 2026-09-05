@@ -2,7 +2,7 @@
 
 import { useContext, useEffect, useRef, useState } from "react";
 import { RoomActiveContext, useCheapMotion } from "@/components/ui/Motion";
-import { HERO_BANNER, HERO_VIDEO } from "@/lib/brand";
+import { HERO_VIDEO } from "@/lib/brand";
 
 type HeroVideoBackdropProps = {
   ready?: boolean;
@@ -17,13 +17,11 @@ export default function HeroVideoBackdrop({
   const inHero = roomActive !== false;
   const [muted, setMuted] = useState(true);
   const [blocked, setBlocked] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || cheap) {
-      video?.pause();
-      return;
-    }
+    if (!video) return;
 
     if (!inHero) {
       const t = window.setTimeout(() => video.pause(), 240);
@@ -36,7 +34,7 @@ export default function HeroVideoBackdrop({
       setBlocked(true);
       video.play().catch(() => {});
     });
-  }, [inHero, cheap]);
+  }, [inHero]);
 
   useEffect(() => {
     if (!ready || cheap || !inHero) return;
@@ -69,42 +67,45 @@ export default function HeroVideoBackdrop({
 
   return (
     <>
-      <div className="pointer-events-none absolute inset-0 z-0 min-h-[100dvh] overflow-hidden isolate bg-[#0B0F12]">
+      <div className="pointer-events-none absolute inset-0 z-0 min-h-[100dvh] overflow-hidden isolate bg-backdrop-base">
+        <div
+          className="absolute inset-0 bg-bg transition-opacity duration-700"
+          aria-hidden
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_-10%,rgb(var(--accent-rgb)/0.1),transparent_65%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_100%,rgb(var(--accent-rgb)/0.05),transparent_55%)]" />
+        </div>
+
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover"
-          src={cheap ? undefined : HERO_VIDEO}
-          poster={HERO_BANNER}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            videoReady ? "opacity-100" : "opacity-0"
+          }`}
+          src={HERO_VIDEO}
           playsInline
           loop
-          autoPlay={!cheap}
+          autoPlay
           muted={muted}
-          preload={cheap ? "none" : "auto"}
+          preload="auto"
           aria-hidden
+          onLoadedData={() => setVideoReady(true)}
+          onCanPlay={() => setVideoReady(true)}
         />
-        <div
-          className="absolute inset-0 z-[1]"
-          style={{
-            background: [
-              "linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.38) 38%, rgba(0,0,0,0.42) 62%, rgba(0,0,0,0.78) 100%)",
-              "radial-gradient(ellipse 70% 50% at 50% 42%, rgba(0,0,0,0.12), rgba(0,0,0,0.4) 100%)",
-            ].join(","),
-          }}
-        />
+        <div className="absolute inset-0 z-[1] bg-hero-veil" />
       </div>
 
       {!cheap && (
-      <button
-        type="button"
-        onClick={toggleMute}
-        aria-label={showUnmute ? "Unmute banner video" : "Mute banner video"}
-        title={showUnmute ? "Unmute" : "Mute"}
-        className={`pointer-events-auto absolute bottom-5 right-4 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/55 text-white shadow-[0_8px_28px_rgba(0,0,0,0.45)] backdrop-blur-md transition-colors hover:border-[#EAA46B]/70 hover:bg-black/70 hover:text-[#EAA46B] md:bottom-8 md:right-6 ${
-          showUnmute ? "ai-play-pulse" : ""
-        }`}
-      >
-        {showUnmute ? <SpeakerOffIcon /> : <SpeakerOnIcon />}
-      </button>
+        <button
+          type="button"
+          onClick={toggleMute}
+          aria-label={showUnmute ? "Unmute banner video" : "Mute banner video"}
+          title={showUnmute ? "Unmute" : "Mute"}
+          className={`pointer-events-auto absolute bottom-5 right-4 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-glass bg-glass-inner text-text shadow-[0_8px_28px_rgb(var(--shadow-rgb)/0.12)] backdrop-blur-md transition-colors hover:border-accent/70 hover:bg-panel hover:text-accent md:bottom-8 md:right-6 ${
+            showUnmute ? "ai-play-pulse" : ""
+          }`}
+        >
+          {showUnmute ? <SpeakerOffIcon /> : <SpeakerOnIcon />}
+        </button>
       )}
     </>
   );
@@ -113,10 +114,7 @@ export default function HeroVideoBackdrop({
 function SpeakerOnIcon(): React.ReactElement {
   return (
     <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
-      <path
-        d="M4 10v4h3.2L12 18V6L7.2 10H4z"
-        fill="currentColor"
-      />
+      <path d="M4 10v4h3.2L12 18V6L7.2 10H4z" fill="currentColor" />
       <path
         d="M15.2 8.5a4.2 4.2 0 0 1 0 7"
         stroke="currentColor"

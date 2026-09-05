@@ -144,7 +144,7 @@ export default function LogoCloud(): ReactElement {
           </div>
         </FadeUp>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.16em] text-white/70">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.16em] text-stat-ink">
           <span>
             <span className="text-accent">5</span> regions
           </span>

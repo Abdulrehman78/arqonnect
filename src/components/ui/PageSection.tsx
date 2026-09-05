@@ -132,7 +132,7 @@ export function BrowserFrame({
   return (
     <motion.div
       id={id}
-      className="overflow-hidden rounded-2xl border border-line bg-panel/60 shadow-2xl shadow-black/30"
+      className="overflow-hidden rounded-2xl border border-line bg-panel/60 shadow-2xl shadow-[0_20px_40px_rgb(var(--shadow-rgb)/0.10)]"
       data-ai-tilt
       data-ai-sheen
       initial={{ opacity: 0, y: 20 }}

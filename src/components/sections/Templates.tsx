@@ -127,7 +127,7 @@ export default function Templates() {
           <Stagger className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
             {panels[active].map((card) => (
               <MotionItem key={card.title}>
-                <Card className="group h-full border-line bg-panel/40 transition-colors hover:border-white/15">
+                <Card className="group h-full border-line bg-panel/40 transition-colors hover:border-glass">
                   <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-text-dimmer">
                     {card.tag}
                   </span>
@@ -165,7 +165,7 @@ export default function Templates() {
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center rounded-full border border-line bg-panel/60 px-7 py-3.5 text-sm font-semibold text-text no-underline transition-all hover:border-white/20"
+              className="inline-flex items-center rounded-full border border-line bg-panel/60 px-7 py-3.5 text-sm font-semibold text-text no-underline transition-all hover:border-glass"
             >
               See pricing
             </Link>

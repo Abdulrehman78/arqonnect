@@ -79,7 +79,7 @@ export default function CaseStudies() {
         description="We're early — real client case studies are being documented as engagements complete. Here's the shape every one follows, illustrated."
         aside={
           <PageBannerPanel>
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+            <div className="flex items-center justify-between border-b border-glass px-5 py-4">
               <div>
                 <div className="room-heading text-sm font-semibold">
                   Engagement arc
@@ -115,7 +115,7 @@ export default function CaseStudies() {
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-px border-t border-white/10 bg-white/10">
+            <div className="grid grid-cols-3 gap-px border-t border-glass bg-glass-divider">
               {[
                 { v: "∞", l: "Channels" },
                 { v: "1", l: "CRM" },
@@ -123,7 +123,7 @@ export default function CaseStudies() {
               ].map((s) => (
                 <div
                   key={s.l}
-                  className="bg-black/20 px-2 py-3 text-center sm:px-3 sm:py-3.5"
+                  className="bg-glass-inner px-2 py-3 text-center sm:px-3 sm:py-3.5"
                 >
                   <div className="text-sm font-bold text-accent sm:text-base">
                     {s.v}

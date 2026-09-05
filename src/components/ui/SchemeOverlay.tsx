@@ -10,7 +10,7 @@ type SchemeOverlayProps = {
   quiet?: boolean;
 };
 
-/** Dark wash plus continuous AI idle motion on every section. */
+/** Theme-aware wash plus continuous AI idle motion on every section. */
 export default function SchemeOverlay({
   className = "",
   intensity = "room",
@@ -25,9 +25,10 @@ export default function SchemeOverlay({
       aria-hidden
     >
       <div
-        className={`absolute inset-0 ${hero ? "bg-black/60" : "bg-black/55"}`}
+        className="absolute inset-0 media-scrim-base"
+        style={{ background: hero ? "var(--media-scrim-hero)" : undefined }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/70" />
+      <div className="absolute inset-0 media-scrim-gradient" />
 
       {!cheap && (
         <div className="section-idle">

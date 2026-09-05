@@ -66,7 +66,7 @@ export default function Nav() {
             height={32}
             className="h-8 w-auto"
           />
-          <span className={`truncate text-[15px] font-semibold tracking-tight ${overMedia ? "text-white" : "text-text"}`}>
+          <span className={`truncate text-[15px] font-semibold tracking-tight ${overMedia ? "text-nav-media" : "text-text"}`}>
             ArQonnect
           </span>
         </Link>
@@ -86,10 +86,10 @@ export default function Nav() {
                     className={`relative whitespace-nowrap rounded-lg px-3 py-2 text-[13px] font-medium no-underline transition-colors ${
                       active
                         ? overMedia
-                          ? "text-white"
+                          ? "text-nav-media"
                           : "text-text"
                         : overMedia
-                          ? "text-white/75 hover:text-white"
+                          ? "text-nav-media-dim hover:text-nav-media"
                           : "text-text-dim hover:text-text"
                     }`}
                   >
@@ -108,7 +108,7 @@ export default function Nav() {
           <ThemeToggle
             className={
               overMedia
-                ? "border-white/35 bg-white/10 text-white hover:bg-white/20"
+                ? "border-nav-media bg-nav-media text-nav-media hover:bg-nav-media-hover"
                 : undefined
             }
           />
@@ -127,7 +127,7 @@ export default function Nav() {
 
           <button
             type="button"
-            className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border ${overMedia ? "border-white/35 text-white" : "border-line text-text"} xl:hidden`}
+            className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border ${overMedia ? "border-nav-media text-nav-media" : "border-line text-text"} xl:hidden`}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((o) => !o)}

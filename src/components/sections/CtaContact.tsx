@@ -10,7 +10,7 @@ export default function CtaContact() {
 
   return (
     <Section border id="contact" className="overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/55" />
+      <div className="pointer-events-none absolute inset-0 media-scrim-gradient" />
 
       <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:items-start">
         <FadeUp>

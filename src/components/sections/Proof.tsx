@@ -3,6 +3,7 @@
 import { Section, Card } from "@/components/ui/PageSection";
 import { Stagger, MotionItem } from "@/components/ui/Motion";
 import PageBanner from "@/components/ui/PageBanner";
+import LanguageTicker from "@/components/ui/LanguageTicker";
 import Image from "next/image";
 
 export default function Proof() {
@@ -27,10 +28,7 @@ export default function Proof() {
                   <span className="h-2 w-2 rounded-full bg-yellow-500/60" />
                   <span className="h-2 w-2 rounded-full bg-green-500/60" />
                 </div>
-                <div className="lang-ticker-wrap overflow-hidden rounded-lg border border-line bg-panel/60 p-3">
-                  <div className="lang-ticker flex gap-3 text-xs text-text-dim" id="langTicker" />
-                  <div className="lang-ticker flex gap-3 text-xs text-text-dim mt-2" id="langTicker2" />
-                </div>
+                <LanguageTicker label="Live language switching" className="rounded-lg border border-line !border-y !bg-panel/60 !py-4" />
               </div>
               <div className="p-6">
                 <h4 className="text-lg font-semibold text-text">Speaks the room&apos;s language</h4>

@@ -78,7 +78,7 @@ export default function Testimonials(): ReactElement {
               className="room-body relative text-lg leading-relaxed md:text-xl"
               text="This is where your story goes. Once the first engagement wraps, we'll swap this for a real quote, a real name, and a real result."
             />
-            <footer className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <footer className="mt-8 flex flex-col gap-4 border-t border-glass pt-6 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-4">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent/35 bg-accent/10 font-mono text-xs font-semibold uppercase tracking-wider text-accent">
                   You
@@ -94,7 +94,7 @@ export default function Testimonials(): ReactElement {
                 {["Healthcare", "Real estate", "E‑commerce"].map((tag) => (
                   <li
                     key={tag}
-                    className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white/60"
+                    className="rounded-full border border-glass bg-glass-inner px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-stat-ink"
                   >
                     {tag}
                   </li>
@@ -121,7 +121,7 @@ export default function Testimonials(): ReactElement {
           </div>
         </FadeUp>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.16em] text-white/70">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-[0.16em] text-stat-ink">
           <span>
             <span className="text-accent">1</span> founding slot
           </span>

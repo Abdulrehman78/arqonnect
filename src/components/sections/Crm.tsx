@@ -89,7 +89,7 @@ export default function Crm() {
         description="Pipelines, reviews, reputation and reporting live in a single dashboard — fed automatically by every chatbot and voice call your AI workforce handles."
         aside={
           <PageBannerPanel>
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+            <div className="flex items-center justify-between border-b border-glass px-5 py-4">
               <div>
                 <div className="room-heading text-sm font-semibold">
                   Pipeline snapshot
@@ -103,9 +103,9 @@ export default function Crm() {
                 Syncing
               </span>
             </div>
-            <div className="grid grid-cols-3 gap-px bg-white/10">
+            <div className="grid grid-cols-3 gap-px bg-glass-divider">
               {liveStats.map((s) => (
-                <div key={s.label} className="bg-black/20 px-2 py-3 text-center sm:px-4 sm:py-4">
+                <div key={s.label} className="bg-glass-inner px-2 py-3 text-center sm:px-4 sm:py-4">
                   <div className="banner-heading text-base sm:text-lg md:text-xl">
                     {s.value}
                   </div>
@@ -123,8 +123,8 @@ export default function Crm() {
                 className="object-cover object-top"
                 priority
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 sm:p-4">
-                <div className="flex flex-col gap-1 font-mono text-[10px] uppercase tracking-wider text-white/60 sm:flex-row sm:items-center sm:justify-between sm:text-xs">
+              <div className="absolute inset-x-0 bottom-0 bg-glass-fade-bottom p-3 sm:p-4">
+                <div className="flex flex-col gap-1 font-mono text-[10px] uppercase tracking-wider text-stat-ink sm:flex-row sm:items-center sm:justify-between sm:text-xs">
                   <span className="text-accent">Deal board preview</span>
                   <span className="truncate">HubSpot · Salesforce · Custom</span>
                 </div>

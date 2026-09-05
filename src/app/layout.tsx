@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import SiteChrome from "@/components/SiteChrome";
 import SiteScripts from "@/components/SiteScripts";
 import Preloader from "@/components/Preloader";
-import { BOOT_VIDEOS } from "@/lib/preloadVideos";
+import { BOOT_VIDEOS, PRIORITY_VIDEO } from "@/lib/preloadVideos";
 
 export const metadata: Metadata = {
   title: {
@@ -24,11 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
+    <html lang="en" data-theme="light" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem("arq-theme");if(t==="light"||t==="dark"){document.documentElement.setAttribute("data-theme",t);}else{document.documentElement.setAttribute("data-theme","dark");}}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();`,
+            __html: `(function(){try{var t=localStorage.getItem("arq-theme");if(t==="light"||t==="dark"){document.documentElement.setAttribute("data-theme",t);}else{document.documentElement.setAttribute("data-theme","light");}}catch(e){document.documentElement.setAttribute("data-theme","light");}})();`,
           }}
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,7 +41,14 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
-        {BOOT_VIDEOS.map((src) => (
+        <link
+          rel="preload"
+          href={PRIORITY_VIDEO}
+          as="video"
+          type="video/mp4"
+          fetchPriority="high"
+        />
+        {BOOT_VIDEOS.filter((src) => src !== PRIORITY_VIDEO).map((src) => (
           <link key={src} rel="preload" href={src} as="video" type="video/mp4" />
         ))}
       </head>

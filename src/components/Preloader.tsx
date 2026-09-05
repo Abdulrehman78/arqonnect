@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import { LOADER_VIDEO } from "@/lib/brand";
-import { preloadVideos } from "@/lib/preloadVideos";
+import { preloadHeroVideo, preloadSecondaryVideos, PRIORITY_VIDEO } from "@/lib/preloadVideos";
 import { useEffect, useRef, useState } from "react";
 
 const MIN_MS = 1100;
 const EXIT_MS = 680;
-const ASSET_TIMEOUT_MS = 6000;
+const ASSET_TIMEOUT_MS = 4500;
 
 const STAGES = [
   { until: 34, label: "Connecting" },
@@ -48,8 +48,9 @@ export default function Preloader(): React.ReactElement | null {
     document.body.style.overflow = "hidden";
     videoRef.current?.play().catch(() => {});
 
-    // Warm banner clips while the loader is visible.
-    void preloadVideos(undefined, ASSET_TIMEOUT_MS);
+    // Hero banner first — other clips warm in the background.
+    void preloadHeroVideo(ASSET_TIMEOUT_MS);
+    void preloadSecondaryVideos(ASSET_TIMEOUT_MS);
 
     const tick = () => {
       const next = displayRef.current + (targetRef.current - displayRef.current) * 0.12;
@@ -84,11 +85,14 @@ export default function Preloader(): React.ReactElement | null {
 
     const ready = Promise.all([
       waitForWindowLoad(),
-      preloadVideos(undefined, ASSET_TIMEOUT_MS),
+      preloadHeroVideo(ASSET_TIMEOUT_MS),
       new Promise<void>((resolve) => {
         safetyTimer = setTimeout(resolve, ASSET_TIMEOUT_MS + MIN_MS);
       }),
-    ]).then(reveal);
+    ]).then(() => {
+      void preloadSecondaryVideos();
+      reveal();
+    });
 
     void ready;
 

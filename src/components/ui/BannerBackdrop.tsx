@@ -9,7 +9,7 @@ type BannerBackdropProps = {
   poster: string;
   video?: string;
   position?: string;
-  veil?: string;
+  veil?: boolean;
   overlay?: "hero" | "room";
   quiet?: boolean;
   priority?: boolean;
@@ -42,7 +42,7 @@ export default function BannerBackdrop({
   }, [useVideo, video]);
 
   return (
-    <div className="pointer-events-none absolute inset-0 min-h-[100dvh] overflow-hidden isolate bg-[#0B0F12]">
+    <div className="pointer-events-none absolute inset-0 min-h-[100dvh] overflow-hidden isolate bg-backdrop-base">
       <div
         className={useVideo && videoReady ? "absolute inset-0" : "hero-kenburns absolute inset-0"}
         style={!useVideo || !videoReady ? { animationDelay: `${-delaySec}s` } : undefined}
@@ -79,9 +79,9 @@ export default function BannerBackdrop({
       ) : null}
 
       {veil ? (
-        <div className="absolute inset-0 z-[1]" style={{ background: veil }} />
+        <div className="absolute inset-0 z-[1] bg-room-veil" />
       ) : (
-        <div className="absolute inset-0 z-[1] bg-black/55" />
+        <div className="absolute inset-0 z-[1] media-scrim-base" />
       )}
 
       <SchemeOverlay className="z-[3]" intensity={overlay} quiet={quiet} />

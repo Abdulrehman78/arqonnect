@@ -88,7 +88,7 @@ export default function Pricing() {
         description="CRM, funnels, forms, email, SMS, automations, courses, call tracking, reputation, analytics, communities, e-signatures and a branded mobile app — replaced by one ArQonnect stack."
         aside={
           <PageBannerPanel>
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+            <div className="flex items-center justify-between border-b border-glass px-5 py-4">
               <div>
                 <div className="room-heading text-sm font-semibold">
                   Monthly stack cost
@@ -101,8 +101,8 @@ export default function Pricing() {
                 Save ~${savings.toLocaleString()}
               </span>
             </div>
-            <div className="grid grid-cols-2 gap-px bg-white/10">
-              <div className="bg-black/20 p-5">
+            <div className="grid grid-cols-2 gap-px bg-glass-divider">
+              <div className="bg-glass-inner p-5">
                 <span className="room-caption text-xs uppercase tracking-wider">
                   Fragmented stack
                 </span>
@@ -130,7 +130,7 @@ export default function Pricing() {
                   className="flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-3"
                 >
                   <span className="room-body min-w-0">{row.name}</span>
-                  <span className="shrink-0 font-mono text-xs text-white/55">
+                  <span className="shrink-0 font-mono text-xs room-caption">
                     {row.old}
                     <span className="ml-2 text-accent">→ covered</span>
                   </span>
@@ -148,7 +148,7 @@ export default function Pricing() {
           {callouts.map((c) => (
             <span
               key={c.lead + c.bold}
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80"
+              className="rounded-full border border-glass bg-glass-inner px-4 py-2 text-sm room-muted"
             >
               {c.lead}{" "}
               <b className="font-semibold text-accent">{c.bold}</b>
@@ -181,7 +181,7 @@ export default function Pricing() {
           </FadeUp>
 
           <FadeUp delay={0.1}>
-            <div className="overflow-hidden rounded-2xl border border-line bg-panel/40 shadow-2xl shadow-black/20">
+            <div className="overflow-hidden rounded-2xl border border-line bg-panel/40 shadow-2xl shadow-[0_20px_40px_rgb(var(--shadow-rgb)/0.08)]">
               <div className="relative aspect-[16/10]">
                 <Image
                   src="/media/img_2.webp"

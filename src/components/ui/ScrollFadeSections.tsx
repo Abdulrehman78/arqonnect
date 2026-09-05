@@ -25,10 +25,23 @@ type ScrollTarget = {
 type ScrollFadeSectionsProps = {
   children: React.ReactNode;
   id?: string;
+  /**
+   * `flow` — normal document scroll (trackpad-friendly, default).
+   * `rooms` — sticky 3D room transitions (mouse-wheel ok, trackpad often stutters).
+   */
+  mode?: "flow" | "rooms";
 };
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
+}
+
+function sameShown(a: boolean[], b: boolean[]): boolean {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
 }
 
 const DWELL_VH = 0.1;
@@ -36,9 +49,34 @@ const ENTER_VH = 0.42;
 const LAST_HOLD_VH = 0.5;
 const LAST_DWELL_VH = 0.7;
 
+function FlowStack({
+  id,
+  slides,
+}: {
+  id?: string;
+  slides: React.ReactNode[];
+}): React.ReactElement {
+  return (
+    <div
+      id={id}
+      className="scroll-fade-stack scroll-fade-stack--flow relative bg-bg"
+    >
+      {slides.map((child, i) => (
+        <div
+          key={i}
+          className="relative w-full overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_100vh]"
+        >
+          <RoomActiveContext.Provider value={true}>{child}</RoomActiveContext.Provider>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function ScrollFadeSections({
   children,
   id,
+  mode = "flow",
 }: ScrollFadeSectionsProps): React.ReactElement {
   const containerRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -48,18 +86,20 @@ export default function ScrollFadeSections({
   const measureRefs = useRef<(HTMLDivElement | null)[]>([]);
   const heightsRef = useRef<number[]>([]);
   const vhRef = useRef(800);
+  const lastFrameRef = useRef<ScrollTarget>({ active: -1, depth: -1, offset: -1 });
+  const lastShownRef = useRef<boolean[]>([]);
 
   const slides = React.Children.toArray(children);
   const count = slides.length;
 
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [roomsEnabled, setRoomsEnabled] = useState(false);
   const [heights, setHeights] = useState<number[]>(() =>
     Array.from({ length: count }, () => 0)
   );
-  /** React state only for dots + room context — updated on coarse steps, not every px */
   const [active, setActive] = useState(0);
-  const [depth, setDepth] = useState(0);
-  const [shownNext, setShownNext] = useState(false);
+  const [roomShown, setRoomShown] = useState<boolean[]>(() =>
+    Array.from({ length: count }, (_, i) => i === 0)
+  );
   const [vh, setVh] = useState(800);
   const [budgets, setBudgets] = useState<SectionBudget[]>([]);
   const [totalHeight, setTotalHeight] = useState(800);
@@ -70,9 +110,13 @@ export default function ScrollFadeSections({
   vhRef.current = vh;
 
   useEffect(() => {
+    if (mode !== "rooms") {
+      setRoomsEnabled(false);
+      return;
+    }
     const mq = window.matchMedia("(min-width: 768px)");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const apply = () => setIsDesktop(mq.matches && !reduce.matches);
+    const apply = () => setRoomsEnabled(mq.matches && !reduce.matches);
     apply();
     mq.addEventListener("change", apply);
     reduce.addEventListener("change", apply);
@@ -80,7 +124,7 @@ export default function ScrollFadeSections({
       mq.removeEventListener("change", apply);
       reduce.removeEventListener("change", apply);
     };
-  }, []);
+  }, [mode]);
 
   const measure = useCallback(() => {
     const next = measureRefs.current.map((node) => {
@@ -95,7 +139,7 @@ export default function ScrollFadeSections({
   }, []);
 
   useLayoutEffect(() => {
-    if (!isDesktop) return;
+    if (!roomsEnabled) return;
     measure();
     const observers: ResizeObserver[] = [];
     measureRefs.current.forEach((node) => {
@@ -109,10 +153,10 @@ export default function ScrollFadeSections({
       observers.forEach((ro) => ro.disconnect());
       window.removeEventListener("resize", measure);
     };
-  }, [isDesktop, count, measure]);
+  }, [roomsEnabled, count, measure]);
 
   useLayoutEffect(() => {
-    if (!isDesktop) return;
+    if (!roomsEnabled) return;
     const view = vh || 1;
     const dwell = DWELL_VH * view;
     const enter = ENTER_VH * view;
@@ -138,7 +182,7 @@ export default function ScrollFadeSections({
     cursor += LAST_HOLD_VH * view;
     setBudgets(next);
     setTotalHeight(Math.max(view, cursor));
-  }, [heights, vh, count, isDesktop]);
+  }, [heights, vh, count, roomsEnabled]);
 
   const readScrollTarget = useCallback((): ScrollTarget => {
     const el = containerRef.current;
@@ -183,8 +227,22 @@ export default function ScrollFadeSections({
     return { active: nextActive, depth: nextDepth, offset: nextOffset };
   }, [count]);
 
+  const computeShown = useCallback(
+    (target: ScrollTarget): boolean[] =>
+      Array.from({ length: count }, (_, i) =>
+        i === target.active || (i === target.active + 1 && target.depth > 0.01)
+      ),
+    [count]
+  );
+
   const applyFrame = useCallback(
     (target: ScrollTarget) => {
+      const prev = lastFrameRef.current;
+      const depthSame = Math.abs(target.depth - prev.depth) < 0.002;
+      const offsetSame = Math.abs(target.offset - prev.offset) < 0.5;
+      if (target.active === prev.active && depthSame && offsetSame) return;
+      lastFrameRef.current = target;
+
       const stage = stageRef.current;
       if (stage) {
         stage.style.setProperty("--depth", String(target.depth));
@@ -229,12 +287,10 @@ export default function ScrollFadeSections({
   );
 
   useEffect(() => {
-    if (!isDesktop) return;
+    if (!roomsEnabled) return;
 
     let raf = 0;
     let lastActive = -1;
-    let lastDepthQ = -1;
-    let lastShownNext = false;
     let scrollIdle: ReturnType<typeof setTimeout> | undefined;
 
     const sync = () => {
@@ -242,20 +298,15 @@ export default function ScrollFadeSections({
       const target = readScrollTarget();
       applyFrame(target);
 
-      const depthQ = Math.round(target.depth * 50) / 50;
-      const nextShown = target.depth > 0.01;
-
       if (target.active !== lastActive) {
         lastActive = target.active;
         setActive(target.active);
       }
-      if (depthQ !== lastDepthQ) {
-        lastDepthQ = depthQ;
-        setDepth(depthQ);
-      }
-      if (nextShown !== lastShownNext) {
-        lastShownNext = nextShown;
-        setShownNext(nextShown);
+
+      const nextShown = computeShown(target);
+      if (!sameShown(nextShown, lastShownRef.current)) {
+        lastShownRef.current = nextShown;
+        setRoomShown(nextShown);
       }
     };
 
@@ -263,7 +314,7 @@ export default function ScrollFadeSections({
       if (scrollIdle) clearTimeout(scrollIdle);
       scrollIdle = setTimeout(() => {
         stageRef.current?.setAttribute("data-scrolling", "false");
-      }, 120);
+      }, 180);
       if (!raf) raf = requestAnimationFrame(sync);
     };
 
@@ -277,24 +328,10 @@ export default function ScrollFadeSections({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [isDesktop, readScrollTarget, budgets, applyFrame]);
+  }, [roomsEnabled, readScrollTarget, budgets, applyFrame, computeShown]);
 
-  if (!isDesktop) {
-    return (
-      <div
-        id={id}
-        className="scroll-fade-stack scroll-fade-stack--flow relative bg-bg"
-      >
-        {slides.map((child, i) => (
-          <div
-            key={i}
-            className="relative w-full overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_100vh]"
-          >
-            {child}
-          </div>
-        ))}
-      </div>
-    );
+  if (!roomsEnabled) {
+    return <FlowStack id={id} slides={slides} />;
   }
 
   return (
@@ -307,49 +344,33 @@ export default function ScrollFadeSections({
       <div
         ref={stageRef}
         className="scroll-fade-stage sticky top-0 h-screen w-full overflow-hidden pointer-events-none bg-bg"
-        style={{ "--depth": depth } as React.CSSProperties}
       >
-        {slides.map((child, i) => {
-          const shown =
-            i === active || (i === active + 1 && shownNext);
-
-          return (
-            <div
-              key={i}
-              ref={(node) => {
-                shellRefs.current[i] = node;
-              }}
-              className="scroll-fade-room"
-              data-room-state={
-                i === active
-                  ? "current"
-                  : i === active + 1 && depth > 0.001
-                    ? "next"
-                    : "hidden"
-              }
-              data-room-shown={shown ? "true" : "false"}
-              data-room-settled={i === active && depth < 0.08 ? "true" : "false"}
-              data-hero-exit={
-                i === 0 && active === 0 && depth > 0.01 ? "true" : "false"
-              }
-              data-room-ready={depth > 0.88 ? "true" : "false"}
-            >
-              <div className="scroll-fade-room-inner relative h-full w-full overflow-hidden">
-                <div
-                  ref={(node) => {
-                    innerRefs.current[i] = node;
-                    measureRefs.current[i] = node;
-                  }}
-                  className="w-full"
-                >
-                  <RoomActiveContext.Provider value={shown}>
-                    {child}
-                  </RoomActiveContext.Provider>
-                </div>
+        {slides.map((child, i) => (
+          <div
+            key={i}
+            ref={(node) => {
+              shellRefs.current[i] = node;
+            }}
+            className="scroll-fade-room"
+            data-room-state={i === 0 ? "current" : "hidden"}
+            data-room-shown={i === 0 ? "true" : "false"}
+            data-room-settled={i === 0 ? "true" : "false"}
+          >
+            <div className="scroll-fade-room-inner relative h-full w-full overflow-hidden">
+              <div
+                ref={(node) => {
+                  innerRefs.current[i] = node;
+                  measureRefs.current[i] = node;
+                }}
+                className="w-full"
+              >
+                <RoomActiveContext.Provider value={roomShown[i] ?? false}>
+                  {child}
+                </RoomActiveContext.Provider>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
 
         <div
           ref={glowRef}

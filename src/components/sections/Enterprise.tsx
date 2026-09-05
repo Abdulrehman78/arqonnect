@@ -90,7 +90,7 @@ export default function Enterprise() {
         description="Everything a growing team needs to deploy AI agents without a security review turning into a six-month delay."
         aside={
           <PageBannerPanel>
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 md:px-6">
+            <div className="flex items-center justify-between border-b border-glass px-5 py-4 md:px-6">
               <div>
                 <div className="room-heading text-sm font-semibold">
                   Enterprise control plane
@@ -112,14 +112,14 @@ export default function Enterprise() {
               ].map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-xl border border-white/10 bg-black/20 p-4"
+                  className="rounded-xl border border-glass bg-glass-inner p-4"
                 >
                   <div className="room-caption text-xs">{stat.label}</div>
                   <div className="banner-heading mt-1 text-lg">{stat.value}</div>
                 </div>
               ))}
             </div>
-            <p className="room-caption border-t border-white/10 px-5 py-4 text-xs leading-relaxed md:px-6">
+            <p className="room-caption border-t border-glass px-5 py-4 text-xs leading-relaxed md:px-6">
               Built for scale and control — security guardrails, analytics and
               dedicated deployment support for organizations that can&apos;t
               afford surprises.
