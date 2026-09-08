@@ -36,7 +36,7 @@ const verticals = [
 /** Presence chapter — flag strip + vertical bands (not filmstrip cards). */
 export default function LogoCloud(): ReactElement {
   return (
-    <section className="story-markets relative min-h-[100dvh] overflow-hidden border-y border-line bg-bg">
+    <section className="story-room story-markets relative overflow-hidden border-y border-line bg-bg">
       <RoomVideoBackdrop src={MARKETS_VIDEO} />
       <RevealOnScroll className="story-chapter-inner relative z-10">
         <header className="story-chapter-header">

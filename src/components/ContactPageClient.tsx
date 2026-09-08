@@ -21,7 +21,7 @@ const regions = [
 
 function ContactHook(): ReactElement {
   return (
-    <section className="story-cta relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden border-b border-line bg-bg">
+    <section className="story-room story-cta relative flex flex-col items-center justify-center overflow-hidden border-b border-line bg-bg">
       <RoomVideoBackdrop src={HERO_VIDEO} />
       <SchemeOverlay className="z-[1]" intensity="hero" quiet />
       <AiAmbient intensity="room" className="z-[2] opacity-55" />
@@ -66,7 +66,7 @@ function ContactHook(): ReactElement {
 
 function ContactPresence(): ReactElement {
   return (
-    <section className="story-markets relative min-h-[100dvh] overflow-hidden border-b border-line bg-bg-alt">
+    <section className="story-room story-markets relative overflow-hidden border-b border-line bg-bg-alt">
       <RoomVideoBackdrop src={MARKETS_VIDEO} />
       <SchemeOverlay className="z-[1]" intensity="room" quiet />
       <RevealOnScroll className="story-chapter-inner relative z-10">
@@ -127,7 +127,7 @@ function ContactBook(): ReactElement {
   return (
     <section
       id="book"
-      className="story-book relative min-h-[100dvh] overflow-hidden border-t border-line bg-bg"
+      className="story-room story-book relative overflow-hidden border-t border-line bg-bg"
     >
       <RoomVideoBackdrop src={HERO_VIDEO} />
       <SchemeOverlay className="z-[1]" intensity="hero" />

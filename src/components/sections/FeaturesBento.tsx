@@ -27,7 +27,7 @@ const steps = [
 /** Platform — numbered horizontal steps, not a card grid clone. */
 export default function FeaturesBento(): ReactElement {
   return (
-    <section className="story-platform relative min-h-[100dvh] overflow-hidden border-b border-line bg-bg">
+    <section className="story-room story-platform relative overflow-hidden border-b border-line bg-bg">
       <ZoomBackdrop
         src="/images/features-banner.jpg"
         position="60% center"

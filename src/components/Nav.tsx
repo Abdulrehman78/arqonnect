@@ -59,10 +59,11 @@ export default function Nav() {
   const overMedia = !scrolled && !menuOpen;
 
   return (
+    <>
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[70] transition-all duration-300 ${
         scrolled || menuOpen
-          ? "border-b border-line bg-bg/90 backdrop-blur-xl"
+          ? "border-b border-line bg-bg"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -157,14 +158,15 @@ export default function Nav() {
           </button>
         </div>
       </div>
+    </header>
 
-      {/* Full-screen overlay nav (burger) */}
+      {/* Sibling of header so fixed covers the viewport (not trapped by header filters) */}
       <div
         className={`nav-overlay xl:hidden ${menuOpen ? "is-open" : "pointer-events-none invisible"}`}
         aria-hidden={!menuOpen}
       >
-        <nav className="mx-auto w-full max-w-lg" aria-label="Mobile navigation">
-          <ul className="flex flex-col">
+        <nav className="nav-overlay-nav" aria-label="Mobile navigation">
+          <ul className="nav-overlay-list">
             {links.map((l, i) => {
               const active = isActivePath(pathname, l.href);
               return (
@@ -172,8 +174,8 @@ export default function Nav() {
                   <Link
                     href={l.href}
                     aria-current={active ? "page" : undefined}
-                    className="nav-overlay-link"
-                    style={{ transitionDelay: menuOpen ? `${80 + i * 45}ms` : "0ms" }}
+                    className={`nav-overlay-link ${active ? "is-active" : ""}`}
+                    style={{ transitionDelay: menuOpen ? `${70 + i * 40}ms` : "0ms" }}
                     onClick={() => setMenuOpen(false)}
                   >
                     {l.label}
@@ -185,12 +187,13 @@ export default function Nav() {
           <Link
             href="/contact"
             className="nav-overlay-cta"
+            style={{ transitionDelay: menuOpen ? `${70 + links.length * 40}ms` : "0ms" }}
             onClick={() => setMenuOpen(false)}
           >
             Book a Demo →
           </Link>
         </nav>
       </div>
-    </header>
+    </>
   );
 }

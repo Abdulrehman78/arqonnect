@@ -11,7 +11,7 @@ import { MARKETS_VIDEO } from "@/lib/brand";
 /** Social proof — typography-led quote, not a card gallery. */
 export default function Testimonials(): ReactElement {
   return (
-    <section className="story-proof relative min-h-[100dvh] overflow-hidden border-b border-line bg-bg">
+    <section className="story-room story-proof relative overflow-hidden border-b border-line bg-bg">
       <RoomVideoBackdrop src={MARKETS_VIDEO} />
       <SchemeOverlay className="z-[1]" intensity="room" />
       <AiAmbient intensity="room" className="z-[2] opacity-60" />

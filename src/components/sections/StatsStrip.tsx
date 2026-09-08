@@ -15,7 +15,7 @@ const metrics = [
 /** Proof numbers — giant typography, not cards. */
 export default function StatsStrip() {
   return (
-    <section className="story-stats relative min-h-[100dvh] overflow-hidden border-b border-line bg-bg-alt">
+    <section className="story-room story-stats relative overflow-hidden border-b border-line bg-bg-alt">
       <RoomVideoBackdrop src={STATS_VIDEO} />
       <SchemeOverlay className="z-[1]" intensity="room" quiet />
       <RevealOnScroll className="story-chapter-inner relative z-10">

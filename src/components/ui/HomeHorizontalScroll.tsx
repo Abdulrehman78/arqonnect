@@ -190,13 +190,30 @@ export default function HomeHorizontalScroll({
   }, [desktop, sync, count]);
 
   if (!desktop) {
+    const [hero, ...workPanels] = panels;
     return (
       <div className="hscroll-page hscroll-page--stack" id="home-hscroll">
-        {panels.map((panel) => (
-          <div key={panel.meta.id} className="hscroll-panel hscroll-panel--stack">
-            {panel.node}
+        {hero ? (
+          <div className="hscroll-panel hscroll-panel--stack hscroll-panel--stack-hero">
+            {hero.node}
           </div>
-        ))}
+        ) : null}
+        {workPanels.length ? (
+          <section className="home-work-mobile" aria-label="The work">
+            <div className="home-work-mobile-wash" aria-hidden />
+            <div className="home-work-mobile-inner">
+              {workPanels.map((panel) => (
+                <div
+                  key={panel.meta.id}
+                  className={`hscroll-panel hscroll-panel--stack home-work-mobile-item home-work-mobile-item--${panel.meta.size ?? "card"}`}
+                  data-panel={panel.meta.id}
+                >
+                  {panel.node}
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </div>
     );
   }

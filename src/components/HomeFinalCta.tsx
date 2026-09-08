@@ -10,7 +10,7 @@ import { HERO_VIDEO } from "@/lib/brand";
 /** Final CTA — full-bleed centered, fills the viewport. */
 export default function HomeFinalCta() {
   return (
-    <section className="story-cta relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden border-t border-line bg-bg">
+    <section className="story-room story-cta relative flex flex-col items-center justify-center overflow-hidden border-t border-line bg-bg">
       <RoomVideoBackdrop src={HERO_VIDEO} />
       <SchemeOverlay className="z-[1]" intensity="hero" />
       <AiAmbient intensity="hero" className="z-[2] opacity-65" />

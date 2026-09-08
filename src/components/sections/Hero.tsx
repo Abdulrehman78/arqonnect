@@ -13,7 +13,7 @@ export default function Hero(): React.ReactElement {
   const cheap = useCheapMotion();
 
   return (
-    <section className="home-hero-dark relative flex min-h-[100dvh] flex-col justify-center overflow-hidden pt-[clamp(5.5rem,12dvh,8rem)] pb-[clamp(2rem,6dvh,6rem)]">
+    <section className="home-hero-dark relative flex min-h-[100dvh] flex-col justify-center overflow-hidden pt-[clamp(4.75rem,10dvh,8rem)] pb-[clamp(1.25rem,4dvh,6rem)]">
       <HeroVideoBackdrop ready={ready} />
 
       <div className="home-hero-frame relative z-10 mx-auto flex w-full max-w-6xl flex-col px-4 sm:px-6 lg:px-8">

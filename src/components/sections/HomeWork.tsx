@@ -20,7 +20,7 @@ export function HomeWorkIntro(): ReactElement {
         <span className="home-work-aside-sub">everyone loves</span>
       </h2>
       <p className="home-work-aside-body">
-        Keep scrolling — industries and channels ArQonnect agents already run.
+        Industries and channels ArQonnect agents already run.
       </p>
       <Link href="/case-studies" className="home-work-aside-link">
         See all case studies →

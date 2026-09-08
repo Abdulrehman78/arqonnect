@@ -16,7 +16,7 @@ const channels = [
 /** Channels — slim horizontal rail with scrub motion. */
 export default function Integrations(): ReactElement {
   return (
-    <section className="story-channels relative min-h-[100dvh] overflow-hidden border-b border-line bg-bg-alt">
+    <section className="story-room story-channels relative overflow-hidden border-b border-line bg-bg-alt">
       <ZoomBackdrop
         src="/images/markets-banner.jpg"
         position="55% center"
