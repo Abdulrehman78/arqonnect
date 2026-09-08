@@ -55,13 +55,8 @@ export const palette = {
 export const BANNER_TINT =
   "linear-gradient(105deg, #C87D46 0%, #EAA46B 38%, #EAA46B 62%, #161E23 100%)";
 
-/** Charcoal/black wash so banner copy stays readable. */
-export const BANNER_VEIL = [
-  "linear-gradient(180deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.62) 34%, rgba(0,0,0,0.58) 58%, rgba(0,0,0,0.88) 100%)",
-  "radial-gradient(ellipse 70% 50% at 50% 42%, rgba(0,0,0,0.2), rgba(0,0,0,0.55) 100%)",
-].join(",");
+/** Charcoal wash — theme CSS veil is primary; this is a fallback string. */
+export const BANNER_VEIL = "var(--hero-veil)";
 
-/** Blackish overlay for other photo rooms. */
-export const ROOM_VEIL = [
-  "linear-gradient(180deg, rgba(0,0,0,0.76) 0%, rgba(0,0,0,0.52) 40%, rgba(0,0,0,0.8) 100%)",
-].join(",");
+/** Room wash — prefer theme CSS so light/dark both kill backdrop type. */
+export const ROOM_VEIL = "var(--room-veil)";

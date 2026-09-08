@@ -3,26 +3,30 @@
 import { useEffect, useRef, useState } from "react";
 
 const INTERACTIVE =
-  "a, button, [role='button'], input, textarea, select, summary, label, [data-magnetic]";
+  "a, button, [role='button'], input, textarea, select, summary, label, [data-magnetic], [data-cursor]";
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
 }
 
 /**
- * Product-site pointer: gold spotlight, delayed ring, magnetic CTAs, card sheen.
+ * Product-site pointer: gold spotlight, delayed ring, magnetic CTAs,
+ * and View/Book badge labels over [data-cursor] targets.
  * Fine pointer only — skipped on touch and reduced-motion.
  */
 export default function AiPointer(): React.ReactElement | null {
   const spotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
   const target = useRef({ x: 0, y: 0 });
   const current = useRef({ x: 0, y: 0 });
   const ring = useRef({ x: 0, y: 0 });
   const hovering = useRef(false);
+  const labelRef = useRef("");
   const raf = useRef(0);
   const [on, setOn] = useState(false);
+  const [label, setLabel] = useState("");
 
   useEffect(() => {
     const fine = window.matchMedia("(pointer: fine)").matches;
@@ -30,6 +34,7 @@ export default function AiPointer(): React.ReactElement | null {
       .matches;
     if (!fine || !motionOk) return;
     setOn(true);
+    document.documentElement.classList.add("ai-pointer-on");
 
     const onMove = (e: MouseEvent) => {
       target.current.x = e.clientX;
@@ -39,6 +44,17 @@ export default function AiPointer(): React.ReactElement | null {
       const overUi = Boolean(el?.closest(INTERACTIVE));
       hovering.current = overUi;
       document.documentElement.classList.toggle("ai-pointer-hover", overUi);
+
+      const cursorHost = el?.closest<HTMLElement>("[data-cursor]");
+      const nextLabel = cursorHost
+        ? cursorHost.getAttribute("data-cursor-label") ||
+          (cursorHost.getAttribute("data-cursor") === "book" ? "Book" : "View")
+        : "";
+      if (nextLabel !== labelRef.current) {
+        labelRef.current = nextLabel;
+        setLabel(nextLabel);
+        document.documentElement.classList.toggle("ai-cursor-label", Boolean(nextLabel));
+      }
 
       const card = el?.closest<HTMLElement>(".motion-card, [data-ai-sheen]");
       if (card) {
@@ -92,6 +108,12 @@ export default function AiPointer(): React.ReactElement | null {
         ringRef.current.style.transform = `translate3d(${ring.current.x}px, ${ring.current.y}px, 0) scale(${scale})`;
         ringRef.current.style.opacity = hovering.current ? "0.95" : "0.55";
       }
+      if (badgeRef.current) {
+        const show = Boolean(labelRef.current);
+        const scale = show ? 1 : 0.55;
+        badgeRef.current.style.transform = `translate3d(${ring.current.x}px, ${ring.current.y}px, 0) translate(-50%, -50%) scale(${scale})`;
+        badgeRef.current.style.opacity = show ? "1" : "0";
+      }
       raf.current = requestAnimationFrame(tick);
     };
 
@@ -110,7 +132,11 @@ export default function AiPointer(): React.ReactElement | null {
       cancelAnimationFrame(raf.current);
       window.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseout", onLeaveEl);
-      document.documentElement.classList.remove("ai-pointer-hover");
+      document.documentElement.classList.remove(
+        "ai-pointer-hover",
+        "ai-pointer-on",
+        "ai-cursor-label"
+      );
     };
   }, []);
 
@@ -121,6 +147,9 @@ export default function AiPointer(): React.ReactElement | null {
       <div ref={spotRef} className="ai-spotlight" />
       <div ref={ringRef} className="ai-cursor-ring" />
       <div ref={dotRef} className="ai-cursor-dot" />
+      <div ref={badgeRef} className="ai-cursor-badge">
+        {label || "View"}
+      </div>
     </div>
   );
 }

@@ -130,25 +130,6 @@ export default function AiAmbient({
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         />
       )}
-
-      {/* Data stream ticks (hero only) */}
-      {intensity === "hero" && (
-        <div className="absolute bottom-8 left-6 hidden font-mono text-[10px] tracking-widest text-gold/50 sm:block">
-          <motion.span
-            animate={{ opacity: [0.25, 0.85, 0.25] }}
-            transition={{ duration: 2.2, repeat: Infinity }}
-          >
-            AGENT_LIVE
-          </motion.span>
-          <motion.span
-            className="ml-3 inline-block"
-            animate={{ opacity: [0.15, 0.6, 0.15] }}
-            transition={{ duration: 1.6, repeat: Infinity, delay: 0.4 }}
-          >
-            ● LAT &lt;500ms
-          </motion.span>
-        </div>
-      )}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Locations from "@/components/sections/Locations";
-import CtaContact from "@/components/sections/CtaContact";
+import ContactPageClient from "@/components/ContactPageClient";
 
 export const metadata: Metadata = {
   title: "Contact ArQonnect | Book a Demo",
@@ -9,10 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return (
-    <>
-      <Locations />
-      <CtaContact />
-    </>
-  );
+  return <ContactPageClient />;
 }

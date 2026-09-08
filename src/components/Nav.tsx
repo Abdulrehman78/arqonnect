@@ -45,6 +45,15 @@ export default function Nav() {
     setMenuOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
   const contactActive = isActivePath(pathname, "/contact");
   const accent = navAccents[themeFromPath(pathname)];
   const overMedia = !scrolled && !menuOpen;
@@ -66,7 +75,9 @@ export default function Nav() {
             height={32}
             className="h-8 w-auto"
           />
-          <span className={`truncate text-[15px] font-semibold tracking-tight ${overMedia ? "text-nav-media" : "text-text"}`}>
+          <span
+            className={`truncate text-[15px] font-semibold tracking-tight ${overMedia ? "text-nav-media" : "text-text"}`}
+          >
             ArQonnect
           </span>
         </Link>
@@ -121,6 +132,8 @@ export default function Nav() {
                 : `${accent.ctaDefault} ${accent.ctaHover}`
             }`}
             data-magnetic
+            data-cursor="book"
+            data-cursor-label="Book"
           >
             Book a Demo
           </Link>
@@ -145,42 +158,39 @@ export default function Nav() {
         </div>
       </div>
 
-      {menuOpen && (
-        <div className="max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-t border-line bg-bg/95 backdrop-blur-xl xl:hidden">
-          <nav className="mx-auto max-w-6xl px-4 py-4 sm:px-6" aria-label="Mobile navigation">
-            <ul className="flex flex-col gap-0.5">
-              {links.map((l) => {
-                const active = isActivePath(pathname, l.href);
-                return (
-                  <li key={l.href}>
-                    <Link
-                      href={l.href}
-                      aria-current={active ? "page" : undefined}
-                      className={`block rounded-lg px-3 py-2.5 text-sm font-medium no-underline transition-colors ${
-                        active
-                          ? `${accent.linkBg} ${accent.linkText}`
-                          : "text-text-dim hover:bg-panel hover:text-text"
-                      }`}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {l.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <Link
-              href="/contact"
-              className={`mt-4 flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold no-underline md:hidden ${
-                contactActive ? accent.ctaActive : accent.ctaDefault
-              }`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Book a Demo
-            </Link>
-          </nav>
-        </div>
-      )}
+      {/* Full-screen overlay nav (burger) */}
+      <div
+        className={`nav-overlay xl:hidden ${menuOpen ? "is-open" : "pointer-events-none invisible"}`}
+        aria-hidden={!menuOpen}
+      >
+        <nav className="mx-auto w-full max-w-lg" aria-label="Mobile navigation">
+          <ul className="flex flex-col">
+            {links.map((l, i) => {
+              const active = isActivePath(pathname, l.href);
+              return (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    aria-current={active ? "page" : undefined}
+                    className="nav-overlay-link"
+                    style={{ transitionDelay: menuOpen ? `${80 + i * 45}ms` : "0ms" }}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <Link
+            href="/contact"
+            className="nav-overlay-cta"
+            onClick={() => setMenuOpen(false)}
+          >
+            Book a Demo →
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }

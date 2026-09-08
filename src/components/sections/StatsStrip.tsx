@@ -1,60 +1,52 @@
 "use client";
 
-import { FadeUp } from "@/components/ui/Motion";
-import { GiggleText } from "@/components/ui/GiggleText";
 import RoomVideoBackdrop from "@/components/ui/RoomVideoBackdrop";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import { STATS_VIDEO } from "@/lib/brand";
 
 const metrics = [
   { value: "20+", label: "AI-run services" },
-  { value: "<500ms", label: "Target response latency" },
+  { value: "<500ms", label: "Target latency" },
   { value: "24/7", label: "Agent coverage" },
   { value: "$97", label: "Flat stack from" },
 ];
 
+/** Proof numbers — giant typography, not cards. */
 export default function StatsStrip() {
   return (
-    <section className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden border-b border-line bg-bg px-4 py-20 sm:px-6 md:py-28">
+    <section className="story-stats relative min-h-[100dvh] overflow-hidden border-b border-line bg-bg-alt">
       <RoomVideoBackdrop src={STATS_VIDEO} />
       <SchemeOverlay className="z-[1]" intensity="room" quiet />
-
-      <div className="relative z-10 mx-auto w-full max-w-6xl">
-        <div className="max-w-xl text-left sm:max-w-2xl">
-          <h2 className="ai-title banner-heading text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem]">
-            <GiggleText as="span" text="Everyday calls." tone="rise" />
-            <br />
-            <GiggleText
-              as="span"
-              text="Extraordinary outcomes."
-              tone="rise"
-              startDelay={0.4}
-              className="banner-heading-muted"
-            />
-            <span className="ai-title-line" />
+      <RevealOnScroll className="story-chapter-inner relative z-10">
+        <header className="story-chapter-header">
+          <p className="story-kicker">
+            <span className="ai-live-dot" />
+            Proof
+          </p>
+          <h2 className="story-heading">
+            Everyday calls.
+            <span>Extraordinary outcomes.</span>
           </h2>
-        </div>
+          <p className="story-lead">
+            Numbers that hold up when the phone never stops ringing.
+          </p>
+        </header>
 
-        <FadeUp delay={0.35}>
-          <div className="mt-14 grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-6">
-            {metrics.map((m, i) => (
-              <div key={m.label} className="text-center">
-                <GiggleText
-                  as="span"
-                  text={m.value}
-                  tone="rise"
-                  startDelay={0.55 + i * 0.1}
-                  className="banner-heading text-3xl sm:text-4xl md:text-5xl"
-                />
-                <span className="ai-stat-bar" />
-                <div className="room-caption mt-2 text-xs font-medium uppercase tracking-[0.14em] sm:text-sm sm:normal-case sm:tracking-normal">
-                  {m.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </FadeUp>
-      </div>
+        <ol className="story-stat-list">
+          {metrics.map((m, i) => (
+            <li
+              key={m.label}
+              className="story-stat"
+              data-reveal
+              style={{ ["--i" as string]: i }}
+            >
+              <span className="story-stat-value">{m.value}</span>
+              <span className="story-stat-label">{m.label}</span>
+            </li>
+          ))}
+        </ol>
+      </RevealOnScroll>
     </section>
   );
 }

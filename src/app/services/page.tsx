@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import Threshold from "@/components/sections/Threshold";
-import ServicesStory from "@/components/sections/ServicesStory";
-import Capabilities from "@/components/sections/Capabilities";
-import Templates from "@/components/sections/Templates";
+import ServicesPageClient from "@/components/ServicesPageClient";
 
 export const metadata: Metadata = {
   title: "AI Services — Chatbots, Voice Agents, CRM & Growth",
@@ -11,12 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
-  return (
-    <>
-      <Threshold />
-      <ServicesStory />
-      <Capabilities />
-      <Templates />
-    </>
-  );
+  return <ServicesPageClient />;
 }

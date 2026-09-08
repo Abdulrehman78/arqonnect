@@ -83,6 +83,7 @@ export default function BannerBackdrop({
       ) : (
         <div className="absolute inset-0 z-[1] media-scrim-base" />
       )}
+      <div className="absolute inset-0 z-[1] media-scrim-base opacity-50" />
 
       <SchemeOverlay className="z-[3]" intensity={overlay} quiet={quiet} />
     </div>

@@ -62,10 +62,10 @@ function FlowStack({
       className="scroll-fade-stack scroll-fade-stack--flow relative bg-bg"
     >
       {slides.map((child, i) => (
-        <div
-          key={i}
-          className="relative w-full overflow-hidden [content-visibility:auto] [contain-intrinsic-size:auto_100vh]"
-        >
+          <div
+            key={i}
+            className="relative w-full"
+          >
           <RoomActiveContext.Provider value={true}>{child}</RoomActiveContext.Provider>
         </div>
       ))}

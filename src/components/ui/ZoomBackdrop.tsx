@@ -64,9 +64,12 @@ export default function ZoomBackdrop({
           className={cover ? "object-cover" : "object-contain"}
           style={{
             objectPosition: position,
-            ...(tint && !cheap
-              ? { filter: "hue-rotate(158deg) saturate(0.88) brightness(0.86)" }
-              : {}),
+            /* Soft blur so baked-in type can't read through the wash */
+            filter:
+              tint && !cheap
+                ? "hue-rotate(158deg) saturate(0.88) brightness(0.86) blur(10px)"
+                : "blur(10px)",
+            transform: "scale(1.06)",
           }}
         />
       </div>
@@ -76,11 +79,12 @@ export default function ZoomBackdrop({
           style={{ background: tint, mixBlendMode: "color" }}
         />
       ) : null}
-      {veil ? (
-        <div className="absolute inset-0 z-[1] bg-room-veil" />
-      ) : (
-        <div className="absolute inset-0 z-[1] media-scrim-base" />
-      )}
+      {/* Theme-aware heavy wash — hides baked-in graphic text on banners */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{ background: veil || "var(--room-veil)" }}
+      />
+      <div className="absolute inset-0 z-[1] media-scrim-base" />
       {children}
       <SchemeOverlay className="z-[3]" intensity={overlay} quiet={quiet} />
     </div>

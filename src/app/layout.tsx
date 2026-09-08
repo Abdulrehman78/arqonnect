@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import SiteChrome from "@/components/SiteChrome";
 import SiteScripts from "@/components/SiteScripts";
 import Preloader from "@/components/Preloader";
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import GsapProvider from "@/components/ui/GsapProvider";
 import { BOOT_VIDEOS, PRIORITY_VIDEO } from "@/lib/preloadVideos";
 
 export const metadata: Metadata = {
@@ -53,6 +55,8 @@ export default function RootLayout({
         ))}
       </head>
       <body className="relative">
+        <SmoothScroll />
+        <GsapProvider />
         <Preloader />
         <SiteChrome />
         <div className="relative z-10">
