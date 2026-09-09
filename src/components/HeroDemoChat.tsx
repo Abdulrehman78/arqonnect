@@ -14,7 +14,7 @@ const SUGGESTIONS = [
 ];
 
 const WELCOME =
-  "Hi — I'm Ava. I can answer questions about ArQonnect's chat & voice agents, pricing, CRM, and how we'd fit your business. What should we cover?";
+  "Hi — I'm Ava, ArQonnect's AI assistant. I can help you explore our AI agents, CRM solutions for your business. What would you like to know?";
 
 function uid() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;

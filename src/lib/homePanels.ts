@@ -87,7 +87,7 @@ export const HOME_STORY_META: HomePanelMeta[] = [
   {
     id: "stats",
     eyebrow: "Proof",
-    title: "Everyday calls",
+    title: "Everyday conversations",
     sub: "Extraordinary outcomes",
     tone: "dark",
   },

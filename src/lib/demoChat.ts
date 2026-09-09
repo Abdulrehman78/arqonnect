@@ -9,7 +9,7 @@ About ArQonnect:
 - Full stack: chat, voice, CRM sync (HubSpot, Salesforce, or built-in), automation, SEO/AEO/GEO/AIO growth.
 - Serves healthcare, real estate, law, education, ecommerce, finance, SaaS — US, UK, Canada, Australia, Europe.
 - Typical go-live for first agent: about two weeks.
-- Pricing starts around $97/month for the flat stack (replacing many separate tools); exact pricing confirmed on a demo call.
+- Pricing is tailored to your stack and volume — confirmed on a short demo call (no one-size public rate card).
 - CTA: offer to book a demo at /contact or /demo when relevant.
 
 If asked something unrelated, answer briefly then steer back to how ArQonnect can help.
@@ -21,7 +21,7 @@ const KNOWLEDGE: KnowledgeHit[] = [
   {
     keys: ["price", "pricing", "cost", "how much", "$", "fee", "plan", "subscription"],
     answer:
-      "ArQonnect runs as a flat stack from about $97/month once you're set up — chat, voice, CRM wiring, and growth under one bill instead of stitching $1,600+ of separate tools. Exact pricing is confirmed on a short demo call.",
+      "Pricing is set around your channels, volume, and how much of the AI Twin stack you need — we confirm a clear package on a short demo call. Want me to point you to Book a Demo?",
   },
   {
     keys: ["book", "demo", "meeting", "schedule", "calendar", "call me", "talk to"],

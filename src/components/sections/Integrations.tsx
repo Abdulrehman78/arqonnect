@@ -7,13 +7,76 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import { ROOM_VEIL } from "@/lib/brand";
 
 const channels = [
-  { title: "Voice", body: "Take the call, qualify, book.", tag: "Inbound · Outbound" },
-  { title: "Chat", body: "Win before they hang up.", tag: "Web · In-app" },
-  { title: "CRM", body: "One live lead record.", tag: "HubSpot · Salesforce" },
-  { title: "SMS & Social", body: "Missed calls become text-backs.", tag: "WhatsApp · DMs" },
+  {
+    title: "Voice",
+    body: "Human-like AI agents that handle conversations, qualify leads, answer questions, and book appointments.",
+    tags: [
+      "Inbound & Outbound",
+      "Smart IVR",
+      "Lead Qualification",
+      "Appointment Booking",
+      "Automated Follow-ups",
+      "Multilingual Support",
+    ],
+  },
+  {
+    title: "Chat",
+    body: "Intelligent, context-aware conversations that engage customers and turn interactions into opportunities.",
+    tags: [
+      "Web & In-App Chat",
+      "WhatsApp, Instagram & Messenger",
+      "Intent Detection",
+      "7-Language Support",
+      "Image Understanding",
+      "Typing Indicators",
+      "Instant Human Handoff",
+    ],
+  },
+  {
+    title: "CRM & Leads",
+    body: "Capture, qualify, and manage every lead with seamless CRM connectivity and automated workflows.",
+    tags: [
+      "Two-Way CRM Integration",
+      "Embeddable Lead Forms",
+      "Guest-to-Lead Conversion",
+      "Pipeline & Contact Tracking",
+      "Appointment Confirmations",
+      "Sales-Team Notifications",
+      "Email Automation",
+    ],
+  },
+  {
+    title: "Automation & Control",
+    body: "Give your AI Twin the tools to continuously improve, adapt, and operate without constant intervention.",
+    tags: [
+      "Prompt Management",
+      "Versioning & Rollbacks",
+      "Knowledge-Based AI (RAG)",
+      "Real-Time Calendar Sync",
+      "Automated Follow-ups",
+      "Confidence-Based Escalation",
+      "Multi-Tenant Architecture",
+    ],
+  },
+  {
+    title: "Social & Messaging",
+    body: "One AI. Every customer conversation — WhatsApp, Instagram, Messenger, SMS, and social DMs.",
+    tags: ["WhatsApp", "Instagram", "Messenger", "SMS", "Social DMs", "Automated · 24/7"],
+  },
+  {
+    title: "Documentation & Security",
+    body: "Built for reliable deployment with clear architecture, security, and technical documentation.",
+    tags: [
+      "Architecture Overview",
+      "ERD & API Documentation",
+      "AI & Security Summary",
+      "Decision Log",
+      "Production-Ready Delivery",
+    ],
+  },
 ];
 
-/** Channels — slim horizontal rail with scrub motion. */
+/** Channels — capability grid for the AI Twin stack. */
 export default function Integrations(): ReactElement {
   return (
     <section className="story-room story-channels relative overflow-hidden border-b border-line bg-bg-alt">
@@ -35,7 +98,8 @@ export default function Integrations(): ReactElement {
             <span>communication.</span>
           </h2>
           <p className="story-lead">
-            Chat, voice, CRM and growth — all pointed at one job: don&apos;t let the lead go quiet.
+            Voice, chat, CRM, automation and messaging — all pointed at one job: don&apos;t let the
+            lead go quiet.
           </p>
         </header>
 
@@ -50,14 +114,20 @@ export default function Integrations(): ReactElement {
               <span className="story-channel-index">0{i + 1}</span>
               <h3>{c.title}</h3>
               <p>{c.body}</p>
-              <span className="story-channel-tag">{c.tag}</span>
+              <div className="story-channel-tags">
+                {c.tags.map((tag) => (
+                  <span key={tag} className="story-channel-tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </article>
           ))}
         </div>
 
         <div className="story-foot" data-reveal>
           <span>
-            <em>4</em> channels · <em>1</em> lead record
+            <em>6</em> capability rooms · <em>1</em> AI twin
           </span>
           <Link href="/crm">See CRM integrations →</Link>
         </div>

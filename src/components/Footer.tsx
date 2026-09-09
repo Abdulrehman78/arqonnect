@@ -35,16 +35,20 @@ export default function Footer() {
               Core AI Services
             </h5>
             <div className="mt-4 flex flex-col gap-2.5">
-              <Link href="/crm" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">CRM</Link>
-              <Link href="/services" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Voice AI</Link>
-              <Link href="/services" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Chat Widget / Conversation AI</Link>
-              <Link href="/services" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Websites, Funnels &amp; Landing Pages</Link>
-              <Link href="/services" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Webinar Funnels</Link>
-              <Link href="/services" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Call Tracking</Link>
-              <Link href="/services" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Inbound SMS &amp; Social DMs</Link>
-              <Link href="/services" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Social Planner</Link>
-              <Link href="/services" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Missed Call Text-Back</Link>
-              <Link href="/services" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Ad Manager (Google/FB/Insta)</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">AI Business Twins</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">AI Chatbots</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">AI Sales Agents</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">AI Customer Support</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">Lead Qualification</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">Appointment Booking</Link>
+              <Link href="/crm" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">CRM Automation</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">Omnichannel Messaging</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">AI Voice Agents</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">RAG &amp; Knowledge AI</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">Social Media Automation</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">WhatsApp Automation</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">Workflow Automation</Link>
+              <Link href="/services" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">Multilingual AI</Link>
             </div>
           </MotionItem>
 
@@ -53,13 +57,11 @@ export default function Footer() {
               Growth &amp; AI Visibility
             </h5>
             <div className="mt-4 flex flex-col gap-2.5">
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">SMM — Social Media Marketing</Link>
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">SEO — Search Engine Optimization</Link>
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">AEO — Answer Engine Optimization</Link>
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">GEO — Generative Engine Optimization</Link>
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">AIO — AI Overview Optimization</Link>
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Email Marketing Automation</Link>
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Sales Funnel Automation</Link>
+              <Link href="/services#capabilities" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">SMM — Social Media Marketing</Link>
+              <Link href="/services#capabilities" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">SEO — Search Engine Optimization</Link>
+              <Link href="/services#capabilities" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">AEO — Answer Engine Optimization</Link>
+              <Link href="/services#capabilities" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">GEO — Generative Engine Optimization</Link>
+              <Link href="/services#capabilities" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">AIO — AI Overview Optimization</Link>
             </div>
           </MotionItem>
 
@@ -68,16 +70,15 @@ export default function Footer() {
               Build, Automation &amp; Strategy
             </h5>
             <div className="mt-4 flex flex-col gap-2.5">
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">AI-Powered Web Development</Link>
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">iOS App Development</Link>
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Android App Development</Link>
-              <Link href="/crm" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">HubSpot CRM Integration</Link>
-              <Link href="/crm" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Salesforce CRM Integration</Link>
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Business Process Automation</Link>
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Workflow Automation</Link>
-              <Link href="/enterprise" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">AI Business Consulting</Link>
-              <Link href="/enterprise" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Enterprise Digital Transformation</Link>
-              <Link href="/services#capabilities" className="text-sm text-text-dim hover:text-gold no-underline transition-colors">Technical Writing</Link>
+              <Link href="/services#capabilities" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">AI-Powered Web Development</Link>
+              <Link href="/services#capabilities" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">iOS App Development</Link>
+              <Link href="/services#capabilities" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">Android App Development</Link>
+              <Link href="/crm" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">CRM Integration</Link>
+              <Link href="/services#capabilities" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">Business Process Automation</Link>
+              <Link href="/services#capabilities" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">Workflow Automation</Link>
+              <Link href="/enterprise" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">AI Business Consulting</Link>
+              <Link href="/enterprise" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">Enterprise Digital Transformation</Link>
+              <Link href="/services#capabilities" className="text-sm text-text-dim no-underline transition-colors hover:text-gold">Technical Writing</Link>
             </div>
           </MotionItem>
 

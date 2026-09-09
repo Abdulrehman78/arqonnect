@@ -66,7 +66,7 @@ export default function Hero(): React.ReactElement {
 
           <GiggleText
             as="p"
-            text="Voice and chat agents that answer every call, win every chat, and book the appointment — before your competitor picks up."
+            text="Your business's intelligent AI twin for seamless customer engagement and automated operations."
             mode="words"
             active={ready}
             startDelay={cheap ? 0 : 0.55}

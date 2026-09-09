@@ -6,10 +6,10 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import { STATS_VIDEO } from "@/lib/brand";
 
 const metrics = [
-  { value: "20+", label: "AI-run services" },
-  { value: "<500ms", label: "Target latency" },
-  { value: "24/7", label: "Agent coverage" },
-  { value: "$97", label: "Flat stack from" },
+  { value: "20+", label: "AI-powered services" },
+  { value: "<500ms", label: "Target response time" },
+  { value: "24/7", label: "Always-on AI coverage" },
+  { value: "Prices", label: "As per convenience" },
 ];
 
 /** Proof numbers — giant typography, not cards. */
@@ -25,7 +25,7 @@ export default function StatsStrip() {
             Proof
           </p>
           <h2 className="story-heading">
-            Everyday calls.
+            Everyday conversations.
             <span>Extraordinary outcomes.</span>
           </h2>
           <p className="story-lead">
