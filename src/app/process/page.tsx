@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import Process from "@/components/sections/Process";
+import ProcessPageClient from "@/components/ProcessPageClient";
 
 export const metadata: Metadata = {
-  title: "Our Process",
-  description: "How ArQonnect scopes, builds and deploys your AI workforce.",
+  title: "How it works",
+  description:
+    "From connecting channels to managing the customer relationship — seven steps with ArQonnect.",
 };
 
 export default function ProcessPage() {
-  return <Process />;
+  return <ProcessPageClient />;
 }

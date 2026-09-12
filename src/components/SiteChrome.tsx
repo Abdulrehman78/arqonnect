@@ -1,7 +1,6 @@
 "use client";
 
 import AiAmbient from "@/components/ui/AiAmbient";
-import AiPointer from "@/components/ui/AiPointer";
 
 export default function SiteChrome() {
   return (
@@ -11,7 +10,6 @@ export default function SiteChrome() {
       <div className="pointer-events-none fixed inset-0 z-[1] overflow-hidden">
         <AiAmbient intensity="site" />
       </div>
-      <AiPointer />
     </>
   );
 }

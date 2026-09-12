@@ -6,16 +6,9 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { navAccents, themeFromPath } from "@/lib/pageThemes";
 import ThemeToggle from "@/components/ThemeToggle";
+import { NAV_LINKS } from "@/lib/siteContent";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/crm", label: "CRM" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/enterprise", label: "Enterprise" },
-  { href: "/resources", label: "Resources" },
-];
+const links = NAV_LINKS;
 
 function isActivePath(pathname: string, href: string): boolean {
   if (href === "/") return pathname === "/";

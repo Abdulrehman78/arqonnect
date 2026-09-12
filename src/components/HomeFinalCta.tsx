@@ -6,8 +6,9 @@ import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import AiAmbient from "@/components/ui/AiAmbient";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import { HERO_VIDEO } from "@/lib/brand";
+import { FINAL_CTA, PROVIDE } from "@/lib/siteContent";
 
-/** Final CTA — full-bleed centered, fills the viewport. */
+/** Final CTA — full-bleed centered. */
 export default function HomeFinalCta() {
   return (
     <section className="story-room story-cta relative flex flex-col items-center justify-center overflow-hidden border-t border-line bg-bg">
@@ -22,28 +23,36 @@ export default function HomeFinalCta() {
             Next step
           </p>
           <h2 className="story-heading story-heading--xl">
-            Revolutionize your
-            <span>call operation.</span>
+            Stop losing customers
+            <span>to unanswered messages.</span>
           </h2>
-          <p className="story-lead story-lead--center">
-            Put an AI workforce on chat, voice, CRM and growth — running 24/7 across every channel your
-            leads use.
-          </p>
+          <p className="story-lead story-lead--center">{FINAL_CTA.body}</p>
         </header>
 
         <div className="story-cta-actions" data-reveal>
           <Link
-            href="/contact"
+            href={FINAL_CTA.primary.href}
             className="story-cta-primary"
             data-cursor="book"
             data-cursor-label="Book"
             data-magnetic
           >
-            Book a Demo →
+            {FINAL_CTA.primary.label} →
           </Link>
-          <Link href="/demo" className="story-cta-ghost" data-cursor="view">
-            Try the Live Demo
+          <Link href={FINAL_CTA.secondary.href} className="story-cta-ghost" data-cursor="view">
+            {FINAL_CTA.secondary.label}
           </Link>
+        </div>
+
+        <p className="mt-6 text-center text-sm text-text-dim" data-reveal>
+          {FINAL_CTA.note}
+        </p>
+
+        <div className="mx-auto mt-10 max-w-2xl text-center" data-reveal>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-gold">
+            {PROVIDE.title}
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed text-text-dim">{PROVIDE.body}</p>
         </div>
       </RevealOnScroll>
     </section>

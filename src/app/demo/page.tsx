@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import Demo from "@/components/sections/Demo";
+import DemoPageClient from "@/components/DemoPageClient";
 
 export const metadata: Metadata = {
-  title: "Live Demo",
+  title: "Demo",
   description:
-    "Try ArQonnect's AI chat and voice agents live — the same agents that answer real client calls and conversations.",
+    "Recommended demonstration flow — lead with customer experience and business control, not an uncontrolled chatbot.",
 };
 
 export default function DemoPage() {
-  return <Demo />;
+  return <DemoPageClient />;
 }

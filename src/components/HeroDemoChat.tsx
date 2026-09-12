@@ -3,18 +3,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { AVA_WELCOME } from "@/lib/siteContent";
 
 type Msg = { id: string; who: "user" | "bot" | "typing"; text: string };
 
 const SUGGESTIONS = [
   "What does ArQonnect do?",
   "How much does it cost?",
-  "Can it answer phone calls?",
-  "How fast can we go live?",
+  "What happens if AI is unsure?",
+  "Which languages are supported?",
 ];
 
-const WELCOME =
-  "Hi — I'm Ava, ArQonnect's AI assistant. I can help you explore our AI agents, CRM solutions for your business. What would you like to know?";
+const WELCOME = AVA_WELCOME;
 
 function uid() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;

@@ -1431,7 +1431,7 @@ section{ position:relative; z-index:1; }
 
 /* ===== door / threshold section ===== */
 .threshold{
-  height:220vh; position:relative;
+  height:140vh; position:relative;
 }
 .threshold-stage{
   position:sticky; top:0; height:100vh; display:flex; align-items:center; justify-content:center;
@@ -2167,7 +2167,7 @@ html[data-theme="light"] .lang-rail-tab-count{
 }
 .lang-rail-panel{
   position:relative;
-  width:0; height:min(72dvh, 640px);
+  width:0; height:min(38dvh, 280px);
   overflow:hidden; opacity:0;
   border:1px solid transparent; border-left:none;
   border-radius:0 0.85rem 0.85rem 0;
@@ -2182,10 +2182,10 @@ html[data-theme="light"] .lang-rail-tab-count{
   pointer-events:auto;
 }
 @media (min-width:1024px){
-  .lang-rail-panel--open{ width:5.35rem; }
+  .lang-rail-panel--open{ width:5.1rem; }
 }
 .lang-rail-fade{
-  position:absolute; left:0; right:0; z-index:2; height:3.5rem; pointer-events:none;
+  position:absolute; left:0; right:0; z-index:2; height:2.25rem; pointer-events:none;
 }
 .lang-rail-fade--top{
   top:0;
@@ -2197,21 +2197,21 @@ html[data-theme="light"] .lang-rail-tab-count{
 }
 .lang-rail-track{
   position:absolute; top:0; bottom:0;
-  display:flex; flex-direction:column; align-items:stretch; gap:0.65rem;
-  width:100%; padding:0.55rem 0.45rem;
+  display:flex; flex-direction:column; align-items:stretch; gap:0.4rem;
+  width:100%; padding:0.4rem 0.35rem;
 }
 .lang-rail-track--up{
   left:0;
-  animation:langRailUp 40s linear infinite;
+  animation:langRailUp 32s linear infinite;
 }
 .lang-rail-track--paused{ animation-play-state:paused; }
 .lang-chip--rail{
   flex-direction:column; align-items:center; justify-content:center;
-  gap:0.25rem; padding:0.55rem 0.35rem; border-radius:0.85rem;
-  font-size:9px; letter-spacing:0.04em; text-align:center;
-  line-height:1.15;
+  gap:0.2rem; padding:0.4rem 0.3rem; border-radius:0.7rem;
+  font-size:8.5px; letter-spacing:0.04em; text-align:center;
+  line-height:1.1;
 }
-.lang-chip--rail .lang-flag--sm{ width:20px; height:13px; }
+.lang-chip--rail .lang-flag--sm{ width:18px; height:12px; }
 .lang-chip-name{
   display:block; max-width:100%; overflow:hidden;
   text-overflow:ellipsis; white-space:nowrap;
@@ -2741,6 +2741,7 @@ footer{ border-top:1px solid var(--line); padding:70px 40px 40px; }
   display:flex; flex-direction:row; align-items:stretch;
   height:100%;
   width:max-content;
+  gap:1.5rem;
   will-change:transform;
   transform-style:preserve-3d;
 }
@@ -2750,6 +2751,7 @@ footer{ border-top:1px solid var(--line); padding:70px 40px 40px; }
   width:max(3rem, calc((100vw - min(46vw, 30rem)) / 2));
   height:1px;
   pointer-events:none;
+  margin-left:0;
 }
 
 /* Morphing section titles — previous fades/exits as next rises in */
@@ -2841,6 +2843,7 @@ footer{ border-top:1px solid var(--line); padding:70px 40px 40px; }
 .hscroll-panel--intro{
   width:min(34vw, 26rem);
   overflow:visible;
+  margin-inline:0.35rem;
   transform:
     translate3d(calc(var(--drift) * -6px), 0, 0)
     scale(1);
@@ -2850,6 +2853,7 @@ footer{ border-top:1px solid var(--line); padding:70px 40px 40px; }
   width:min(46vw, 30rem);
   overflow:visible;
   background:transparent;
+  margin-inline:0.35rem;
   transform:
     translate3d(
       calc(var(--drift) * -8px),
@@ -3647,7 +3651,46 @@ footer{ border-top:1px solid var(--line); padding:70px 40px 40px; }
     width:auto; height:auto; margin:0; padding:0;
     overflow:visible; clip:auto; white-space:normal;
   }
-  .story-cta-inner{ padding-left:max(1.5rem, 8vw); }
+  /* Reserve left gutter only when morph titles sit beside the chapter */
+  .home-story .story-cta-inner{ padding-left:max(1.5rem, 8vw); }
+}
+
+/* Contact page hero — wide, truly centered banner */
+.contact-banner-inner{
+  width:100%;
+  max-width:56rem;
+  margin-left:auto;
+  margin-right:auto;
+  padding:clamp(5.5rem, 14dvh, 8rem) 1.5rem 3.5rem;
+  text-align:center;
+  box-sizing:border-box;
+}
+@media (min-width:900px){
+  .contact-banner-inner{
+    max-width:64rem;
+    padding:clamp(6.5rem, 16dvh, 9rem) 2rem 4.5rem;
+  }
+}
+.contact-banner-inner .story-chapter-header--center{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:100%;
+}
+.contact-banner-inner .story-kicker{
+  justify-content:center;
+}
+.contact-banner-inner .story-heading{
+  max-width:20ch;
+  margin-left:auto;
+  margin-right:auto;
+}
+.contact-banner-inner .story-lead{
+  max-width:42rem;
+  margin-left:auto;
+  margin-right:auto;
+  font-size:clamp(1rem, 1.6vw, 1.15rem);
+  line-height:1.55;
 }
 .story-cta-actions{
   display:flex; flex-wrap:wrap; justify-content:center; gap:0.75rem;

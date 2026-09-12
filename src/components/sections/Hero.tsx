@@ -7,6 +7,7 @@ import HeroDemoChat from "@/components/HeroDemoChat";
 import HeroVideoBackdrop from "@/components/ui/HeroVideoBackdrop";
 import { GiggleText, useWelcomeReady } from "@/components/ui/GiggleText";
 import { useCheapMotion } from "@/components/ui/Motion";
+import { HERO } from "@/lib/siteContent";
 
 export default function Hero(): React.ReactElement {
   const ready = useWelcomeReady();
@@ -28,37 +29,40 @@ export default function Hero(): React.ReactElement {
             <span className="ai-live-dot" />
             <GiggleText
               as="p"
-              text="Live voice & chat"
+              text={HERO.kicker}
               mode="chars"
               active={ready}
               className="home-hero-kicker font-mono text-[11px] font-medium uppercase tracking-[0.28em]"
             />
           </motion.div>
 
-          <h1 className="home-hero-stack mt-[clamp(0.75rem,2dvh,1.5rem)]" aria-label="The agents ArQonnect speaks to every customer">
-            <GiggleText
-              as="span"
-              text="THE AGENTS"
-              mode="chars"
-              active={ready}
-              startDelay={cheap ? 0 : 0.15}
-              className="home-hero-line home-hero-line--muted"
-            />
+          <h1
+            className="home-hero-stack mt-[clamp(0.75rem,2dvh,1.5rem)]"
+            aria-label={`${HERO.title} — ${HERO.sub}`}
+          >
             <GiggleText
               as="span"
               text="ArQonnect"
               mode="chars"
               active={ready}
-              startDelay={cheap ? 0 : 0.3}
+              startDelay={cheap ? 0 : 0.15}
               className="home-hero-line home-hero-line--brand"
             />
             <GiggleText
               as="span"
-              text="speaks to every customer"
+              text={HERO.title}
+              mode="words"
+              active={ready}
+              startDelay={cheap ? 0 : 0.3}
+              className="home-hero-line home-hero-line--sub"
+            />
+            <GiggleText
+              as="span"
+              text={HERO.sub}
               mode="words"
               active={ready}
               startDelay={cheap ? 0 : 0.45}
-              className="home-hero-line home-hero-line--sub"
+              className="home-hero-line home-hero-line--muted"
             />
           </h1>
 
@@ -66,11 +70,11 @@ export default function Hero(): React.ReactElement {
 
           <GiggleText
             as="p"
-            text="Your business's intelligent AI twin for seamless customer engagement and automated operations."
+            text={HERO.body}
             mode="words"
             active={ready}
             startDelay={cheap ? 0 : 0.55}
-            className="home-hero-body mx-auto mt-[clamp(0.65rem,1.8dvh,1.25rem)] max-w-xl text-base leading-relaxed sm:text-lg"
+            className="home-hero-body mx-auto mt-[clamp(0.65rem,1.8dvh,1.25rem)] max-w-2xl text-base leading-relaxed sm:text-lg"
           />
 
           <motion.div
@@ -86,18 +90,18 @@ export default function Hero(): React.ReactElement {
               data-magnetic
             >
               <Link
-                href="/demo"
+                href={HERO.primaryCta.href}
                 className="ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-6 py-3 text-sm font-semibold text-[#0B0F12] no-underline shadow-[0_8px_32px_rgba(0,0,0,0.55),0_0_28px_rgba(234,164,107,0.5)] transition-all hover:bg-[#C87D46]"
               >
-                Try Our Live Demo
+                {HERO.primaryCta.label}
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.98 }} data-magnetic>
               <Link
-                href="/contact"
+                href={HERO.secondaryCta.href}
                 className="home-hero-ghost inline-flex items-center rounded-full border px-6 py-3 text-sm font-semibold no-underline backdrop-blur-sm transition-all"
               >
-                Book a Demo
+                {HERO.secondaryCta.label}
               </Link>
             </motion.div>
           </motion.div>

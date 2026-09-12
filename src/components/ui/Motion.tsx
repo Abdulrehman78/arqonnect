@@ -121,7 +121,7 @@ export function FadeUp({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2, margin: "-48px" }}
+      viewport={{ once: true, amount: 0, margin: "0px 0px -8% 0px" }}
       variants={variants}
     >
       {children}
@@ -148,7 +148,8 @@ export function Stagger({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.15, margin: "-36px" }}
+      /* amount:0 — tall grids (e.g. services catalog) never reach 15% visible */
+      viewport={{ once: true, amount: 0, margin: "0px 0px -10% 0px" }}
       variants={staggerContainer}
     >
       {children}
@@ -162,12 +163,18 @@ export function MotionItem({
   lift = true,
 }: MotionProps): React.ReactElement {
   const reduce = useReducedMotion();
+  const cheap = useCheapMotion();
+
+  if (cheap || reduce) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={className}
       variants={fadeUp}
       whileHover={
-        reduce || !lift
+        !lift
           ? undefined
           : { y: -6, transition: { duration: 0.35, ease: EASE } }
       }

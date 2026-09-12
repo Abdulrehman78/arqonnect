@@ -7,16 +7,15 @@ import SiteScripts from "@/components/SiteScripts";
 import Preloader from "@/components/Preloader";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import GsapProvider from "@/components/ui/GsapProvider";
-import { BOOT_VIDEOS, PRIORITY_VIDEO } from "@/lib/preloadVideos";
+import { PRIORITY_VIDEO } from "@/lib/preloadVideos";
 
 export const metadata: Metadata = {
   title: {
-    default:
-      "ArQonnect | AI Automation Agency — AI Chatbots, Voice Agents & Business Automation",
+    default: "ArQonnect — AI Twin Platform for Customer Conversations",
     template: "%s | ArQonnect",
   },
   description:
-    "ArQonnect is an AI automation agency building AI chatbots, AI voice agents, business automation, CRM integration and digital transformation for companies across the US, UK, Canada, Australia and Europe.",
+    "ArQonnect helps businesses manage WhatsApp, Instagram, Messenger and website chat in one inbox — answered by AI you control, with human handoff built in.",
   metadataBase: new URL("https://www.arqonnect.com"),
 };
 
@@ -50,9 +49,6 @@ export default function RootLayout({
           type="video/mp4"
           fetchPriority="high"
         />
-        {BOOT_VIDEOS.filter((src) => src !== PRIORITY_VIDEO).map((src) => (
-          <link key={src} rel="preload" href={src} as="video" type="video/mp4" />
-        ))}
       </head>
       <body className="relative">
         <SmoothScroll />

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import ContactPageClient from "@/components/ContactPageClient";
 
 export const metadata: Metadata = {
-  title: "Contact ArQonnect | Book a Demo",
+  title: "Book a Demo",
   description:
-    "Get in touch with ArQonnect — book a demo, see where we work, and start your AI automation project.",
+    "Book a live ArQonnect demo — see grounded AI replies, human handoff and booking on your channels.",
 };
 
 export default function ContactPage() {

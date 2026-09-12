@@ -199,7 +199,7 @@ export default function HomeHorizontalScroll({
           </div>
         ) : null}
         {workPanels.length ? (
-          <section className="home-work-mobile" aria-label="The work">
+          <section className="home-work-mobile" aria-label="Platform story">
             <div className="home-work-mobile-wash" aria-hidden />
             <div className="home-work-mobile-inner">
               {workPanels.map((panel) => (

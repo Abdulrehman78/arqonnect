@@ -1,16 +1,17 @@
-/** Shared knowledge + reply helpers for the hero demo chat */
+/** Shared knowledge + reply helpers for the hero demo chat — aligned to unified-agent-ai.lovable.app */
 
 export const DEMO_SYSTEM_PROMPT = `You are Ava, ArQonnect's friendly demo AI assistant on the marketing site.
 Answer helpfully, clearly, and briefly (2–4 sentences unless the user asks for detail).
 Stay in character as a product specialist for ArQonnect.
 
 About ArQonnect:
-- Builds humanoid AI chatbots and voice agents that answer calls/chats, qualify leads, and book appointments 24/7.
-- Full stack: chat, voice, CRM sync (HubSpot, Salesforce, or built-in), automation, SEO/AEO/GEO/AIO growth.
-- Serves healthcare, real estate, law, education, ecommerce, finance, SaaS — US, UK, Canada, Australia, Europe.
-- Typical go-live for first agent: about two weeks.
-- Pricing is tailored to your stack and volume — confirmed on a short demo call (no one-size public rate card).
-- CTA: offer to book a demo at /contact or /demo when relevant.
+- AI Twin Platform for customer conversations: one shared inbox for WhatsApp, Instagram, Facebook Messenger and website chat.
+- AI answers using business-approved knowledge only — no invented facts. Human handoff when confidence is low or the customer asks for a person.
+- Business Twin: tone, services, hours, pricing rules, and do-not-reply topics controlled by staff.
+- CRM for contacts, deals, tasks and appointments; booking via Google Calendar or Cal.com in Phase 1.
+- Languages: Phase 0 English, Urdu, Roman Urdu; Phase 1 adds Hindi, Arabic, French, Spanish.
+- SaaS plans: Starter $499–$599/mo, Growth $699–$899/mo (most popular), Scale $1,500–$2,500/mo. Setup fee $500–$2,000 one-time, waived/discounted annually.
+- CTA: offer to book a demo at /contact or compare plans at /pricing when relevant.
 
 If asked something unrelated, answer briefly then steer back to how ArQonnect can help.
 Never invent private customer data. Do not claim you already booked a meeting — invite them to schedule.`;
@@ -19,54 +20,59 @@ type KnowledgeHit = { keys: string[]; answer: string };
 
 const KNOWLEDGE: KnowledgeHit[] = [
   {
-    keys: ["price", "pricing", "cost", "how much", "$", "fee", "plan", "subscription"],
+    keys: ["price", "pricing", "cost", "how much", "$", "fee", "plan", "subscription", "starter", "growth", "scale"],
     answer:
-      "Pricing is set around your channels, volume, and how much of the AI Twin stack you need — we confirm a clear package on a short demo call. Want me to point you to Book a Demo?",
+      "SaaS plans are Starter ($499–$599/mo, web widget), Growth ($699–$899/mo, web + WhatsApp — most popular), and Scale ($1,500–$2,500/mo, all four channels). Setup is $500–$2,000 one-time, often waived or discounted with annual commitment. Want the pricing page?",
   },
   {
     keys: ["book", "demo", "meeting", "schedule", "calendar", "call me", "talk to"],
     answer:
-      "Happy to help you get on the calendar. You can book a same-week demo from the Book a Demo page — mornings and afternoons usually have openings. Want me to point you there?",
+      "You can book a live demo tailored to your channels, tone and booking flow from the Book a demo page. We'll show grounded replies and human handoff on your use case.",
   },
   {
-    keys: ["voice", "phone", "call", "receptionist", "ivr"],
+    keys: ["human", "handoff", "person", "agent", "transfer", "unsure", "confident"],
     answer:
-      "Our voice agents sound natural on live calls — not scripted IVR. They listen, answer questions, qualify, and book appointments 24/7. You can try the voice flow on the full demo page.",
+      "When confidence is low, the topic is sensitive, or the customer asks for a person, the conversation routes to staff and AI replies stop. Your team can also take over any chat at any time.",
   },
   {
-    keys: ["chat", "chatbot", "message", "whatsapp", "sms", "dm"],
+    keys: ["chat", "chatbot", "message", "whatsapp", "instagram", "messenger", "inbox", "channel"],
     answer:
-      "Website chat (and WhatsApp, SMS, social DMs) run on the same agent memory — so a lead gets an instant human-like reply, gets qualified, and can book without waiting for your team.",
+      "WhatsApp, Instagram, Facebook Messenger and website chat land in one shared inbox. The AI replies from your approved knowledge; nothing invents facts outside what you upload.",
   },
   {
-    keys: ["crm", "hubspot", "salesforce", "pipeline", "lead"],
+    keys: ["crm", "hubspot", "salesforce", "pipeline", "lead", "contact"],
     answer:
-      "Every call, chat, and booking can write straight into HubSpot, Salesforce, or ArQonnect's CRM — one record across channels, no spreadsheet handoffs.",
+      "Conversations create or update contacts with history. Phase 1 adds full CRM (deals, tasks, pipelines) and optional two-way sync with HubSpot or Salesforce using your own subscription.",
   },
   {
-    keys: ["seo", "aeo", "geo", "aio", "rank", "search", "google"],
+    keys: ["language", "languages", "urdu", "arabic", "hindi", "spanish", "french"],
     answer:
-      "We combine SEO, AEO, GEO, and AIO so you show up in classic Google results and in AI answer surfaces like Perplexity and AI Overviews — not just one channel.",
+      "Phase 0: English, Urdu and Roman Urdu with auto-detection. Phase 1 expands to seven languages including Hindi, Arabic (RTL), French and Spanish — same-language replies.",
   },
   {
-    keys: ["who", "what is arq", "what do you", "company", "about"],
+    keys: ["who", "what is arq", "what do you", "company", "about", "twin"],
     answer:
-      "ArQonnect builds AI employees — humanoid chat and voice agents plus CRM and growth — so every inbound lead gets answered and moved to a next step, any hour.",
+      "ArQonnect is an AI Twin Platform for customer conversations — one inbox, approved knowledge only, human control always. Your Business Twin mirrors your services, tone, hours and off-limits topics.",
   },
   {
-    keys: ["how long", "timeline", "setup", "launch", "go live", "implement"],
+    keys: ["how long", "timeline", "setup", "launch", "go live", "implement", "start"],
     answer:
-      "Most clients go live with their first voice or chat agent in about two weeks. CRM and the rest of the stack roll out module by module after that.",
+      "Connect channels, add business information and upload approved knowledge. Updated content reaches the AI within minutes — no code deploy for day-to-day changes.",
   },
   {
-    keys: ["industry", "healthcare", "real estate", "dental", "law", "ecommerce"],
+    keys: ["booking", "appointment", "calendar", "cal.com"],
     answer:
-      "We work with service businesses and growing teams — healthcare, real estate, law, education, ecommerce, finance, SaaS — with tone and flows tuned to each market.",
+      "Phase 1 offers live calendar slots from Google Calendar or Cal.com inside the chat — confirm, reschedule or cancel without leaving the conversation.",
+  },
+  {
+    keys: ["invent", "hallucin", "approved", "knowledge", "faq", "truth"],
+    answer:
+      "Replies are grounded in FAQs and documents you upload and approve. When the AI isn't confident, it hands off to a human instead of guessing.",
   },
   {
     keys: ["hello", "hi ", "hey", "good morning", "good afternoon"],
     answer:
-      "Hey! I'm Ava, ArQonnect's demo assistant. Ask me anything about our agents, pricing, CRM, or how we'd fit your business — I'll answer straight.",
+      "Hey! I'm Ava. Ask me about the unified inbox, Business Twin, pricing, languages, or handoff — I'll keep it straight.",
   },
 ];
 
@@ -79,10 +85,13 @@ function scoreHit(text: string, hit: KnowledgeHit): number {
 }
 
 /** Knowledge-grounded fallback when no LLM API key is configured */
-export function localDemoReply(userText: string, history: Array<{ role: string; content: string }> = []): string {
+export function localDemoReply(
+  userText: string,
+  history: Array<{ role: string; content: string }> = []
+): string {
   const t = userText.toLowerCase().trim();
   if (!t) {
-    return "Go ahead and type a question — pricing, voice agents, CRM, timelines, whatever you need.";
+    return "Go ahead and type a question — pricing, inbox, languages, handoff, whatever you need.";
   }
 
   const scored = KNOWLEDGE.map((hit) => ({ hit, score: scoreHit(t, hit) }))
@@ -97,17 +106,13 @@ export function localDemoReply(userText: string, history: Array<{ role: string; 
     const base = scored[0].hit.answer;
     const askingHow = /\b(how|why|can you|could you|would you|explain)\b/.test(t);
     if (askingHow) {
-      return `${base} If you share a bit about your industry or channels (phone, web chat, WhatsApp), I can tailor that further.`;
+      return `${base} If you share your channels (WhatsApp, web, Instagram, Messenger), I can tailor that further.`;
     }
     return base;
   }
 
-  // Conversational fallback — still answers, not a dead "flagged for the team" only
   const priorUser = history.filter((m) => m.role === "user").length;
-  const opener =
-    priorUser > 2
-      ? "Got it."
-      : "Good question.";
+  const opener = priorUser > 2 ? "Got it." : "Good question.";
 
-  return `${opener} From what you asked — “${userText.slice(0, 120)}${userText.length > 120 ? "…" : ""}” — here's the short take: ArQonnect's agents can handle that kind of customer conversation on chat or voice, qualify the lead, and book a next step automatically. Tell me whether you care more about phone, website chat, or CRM sync and I'll go deeper — or book a live demo and we'll map it to your stack.`;
+  return `${opener} From what you asked — “${userText.slice(0, 120)}${userText.length > 120 ? "…" : ""}” — ArQonnect keeps those customer messages in one inbox with grounded AI replies and human handoff. Tell me whether you care more about channels, pricing, or Business Twin control — or book a live demo and we'll map it to your business.`;
 }

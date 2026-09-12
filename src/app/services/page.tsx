@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import ServicesPageClient from "@/components/ServicesPageClient";
 
 export const metadata: Metadata = {
-  title: "AI Services — Chatbots, Voice Agents, CRM & Growth",
+  title: "Features",
   description:
-    "Explore ArQonnect's full AI service stack: chat and voice agents, CRM automation, SEO/AEO/GEO growth capabilities and ready-made agent templates.",
+    "Phase 0 branded communication platform and Phase 1 AI Business Twin, CRM and booking — what ArQonnect includes.",
 };
 
 export default function ServicesPage() {

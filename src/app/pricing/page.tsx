@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
-import Pricing from "@/components/sections/Pricing";
-import Stack from "@/components/sections/Stack";
+import PricingPageClient from "@/components/PricingPageClient";
 
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Transparent pricing for ArQonnect's AI chatbot, voice agent and automation stack — see plans and calculate your monthly cost.",
+    "Direct-to-client monthly plans — Starter, Growth and Scale — plus add-ons and one-time activation.",
 };
 
 export default function PricingPage() {
-  return (
-    <>
-      <Pricing />
-      <Stack />
-    </>
-  );
+  return <PricingPageClient />;
 }

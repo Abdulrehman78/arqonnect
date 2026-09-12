@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { FEATURES } from "@/lib/siteContent";
 
 /**
- * Door threshold from index_21:
- * sticky stage + door scales ~1→10 as you scroll until it fills the view.
+ * Door threshold — sticky stage + door scales ~1→10 as you scroll.
  */
 export default function Threshold(): React.ReactElement {
   const sectionRef = useRef<HTMLElement>(null);
@@ -47,22 +47,24 @@ export default function Threshold(): React.ReactElement {
     };
   }, []);
 
+  const totalItems = FEATURES.phases.reduce((n, p) => n + p.items.length, 0);
+
   return (
     <section ref={sectionRef} className="threshold" id="threshold">
       <div className="threshold-stage">
         <div className="threshold-content" id="thresholdText" ref={textRef}>
           <span className="room-label inline-flex w-full items-center justify-center text-xs font-medium uppercase tracking-[0.18em]">
             <span className="ai-live-dot" />
-            The ArQonnect Stack
+            {FEATURES.eyebrow}
           </span>
           <h2 className="banner-heading mt-4 text-3xl sm:text-4xl md:text-5xl">
-            Fourteen rooms.
+            {totalItems} capabilities.
             <br />
-            <span className="banner-heading-muted">One workforce.</span>
+            <span className="banner-heading-muted">One product.</span>
           </h2>
           <p className="room-body mx-auto mt-4 max-w-xl text-base leading-relaxed sm:text-lg">
-            Keep scrolling — every door opens into a service built to run
-            itself, lit its own way.
+            {FEATURES.lead} Keep scrolling — every door opens into what ships in
+            Phase 0 and Phase 1.
           </p>
         </div>
 

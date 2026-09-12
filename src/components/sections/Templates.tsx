@@ -10,105 +10,106 @@ import {
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
+import { FINAL_CTA } from "@/lib/siteContent";
 
 const tabs = [
-  { id: "support", label: "Support" },
-  { id: "sales", label: "Sales" },
-  { id: "ops", label: "Operations" },
-  { id: "marketing", label: "Marketing" },
+  { id: "inbox", label: "Inbox" },
+  { id: "twin", label: "Business Twin" },
+  { id: "crm", label: "CRM & booking" },
+  { id: "control", label: "Control" },
 ];
 
 const panels: Record<
   string,
   Array<{ title: string; desc: string; tag: string }>
 > = {
-  support: [
+  inbox: [
     {
-      title: "Chat Widget / Conversation AI",
-      desc: "Never leaves a visitor on read — answers, qualifies, hands off.",
-      tag: "Chat",
+      title: "Unified inbox",
+      desc: "WhatsApp, Instagram, Messenger and web chat in one operator inbox.",
+      tag: "Phase 0",
     },
     {
-      title: "Missed Call Text-Back",
-      desc: "Miss the call, still keep the lead — a text goes out in seconds.",
-      tag: "SMS",
+      title: "Grounded AI replies",
+      desc: "Answers from uploaded business knowledge — source citations for operators.",
+      tag: "Phase 0",
     },
     {
-      title: "Call Tracking",
-      desc: "Every ring recorded, tagged and traced back to its source.",
-      tag: "Voice",
-    },
-  ],
-  sales: [
-    {
-      title: "Voice AI",
-      desc: "Answers, qualifies, books the appointment — first ring, every time.",
-      tag: "Voice",
-    },
-    {
-      title: "Ad Manager",
-      desc: "Google, Meta and Instagram campaigns reported next to the leads they made.",
-      tag: "Ads",
-    },
-    {
-      title: "Webinar Funnels",
-      desc: "The pitch that plays itself, live or on replay.",
-      tag: "Funnels",
+      title: "Channel polish",
+      desc: "WhatsApp buttons/templates, Instagram story replies and Messenger cards where Meta allows.",
+      tag: "Phase 1",
     },
   ],
-  ops: [
+  twin: [
     {
-      title: "CRM",
-      desc: "Every lead, one home — tracked from hello to signed deal.",
-      tag: "CRM",
+      title: "AI Business Twin",
+      desc: "Tone, services, pricing rules, hours and do-not-reply topics — controlled by your team.",
+      tag: "Phase 1",
     },
     {
-      title: "Business Process Automation",
-      desc: "Manual steps, removed for good.",
-      tag: "Ops",
+      title: "Prompt manager",
+      desc: "Edit, test, version, roll back and restore Twin instructions without a code deploy.",
+      tag: "Phase 1",
     },
     {
-      title: "HubSpot / Salesforce Integration",
-      desc: "Every lead synced, no manual entry.",
-      tag: "Sync",
+      title: "Intent detection",
+      desc: "Routes FAQs, bookings, complaints, contact details and human requests correctly.",
+      tag: "Phase 1",
     },
   ],
-  marketing: [
+  crm: [
     {
-      title: "Social Media Marketing",
-      desc: "Content that shows up, on schedule, across every platform.",
-      tag: "Social",
+      title: "Contact CRM",
+      desc: "Conversations create or update contacts with tags, notes, history and filters.",
+      tag: "Phase 0",
     },
     {
-      title: "SEO / AEO / GEO",
-      desc: "Found first, ranked right — cited in AI answers, not just Google.",
-      tag: "Search",
+      title: "Full CRM",
+      desc: "Deals, tasks, pipelines, owners and full timelines across every channel.",
+      tag: "Phase 1",
     },
     {
-      title: "Email Marketing Automation",
-      desc: "Sequences and newsletters that actually get opened.",
-      tag: "Email",
+      title: "Appointment booking",
+      desc: "Live slots from Google Calendar or Cal.com — confirm, cancel, reschedule in chat.",
+      tag: "Phase 1",
+    },
+  ],
+  control: [
+    {
+      title: "Human handoff",
+      desc: "Low confidence or a request for a person routes to staff — AI replies stop.",
+      tag: "Phase 0",
+    },
+    {
+      title: "Roles & MFA",
+      desc: "Admin, supervisor, agent and auditor roles with multi-factor authentication.",
+      tag: "Phase 1",
+    },
+    {
+      title: "Workflow rules",
+      desc: "Assign agents, send messages, update CRM fields or trigger a webhook.",
+      tag: "Phase 1",
     },
   ],
 };
 
 export default function Templates() {
-  const [active, setActive] = useState("support");
+  const [active, setActive] = useState("inbox");
 
   return (
     <>
       <Section border id="templates">
         <SectionHeader
           accent="accent"
-          eyebrow="Templates"
+          eyebrow="Workflows"
           title={
             <>
-              An agent for whatever&apos;s
+              Start from the job
               <br />
-              on fire this week.
+              that matters most.
             </>
           }
-          description="Pick the function that's bottlenecked — every template below is a live agent, not a mockup."
+          description="Same product — grouped by what your team needs running first."
         />
 
         <FadeUp>
@@ -135,9 +136,12 @@ export default function Templates() {
                   <p className="mt-2 text-sm leading-relaxed text-text-dim">
                     {card.desc}
                   </p>
-                  <span className="mt-5 inline-block text-sm text-accent transition-transform group-hover:translate-x-1">
-                    Deploy →
-                  </span>
+                  <Link
+                    href="/contact"
+                    className="mt-5 inline-block text-sm text-accent no-underline transition-transform group-hover:translate-x-1"
+                  >
+                    Book a demo →
+                  </Link>
                 </Card>
               </MotionItem>
             ))}
@@ -149,25 +153,24 @@ export default function Templates() {
         <SchemeOverlay />
         <FadeUp className="relative mx-auto max-w-2xl text-center">
           <h2 className="ai-title text-3xl font-bold tracking-tight text-text md:text-4xl">
-            Ready to open a room?
+            {FINAL_CTA.title}
             <span className="ai-title-line mx-auto" />
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-base text-text-dim">
-            Tell us which bottleneck is loudest — we&apos;ll map the stack and
-            get the first agent live.
+            {FINAL_CTA.body}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
-              href="/contact"
+              href={FINAL_CTA.primary.href}
               className="ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-7 py-3.5 text-sm font-semibold text-[#0B0F12] no-underline transition-all hover:bg-[#C87D46]"
             >
-              Book a Demo →
+              {FINAL_CTA.primary.label} →
             </Link>
             <Link
-              href="/pricing"
+              href={FINAL_CTA.secondary.href}
               className="inline-flex items-center rounded-full border border-line bg-panel/60 px-7 py-3.5 text-sm font-semibold text-text no-underline transition-all hover:border-glass"
             >
-              See pricing
+              {FINAL_CTA.secondary.label}
             </Link>
           </div>
         </FadeUp>
