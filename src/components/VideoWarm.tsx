@@ -3,24 +3,29 @@
 import { useEffect } from "react";
 import { preloadSecondaryVideos } from "@/lib/preloadVideos";
 
-/** Quietly warm banner videos after first paint — no overlay, no progress bar. */
+/** Quietly warm banner videos after first paint — no overlay. */
 export default function VideoWarm(): null {
   useEffect(() => {
-    const idle =
-      "requestIdleCallback" in window
-        ? window.requestIdleCallback.bind(window)
-        : (cb: IdleRequestCallback) => window.setTimeout(cb, 120);
+    let cancelled = false;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    let idleId: number | undefined;
 
-    const id = idle(() => {
-      void preloadSecondaryVideos(2500);
-    });
+    const run = () => {
+      if (!cancelled) void preloadSecondaryVideos(2500);
+    };
+
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(run, { timeout: 1500 });
+    } else {
+      timeoutId = setTimeout(run, 120);
+    }
 
     return () => {
-      if ("cancelIdleCallback" in window) {
-        window.cancelIdleCallback(id as number);
-      } else {
-        window.clearTimeout(id as number);
+      cancelled = true;
+      if (idleId !== undefined && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
       }
+      if (timeoutId !== undefined) clearTimeout(timeoutId);
     };
   }, []);
 
