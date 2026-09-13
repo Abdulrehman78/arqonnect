@@ -7,14 +7,14 @@ export type ThemeMode = "dark" | "light";
 const STORAGE_KEY = "arq-theme";
 
 export function getStoredTheme(): ThemeMode {
-  if (typeof window === "undefined") return "light";
+  if (typeof window === "undefined") return "dark";
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === "light" || stored === "dark") return stored;
   } catch {
     /* ignore */
   }
-  return "light";
+  return "dark";
 }
 
 export function applyTheme(mode: ThemeMode) {
@@ -31,7 +31,7 @@ export default function ThemeToggle({
 }: {
   className?: string;
 }) {
-  const [theme, setTheme] = useState<ThemeMode>("light");
+  const [theme, setTheme] = useState<ThemeMode>("dark");
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
