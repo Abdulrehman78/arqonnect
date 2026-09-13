@@ -8,7 +8,7 @@ import Templates from "@/components/sections/Templates";
 
 export default function ServicesPageClient(): ReactElement {
   return (
-    <main aria-label="Features">
+    <main aria-label="Services">
       <Threshold />
       <ServicesStory />
       <Capabilities />

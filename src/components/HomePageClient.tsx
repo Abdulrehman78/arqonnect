@@ -38,7 +38,7 @@ const VALUE_TICKER = [
   "No invented facts",
   "Human handoff built in",
   "Booked appointments from chat",
-  "Seven languages",
+  "Six languages",
   "One audit-ready history",
 ];
 
@@ -120,7 +120,7 @@ function ValueSection() {
           <span>
             <em>4</em> channels · <em>7</em> languages · <em>1</em> inbox
           </span>
-          <Link href="/services">See features →</Link>
+          <Link href="/services">See services →</Link>
         </div>
       </RevealOnScroll>
     </section>

@@ -6,11 +6,19 @@ import { LANGUAGES } from "@/lib/languages";
 
 const STORAGE_KEY = "arq-lang-rail";
 
-function LangChip({ code, name }: { code: string; name: string }): ReactElement {
+function LangChip({
+  code,
+  name,
+  badge,
+}: {
+  code: string;
+  name: string;
+  badge?: string;
+}): ReactElement {
   return (
     <span className="lang-chip lang-chip--rail">
       <span className="flag">
-        <LangFlag code={code} name={name} size="sm" />
+        <LangFlag code={code} name={name} badge={badge} size="sm" />
       </span>
       <span className="lang-chip-name">{name}</span>
     </span>
@@ -86,8 +94,8 @@ export default function LanguageRail(): ReactElement {
           <div className="lang-rail-fade lang-rail-fade--bottom" />
 
           <div className={`lang-rail-track lang-rail-track--up ${open ? "" : "lang-rail-track--paused"}`}>
-            {loop.map(({ code, name }, i) => (
-              <LangChip key={`${name}-${i}`} code={code} name={name} />
+            {loop.map(({ code, name, badge }, i) => (
+              <LangChip key={`${name}-${i}`} code={code} name={name} badge={badge} />
             ))}
           </div>
         </aside>

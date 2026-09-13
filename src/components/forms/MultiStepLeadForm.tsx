@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, type FormEvent, type ReactElement } from "react";
+import { trackFormStart, trackFormSubmit } from "@/lib/analytics";
 
 const SERVICES = [
   "Voice AI",
@@ -56,6 +57,7 @@ export default function MultiStepLeadForm({ className = "" }: Props): ReactEleme
       return;
     }
     setError("");
+    trackFormStart("contact_lead");
     setStep("budget");
   };
 
@@ -89,6 +91,7 @@ export default function MultiStepLeadForm({ className = "" }: Props): ReactEleme
       message: message.trim(),
     };
     console.info("[lead-form]", payload);
+    trackFormSubmit("contact_lead");
 
     const subject = encodeURIComponent(`ArQonnect demo — ${name.trim()}`);
     const body = encodeURIComponent(

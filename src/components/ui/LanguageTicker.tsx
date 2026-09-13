@@ -17,10 +17,10 @@ function LangRow({
       className={`lang-ticker flex gap-3 ${reverse ? "lang-ticker--reverse" : ""}`}
       aria-hidden={reverse}
     >
-      {loop.map(({ code, name }, i) => (
+      {loop.map(({ code, name, badge }, i) => (
         <span key={`${name}-${i}`} className="lang-chip">
           <span className="flag">
-            <LangFlag code={code} name={name} />
+            <LangFlag code={code} name={name} badge={badge} />
           </span>
           {name}
         </span>

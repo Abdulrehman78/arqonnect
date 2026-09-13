@@ -14,7 +14,7 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { href: "/process", label: "How it works" },
-  { href: "/services", label: "Features" },
+  { href: "/services", label: "Services" },
   { href: "/demo", label: "Demo" },
   { href: "/pricing", label: "Pricing" },
   { href: "/faq", label: "FAQ" },
@@ -38,7 +38,7 @@ export const PITCH = {
     "No invented facts",
     "Human handoff built in",
     "Booked appointments from chat",
-    "Seven languages",
+    "Six languages",
     "One audit-ready history",
   ],
 } as const;
@@ -132,7 +132,7 @@ export const HOW_IT_WORKS = {
 } as const;
 
 export const FEATURES = {
-  eyebrow: "Features",
+  eyebrow: "Services",
   title: "What the product includes",
   lead: "Phase 0 creates the branded communication platform. Phase 1 adds the complete Business Twin, CRM and booking experience.",
   phases: [
@@ -167,7 +167,7 @@ export const FEATURES = {
         },
         {
           title: "Voice notes",
-          body: "Transcribe inbound WhatsApp voice notes and reply with audio in English, Urdu or Hindi; voice cloning uses the client's provider key.",
+          body: "Transcribe inbound WhatsApp voice notes and reply with audio in English or Urdu; voice cloning uses the client's provider key.",
         },
         {
           title: "Languages",
@@ -205,8 +205,8 @@ export const FEATURES = {
           body: "Platform Admin, Tenant Admin, Supervisor, Agent and Read-Only Auditor roles, with multi-factor authentication.",
         },
         {
-          title: "Seven languages",
-          body: "English, Urdu, Roman Urdu, Hindi, Arabic, French and Spanish, including Arabic right-to-left display.",
+          title: "Six languages",
+          body: "English, Urdu, Roman Urdu, Arabic, French and Spanish, including Arabic right-to-left display.",
         },
         {
           title: "Widget features",
@@ -274,7 +274,7 @@ export const VALUE = {
     },
     {
       title: "Speak their language",
-      body: "Detects the customer's language and replies in the same one — up to seven languages after Phase 1.",
+      body: "Detects the customer's language and replies in the same one — up to six languages after Phase 1.",
     },
     {
       title: "Chats into booked appointments",
@@ -398,7 +398,7 @@ export const FAQ = {
     },
     {
       q: "Which languages does it support?",
-      a: "Phase 0 supports English, Urdu and Roman Urdu. Phase 1 expands to seven languages — English, Urdu, Roman Urdu, Hindi, Arabic, French and Spanish — with automatic detection and same-language replies, including Arabic right-to-left display.",
+      a: "Phase 0 supports English, Urdu and Roman Urdu. Phase 1 expands to six languages — English, Urdu, Roman Urdu, Arabic, French and Spanish — with automatic detection and same-language replies, including Arabic right-to-left display.",
     },
     {
       q: "Do our customers need to install anything?",

@@ -9,7 +9,7 @@ About ArQonnect:
 - AI answers using business-approved knowledge only — no invented facts. Human handoff when confidence is low or the customer asks for a person.
 - Business Twin: tone, services, hours, pricing rules, and do-not-reply topics controlled by staff.
 - CRM for contacts, deals, tasks and appointments; booking via Google Calendar or Cal.com in Phase 1.
-- Languages: Phase 0 English, Urdu, Roman Urdu; Phase 1 adds Hindi, Arabic, French, Spanish.
+- Languages: Phase 0 English, Urdu, Roman Urdu; Phase 1 adds Arabic, French, Spanish.
 - SaaS plans: Starter $499–$599/mo, Growth $699–$899/mo (most popular), Scale $1,500–$2,500/mo. Setup fee $500–$2,000 one-time, waived/discounted annually.
 - CTA: offer to book a demo at /contact or compare plans at /pricing when relevant.
 
@@ -47,7 +47,7 @@ const KNOWLEDGE: KnowledgeHit[] = [
   {
     keys: ["language", "languages", "urdu", "arabic", "hindi", "spanish", "french"],
     answer:
-      "Phase 0: English, Urdu and Roman Urdu with auto-detection. Phase 1 expands to seven languages including Hindi, Arabic (RTL), French and Spanish — same-language replies.",
+      "Phase 0: English, Urdu and Roman Urdu with auto-detection. Phase 1 expands to six languages including Arabic (RTL), French and Spanish — same-language replies.",
   },
   {
     keys: ["who", "what is arq", "what do you", "company", "about", "twin"],

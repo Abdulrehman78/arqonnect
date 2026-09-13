@@ -1,7 +1,9 @@
-/** Shared language list for homepage rail — Phase 1 languages from reference. */
+/** Shared language list for homepage rail — Phase 1 languages. */
 export type Language = {
   code: string;
   name: string;
+  /** Latin-script badge when there is no distinct country flag (e.g. Roman Urdu). */
+  badge?: string;
 };
 
 export function languageFlagSrc(code: string): string {
@@ -11,12 +13,11 @@ export function languageFlagSrc(code: string): string {
 export const LANGUAGES: Language[] = [
   { code: "us", name: "English" },
   { code: "pk", name: "Urdu" },
-  { code: "pk", name: "Roman Urdu" },
-  { code: "in", name: "Hindi" },
+  { code: "roman", name: "Roman Urdu", badge: "Aa" },
   { code: "ae", name: "Arabic" },
   { code: "fr", name: "French" },
   { code: "es", name: "Spanish" },
 ];
 
-export const LANGUAGES_ROW1 = LANGUAGES.slice(0, 4);
-export const LANGUAGES_ROW2 = LANGUAGES.slice(4);
+export const LANGUAGES_ROW1 = LANGUAGES.slice(0, 3);
+export const LANGUAGES_ROW2 = LANGUAGES.slice(3);

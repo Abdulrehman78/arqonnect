@@ -45,7 +45,7 @@ export default function ProcessPageClient() {
 
           <div className="story-foot" data-reveal>
             <span>Seven steps from channels to CRM</span>
-            <Link href="/services">See features →</Link>
+            <Link href="/services">See services →</Link>
           </div>
         </RevealOnScroll>
       </section>

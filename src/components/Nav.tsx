@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { navAccents, themeFromPath } from "@/lib/pageThemes";
 import ThemeToggle from "@/components/ThemeToggle";
 import { NAV_LINKS } from "@/lib/siteContent";
+import { trackBookDemo } from "@/lib/analytics";
 
 const links = NAV_LINKS;
 
@@ -128,6 +129,7 @@ export default function Nav() {
             data-magnetic
             data-cursor="book"
             data-cursor-label="Book"
+            onClick={() => trackBookDemo("nav_desktop")}
           >
             Book a Demo
           </Link>
@@ -181,7 +183,10 @@ export default function Nav() {
             href="/contact"
             className="nav-overlay-cta"
             style={{ transitionDelay: menuOpen ? `${70 + links.length * 40}ms` : "0ms" }}
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              trackBookDemo("nav_mobile");
+              setMenuOpen(false);
+            }}
           >
             Book a Demo →
           </Link>

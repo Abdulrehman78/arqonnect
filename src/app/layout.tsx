@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import SiteChrome from "@/components/SiteChrome";
 import SiteScripts from "@/components/SiteScripts";
 import Preloader from "@/components/Preloader";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import GsapProvider from "@/components/ui/GsapProvider";
 import { PRIORITY_VIDEO } from "@/lib/preloadVideos";
@@ -61,6 +62,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <SiteScripts />
+        <GoogleAnalytics />
       </body>
     </html>
   );

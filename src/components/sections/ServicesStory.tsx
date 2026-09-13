@@ -1,18 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
-import { FEATURES } from "@/lib/siteContent";
-
-const MEDIA = [
-  "/media/img_1.webp",
-  "/media/img_2.webp",
-  "/media/img_3.webp",
-  "/media/img_4.webp",
-  "/media/img_5.webp",
-  "/media/img_6.webp",
-  "/media/img_7.webp",
-];
+import {
+  PHASE_0_ROOMS,
+  PHASE_1_ROOMS,
+  PRODUCT_SHOT,
+  type RoomCard,
+} from "@/lib/servicesPageContent";
 
 const ROOM_NAMES: Record<string, string> = {
   "White-label platform": "The Brand Room",
@@ -29,7 +25,7 @@ const ROOM_NAMES: Record<string, string> = {
   "Appointment booking": "The Calendar Room",
   "Intent detection": "The Router",
   "Roles & MFA": "Access Control",
-  "Seven languages": "The Language Hall",
+  "Six languages": "The Language Hall",
   "Widget features": "The Front Door",
   "Lead capture": "The Capture Desk",
   "Prompt manager": "The Prompt Lab",
@@ -47,32 +43,25 @@ type CatalogItem = {
   body: string;
   tags: string[];
   image: string;
-  imageAlt: string;
 };
 
-function buildCatalog(): CatalogItem[] {
-  const items: CatalogItem[] = [];
-  let n = 0;
-  for (const phase of FEATURES.phases) {
-    for (const item of phase.items) {
-      n += 1;
-      items.push({
-        key: `${phase.id}-${item.title}`,
-        index: String(n).padStart(2, "0"),
-        room: ROOM_NAMES[item.title] ?? item.title,
-        phase: phase.label,
-        title: item.title,
-        body: item.body,
-        tags: [phase.label, item.title.split(" ")[0]],
-        image: MEDIA[(n - 1) % MEDIA.length],
-        imageAlt: `${item.title} preview`,
-      });
-    }
-  }
-  return items;
+function mapRooms(rooms: RoomCard[], phase: string, start: number): CatalogItem[] {
+  return rooms.map((room, i) => ({
+    key: `${phase}-${room.title}`,
+    index: String(start + i).padStart(2, "0"),
+    room: ROOM_NAMES[room.title] ?? room.title,
+    phase,
+    title: room.title,
+    body: room.body,
+    tags: room.tags,
+    image: PRODUCT_SHOT[room.shot],
+  }));
 }
 
-const catalog = buildCatalog();
+const catalog = [
+  ...mapRooms(PHASE_0_ROOMS, "Phase 0", 1),
+  ...mapRooms(PHASE_1_ROOMS, "Phase 1", PHASE_0_ROOMS.length + 1),
+];
 
 export default function ServicesStory() {
   return (
@@ -82,26 +71,31 @@ export default function ServicesStory() {
         <FadeUp className="max-w-2xl">
           <span className="inline-flex items-center text-xs font-medium uppercase tracking-[0.18em] text-accent">
             <span className="ai-live-dot" />
-            Product catalog
+            Service catalog
           </span>
           <h2 className="ai-title mt-3 text-3xl font-bold tracking-tight text-text sm:text-4xl">
-            {FEATURES.title}.
+            Everything in the platform.
             <span className="ai-title-line" />
           </h2>
-          <p className="mt-3 text-base text-text-dim">{FEATURES.lead}</p>
+          <p className="mt-3 text-base text-text-dim">
+            Phase 0 sets up the branded communication platform. Phase 1 adds the full
+            Business Twin, CRM and booking experience on top of it.
+          </p>
         </FadeUp>
 
         <Stagger className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
           {catalog.map((s) => (
             <MotionItem key={s.key}>
               <article className="motion-card group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-panel/40 transition-colors hover:border-glass hover:bg-panel/70">
-                <div className="relative border-b border-line bg-bg/60 p-4">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                <div className="relative h-48 overflow-hidden border-b border-line bg-bg/60">
+                  <Image
                     src={s.image}
-                    alt={s.imageAlt}
-                    className="mx-auto h-auto max-h-48 w-full object-contain"
+                    alt=""
+                    fill
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                    sizes="(max-width:768px) 100vw, 50vw"
                   />
+                  <span className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[color:var(--panel)] to-transparent" />
                 </div>
                 <div className="flex flex-1 flex-col p-5 sm:p-6">
                   <div className="flex items-center justify-between gap-3">

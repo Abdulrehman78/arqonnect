@@ -9,6 +9,7 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import MultiStepLeadForm from "@/components/forms/MultiStepLeadForm";
 import { HERO_VIDEO } from "@/lib/brand";
 import { FINAL_CTA, PROVIDE, SITE } from "@/lib/siteContent";
+import { trackBookDemo } from "@/lib/analytics";
 
 function ContactHook(): ReactElement {
   return (
@@ -29,7 +30,7 @@ function ContactHook(): ReactElement {
           <p className="story-lead story-lead--center">{FINAL_CTA.body}</p>
         </header>
         <div className="story-cta-actions" data-reveal>
-          <a href="#book" className="story-cta-primary" data-magnetic>
+          <a href="#book" className="story-cta-primary" data-magnetic onClick={() => trackBookDemo("contact_banner")}>
             Book a demo →
           </a>
           <Link href="/pricing" className="story-cta-ghost" data-cursor="view">

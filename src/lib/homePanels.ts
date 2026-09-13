@@ -60,7 +60,7 @@ export const HOME_PANEL_META: HomePanelMeta[] = [
   {
     id: "stat-languages",
     eyebrow: "At a glance",
-    title: "7 languages",
+    title: "6 languages",
     sub: "Same-language replies",
     size: "card",
     tone: "dark",

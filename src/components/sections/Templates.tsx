@@ -11,90 +11,29 @@ import {
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import { FINAL_CTA } from "@/lib/siteContent";
+import { CAPABILITY_GROUPS, PHASE_0_ROOMS, PHASE_1_ROOMS } from "@/lib/servicesPageContent";
 
-const tabs = [
-  { id: "inbox", label: "Inbox" },
-  { id: "twin", label: "Business Twin" },
-  { id: "crm", label: "CRM & booking" },
-  { id: "control", label: "Control" },
-];
+const allRooms = [...PHASE_0_ROOMS, ...PHASE_1_ROOMS];
+const byTitle = Object.fromEntries(allRooms.map((r) => [r.title, r]));
 
-const panels: Record<
-  string,
-  Array<{ title: string; desc: string; tag: string }>
-> = {
-  inbox: [
-    {
-      title: "Unified inbox",
-      desc: "WhatsApp, Instagram, Messenger and web chat in one operator inbox.",
-      tag: "Phase 0",
-    },
-    {
-      title: "Grounded AI replies",
-      desc: "Answers from uploaded business knowledge — source citations for operators.",
-      tag: "Phase 0",
-    },
-    {
-      title: "Channel polish",
-      desc: "WhatsApp buttons/templates, Instagram story replies and Messenger cards where Meta allows.",
-      tag: "Phase 1",
-    },
-  ],
-  twin: [
-    {
-      title: "AI Business Twin",
-      desc: "Tone, services, pricing rules, hours and do-not-reply topics — controlled by your team.",
-      tag: "Phase 1",
-    },
-    {
-      title: "Prompt manager",
-      desc: "Edit, test, version, roll back and restore Twin instructions without a code deploy.",
-      tag: "Phase 1",
-    },
-    {
-      title: "Intent detection",
-      desc: "Routes FAQs, bookings, complaints, contact details and human requests correctly.",
-      tag: "Phase 1",
-    },
-  ],
-  crm: [
-    {
-      title: "Contact CRM",
-      desc: "Conversations create or update contacts with tags, notes, history and filters.",
-      tag: "Phase 0",
-    },
-    {
-      title: "Full CRM",
-      desc: "Deals, tasks, pipelines, owners and full timelines across every channel.",
-      tag: "Phase 1",
-    },
-    {
-      title: "Appointment booking",
-      desc: "Live slots from Google Calendar or Cal.com — confirm, cancel, reschedule in chat.",
-      tag: "Phase 1",
-    },
-  ],
-  control: [
-    {
-      title: "Human handoff",
-      desc: "Low confidence or a request for a person routes to staff — AI replies stop.",
-      tag: "Phase 0",
-    },
-    {
-      title: "Roles & MFA",
-      desc: "Admin, supervisor, agent and auditor roles with multi-factor authentication.",
-      tag: "Phase 1",
-    },
-    {
-      title: "Workflow rules",
-      desc: "Assign agents, send messages, update CRM fields or trigger a webhook.",
-      tag: "Phase 1",
-    },
-  ],
-};
+const panels = Object.fromEntries(
+  CAPABILITY_GROUPS.map((g) => [
+    g.id,
+    g.items.map((title) => {
+      const room = byTitle[title];
+      return {
+        title,
+        desc: room?.body ?? "",
+        tag: PHASE_0_ROOMS.some((r) => r.title === title) ? "Phase 0" : "Phase 1",
+      };
+    }),
+  ])
+) as Record<string, Array<{ title: string; desc: string; tag: string }>>;
 
 export default function Templates() {
-  const [active, setActive] = useState("inbox");
+  const [active, setActive] = useState<(typeof CAPABILITY_GROUPS)[number]["id"]>(
+    CAPABILITY_GROUPS[0].id
+  );
 
   return (
     <>
@@ -104,17 +43,17 @@ export default function Templates() {
           eyebrow="Workflows"
           title={
             <>
-              Start from the job
+              The same 21, sorted by
               <br />
-              that matters most.
+              what you&apos;re solving.
             </>
           }
-          description="Same product — grouped by what your team needs running first."
+          description="Start from the job that matters most — inbox, CRM, or control."
         />
 
         <FadeUp>
           <div className="flex flex-wrap gap-2">
-            {tabs.map((t) => (
+            {CAPABILITY_GROUPS.map((t) => (
               <Chip
                 key={t.id}
                 active={active === t.id}
@@ -126,7 +65,7 @@ export default function Templates() {
           </div>
 
           <Stagger className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-            {panels[active].map((card) => (
+            {(panels[active] ?? []).map((card) => (
               <MotionItem key={card.title}>
                 <Card className="group h-full border-line bg-panel/40 transition-colors hover:border-glass">
                   <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-text-dimmer">
@@ -153,7 +92,7 @@ export default function Templates() {
         <SchemeOverlay />
         <FadeUp className="relative mx-auto max-w-2xl text-center">
           <h2 className="ai-title text-3xl font-bold tracking-tight text-text md:text-4xl">
-            {FINAL_CTA.title}
+            Ready to open the inbox?
             <span className="ai-title-line mx-auto" />
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-base text-text-dim">

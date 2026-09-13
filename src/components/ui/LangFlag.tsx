@@ -5,13 +5,27 @@ import { languageFlagSrc } from "@/lib/languages";
 export default function LangFlag({
   code,
   name,
+  badge,
   size = "md",
 }: {
   code: string;
   name: string;
+  badge?: string;
   size?: "sm" | "md";
 }): ReactElement {
   const sm = size === "sm";
+
+  if (badge) {
+    return (
+      <span
+        className={`lang-flag-badge ${sm ? "lang-flag-badge--sm" : "lang-flag-badge--md"}`}
+        aria-label={name}
+        title={name}
+      >
+        {badge}
+      </span>
+    );
+  }
 
   return (
     <Image

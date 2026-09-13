@@ -29,7 +29,7 @@ export const CONTACT_STORY_META: HomePanelMeta[] = [
 export const SERVICES_STORY_META: HomePanelMeta[] = [
   {
     id: "threshold",
-    eyebrow: "Features",
+    eyebrow: "Services",
     title: "The product",
     sub: "Phase 0 and Phase 1",
     tone: "dark",

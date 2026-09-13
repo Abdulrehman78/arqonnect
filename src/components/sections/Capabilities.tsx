@@ -10,18 +10,21 @@ import {
   BtnGhost,
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
-import { FEATURES } from "@/lib/siteContent";
+import {
+  PHASE_0_BLURB,
+  PHASE_0_ROOMS,
+  PHASE_1_BLURB,
+  PHASE_1_ROOMS,
+} from "@/lib/servicesPageContent";
 
-const tabs = FEATURES.phases.map((phase) => ({
-  id: phase.id,
-  label: phase.label,
-  title: phase.title,
-}));
+const tabs = [
+  { id: "phase-0", label: "Phase 0", blurb: PHASE_0_BLURB, items: PHASE_0_ROOMS },
+  { id: "phase-1", label: "Phase 1", blurb: PHASE_1_BLURB, items: PHASE_1_ROOMS },
+] as const;
 
 export default function Capabilities() {
-  const [active, setActive] = useState(tabs[0]?.id ?? "phase-0");
-  const phase = FEATURES.phases.find((p) => p.id === active) ?? FEATURES.phases[0];
-  const activeTab = tabs.find((t) => t.id === active) ?? tabs[0];
+  const [active, setActive] = useState<(typeof tabs)[number]["id"]>("phase-0");
+  const tab = tabs.find((t) => t.id === active) ?? tabs[0];
 
   return (
     <Section border id="capabilities" className="bg-bg-alt">
@@ -35,7 +38,7 @@ export default function Capabilities() {
             Phase 1 completes the Twin.
           </>
         }
-        description={FEATURES.lead}
+        description="Pick the phase that matches where you are — every card below is a piece of the AI Twin Platform."
       />
 
       <FadeUp>
@@ -48,14 +51,14 @@ export default function Capabilities() {
             ))}
           </div>
           <span className="hidden font-mono text-[11px] uppercase tracking-[0.14em] text-text-dimmer sm:inline">
-            {activeTab.label} · {phase.items.length}
+            {tab.label} · {tab.items.length}
           </span>
         </div>
 
-        <p className="mb-6 text-sm text-text-dim">{phase.title}</p>
+        <p className="mb-6 text-sm text-text-dim">{tab.blurb}</p>
 
         <Stagger className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {phase.items.map((card, i) => (
+          {tab.items.map((card, i) => (
             <MotionItem key={card.title}>
               <Card className="h-full border-line bg-panel/40 transition-colors hover:border-glass">
                 <span className="ai-num-glow font-mono text-xs text-accent">

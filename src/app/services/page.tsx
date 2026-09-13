@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import ServicesPageClient from "@/components/ServicesPageClient";
 
 export const metadata: Metadata = {
-  title: "Features",
+  title: "Services",
   description:
-    "Phase 0 branded communication platform and Phase 1 AI Business Twin, CRM and booking — what ArQonnect includes.",
+    "ArQonnect's AI Twin Platform services — Phase 0 communication platform and Phase 1 Business Twin, CRM and booking.",
 };
 
 export default function ServicesPage() {

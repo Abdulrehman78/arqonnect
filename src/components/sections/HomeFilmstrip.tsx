@@ -124,7 +124,7 @@ export function HomeFilmCard({
         <h3 className="home-work-slide-title">{card.title}</h3>
         <p className="home-work-slide-line">{card.line}</p>
         <Link href={card.href} className="home-work-link" data-cursor="view">
-          See features →
+          See services →
         </Link>
       </div>
     </article>

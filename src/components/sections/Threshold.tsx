@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { FEATURES } from "@/lib/siteContent";
 
 /**
- * Door threshold — sticky stage + door scales ~1→10 as you scroll.
+ * Door threshold — sticky stage + door scales as you scroll.
  */
 export default function Threshold(): React.ReactElement {
   const sectionRef = useRef<HTMLElement>(null);
@@ -47,24 +46,22 @@ export default function Threshold(): React.ReactElement {
     };
   }, []);
 
-  const totalItems = FEATURES.phases.reduce((n, p) => n + p.items.length, 0);
-
   return (
     <section ref={sectionRef} className="threshold" id="threshold">
       <div className="threshold-stage">
         <div className="threshold-content" id="thresholdText" ref={textRef}>
           <span className="room-label inline-flex w-full items-center justify-center text-xs font-medium uppercase tracking-[0.18em]">
             <span className="ai-live-dot" />
-            {FEATURES.eyebrow}
+            Services
           </span>
           <h2 className="banner-heading mt-4 text-3xl sm:text-4xl md:text-5xl">
-            {totalItems} capabilities.
+            One Twin.
             <br />
-            <span className="banner-heading-muted">One product.</span>
+            <span className="banner-heading-muted">Every channel.</span>
           </h2>
           <p className="room-body mx-auto mt-4 max-w-xl text-base leading-relaxed sm:text-lg">
-            {FEATURES.lead} Keep scrolling — every door opens into what ships in
-            Phase 0 and Phase 1.
+            Keep scrolling — Phase 0 and Phase 1 open into twenty-one pieces of the
+            AI Twin Platform: one inbox that never drops a customer.
           </p>
         </div>
 
