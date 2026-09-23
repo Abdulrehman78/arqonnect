@@ -1,12 +1,11 @@
 /**
- * Canonical site copy from https://unified-agent-ai.lovable.app/
- * Nothing more, nothing less.
+ * Canonical ArQonnect marketing-site copy.
  */
 
 export const SITE = {
   name: "ArQonnect",
   tagline: "AI Twin Platform for customer conversations",
-  email: "hello@arqonnect.com",
+  email: "hello@arqonnect.io",
   location: "Lahore, Pakistan",
   footerBlurb:
     "ArQonnect helps businesses respond consistently, organize customer relationships and keep people in control.",
@@ -60,7 +59,7 @@ export const PILLARS = [
 
 export const STATS = [
   { value: "4", label: "Channels in one inbox" },
-  { value: "7", label: "Languages supported" },
+  { value: "6", label: "Languages supported" },
   { value: "24/7", label: "Instant AI coverage" },
   { value: "1", label: "Source of approved truth" },
 ] as const;
@@ -143,7 +142,7 @@ export const FEATURES = {
       items: [
         {
           title: "White-label platform",
-          body: "ArQonnect branding, private repository, chosen domain and deployment on ArQonnect's AWS environment.",
+          body: "ArQonnect branding, private repository, chosen domain and deployment on ArQonnect's cloud environment.",
         },
         {
           title: "Unified inbox",
@@ -406,7 +405,7 @@ export const FAQ = {
     },
     {
       q: "What do we need to provide?",
-      a: "Your Meta accounts and WhatsApp number, domain/DNS, calendar (Google Calendar or Cal.com), selected LLM accounts, and your approved business content. Third-party usage charges are separate from the product implementation.",
+      a: "Your Meta accounts and WhatsApp number, domain/DNS, calendar (Google Calendar or Cal.com), selected AI model accounts where required, and your approved business content. Third-party usage charges are separate from the product implementation.",
     },
   ],
 } as const;
@@ -421,7 +420,7 @@ export const FINAL_CTA = {
 
 export const PROVIDE = {
   title: "What the business must provide",
-  body: "The business provides and pays for its Meta accounts and WhatsApp number, domain/DNS and AWS, Google Calendar or Cal.com, selected LLM accounts, Clerk subscription where required, and its own approved FAQs, services, pricing, policies and operating information. Third-party usage charges are separate from the product implementation.",
+  body: "The business provides and pays for its Meta accounts and WhatsApp number, domain/DNS and cloud hosting where required, calendar (Google Calendar or Cal.com), selected AI model accounts where required, and its own approved FAQs, services, pricing, policies and operating information. Third-party usage charges are separate from the product implementation.",
 } as const;
 
 export const AVA_WELCOME =

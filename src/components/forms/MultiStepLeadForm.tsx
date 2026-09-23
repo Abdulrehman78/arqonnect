@@ -4,19 +4,19 @@ import { useMemo, useState, type FormEvent, type ReactElement } from "react";
 import { trackFormStart, trackFormSubmit } from "@/lib/analytics";
 
 const SERVICES = [
-  "Voice AI",
-  "Chat Agents",
-  "CRM Sync",
-  "SMS & Social",
-  "Website / Funnels",
-  "Full stack",
+  "Unified inbox",
+  "WhatsApp / Instagram / Messenger",
+  "AI Business Twin",
+  "CRM & booking",
+  "White-label / Phase 0",
+  "Full Phase 1 rollout",
 ];
 
 const BUDGETS = [
   { id: "starter", label: "Under $2k", note: "Pilot / single channel" },
   { id: "growth", label: "$2k – $8k", note: "Multi-channel rollout" },
-  { id: "scale", label: "$8k – $25k", note: "Full stack + CRM" },
-  { id: "enterprise", label: "$25k+", note: "Enterprise / custom" },
+  { id: "scale", label: "$8k – $25k", note: "Full Twin + CRM" },
+  { id: "enterprise", label: "$25k+", note: "Custom / multi-location" },
 ];
 
 type Step = "services" | "budget" | "details" | "done";
@@ -105,7 +105,7 @@ export default function MultiStepLeadForm({ className = "" }: Props): ReactEleme
         payload.message || "(no message)",
       ].join("\n")
     );
-    window.location.href = `mailto:hello@arqonnect.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:hello@arqonnect.io?subject=${subject}&body=${body}`;
     setStep("done");
   };
 

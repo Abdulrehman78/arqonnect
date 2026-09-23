@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   description:
     "ArQonnect helps businesses manage WhatsApp, Instagram, Messenger and website chat in one inbox — answered by AI you control, with human handoff built in.",
-  metadataBase: new URL("https://www.arqonnect.com"),
+  metadataBase: new URL("https://arqonnect.io"),
 };
 
 export default function RootLayout({

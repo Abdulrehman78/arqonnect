@@ -29,24 +29,28 @@ export const LEGAL_DOCS: LegalDoc[] = [
     title: "Privacy Policy",
     description:
       "How ArQonnect collects, uses, shares and protects personal information for business customers and end-users.",
-    updated: "2026-05-07",
+    updated: "2026-09-23",
     blocks: [
       {
         type: "p",
-        text: 'This Privacy Policy explains how Arqonnect (operating the Arqonnect service, "Arqonnect", "we", "us") collects, uses, shares and protects personal information of (a) business customers who subscribe to Arqonnect and (b) end-users who interact with our customers\' WhatsApp, Instagram and Messenger accounts via Arqonnect.',
+        text: 'This Privacy Policy explains how ArQonnect (operating the ArQonnect service, "ArQonnect", "we", "us") collects, uses, shares and protects personal information of (a) business customers who subscribe to ArQonnect and (b) end-users who interact with our customers\' WhatsApp, Instagram and Messenger accounts via ArQonnect.',
       },
       {
         type: "p",
-        text: "It applies to https://arqonnect.ai, all subdomains (including https://app.arqonnect.ai and https://api.arqonnect.ai), our APIs, webhooks, and any messaging service we provide on behalf of a customer business.",
+        text: "It applies to https://arqonnect.io, all subdomains (including https://app.arqonnect.io and https://api.arqonnect.io), our APIs, webhooks, and any messaging service we provide on behalf of a customer business.",
       },
       { type: "h2", text: "1. Who we are" },
       {
         type: "ul",
         items: [
-          "Legal entity: Arqonnect",
+          "Legal entity: ArQonnect (operating from Lahore, Pakistan)",
           "Country of operation: Pakistan",
           "Registered address: Lahore, Pakistan",
-          "Contact: Compliance@arqonnect.ai",
+          "Website: https://arqonnect.io",
+          "App: https://app.arqonnect.io",
+          "API: https://api.arqonnect.io",
+          "Privacy contact: Compliance@arqonnect.io",
+          "General contact: hello@arqonnect.io",
         ],
       },
       { type: "h2", text: "2. Data we collect" },
@@ -55,7 +59,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
         type: "ul",
         items: [
           "Account data: name, work email, organization name, job title, phone number (optional).",
-          "Authentication data: handled by Clerk. We store only the resulting user ID and email; passwords are never sent to our servers.",
+          "Authentication data: handled by our authentication provider. We store only the resulting user ID and email; passwords are never sent to our servers.",
           "Billing data: handled by our PCI-DSS-compliant Merchant of Record. We store the last 4 digits of the card, the billing country, and the subscription status only.",
           "Usage data: login timestamps, dashboard pages visited, features toggled, conversation volume, AI token spend.",
           "Integration credentials: Channel-provider API keys and Meta Business credentials you paste into the dashboard. These are encrypted at rest with AES-256-GCM and decrypted only at the moment of an outbound API call.",
@@ -74,7 +78,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h3", text: "2.3 From visitors to our website" },
       {
         type: "p",
-        text: "Functional cookies for sign-in (Clerk) and theme preference. With consent: lightweight first-party product analytics. See our Cookie Policy.",
+        text: "Functional cookies for sign-in and theme preference. Where enabled in production, optional website analytics may load for aggregated traffic measurement. See our Cookie Policy for current categories and how to opt out.",
       },
       { type: "h2", text: "3. Why we collect it (purpose & legal basis)" },
       {
@@ -132,7 +136,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "5. AI disclosure" },
       {
         type: "p",
-        text: "Arqonnect provides AI-powered messaging agents that interact with end-users on behalf of businesses. These agents use large-language-model (LLM) inference and retrieval-augmented generation (RAG) to produce responses. End-users may therefore be communicating with an AI rather than a human representative. Our agents are configured to identify themselves as AI when directly asked. Human support agents are available and will take over the conversation when the AI cannot resolve a query or when escalation is requested. This disclosure is provided in compliance with EU AI Act Article 50 and Meta's platform policies.",
+        text: "ArQonnect provides AI-powered messaging agents that interact with end-users on behalf of businesses. These agents use large-language-model (LLM) inference and retrieval-augmented generation (RAG) to produce responses. End-users may therefore be communicating with an AI rather than a human representative. Our agents are configured to identify themselves as AI when directly asked. Human support agents are available and will take over the conversation when the AI cannot resolve a query or when escalation is requested. This disclosure is provided to align with transparency expectations under applicable AI and platform policies, including Meta's platform policies.",
       },
       { type: "h2", text: "6. Data retention" },
       {
@@ -143,7 +147,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
         type: "ul",
         items: [
           "Account data: retained for the duration of your active subscription. Deleted within 30 days of account closure, cancellation, or a verified deletion request — whichever comes first.",
-          "Conversation data: retained for the duration of your active subscription so the AI agent has the context it needs to reply. Upon account closure or cancellation, all conversation data is permanently deleted within 30 days. You can request earlier deletion at any time by emailing Compliance@arqonnect.ai. Inactive conversations within an active account may be moved to cold storage after 90 days of no activity.",
+          "Conversation data: retained for the duration of your active subscription so the AI agent has the context it needs to reply. Upon account closure or cancellation, all conversation data is permanently deleted within 30 days. You can request earlier deletion at any time by emailing Compliance@arqonnect.io. Inactive conversations within an active account may be moved to cold storage after 90 days of no activity.",
           "Platform logs (technical): up to 90 days, then deleted.",
           "Backups: encrypted database backups are retained for 30 days, then overwritten.",
         ],
@@ -152,54 +156,19 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "ul",
         items: [
-          "Primary database hosted on Supabase (Singapore region by default).",
-          "Encrypted media storage on AWS S3 (private bucket, signed URLs only).",
+          "Managed cloud database hosting in Asia-Pacific by default.",
+          "Encrypted object storage for media (private access, signed URLs only).",
           "TLS 1.2+ in transit everywhere.",
-          "AES-256-GCM at rest for all integration credentials and LLM keys.",
+          "AES-256-GCM at rest for all integration credentials and model API keys.",
           "Role-based access control with separation between platform staff and business users; enforced 2FA for staff.",
           "Per-tenant data isolation enforced in every database query.",
-          "Regular vulnerability scans; responsible disclosure at Compliance@arqonnect.ai.",
+          "Regular vulnerability scans; responsible disclosure at Compliance@arqonnect.io.",
         ],
       },
       { type: "h2", text: "8. Sub-processors" },
       {
         type: "p",
-        text: "We share the minimum personal information necessary with the following sub-processors. We notify customers in writing before adding or replacing a sub-processor that materially changes how their data is handled.",
-      },
-      {
-        type: "table",
-        headers: ["Sub-processor", "Purpose", "Region"],
-        rows: [
-          ["Clerk", "Authentication & user management", "United States"],
-          ["Supabase", "Postgres database hosting", "Singapore (ap-southeast-1)"],
-          [
-            "Amazon Web Services (Amplify, EC2, S3)",
-            "Web hosting, background workers, encrypted media storage",
-            "United States / Asia-Pacific",
-          ],
-          [
-            "Meta Platforms (WhatsApp, Instagram, Messenger APIs)",
-            "Message delivery on Meta channels",
-            "United States / European Union",
-          ],
-          ["YCloud", "WhatsApp Business API infrastructure partner", "Singapore"],
-          ["Syrow", "WhatsApp Business API infrastructure partner", "Singapore"],
-          ["OpenAI", "Large-language-model inference (fallback path)", "United States"],
-          ["Groq", "Primary low-latency LLM inference & Whisper transcription", "United States"],
-          ["Google (Gemini)", "Secondary LLM inference & embeddings", "United States / European Union"],
-          [
-            "Qdrant (self-hosted on EC2)",
-            "Vector database for retrieval-augmented generation",
-            "Asia-Pacific (ap-southeast-1)",
-          ],
-          ["Sentry", "Error monitoring and performance tracing", "United States / European Union"],
-          ["Resend", "Transactional email (contact form, notifications)", "United States"],
-          [
-            "Merchant-of-Record processor (Lemon Squeezy / 2Checkout / Paddle)",
-            "Subscription billing, tax compliance and chargeback handling",
-            "United States / European Union",
-          ],
-        ],
+        text: "We share the minimum personal information necessary with carefully selected service providers that help us operate ArQonnect. Categories include authentication, cloud hosting and storage, messaging channel delivery (including Meta for WhatsApp, Instagram and Messenger), AI model inference, email delivery, billing (Merchant of Record named on your invoice), and optional website analytics. A current list of providers is available to customers on request at Compliance@arqonnect.io. We notify customers in writing before adding or replacing a provider that materially changes how their data is handled.",
       },
       { type: "h2", text: "9. International transfers" },
       {
@@ -209,7 +178,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "10. Your rights (GDPR)" },
       {
         type: "p",
-        text: "Subject to applicable law you have the following rights. To exercise any of them, email Compliance@arqonnect.ai. We respond within 30 days.",
+        text: "Subject to applicable law you have the following rights. To exercise any of them, email Compliance@arqonnect.io. We respond within 30 days.",
       },
       {
         type: "ul",
@@ -226,7 +195,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "11. California residents (CCPA / CPRA)" },
       {
         type: "p",
-        text: 'If you are a California resident, the California Consumer Privacy Act gives you the right to know what personal information we collect about you, the right to delete it, the right to correct inaccurate information, and the right to opt out of the "sale" or "sharing" of personal information. Arqonnect does not sell personal information and does not share personal information for cross-context behavioural advertising. To exercise these rights, contact Compliance@arqonnect.ai.',
+        text: 'If you are a California resident, the California Consumer Privacy Act gives you the right to know what personal information we collect about you, the right to delete it, the right to correct inaccurate information, and the right to opt out of the "sale" or "sharing" of personal information. Arqonnect does not sell personal information and does not share personal information for cross-context behavioural advertising. To exercise these rights, contact Compliance@arqonnect.io.',
       },
       { type: "h2", text: "12. WhatsApp opt-in & messaging consent" },
       {
@@ -246,7 +215,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "15. Contact" },
       {
         type: "p",
-        text: "Privacy questions, data subject requests, and DPA requests: Compliance@arqonnect.ai. Postal mail to Arqonnect, Lahore, Pakistan.",
+        text: "Privacy questions, data subject requests, and DPA requests: Compliance@arqonnect.io. General inquiries: hello@arqonnect.io. Postal mail to ArQonnect, Lahore, Pakistan.",
       },
     ],
   },
@@ -255,16 +224,16 @@ export const LEGAL_DOCS: LegalDoc[] = [
     title: "Terms of Service",
     description:
       "Binding terms between ArQonnect and customers who create an account or use the platform.",
-    updated: "2026-05-07",
+    updated: "2026-09-23",
     blocks: [
       {
         type: "p",
-        text: 'These Terms of Service ("Terms") form a binding contract between Arqonnect, of Lahore, Pakistan ("Arqonnect", "we", "us") and the individual or entity that creates an account or uses our services ("Customer", "you"). By accessing the Arqonnect dashboard, APIs or webhooks, you agree to these Terms. If you do not agree, do not use the service.',
+        text: 'These Terms of Service ("Terms") form a binding contract between ArQonnect, of Lahore, Pakistan ("ArQonnect", "we", "us") and the individual or entity that creates an account or uses our services ("Customer", "you"). By accessing the ArQonnect dashboard, APIs or webhooks, you agree to these Terms. If you do not agree, do not use the service.',
       },
       { type: "h2", text: "1. The service" },
       {
         type: "p",
-        text: "Arqonnect is a software-as-a-service (SaaS) platform delivered digitally and accessed through a web browser at https://app.arqonnect.ai. It enables businesses to run AI-powered conversations across WhatsApp, Instagram and Messenger, ground replies in their own knowledge base, launch broadcasts, and hand off to their support team whenever a human touch is needed.",
+        text: "ArQonnect is a software-as-a-service (SaaS) platform delivered digitally and accessed through a web browser at https://app.arqonnect.io (marketing site: https://arqonnect.io). It enables businesses to run AI-powered conversations across WhatsApp, Instagram, Messenger and website chat, ground replies in their own knowledge base, launch broadcasts, and hand off to their support team whenever a human touch is needed.",
       },
       { type: "h2", text: "2. Account & eligibility" },
       {
@@ -272,7 +241,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
         items: [
           "You must be at least 18 years old to create an account.",
           "You must use a valid business email address. Free webmail addresses (Gmail, Yahoo, Hotmail) may be rejected at our discretion.",
-          "You are responsible for everything that happens under your account and must keep your credentials confidential. Notify us immediately at Compliance@arqonnect.ai if you suspect unauthorized access.",
+          "You are responsible for everything that happens under your account and must keep your credentials confidential. Notify us immediately at Compliance@arqonnect.io if you suspect unauthorized access.",
           "Accounts are typically provisioned by our staff via email invitation; self-service signup is available where enabled.",
         ],
       },
@@ -282,8 +251,8 @@ export const LEGAL_DOCS: LegalDoc[] = [
         items: [
           "Subscription fees are billed monthly (or annually, where offered) in advance via our PCI-DSS-compliant payment processor (Merchant of Record).",
           "Prices are listed exclusive of applicable taxes. Tax is computed at checkout based on your billing location.",
-          "Monthly message allowance. Each plan includes a monthly message allowance, published on our pricing page. Every message counts toward it — inbound and outbound, across every connected channel — and the counter resets at the start of each calendar month (UTC).",
-          "What happens at the allowance. When an organization reaches its allowance, automated AI replies pause until the next month begins or the plan is upgraded — nothing else stops. Your inbox, conversation history and data stay fully accessible, and your team can keep replying manually without interruption. We never bill you silently for overages.",
+          "Monthly conversation allowance. Each plan includes a monthly conversation allowance, published on our pricing page (for example Starter ~500 conversations/mo, Growth ~2,000 conversations/mo, Scale unlimited where stated). A conversation is a continuous thread with an end-user on a connected channel. Allowances reset at the start of each calendar month (UTC).",
+          "What happens at the allowance. When an organization reaches its allowance, automated AI replies pause until the next month begins or the plan is upgraded. Nothing else stops. Your inbox, conversation history and data stay fully accessible, and your team can keep replying manually without interruption. We never bill you silently for overages.",
           "You may cancel your subscription at any time from the dashboard. Cancellation takes effect at the end of the current billing period; we do not pro-rate partial months unless required by law.",
           "We may change prices on at least 30 days' notice. Continuing to use the service after a price change means you accept the new price.",
         ],
@@ -315,7 +284,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "6. AI disclosure" },
       {
         type: "p",
-        text: "Arqonnect powers messaging with AI-driven automation. End-users may be communicating with an artificial-intelligence system rather than a human representative. This automation is configured to identify itself as AI when directly asked, and you agree not to disable that identification feature. Your human support team stays in the loop and takes over the moment the AI can't resolve a query or an end-user requests escalation. This disclosure is required by EU AI Act Art. 50 and Meta's platform policies.",
+        text: "ArQonnect powers messaging with AI-driven automation. End-users may be communicating with an artificial-intelligence system rather than a human representative. This automation is configured to identify itself as AI when directly asked, and you agree not to disable that identification feature. Your human support team stays in the loop and takes over the moment the AI cannot resolve a query or an end-user requests escalation. This disclosure supports transparency expectations under applicable AI and Meta platform policies.",
       },
       { type: "h2", text: "7. Your content & data" },
       {
@@ -329,7 +298,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "8. Service availability" },
       {
         type: "p",
-        text: "We target 99.5% monthly uptime for the dashboard and webhook ingestion (Enterprise plans receive a 99.95% SLA with credits). Scheduled maintenance is announced at least 48 hours in advance whenever possible.",
+        text: "We target 99.5% monthly uptime for the dashboard and webhook ingestion. Enterprise customers may receive a higher contractual SLA (including service credits) only where stated in a signed order form. Scheduled maintenance is announced at least 48 hours in advance whenever possible.",
       },
       { type: "h2", text: "9. Suspension & termination" },
       {
@@ -367,7 +336,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "15. Contact" },
       {
         type: "p",
-        text: "Questions about these Terms: Compliance@arqonnect.ai. Postal mail to Arqonnect, Lahore, Pakistan.",
+        text: "Questions about these Terms: Compliance@arqonnect.io. Postal mail to ArQonnect, Lahore, Pakistan.",
       },
     ],
   },
@@ -375,11 +344,12 @@ export const LEGAL_DOCS: LegalDoc[] = [
     slug: "cookies",
     title: "Cookie Policy",
     description:
-      "How ArQonnect uses cookies on the website and dashboard — and how you can manage them.",
+      "How ArQonnect uses cookies on the website and dashboard, and how you can manage them.",
+    updated: "2026-09-23",
     blocks: [
       {
         type: "p",
-        text: 'A "cookie" is a small text file stored on your device by your browser. Arqonnect uses a small number of cookies, the majority of which are strictly necessary for the service to work. We do not use third-party advertising cookies and we do not sell or share your data for cross-context advertising.',
+        text: 'A "cookie" is a small text file stored on your device by your browser. ArQonnect uses a small number of cookies. We do not use third-party advertising cookies and we do not sell or share your data for cross-context advertising.',
       },
       { type: "h2", text: "1. Categories" },
       { type: "h3", text: "Strictly necessary (always on)" },
@@ -387,47 +357,45 @@ export const LEGAL_DOCS: LegalDoc[] = [
         type: "table",
         headers: ["Name", "Set by", "Purpose", "Lifetime"],
         rows: [
-          ["__session", "Clerk", "Keeps you signed in to your dashboard.", "Session"],
-          ["__client_uat", "Clerk", "CSRF protection for the auth flow.", "1 year"],
-          ["theme", "Arqonnect", "Remembers your light/dark theme choice.", "1 year"],
+          ["Session cookies", "Auth provider", "Keeps you signed in to your dashboard.", "Session"],
+          ["CSRF / auth cookies", "Auth provider", "Protects the sign-in flow.", "Up to 1 year"],
+          ["theme / arq-theme", "ArQonnect", "Remembers your light/dark theme choice.", "1 year"],
+        ],
+      },
+      { type: "h3", text: "Analytics (optional / production only)" },
+      {
+        type: "p",
+        text: "When website analytics are enabled in production, our analytics provider may set cookies used to measure aggregated traffic and page usage on https://arqonnect.io. These are not advertising cookies. You can block them with browser settings, extensions, or Global Privacy Control / Do Not Track signals; we treat those signals as a preference against optional analytics.",
+      },
+      {
+        type: "table",
+        headers: ["Name", "Set by", "Purpose", "Lifetime"],
+        rows: [
           [
-            "arqonnect_cookie_consent",
-            "Arqonnect",
-            "Records your cookie banner choice.",
-            "1 year",
+            "Analytics cookies",
+            "Analytics provider",
+            "Distinguish visitors and measure site usage (when analytics are enabled).",
+            "Up to 2 years",
           ],
         ],
       },
-      { type: "h3", text: "Optional (only with consent)" },
       {
         type: "p",
-        text: "We currently do not load any analytics or third-party tracking. If we add lightweight, privacy-respecting product analytics in the future (for example a self-hosted Plausible or PostHog instance) we will:",
-      },
-      {
-        type: "ul",
-        items: [
-          "Update this table before turning anything on,",
-          "Re-prompt the cookie banner so existing consent choices are re-confirmed, and",
-          'Honour your "Reject" choice indefinitely.',
-        ],
+        text: "We do not currently operate a separate cookie consent banner on the marketing site. If we add consent-gated analytics controls, we will update this policy before enabling them.",
       },
       { type: "h2", text: "2. How to manage cookies" },
       {
         type: "p",
-        text: "You can clear or block cookies in your browser settings. Doing so may prevent you from staying signed in to the dashboard.",
+        text: "You can clear or block cookies in your browser settings. Blocking session cookies may prevent you from staying signed in to the dashboard.",
       },
       {
         type: "p",
-        text: "To change your consent decision, clear the arqonnect_cookie_consent cookie and reload the page. The banner will reappear.",
-      },
-      {
-        type: "p",
-        text: "Most browsers honour the global Do Not Track and Global Privacy Control signals; we treat both as a rejection of optional cookies.",
+        text: "Most browsers honour the global Do Not Track and Global Privacy Control signals; we treat both as a rejection of optional analytics cookies where technically feasible.",
       },
       { type: "h2", text: "3. Contact" },
       {
         type: "p",
-        text: "Cookie or privacy questions: Compliance@arqonnect.ai.",
+        text: "Cookie or privacy questions: Compliance@arqonnect.io.",
       },
     ],
   },
@@ -435,14 +403,15 @@ export const LEGAL_DOCS: LegalDoc[] = [
     slug: "refund",
     title: "Refund Policy",
     description: "30-day money-back guarantee for new ArQonnect subscriptions.",
+    updated: "2026-09-23",
     blocks: [
       {
         type: "p",
-        text: "30-day money-back guarantee. No fine print.",
+        text: "30-day money-back guarantee for new paid subscriptions, subject to the eligibility and exclusions below.",
       },
       {
         type: "p",
-        text: "We want you to be confident that Arqonnect is the right platform for your business. If it isn't, you can request a full refund within 30 days of your first paid invoice.",
+        text: "We want you to be confident that ArQonnect is the right platform for your business. If it is not, you can request a full refund within 30 days of your first paid invoice.",
       },
       { type: "h2", text: "1. Eligibility" },
       {
@@ -471,7 +440,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "ul",
         items: [
-          'Email Compliance@arqonnect.ai from the email address registered on your account, with the subject line "Refund request".',
+          'Email Compliance@arqonnect.io from the email address registered on your account, with the subject line "Refund request".',
           "Include your organization name, the invoice number, and (optional) a short note on what didn't work for you. We use this to improve the product.",
           "We confirm receipt within 1 business day and process the refund within 5–10 business days back to the original payment method. Bank settlement times depend on your card issuer.",
         ],
@@ -484,7 +453,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "5. Payment processor" },
       {
         type: "p",
-        text: "Subscription payments are handled by a PCI-DSS-compliant Merchant of Record (MoR) such as Lemon Squeezy, 2Checkout, or Paddle. The MoR collects applicable taxes, issues invoices, and handles chargebacks on our behalf. Refunds are issued via the same processor. The active MoR will be named on your invoice.",
+        text: "Subscription payments are handled by our PCI-DSS-compliant Merchant of Record (MoR). The MoR collects applicable taxes, issues invoices, and handles chargebacks on our behalf. Refunds are issued via the same processor. The active MoR is named on your invoice.",
       },
       { type: "h2", text: "6. Statutory consumer rights" },
       {
@@ -494,7 +463,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "7. Contact" },
       {
         type: "p",
-        text: "Refund questions: Compliance@arqonnect.ai. General billing questions: Compliance@arqonnect.ai.",
+        text: "Refund questions: Compliance@arqonnect.io. General billing questions: Compliance@arqonnect.io.",
       },
     ],
   },
@@ -503,7 +472,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
     title: "Acceptable Use Policy",
     description:
       "Rules every ArQonnect customer must follow when using the platform and messaging channels.",
-    updated: "2026-05-07",
+    updated: "2026-09-23",
     blocks: [
       {
         type: "p",
@@ -546,14 +515,14 @@ export const LEGAL_DOCS: LegalDoc[] = [
             "WhatsApp Business API Terms violation",
           ],
           ["Phishing, fraud, impersonation of other brands", "Legal + WhatsApp policy violation"],
-          ["Malware, exploits, hacking-tool distribution", "Legal + AWS/Meta TOS violation"],
+          ["Malware, exploits, hacking-tool distribution", "Legal + Meta / hosting TOS violation"],
           ["Tobacco, vape, e-cigarette sales (B2C)", "Meta WhatsApp Commerce policy violation"],
           ["Counterfeit goods, IP-infringing merchandise", "Legal violation"],
         ],
       },
       {
         type: "p",
-        text: "Some industries (alcohol B2C, financial services, healthcare, regulated dating) require explicit pre-approval from us. Email Compliance@arqonnect.ai before launching.",
+        text: "Some industries (alcohol B2C, financial services, healthcare, regulated dating) require explicit pre-approval from us. Email Compliance@arqonnect.io before launching.",
       },
       { type: "h2", text: "2. WhatsApp messaging rules" },
       {
@@ -581,7 +550,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "ul",
         items: [
-          "Do not probe, scan, or attempt to bypass Arqonnect's security controls. Responsible-disclosure submissions are welcome at Compliance@arqonnect.ai.",
+          "Do not probe, scan, or attempt to bypass Arqonnect's security controls. Responsible-disclosure submissions are welcome at Compliance@arqonnect.io.",
           "Do not use the API to scrape large volumes of contact data, or to enumerate accounts.",
           "Do not share your account credentials. Each human user gets their own login under your organization.",
         ],
@@ -594,7 +563,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "6. Reporting abuse" },
       {
         type: "p",
-        text: "To report abuse of the Arqonnect platform, email Compliance@arqonnect.ai. We acknowledge reports within 2 business days.",
+        text: "To report abuse of the Arqonnect platform, email Compliance@arqonnect.io. We acknowledge reports within 2 business days.",
       },
     ],
   },
@@ -603,7 +572,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
     title: "Data Processing Agreement",
     description:
       "Standard DPA governing ArQonnect's processing of personal data on behalf of customers.",
-    updated: "2026-05-07",
+    updated: "2026-09-23",
     blocks: [
       {
         type: "p",
@@ -611,7 +580,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       },
       {
         type: "p",
-        text: "A signed PDF copy of this DPA is available on request. Email Compliance@arqonnect.ai with your organization name and the legal entity that should appear on the signed copy.",
+        text: "A signed PDF copy of this DPA is available on request. Email Compliance@arqonnect.io with your organization name and the legal entity that should appear on the signed copy.",
       },
       { type: "h2", text: "1. Definitions" },
       {
@@ -658,51 +627,16 @@ export const LEGAL_DOCS: LegalDoc[] = [
         items: [
           "TLS 1.2+ in transit. AES-256-GCM at rest for all secrets.",
           "Role-based access control with separation of duties between platform staff and Controller users.",
-          "Multi-factor authentication enforced for Arqonnect staff. Customers can require it through Clerk.",
+          "Multi-factor authentication enforced for ArQonnect staff. Customers can require it for their organization users.",
           "Per-tenant data isolation. Every database query and vector-store namespace is scoped to a single organization.",
           "Daily encrypted backups, 30-day retention.",
-          "Vulnerability management; responsible disclosure handled at Compliance@arqonnect.ai.",
+          "Vulnerability management; responsible disclosure handled at Compliance@arqonnect.io.",
         ],
       },
       { type: "h2", text: "6. Sub-processors (Annex III)" },
       {
         type: "p",
-        text: "The Controller authorizes the following Sub-processors. We will notify subscribers in writing at least 30 days before adding or replacing a Sub-processor that materially changes how their data is handled.",
-      },
-      {
-        type: "table",
-        headers: ["Sub-processor", "Purpose", "Region"],
-        rows: [
-          ["Clerk", "Authentication & user management", "United States"],
-          ["Supabase", "Postgres database hosting", "Singapore (ap-southeast-1)"],
-          [
-            "Amazon Web Services (Amplify, EC2, S3)",
-            "Web hosting, background workers, encrypted media storage",
-            "United States / Asia-Pacific",
-          ],
-          [
-            "Meta Platforms (WhatsApp, Instagram, Messenger APIs)",
-            "Message delivery on Meta channels",
-            "United States / European Union",
-          ],
-          ["YCloud", "WhatsApp Business API infrastructure partner", "Singapore"],
-          ["Syrow", "WhatsApp Business API infrastructure partner", "Singapore"],
-          ["OpenAI", "Large-language-model inference (fallback path)", "United States"],
-          ["Groq", "Primary low-latency LLM inference & Whisper transcription", "United States"],
-          ["Google (Gemini)", "Secondary LLM inference & embeddings", "United States / European Union"],
-          [
-            "Qdrant (self-hosted on EC2)",
-            "Vector database for retrieval-augmented generation",
-            "Asia-Pacific (ap-southeast-1)",
-          ],
-          ["Sentry", "Error monitoring and performance tracing", "United States / European Union"],
-          ["Resend", "Transactional email (contact form, notifications)", "United States"],
-          [
-            "Merchant-of-Record processor (Lemon Squeezy / 2Checkout / Paddle)",
-            "Subscription billing, tax compliance and chargeback handling",
-            "United States / European Union",
-          ],
-        ],
+        text: "The Controller authorizes ArQonnect to engage Sub-processors in the following categories: authentication, cloud hosting and storage, messaging channel delivery (including Meta for WhatsApp, Instagram and Messenger), AI model inference, email delivery, billing (Merchant of Record named on the invoice), error monitoring, and optional website analytics. A current named list is available to the Controller on request at Compliance@arqonnect.io. We will notify subscribers in writing at least 30 days before adding or replacing a Sub-processor that materially changes how their data is handled.",
       },
       { type: "h2", text: "7. International transfers" },
       {
@@ -732,7 +666,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "12. Signatures" },
       {
         type: "p",
-        text: "Acceptance of the Terms via account creation, or use of the service, constitutes acceptance of this DPA. A signed counterpart is available on request from Compliance@arqonnect.ai.",
+        text: "Acceptance of the Terms via account creation, or use of the service, constitutes acceptance of this DPA. A signed counterpart is available on request from Compliance@arqonnect.io.",
       },
     ],
   },
@@ -741,6 +675,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
     title: "Data Deletion",
     description:
       "How to request erasure of personal data held by ArQonnect, including Meta's data-deletion callback.",
+    updated: "2026-09-23",
     blocks: [
       {
         type: "p",
@@ -763,7 +698,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "ul",
         items: [
-          'Email Compliance@arqonnect.ai with the subject line "Data deletion request".',
+          'Email Compliance@arqonnect.io with the subject line "Data deletion request".',
           "Include enough information for us to locate your records: the email registered on your account or, for end-users, the WhatsApp / Instagram / Messenger handle and the business you contacted.",
           "We verify the request within 5 business days (we may ask follow-up questions to confirm identity).",
           "We complete deletion within 30 days of verification and confirm by email. Encrypted backups are overwritten in the next backup rotation cycle (≤ 30 days).",
@@ -795,11 +730,11 @@ export const LEGAL_DOCS: LegalDoc[] = [
       },
       {
         type: "p",
-        text: "https://api.arqonnect.ai/data-deletion/callback",
+        text: "https://api.arqonnect.io/data-deletion/callback",
       },
       {
         type: "p",
-        text: "It accepts a signed Meta deletion request, parses the user identifier, enqueues a deletion job, and responds with the JSON payload Meta expects (url + confirmation_code) so the end-user can track the request. The same handler is also reachable at https://api.arqonnect.ai/api/v1/data-deletion-callback for backward compatibility with Meta apps configured before May 2026.",
+        text: "It accepts a signed Meta deletion request, parses the user identifier, enqueues a deletion job, and responds with the JSON payload Meta expects (url + confirmation_code) so the end-user can track the request. The same handler is also reachable at https://api.arqonnect.io/api/v1/data-deletion-callback for backward compatibility with Meta apps configured before May 2026.",
       },
       { type: "h2", text: "6. Right to lodge a complaint" },
       {
@@ -809,7 +744,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "7. Contact" },
       {
         type: "p",
-        text: "Privacy / deletion: Compliance@arqonnect.ai.",
+        text: "Privacy / deletion: Compliance@arqonnect.io.",
       },
     ],
   },

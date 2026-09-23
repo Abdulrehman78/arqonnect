@@ -77,8 +77,8 @@ export const PHASE_0_BLURB =
 export const PHASE_0_ROOMS: RoomCard[] = [
   {
     title: "White-label platform",
-    body: "ArQonnect branding, a private repository, your chosen domain and deployment on ArQonnect's AWS environment.",
-    tags: ["Your branding", "Custom domain", "AWS hosted"],
+    body: "ArQonnect branding, a private repository, your chosen domain and deployment on ArQonnect's cloud environment.",
+    tags: ["Your branding", "Custom domain", "Cloud hosted"],
     shot: "dashboard",
   },
   {
@@ -302,10 +302,9 @@ export const GUARDRAILS = [
 
 export const PROVIDES = [
   "Meta accounts and WhatsApp number",
-  "Domain / DNS and AWS",
+  "Domain / DNS and cloud hosting where required",
   "Google Calendar or Cal.com",
-  "Selected LLM accounts",
-  "Clerk subscription where required",
+  "Selected AI model accounts where required",
   "Approved FAQs, services, pricing, policies and operating information",
 ] as const;
 

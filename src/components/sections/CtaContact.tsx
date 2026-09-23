@@ -51,10 +51,10 @@ export default function CtaContact() {
               Try the Live Demo
             </Link>
             <a
-              href="mailto:hello@arqonnect.com"
+              href="mailto:hello@arqonnect.io"
               className="inline-flex items-center rounded-full border border-line bg-panel/60 px-5 py-2.5 text-sm font-semibold text-text no-underline transition-all hover:border-accent/40"
             >
-              hello@arqonnect.com
+              hello@arqonnect.io
             </a>
           </div>
         </FadeUp>
