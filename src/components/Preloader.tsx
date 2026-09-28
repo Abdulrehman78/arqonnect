@@ -92,8 +92,8 @@ export default function Preloader(): React.ReactElement | null {
       <div className="preloader-glow" aria-hidden />
 
       <div className={`preloader-core ${exiting ? "preloader-core--exit" : ""}`}>
-        <div className="preloader-mark" aria-hidden>
-          <span className="preloader-ring" />
+        <div className="preloader-mark">
+          <span className="preloader-ring" aria-hidden />
           <BrandLogo size="preloader" priority className="relative z-[1]" />
         </div>
 

@@ -44,9 +44,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/icon.svg?v=3" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/logo.png?v=3" />
-        <link rel="shortcut icon" href="/icon.svg?v=3" />
+        <link rel="icon" href="/icon.svg?v=4" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/logo.png?v=4" />
+        <link rel="shortcut icon" href="/icon.svg?v=4" />
         <link
           rel="preload"
           href={PRIORITY_VIDEO}

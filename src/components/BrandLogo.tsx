@@ -1,14 +1,31 @@
 /**
- * Brand mark (AR + QONNECT lockup). Optional text wordmark beside it.
+ * Brand lockup (stacked AR mark + QONNECT).
+ * Intrinsic aspect matches public/logo.png (~1.63:1 after crop).
+ * Heights are capped so the nav stays compact; width follows automatically.
  */
 import Image from "next/image";
 
+/** Source pixel size of /logo.png (keep in sync when the asset is replaced). */
+const INTRINSIC = { w: 2661, h: 1636 } as const;
+
 const SIZES = {
-  /** Stacked AR + QONNECT lockup — sized for strong nav presence */
-  nav: { w: 360, h: 144, className: "h-28 w-auto sm:h-36 lg:h-40" },
-  footer: { w: 360, h: 144, className: "h-28 w-auto sm:h-36" },
-  preloader: { w: 420, h: 168, className: "h-36 w-auto sm:h-44" },
-  mark: { w: 64, h: 64, className: "h-16 w-16" },
+  /** Compact header — readable but does not inflate bar height */
+  nav: {
+    className:
+      "h-10 w-auto max-w-[7.5rem] object-contain object-left sm:h-11 sm:max-w-[9rem] lg:h-12 lg:max-w-[10.5rem]",
+  },
+  footer: {
+    className:
+      "h-12 w-auto max-w-[10rem] object-contain object-left sm:h-14 sm:max-w-[12rem]",
+  },
+  /** Splash — large, still constrained on narrow viewports */
+  preloader: {
+    className:
+      "h-[5.5rem] w-auto max-w-[min(16rem,78vw)] object-contain sm:h-28 sm:max-w-[18rem]",
+  },
+  mark: {
+    className: "h-10 w-10 object-contain",
+  },
 } as const;
 
 export type BrandLogoSize = keyof typeof SIZES;
@@ -23,20 +40,23 @@ export default function BrandLogo({
   size?: BrandLogoSize;
   priority?: boolean;
   className?: string;
-  /** Show “ArQonnect” text beside the lockup */
+  /** Extra CSS wordmark — usually unnecessary; lockup already includes QONNECT */
   showWordmark?: boolean;
   wordmarkClassName?: string;
 }) {
   const s = SIZES[size];
   return (
-    <span className={`inline-flex items-center gap-3 sm:gap-3.5 ${className}`.trim()}>
+    <span
+      className={`inline-flex max-w-full items-center gap-2.5 sm:gap-3 ${className}`.trim()}
+    >
       <Image
         src="/logo.png"
         alt={showWordmark ? "" : "ArQonnect"}
-        width={s.w}
-        height={s.h}
+        width={INTRINSIC.w}
+        height={INTRINSIC.h}
         priority={priority}
-        className={`${s.className} object-contain object-left`}
+        sizes="(max-width: 640px) 120px, (max-width: 1024px) 160px, 200px"
+        className={s.className}
       />
       {showWordmark ? (
         <span
