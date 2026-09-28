@@ -76,6 +76,10 @@ export default function Preloader(): React.ReactElement | null {
           loop
           autoPlay
           preload="auto"
+          onLoadedData={(e) => {
+            e.currentTarget.muted = true;
+            e.currentTarget.volume = 0;
+          }}
         />
       </div>
       <div className="preloader-tint" aria-hidden />

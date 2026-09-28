@@ -38,7 +38,10 @@ export default function BannerBackdrop({
   useEffect(() => {
     const el = videoRef.current;
     if (!el || !useVideo) return;
-    el.play().catch(() => {});
+    el.muted = true;
+    el.defaultMuted = true;
+    el.volume = 0;
+    void el.play().catch(() => {});
   }, [useVideo, video]);
 
   return (
@@ -72,8 +75,16 @@ export default function BannerBackdrop({
           muted
           autoPlay
           preload="auto"
-          onLoadedData={() => setVideoReady(true)}
-          onCanPlay={() => setVideoReady(true)}
+          onLoadedData={(e) => {
+            e.currentTarget.muted = true;
+            e.currentTarget.volume = 0;
+            setVideoReady(true);
+          }}
+          onCanPlay={(e) => {
+            e.currentTarget.muted = true;
+            e.currentTarget.volume = 0;
+            setVideoReady(true);
+          }}
           aria-hidden
         />
       ) : null}

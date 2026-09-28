@@ -183,7 +183,11 @@ export default function InteractiveBackdrop({
           preload="auto"
           className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700"
           style={{ opacity: videoReady ? opacity : 0 }}
-          onCanPlay={() => setVideoReady(true)}
+          onCanPlay={(e) => {
+            e.currentTarget.muted = true;
+            e.currentTarget.volume = 0;
+            setVideoReady(true);
+          }}
         >
           <source src={src} type="video/mp4" />
         </video>

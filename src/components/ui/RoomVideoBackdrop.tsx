@@ -25,12 +25,16 @@ export default function RoomVideoBackdrop({
       return;
     }
 
+    video.muted = true;
+    video.defaultMuted = true;
+    video.volume = 0;
+
     if (!active) {
       const t = window.setTimeout(() => video.pause(), 240);
       return () => clearTimeout(t);
     }
 
-    video.play().catch(() => {});
+    void video.play().catch(() => {});
   }, [active, cheap]);
 
   return (
@@ -45,6 +49,10 @@ export default function RoomVideoBackdrop({
         autoPlay={!cheap}
         preload={cheap ? "none" : "auto"}
         aria-hidden
+        onLoadedData={(e) => {
+          e.currentTarget.muted = true;
+          e.currentTarget.volume = 0;
+        }}
       />
       <div className="absolute inset-0 z-[1] bg-video-veil" />
       <div
