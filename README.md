@@ -4,8 +4,7 @@ Multi-page marketing site, migrated from the original static HTML build.
 
 ## Structure
 
-- `src/app/` — one route folder per page (App Router): `/`, `/services`,
-  `/crm`, `/case-studies`, `/pricing`, `/enterprise`, `/resources`, `/contact`.
+- `src/app/` — App Router pages (see routes below).
 - `src/components/sections/` — one component per content section
   (Hero, Demo, Capabilities, Pricing, etc.), composed into pages.
 - `src/components/Nav.tsx`, `Footer.tsx`, `SiteChrome.tsx` — shared chrome,
@@ -22,8 +21,30 @@ Multi-page marketing site, migrated from the original static HTML build.
   rather than force-fit into Tailwind utilities, given how dense the custom
   animation work is — Tailwind's config (`tailwind.config.ts`) is wired up
   and ready for any new components you build going forward.
-- `public/` — logo and all media (images/video) that used to be inlined as
-  base64 in the original HTML.
+- `public/` — logo (`logo.png`, `logo.svg`, `favicon.png`) and all media
+  (images/video) that used to be inlined as base64 in the original HTML.
+
+## Routes
+
+| Path | Page |
+|------|------|
+| `/` | Home |
+| `/process` | How it works |
+| `/services` | Services |
+| `/demo` | Live demo |
+| `/pricing` | Pricing |
+| `/faq` | FAQ |
+| `/contact` | Contact / book a demo |
+| `/legal/privacy` | Privacy Policy |
+| `/legal/security` | Security |
+| `/legal/terms` | Terms of Service |
+| `/legal/cookies` | Cookie Policy |
+| `/legal/refund` | Refund Policy |
+| `/legal/acceptable-use` | Acceptable Use Policy |
+| `/legal/dpa` | Data Processing Agreement |
+| `/legal/data-deletion` | Data Deletion |
+
+Product app (sign-in): `https://app.arqonnect.io` (see `APP_URL` in `src/lib/siteContent.ts`).
 
 ## Run it
 
@@ -35,10 +56,6 @@ npm run build && npm run start   # production build
 
 ## Notes
 
-- The Google Fonts `<link>` in `layout.tsx` pulls Fraunces / Inter /
-  JetBrains Mono / Space Grotesk exactly as the original site did — no
-  action needed, it'll fetch normally in any environment with internet
-  access.
-- Nav/Footer links use `next/link` and route to the actual pages
-  (`/services#capabilities` etc. for in-page anchors), replacing the old
-  single-page `#section` hashes.
+- `layout.tsx` loads Plus Jakarta Sans and JetBrains Mono from Google Fonts.
+- Nav/Footer links use `next/link` for on-site routes; **Sign in** opens the
+  product app at `/sign-in`.

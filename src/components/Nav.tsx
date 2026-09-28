@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { navAccents, themeFromPath } from "@/lib/pageThemes";
 import ThemeToggle from "@/components/ThemeToggle";
-import { NAV_LINKS } from "@/lib/siteContent";
+import { APP_URL, NAV_LINKS } from "@/lib/siteContent";
+
+const SIGN_IN_URL = `${APP_URL}/sign-in`;
 import { trackBookDemo } from "@/lib/analytics";
 
 const links = NAV_LINKS;
@@ -118,6 +120,16 @@ export default function Nav() {
                 : undefined
             }
           />
+          <a
+            href={SIGN_IN_URL}
+            className={`hidden md:inline-flex items-center whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold no-underline transition-all lg:px-5 lg:text-sm ${
+              overMedia
+                ? "border-nav-media/40 text-nav-media hover:border-nav-media hover:bg-nav-media/10"
+                : "border-line text-text-dim hover:border-accent/40 hover:text-text"
+            }`}
+          >
+            Sign in
+          </a>
           <Link
             href="/contact"
             aria-current={contactActive ? "page" : undefined}
@@ -179,10 +191,18 @@ export default function Nav() {
               );
             })}
           </ul>
+          <a
+            href={SIGN_IN_URL}
+            className="nav-overlay-link"
+            style={{ transitionDelay: menuOpen ? `${70 + links.length * 40}ms` : "0ms" }}
+            onClick={() => setMenuOpen(false)}
+          >
+            Sign in
+          </a>
           <Link
             href="/contact"
             className="nav-overlay-cta"
-            style={{ transitionDelay: menuOpen ? `${70 + links.length * 40}ms` : "0ms" }}
+            style={{ transitionDelay: menuOpen ? `${110 + links.length * 40}ms` : "0ms" }}
             onClick={() => {
               trackBookDemo("nav_mobile");
               setMenuOpen(false);

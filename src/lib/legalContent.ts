@@ -15,6 +15,7 @@ export type LegalDoc = {
 
 export const LEGAL_LINKS: { href: string; label: string }[] = [
   { href: "/legal/privacy", label: "Privacy Policy" },
+  { href: "/legal/security", label: "Security" },
   { href: "/legal/terms", label: "Terms of Service" },
   { href: "/legal/cookies", label: "Cookie Policy" },
   { href: "/legal/refund", label: "Refund Policy" },
@@ -29,7 +30,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
     title: "Privacy Policy",
     description:
       "How ArQonnect collects, uses, shares and protects personal information for business customers and end-users.",
-    updated: "2026-09-23",
+    updated: "2026-09-28",
     blocks: [
       {
         type: "p",
@@ -118,7 +119,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       },
       {
         type: "p",
-        text: "Arqonnect uses data obtained from Meta platforms solely to provide the services described in our Terms. We do not use Meta Platform Data to:",
+        text: "ArQonnect uses data obtained from Meta platforms solely to provide the services described in our Terms. We do not use Meta Platform Data to:",
       },
       {
         type: "ul",
@@ -168,7 +169,58 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "8. Sub-processors" },
       {
         type: "p",
-        text: "We share the minimum personal information necessary with carefully selected service providers that help us operate ArQonnect. Categories include authentication, cloud hosting and storage, messaging channel delivery (including Meta for WhatsApp, Instagram and Messenger), AI model inference, email delivery, billing (Merchant of Record named on your invoice), and optional website analytics. A current list of providers is available to customers on request at Compliance@arqonnect.io. We notify customers in writing before adding or replacing a provider that materially changes how their data is handled.",
+        text: "We share the minimum personal information necessary with carefully selected service providers that help us operate ArQonnect. The table below lists representative categories and the types of providers we use. A current named list (including legal entity names and processing locations) is available to customers on request at Compliance@arqonnect.io. We notify customers in writing before adding or replacing a provider that materially changes how their data is handled.",
+      },
+      {
+        type: "table",
+        headers: ["Category", "Representative providers", "Typical data processed"],
+        rows: [
+          [
+            "Cloud hosting & infrastructure",
+            "Amazon Web Services (AWS)",
+            "Application hosting, object storage for media, logs, encrypted backups",
+          ],
+          [
+            "Authentication",
+            "Clerk (or equivalent auth SaaS)",
+            "Account email, session tokens, sign-in metadata",
+          ],
+          [
+            "Database",
+            "Supabase / managed PostgreSQL",
+            "Customer Data, conversation history, configuration",
+          ],
+          [
+            "Messaging channels",
+            "Meta (WhatsApp Business API, Instagram Messaging, Messenger Platform)",
+            "Message content, channel user IDs, delivery metadata",
+          ],
+          [
+            "AI inference",
+            "Large-language-model API providers (e.g. OpenAI, Anthropic, or equivalents configured for your workspace)",
+            "Prompts, retrieved knowledge snippets, generated replies (no training on your data unless you opt in elsewhere)",
+          ],
+          [
+            "Email delivery",
+            "Transactional email provider",
+            "Recipient address, message content for product and account emails",
+          ],
+          [
+            "Billing (Merchant of Record)",
+            "PCI-DSS-compliant MoR named on your invoice",
+            "Payment method tokens, billing address, tax IDs, invoice metadata",
+          ],
+          [
+            "Error monitoring",
+            "Sentry (or equivalent), where enabled",
+            "Stack traces, request metadata, pseudonymous user IDs",
+          ],
+          [
+            "Website analytics (optional)",
+            "Google Analytics, when enabled and consented on the marketing site",
+            "Aggregated page views, device/browser type, referrer",
+          ],
+        ],
       },
       { type: "h2", text: "9. International transfers" },
       {
@@ -195,17 +247,17 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "11. California residents (CCPA / CPRA)" },
       {
         type: "p",
-        text: 'If you are a California resident, the California Consumer Privacy Act gives you the right to know what personal information we collect about you, the right to delete it, the right to correct inaccurate information, and the right to opt out of the "sale" or "sharing" of personal information. Arqonnect does not sell personal information and does not share personal information for cross-context behavioural advertising. To exercise these rights, contact Compliance@arqonnect.io.',
+        text: 'If you are a California resident, the California Consumer Privacy Act gives you the right to know what personal information we collect about you, the right to delete it, the right to correct inaccurate information, and the right to opt out of the "sale" or "sharing" of personal information. ArQonnect does not sell personal information and does not share personal information for cross-context behavioural advertising. To exercise these rights, contact Compliance@arqonnect.io.',
       },
       { type: "h2", text: "12. WhatsApp opt-in & messaging consent" },
       {
         type: "p",
-        text: "Arqonnect requires its business customers to obtain explicit opt-in consent from end-users before sending business-initiated WhatsApp template messages on their behalf. Acceptable opt-in mechanisms include website forms, WhatsApp keyword reply, and in-person consent. End-users can opt out at any time by replying STOP to any WhatsApp message; opt-out records are kept for at least 5 years and broadcast lists are updated within 24 hours of an opt-out request. Arqonnect does not send unsolicited messages.",
+        text: "ArQonnect requires its business customers to obtain explicit opt-in consent from end-users before sending business-initiated WhatsApp template messages on their behalf. Acceptable opt-in mechanisms include website forms, WhatsApp keyword reply, and in-person consent. End-users can opt out at any time by replying STOP to any WhatsApp message; opt-out records are kept for at least 5 years and broadcast lists are updated within 24 hours of an opt-out request. ArQonnect does not send unsolicited messages.",
       },
       { type: "h2", text: "13. Children" },
       {
         type: "p",
-        text: "Arqonnect is a B2B service and is not directed to children under 16. We do not knowingly collect personal data from children. If you believe a child has provided us with personal data, contact us so we can delete it.",
+        text: "ArQonnect is a B2B service and is not directed to children under 16. We do not knowingly collect personal data from children. If you believe a child has provided us with personal data, contact us so we can delete it.",
       },
       { type: "h2", text: "14. Changes to this policy" },
       {
@@ -224,7 +276,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
     title: "Terms of Service",
     description:
       "Binding terms between ArQonnect and customers who create an account or use the platform.",
-    updated: "2026-09-23",
+    updated: "2026-09-28",
     blocks: [
       {
         type: "p",
@@ -249,7 +301,8 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "ul",
         items: [
-          "Subscription fees are billed monthly (or annually, where offered) in advance via our PCI-DSS-compliant payment processor (Merchant of Record).",
+          "Subscription fees are billed monthly (or annually, where offered) in advance via our PCI-DSS-compliant Merchant of Record (MoR). The MoR entity named on your invoice collects payment, calculates applicable tax, issues receipts, and handles card chargebacks; ArQonnect provides the software subscription you are purchasing.",
+          "Card charges may appear on your statement under the MoR legal name rather than \"ArQonnect\". For billing or refund questions, contact Compliance@arqonnect.io; include your invoice number.",
           "Prices are listed exclusive of applicable taxes. Tax is computed at checkout based on your billing location.",
           "Monthly conversation allowance. Each plan includes a monthly conversation allowance, published on our pricing page (for example Starter ~500 conversations/mo, Growth ~2,000 conversations/mo, Scale unlimited where stated). A conversation is a continuous thread with an end-user on a connected channel. Allowances reset at the start of each calendar month (UTC).",
           "What happens at the allowance. When an organization reaches its allowance, automated AI replies pause until the next month begins or the plan is upgraded. Nothing else stops. Your inbox, conversation history and data stay fully accessible, and your team can keep replying manually without interruption. We never bill you silently for overages.",
@@ -265,13 +318,13 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "5. Acceptable use" },
       {
         type: "p",
-        text: "Your use of Arqonnect is also governed by our Acceptable Use Policy (AUP), which is incorporated into these Terms by reference. In summary, you agree not to:",
+        text: "Your use of ArQonnect is also governed by our Acceptable Use Policy (AUP), which is incorporated into these Terms by reference. In summary, you agree not to:",
       },
       {
         type: "ul",
         items: [
           "Send spam, unsolicited bulk messages, or any messages outside Meta's WhatsApp Business, Instagram Messaging, or Messenger Platform policies.",
-          "Use Arqonnect for prohibited categories listed in the AUP (gambling, adult content, weapons, illegal substances, MLM, etc.).",
+          "Use ArQonnect for prohibited categories listed in the AUP (gambling, adult content, weapons, illegal substances, MLM, etc.).",
           "Attempt to deceive, mislead or impersonate humans when an end-user directly asks whether they are speaking to a person or AI.",
           "Reverse-engineer, probe, scrape, or interfere with the security of the service.",
           "Upload content you do not have the right to use, or content that is unlawful, infringing, or harmful.",
@@ -289,7 +342,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "7. Your content & data" },
       {
         type: "p",
-        text: 'You retain ownership of all content you upload to Arqonnect (knowledge-base documents, FAQs, persona prompts, message templates) and of all messages exchanged through your channel connections ("Customer Data"). You grant us a worldwide, non-exclusive, royalty-free license to host, transmit, process and display Customer Data solely as necessary to provide the service.',
+        text: 'You retain ownership of all content you upload to ArQonnect (knowledge-base documents, FAQs, persona prompts, message templates) and of all messages exchanged through your channel connections ("Customer Data"). You grant us a worldwide, non-exclusive, royalty-free license to host, transmit, process and display Customer Data solely as necessary to provide the service.',
       },
       {
         type: "p",
@@ -321,7 +374,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "12. Indemnification" },
       {
         type: "p",
-        text: "You will defend and indemnify Arqonnect against any third-party claim arising from your Customer Data, your violation of the AUP, or your violation of applicable law (including data protection and anti-spam laws).",
+        text: "You will defend and indemnify ArQonnect against any third-party claim arising from your Customer Data, your violation of the AUP, or your violation of applicable law (including data protection and anti-spam laws).",
       },
       { type: "h2", text: "13. Governing law & disputes" },
       {
@@ -345,7 +398,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
     title: "Cookie Policy",
     description:
       "How ArQonnect uses cookies on the website and dashboard, and how you can manage them.",
-    updated: "2026-09-23",
+    updated: "2026-09-28",
     blocks: [
       {
         type: "p",
@@ -381,7 +434,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       },
       {
         type: "p",
-        text: "We do not currently operate a separate cookie consent banner on the marketing site. If we add consent-gated analytics controls, we will update this policy before enabling them.",
+        text: "On https://arqonnect.io we show a cookie notice when optional analytics are enabled. Analytics cookies load only if you choose Accept analytics; Reject optional stores your preference in localStorage and keeps analytics off. Global Privacy Control and Do Not Track signals are honoured as a rejection of optional analytics.",
       },
       { type: "h2", text: "2. How to manage cookies" },
       {
@@ -403,7 +456,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
     slug: "refund",
     title: "Refund Policy",
     description: "30-day money-back guarantee for new ArQonnect subscriptions.",
-    updated: "2026-09-23",
+    updated: "2026-09-28",
     blocks: [
       {
         type: "p",
@@ -476,12 +529,12 @@ export const LEGAL_DOCS: LegalDoc[] = [
     blocks: [
       {
         type: "p",
-        text: 'This Acceptable Use Policy ("AUP") is part of our Terms of Service. It explains what you may and may not do with the Arqonnect platform. We enforce it strictly because Meta, WhatsApp and our other channel providers hold us accountable for what is sent through their networks.',
+        text: 'This Acceptable Use Policy ("AUP") is part of our Terms of Service. It explains what you may and may not do with the ArQonnect platform. We enforce it strictly because Meta, WhatsApp and our other channel providers hold us accountable for what is sent through their networks.',
       },
       { type: "h2", text: "1. Prohibited industries & categories" },
       {
         type: "p",
-        text: "You may not use Arqonnect to send messages on behalf of, or to promote:",
+        text: "You may not use ArQonnect to send messages on behalf of, or to promote:",
       },
       {
         type: "table",
@@ -528,8 +581,8 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "ul",
         items: [
-          "Opt-in is mandatory. You may only send business-initiated WhatsApp template messages to contacts who have explicitly opted in. Accepted methods include: (a) a website form with a clear WhatsApp consent checkbox, (b) in-person consent recorded on paper or in your CRM, (c) keyword opt-in by WhatsApp reply (e.g., the customer replies YES to subscribe), or (d) any other mechanism permitted by Meta's WhatsApp Business Policy. You must retain proof of consent for each contact for at least 5 years and surface that proof on request from us, Meta, or the contact themselves. Arqonnect reserves the right to suspend, without notice, any account found contacting non-opted-in recipients.",
-          "Use approved templates outside the 24-hour window. Free-form messages are only allowed within Meta's 24-hour customer service window. Arqonnect enforces this automatically and switches to template mode when the window is closed.",
+          "Opt-in is mandatory. You may only send business-initiated WhatsApp template messages to contacts who have explicitly opted in. Accepted methods include: (a) a website form with a clear WhatsApp consent checkbox, (b) in-person consent recorded on paper or in your CRM, (c) keyword opt-in by WhatsApp reply (e.g., the customer replies YES to subscribe), or (d) any other mechanism permitted by Meta's WhatsApp Business Policy. You must retain proof of consent for each contact for at least 5 years and surface that proof on request from us, Meta, or the contact themselves. ArQonnect reserves the right to suspend, without notice, any account found contacting non-opted-in recipients.",
+          "Use approved templates outside the 24-hour window. Free-form messages are only allowed within Meta's 24-hour customer service window. ArQonnect enforces this automatically and switches to template mode when the window is closed.",
           "Honour opt-outs within 24 hours. If a recipient replies STOP / UNSUBSCRIBE, you must remove them from all broadcast lists within one business day.",
           "Do not exceed your tier's send limits. Until your WhatsApp number is officially scaled by Meta, do not send more than 250 outbound template messages per day per number without our approval.",
           "No identical content from many numbers. Sending the same message body from rotating numbers to evade rate limits is grounds for immediate termination and a Meta policy report.",
@@ -541,7 +594,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
         type: "ul",
         items: [
           "You may not configure the AI to claim to be human when an end-user directly asks. It must identify itself as AI on request.",
-          "You may not use Arqonnect to generate content that is harmful, deceptive, defamatory, harassing, or that targets a person based on a protected characteristic.",
+          "You may not use ArQonnect to generate content that is harmful, deceptive, defamatory, harassing, or that targets a person based on a protected characteristic.",
           "You may not use the platform to generate or distribute non-consensual intimate imagery, content sexualising minors, or medical / legal advice without appropriate licensure.",
           "You are responsible for the accuracy of your knowledge-base uploads. Misleading product claims, regulated health/financial advice, or unsubstantiated claims are your liability, not ours.",
         ],
@@ -550,7 +603,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "ul",
         items: [
-          "Do not probe, scan, or attempt to bypass Arqonnect's security controls. Responsible-disclosure submissions are welcome at Compliance@arqonnect.io.",
+          "Do not probe, scan, or attempt to bypass ArQonnect's security controls. Responsible-disclosure submissions are welcome at Compliance@arqonnect.io.",
           "Do not use the API to scrape large volumes of contact data, or to enumerate accounts.",
           "Do not share your account credentials. Each human user gets their own login under your organization.",
         ],
@@ -563,7 +616,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "6. Reporting abuse" },
       {
         type: "p",
-        text: "To report abuse of the Arqonnect platform, email Compliance@arqonnect.io. We acknowledge reports within 2 business days.",
+        text: "To report abuse of the ArQonnect platform, email Compliance@arqonnect.io. We acknowledge reports within 2 business days.",
       },
     ],
   },
@@ -576,7 +629,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
     blocks: [
       {
         type: "p",
-        text: 'This Data Processing Agreement ("DPA") forms part of the Terms of Service between Arqonnect ("Processor", "Arqonnect") and the customer that has accepted those Terms ("Controller"). It applies whenever Arqonnect processes Personal Data on the Controller\'s behalf in the course of providing the Arqonnect service.',
+        text: 'This Data Processing Agreement ("DPA") forms part of the Terms of Service between ArQonnect ("Processor", "ArQonnect") and the customer that has accepted those Terms ("Controller"). It applies whenever ArQonnect processes Personal Data on the Controller\'s behalf in the course of providing the ArQonnect service.',
       },
       {
         type: "p",
@@ -591,7 +644,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "ul",
         items: [
-          "Subject matter: processing of Personal Data necessary to deliver the Arqonnect service to the Controller.",
+          "Subject matter: processing of Personal Data necessary to deliver the ArQonnect service to the Controller.",
           "Nature: message routing, AI inference, retrieval-augmented generation, analytics, conversation storage, template management, broadcasts.",
           "Purpose: to enable the Controller to operate customer conversations across WhatsApp, Instagram and Messenger.",
           "Duration: for the term of the Controller's subscription, plus deletion grace period (30 days).",
@@ -599,7 +652,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
           "Categories of Personal Data: name, email, phone number, social-handle, message content, message metadata, uploaded knowledge-base content, billing identifiers.",
         ],
       },
-      { type: "h2", text: "3. Obligations of the Processor (Arqonnect)" },
+      { type: "h2", text: "3. Obligations of the Processor (ArQonnect)" },
       {
         type: "ul",
         items: [
@@ -683,14 +736,14 @@ export const LEGAL_DOCS: LegalDoc[] = [
       },
       {
         type: "p",
-        text: 'You have the right to request deletion of your personal data held by Arqonnect. This page describes (a) how individuals (including end-users who interacted with a business using Arqonnect) can request deletion, and (b) the programmatic callback URL that Meta uses for its "Data Deletion Request" flow.',
+        text: 'You have the right to request deletion of your personal data held by ArQonnect. This page describes (a) how individuals (including end-users who interacted with a business using ArQonnect) can request deletion, and (b) the programmatic callback URL that Meta uses for its "Data Deletion Request" flow.',
       },
       { type: "h2", text: "1. Who can request deletion" },
       {
         type: "ul",
         items: [
           "Business customers (account holders). Owners can delete their organization from the dashboard at Settings → Danger zone → Delete organization, or by emailing us as below.",
-          "End-users. If you sent a message to a business that uses Arqonnect and want your conversation history deleted, you can either reply STOP on the WhatsApp channel to be removed from broadcast lists, or email us with your phone number / channel handle so we can locate the records.",
+          "End-users. If you sent a message to a business that uses ArQonnect and want your conversation history deleted, you can either reply STOP on the WhatsApp channel to be removed from broadcast lists, or email us with your phone number / channel handle so we can locate the records.",
           "Meta App Review crawler. Meta's Data Deletion Request flow uses the callback URL below.",
         ],
       },
@@ -745,6 +798,87 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "p",
         text: "Privacy / deletion: Compliance@arqonnect.io.",
+      },
+    ],
+  },
+  {
+    slug: "security",
+    title: "Security",
+    description:
+      "How ArQonnect protects customer data — technical and organizational practices (overview).",
+    updated: "2026-09-28",
+    blocks: [
+      {
+        type: "p",
+        text: "This page summarizes the security practices we apply to the ArQonnect platform and customer data. It is an overview for due diligence (including payment and cloud reviews) and does not replace contractual commitments in our Terms, Privacy Policy, or Data Processing Agreement. ArQonnect does not claim third-party certifications (such as SOC 2 or ISO 27001) unless we publish a specific attestation document.",
+      },
+      { type: "h2", text: "1. Scope" },
+      {
+        type: "p",
+        text: "These practices apply to https://arqonnect.io, https://app.arqonnect.io, https://api.arqonnect.io, and the infrastructure that stores and processes Customer Data on behalf of our subscribers.",
+      },
+      { type: "h2", text: "2. Infrastructure & hosting" },
+      {
+        type: "ul",
+        items: [
+          "Production workloads run on managed cloud infrastructure (primarily Amazon Web Services) with database hosting in Asia-Pacific by default unless otherwise agreed in an Enterprise order form.",
+          "Media and attachments are stored in private object storage; access uses time-limited signed URLs.",
+          "Encrypted database backups are retained for up to 30 days, then overwritten.",
+        ],
+      },
+      { type: "h2", text: "3. Encryption & data protection" },
+      {
+        type: "ul",
+        items: [
+          "TLS 1.2 or higher for data in transit between clients, our APIs, and sub-processors.",
+          "AES-256-GCM at rest for integration credentials, channel-provider tokens, and model API keys.",
+          "Per-tenant data isolation enforced in application logic and database queries so one organization's data is not exposed to another.",
+        ],
+      },
+      { type: "h2", text: "4. Access control" },
+      {
+        type: "ul",
+        items: [
+          "Role-based access for customer users within each organization.",
+          "Separation between ArQonnect platform staff access and customer dashboard access; staff access is limited to what is needed for support and operations.",
+          "Multi-factor authentication enforced for ArQonnect staff; customers can require MFA for their organization where supported in the dashboard.",
+        ],
+      },
+      { type: "h2", text: "5. Monitoring, logging & incidents" },
+      {
+        type: "ul",
+        items: [
+          "Platform logs for security and reliability are retained for up to 90 days, then deleted (see Privacy Policy).",
+          "We investigate suspected unauthorized access and notify affected customers without undue delay when a personal-data breach is confirmed, in line with our DPA.",
+          "Error monitoring may be enabled via a sub-processor (for example Sentry) to diagnose production faults; see Privacy Policy §8.",
+        ],
+      },
+      { type: "h2", text: "6. Vulnerability management" },
+      {
+        type: "ul",
+        items: [
+          "Regular vulnerability scanning of internet-facing services.",
+          "Responsible disclosure: report suspected vulnerabilities to Compliance@arqonnect.io. Do not perform disruptive testing without written authorization.",
+        ],
+      },
+      { type: "h2", text: "7. Payments" },
+      {
+        type: "p",
+        text: "We do not store full card numbers on ArQonnect servers. Subscription payments are processed by a PCI-DSS-compliant Merchant of Record; only limited billing metadata (such as last four digits, country, and subscription status) is retained in our systems. See Terms §3 and the Refund Policy.",
+      },
+      { type: "h2", text: "8. Your responsibilities" },
+      {
+        type: "ul",
+        items: [
+          "Protect dashboard credentials and rotate access when team members leave.",
+          "Only upload knowledge-base and messaging content you have the right to use.",
+          "Configure channel integrations using Meta-approved apps and comply with platform policies.",
+        ],
+      },
+      { type: "h2", text: "9. Contact" },
+      {
+        type: "p",
+        text: "Security questions and responsible disclosure: Compliance@arqonnect.io.",
       },
     ],
   },

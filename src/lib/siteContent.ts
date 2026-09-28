@@ -2,6 +2,8 @@
  * Canonical ArQonnect marketing-site copy.
  */
 
+export const APP_URL = "https://app.arqonnect.io";
+
 export const SITE = {
   name: "ArQonnect",
   tagline: "AI Twin Platform for customer conversations",

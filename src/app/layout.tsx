@@ -6,6 +6,7 @@ import SiteChrome from "@/components/SiteChrome";
 import SiteScripts from "@/components/SiteScripts";
 import Preloader from "@/components/Preloader";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import CookieNotice from "@/components/CookieNotice";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import GsapProvider from "@/components/ui/GsapProvider";
 import { PRIORITY_VIDEO } from "@/lib/preloadVideos";
@@ -43,6 +44,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
+        <link rel="icon" href="/favicon.png" type="image/png" />
         <link
           rel="preload"
           href={PRIORITY_VIDEO}
@@ -62,6 +64,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <SiteScripts />
+        <CookieNotice />
         <GoogleAnalytics />
       </body>
     </html>

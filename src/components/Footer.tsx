@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
-import { NAV_LINKS, SITE } from "@/lib/siteContent";
+import { APP_URL, NAV_LINKS, SITE } from "@/lib/siteContent";
 import { LEGAL_LINKS } from "@/lib/legalContent";
 
 export default function Footer() {
@@ -45,6 +45,12 @@ export default function Footer() {
               >
                 Book a demo
               </Link>
+              <a
+                href={`${APP_URL}/sign-in`}
+                className="text-sm text-text-dim no-underline transition-colors hover:text-gold"
+              >
+                Sign in
+              </a>
             </div>
           </MotionItem>
 
