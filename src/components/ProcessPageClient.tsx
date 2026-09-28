@@ -4,6 +4,7 @@ import Link from "next/link";
 import RoomVideoBackdrop from "@/components/ui/RoomVideoBackdrop";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import { InboxFlowDiagram, PROCESS_ICONS } from "@/components/ui/ProductIcons";
 import { HERO_VIDEO, MARKETS_VIDEO } from "@/lib/brand";
 import { HOW_IT_WORKS } from "@/lib/siteContent";
 
@@ -26,21 +27,33 @@ export default function ProcessPageClient() {
             <p className="story-lead">{HOW_IT_WORKS.lead}</p>
           </header>
 
+          <div className="mt-10" data-reveal>
+            <InboxFlowDiagram />
+          </div>
+
           <ol className="mt-12 space-y-6">
-            {HOW_IT_WORKS.steps.map((step, i) => (
-              <li
-                key={step.num}
-                className="story-channel flex gap-5"
-                data-reveal
-                style={{ ["--i" as string]: i }}
-              >
-                <span className="story-channel-index shrink-0">{step.num}</span>
-                <div>
-                  <h2 className="text-xl font-semibold text-text">{step.title}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-text-dim">{step.body}</p>
-                </div>
-              </li>
-            ))}
+            {HOW_IT_WORKS.steps.map((step, i) => {
+              const Icon = PROCESS_ICONS[i % PROCESS_ICONS.length];
+              return (
+                <li
+                  key={step.num}
+                  className="story-channel flex gap-5"
+                  data-reveal
+                  style={{ ["--i" as string]: i }}
+                >
+                  <div className="flex shrink-0 flex-col items-center gap-2">
+                    <span className="story-channel-index">{step.num}</span>
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-line bg-panel/50 text-gold">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-semibold text-text">{step.title}</h2>
+                    <p className="mt-2 text-sm leading-relaxed text-text-dim">{step.body}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ol>
 
           <div className="story-foot" data-reveal>

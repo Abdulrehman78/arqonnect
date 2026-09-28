@@ -18,6 +18,10 @@ import InfiniteMarquee from "@/components/ui/InfiniteMarquee";
 import RoomVideoBackdrop from "@/components/ui/RoomVideoBackdrop";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import {
+  InboxFlowDiagram,
+  VALUE_ICONS,
+} from "@/components/ui/ProductIcons";
 import { HERO_VIDEO, MARKETS_VIDEO } from "@/lib/brand";
 import { HOME_PANEL_META, HOME_STORY_META } from "@/lib/homePanels";
 import { COMPARISON, VALUE } from "@/lib/siteContent";
@@ -58,6 +62,14 @@ function ComparisonSection() {
             <span>is a customer choosing someone else.</span>
           </h2>
         </header>
+
+        <div className="mt-8" data-reveal>
+          <InboxFlowDiagram />
+          <p className="mt-4 text-center font-mono text-[11px] uppercase tracking-[0.14em] text-text-dimmer">
+            Channels → grounded AI → one inbox → human when needed
+          </p>
+        </div>
+
         <div className="mt-10 grid gap-8 lg:grid-cols-2" data-reveal>
           <div className="story-channel">
             <h3>{COMPARISON.withoutTitle}</h3>
@@ -104,17 +116,23 @@ function ValueSection() {
           </h2>
         </header>
         <div className="story-channel-rail">
-          {VALUE.items.map((item, i) => (
-            <article
-              key={item.title}
-              className="story-channel"
-              data-reveal
-              style={{ ["--i" as string]: i }}
-            >
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </article>
-          ))}
+          {VALUE.items.map((item, i) => {
+            const Icon = VALUE_ICONS[i % VALUE_ICONS.length];
+            return (
+              <article
+                key={item.title}
+                className="story-channel"
+                data-reveal
+                style={{ ["--i" as string]: i }}
+              >
+                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line bg-panel/60 text-gold">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            );
+          })}
         </div>
         <div className="story-foot" data-reveal>
           <span>

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import BrandLogo from "@/components/BrandLogo";
 import { LOADER_VIDEO } from "@/lib/brand";
 import { preloadHeroVideo, preloadSecondaryVideos } from "@/lib/preloadVideos";
 import { useEffect, useRef, useState } from "react";
@@ -90,17 +90,9 @@ export default function Preloader(): React.ReactElement | null {
       <div className={`preloader-core ${exiting ? "preloader-core--exit" : ""}`}>
         <div className="preloader-mark" aria-hidden>
           <span className="preloader-ring" />
-          <Image
-            src="/logo.png"
-            alt=""
-            width={44}
-            height={44}
-            className="relative z-[1] h-11 w-11"
-            priority
-          />
+          <BrandLogo size="preloader" priority className="relative z-[1]" />
         </div>
 
-        <p className="preloader-brand">ArQonnect</p>
         <span className="preloader-rule" aria-hidden />
         <p className="preloader-meta">
           <span className="preloader-stage">

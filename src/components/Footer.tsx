@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
+import BrandLogo from "@/components/BrandLogo";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
 import { APP_URL, NAV_LINKS, SITE } from "@/lib/siteContent";
 import { LEGAL_LINKS } from "@/lib/legalContent";
@@ -12,15 +12,8 @@ export default function Footer() {
       <FadeUp className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <Stagger className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <MotionItem lift={false} className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 no-underline">
-              <Image
-                src="/logo.png"
-                alt={SITE.name}
-                width={32}
-                height={32}
-                className="h-8 w-auto"
-              />
-              <span className="text-base font-semibold text-text">{SITE.name}</span>
+            <Link href="/" className="inline-flex no-underline" aria-label={SITE.name}>
+              <BrandLogo size="footer" />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-text-dim">{SITE.footerBlurb}</p>
           </MotionItem>

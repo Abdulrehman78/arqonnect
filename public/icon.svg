@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="12" fill="#0B0F12"/>
+  <!-- AR peak -->
+  <path d="M32 10 L52 50 H40.5 L36.5 40 H27.5 L23.5 50 H12 Z" fill="#C8D0D8"/>
+  <path d="M32 10 L40.5 50 H36.5 L32 36 Z" fill="#E8EEF4"/>
+  <!-- R bowl + leg -->
+  <path d="M36.5 40 C44 40 50 36 50 28 C50 22 46 18 40 18 L36.5 18 L40.5 50 H46 L42 40 Z" fill="#A8B4C0"/>
+  <path d="M40 18 C45 18 48 22 48 28 C48 34 44.5 38 38 38" stroke="#F4F7F8" stroke-width="2.5" fill="none"/>
+  <!-- Blue delta -->
+  <path d="M32 42 L38 52 H26 Z" fill="#1F6BFF"/>
+  <path d="M32 44 L35.5 51 H28.5 Z" fill="#5B9BFF"/>
+</svg>

@@ -1,8 +1,7 @@
-"use client";
-
 import type { ReactElement } from "react";
 import Link from "next/link";
 import { PILLARS, PITCH } from "@/lib/siteContent";
+import { PILLAR_ICONS } from "@/components/ui/ProductIcons";
 
 /** Intro panel for the horizontal filmstrip (pitch). */
 export function HomePitchIntro(): ReactElement {
@@ -40,6 +39,7 @@ type FilmCard = {
   tags: string[];
   href: string;
   tone?: "dark" | "light";
+  iconIndex?: number;
 };
 
 const PILLAR_CARDS: FilmCard[] = PILLARS.map((p, i) => ({
@@ -51,6 +51,7 @@ const PILLAR_CARDS: FilmCard[] = PILLARS.map((p, i) => ({
   tags: ["Platform", "AI Twin"],
   href: "/services",
   tone: "dark" as const,
+  iconIndex: i,
 }));
 
 const STAT_CARDS: FilmCard[] = [
@@ -99,6 +100,11 @@ export function HomeFilmCard({
   card: FilmCard;
   low?: boolean;
 }): ReactElement {
+  const Icon =
+    typeof card.iconIndex === "number"
+      ? PILLAR_ICONS[card.iconIndex % PILLAR_ICONS.length]
+      : null;
+
   return (
     <article
       className={`home-work-slide home-work-slide--panel home-work-slide--${card.tone ?? "dark"} ${
@@ -109,6 +115,11 @@ export function HomeFilmCard({
     >
       <div className="home-work-slide-media">
         <div className="home-work-slide-media-inner">
+          {Icon ? (
+            <div className="mb-3 inline-flex text-gold">
+              <Icon className="h-8 w-8" />
+            </div>
+          ) : null}
           <p className="home-work-slide-label">{card.metricLabel}</p>
           <p className="home-work-slide-metric">{card.metric}</p>
         </div>

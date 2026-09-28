@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { navAccents, themeFromPath } from "@/lib/pageThemes";
 import ThemeToggle from "@/components/ThemeToggle";
+import BrandLogo from "@/components/BrandLogo";
 import { APP_URL, NAV_LINKS } from "@/lib/siteContent";
+import { trackBookDemo } from "@/lib/analytics";
 
 const SIGN_IN_URL = `${APP_URL}/sign-in`;
-import { trackBookDemo } from "@/lib/analytics";
 
 const links = NAV_LINKS;
 
@@ -64,19 +64,12 @@ export default function Nav() {
       }`}
     >
       <div className="mx-auto grid max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-2 px-4 py-3.5 sm:gap-3 sm:px-6 lg:px-8">
-        <Link href="/" className="flex min-w-0 shrink-0 items-center gap-2.5 no-underline">
-          <Image
-            src="/logo.png"
-            alt="ArQonnect"
-            width={32}
-            height={32}
-            className="h-8 w-auto"
-          />
-          <span
-            className={`truncate text-[15px] font-semibold tracking-tight ${overMedia ? "text-nav-media" : "text-text"}`}
-          >
-            ArQonnect
-          </span>
+        <Link
+          href="/"
+          className="flex min-w-0 shrink-0 items-center no-underline"
+          aria-label="ArQonnect home"
+        >
+          <BrandLogo size="nav" priority />
         </Link>
 
         <nav
