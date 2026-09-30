@@ -2,6 +2,7 @@
 
 import { useMemo, useState, type FormEvent, type ReactElement } from "react";
 import { trackFormStart, trackFormSubmit } from "@/lib/analytics";
+import { SITE } from "@/lib/siteContent";
 
 const SERVICES = [
   "Unified inbox",
@@ -105,7 +106,7 @@ export default function MultiStepLeadForm({ className = "" }: Props): ReactEleme
         payload.message || "(no message)",
       ].join("\n")
     );
-    window.location.href = `mailto:hello@arqonnect.io?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
     setStep("done");
   };
 

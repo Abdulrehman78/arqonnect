@@ -4,10 +4,14 @@
 
 export const APP_URL = "https://app.arqonnect.io";
 
+/** When false, nav hides Pricing and plan cards are not shown. */
+export const SHOW_PRICING_PLANS = false;
+
 export const SITE = {
   name: "ArQonnect",
   tagline: "AI Twin Platform for customer conversations",
-  email: "hello@arqonnect.io",
+  /** Demo booking / sales inbox */
+  email: "abdulrehman@arqonnect.io",
   location: "Lahore, Pakistan",
   footerBlurb:
     "ArQonnect helps businesses respond consistently, organize customer relationships and keep people in control.",
@@ -17,7 +21,6 @@ export const NAV_LINKS = [
   { href: "/process", label: "How it works" },
   { href: "/services", label: "Services" },
   { href: "/demo", label: "Demo" },
-  { href: "/pricing", label: "Pricing" },
   { href: "/faq", label: "FAQ" },
 ] as const;
 
@@ -26,7 +29,7 @@ export const HERO = {
   title: "Every customer message, one inbox",
   sub: "answered by AI you control.",
   body: "ArQonnect helps a business manage customer messages from WhatsApp, Instagram, Facebook Messenger and its website in one shared inbox. The AI answers using business-approved information, follows your tone and rules, and transfers to a person whenever confidence is low or the customer requests human help.",
-  primaryCta: { href: "/pricing", label: "See plans & pricing" },
+  primaryCta: { href: "/contact", label: "Book a demo" },
   secondaryCta: { href: "/process", label: "How it works" },
 } as const;
 
@@ -417,7 +420,7 @@ export const FINAL_CTA = {
   body: "See your own business knowledge answering real customer questions — in a live demo tailored to your channels, your tone and your booking flow.",
   note: "Setup fee waived or discounted with an annual commitment.",
   primary: { href: "/contact", label: "Book a demo" },
-  secondary: { href: "/pricing", label: "Compare plans" },
+  secondary: { href: "/process", label: "How it works" },
 } as const;
 
 export const PROVIDE = {

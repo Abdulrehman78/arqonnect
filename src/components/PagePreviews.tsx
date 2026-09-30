@@ -59,16 +59,16 @@ const previews: Preview[] = [
     accent: "#EAA46B",
   },
   {
-    href: "/pricing",
+    href: "/contact",
     icon: "pricing",
-    eyebrow: "Pricing",
-    title: "$97/month replaces $1,600 of tools.",
+    eyebrow: "Demo",
+    title: "Custom quotes after a scoped demo.",
     description:
-      "Transparent, flat pricing for the full stack. Use the calculator to see your exact monthly cost before you talk to anyone.",
+      "We do not publish fixed plan cards right now. Book a demo and we will scope channels, Twin setup, and growth services to your stack.",
     bullets: [
-      "One flat rate, no hidden per-seat fees",
-      "Live cost calculator",
-      "Cancel anytime, no lock-in contracts",
+      "No credit card for the demo",
+      "Written quote after scoping",
+      "Talk to abdulrehman@arqonnect.io",
     ],
     accent: "#EAA46B",
   },

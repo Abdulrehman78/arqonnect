@@ -351,7 +351,7 @@ export default function Blog() {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <BtnPrimary href="/contact">Book a Demo →</BtnPrimary>
-              <BtnGhost href="/pricing">See pricing</BtnGhost>
+              <BtnGhost href="/contact">Book a demo</BtnGhost>
             </div>
             <p className="mt-6 text-sm text-text-dimmer">
               Or skim the{" "}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Section } from "@/components/ui/PageSection";
 import { FadeUp } from "@/components/ui/Motion";
 import MultiStepLeadForm from "@/components/forms/MultiStepLeadForm";
+import { SITE } from "@/lib/siteContent";
 
 export default function CtaContact() {
   return (
@@ -51,10 +52,10 @@ export default function CtaContact() {
               Try the Live Demo
             </Link>
             <a
-              href="mailto:hello@arqonnect.io"
+              href={`mailto:${SITE.email}`}
               className="inline-flex items-center rounded-full border border-line bg-panel/60 px-5 py-2.5 text-sm font-semibold text-text no-underline transition-all hover:border-accent/40"
             >
-              hello@arqonnect.io
+              {SITE.email}
             </a>
           </div>
         </FadeUp>

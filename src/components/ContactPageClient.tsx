@@ -33,8 +33,8 @@ function ContactHook(): ReactElement {
           <a href="#book" className="story-cta-primary" data-magnetic onClick={() => trackBookDemo("contact_banner")}>
             Book a demo →
           </a>
-          <Link href="/pricing" className="story-cta-ghost" data-cursor="view">
-            Compare plans
+          <Link href="/process" className="story-cta-ghost" data-cursor="view">
+            How it works
           </Link>
         </div>
         <p className="mt-6 text-center text-sm text-text-dim" data-reveal>

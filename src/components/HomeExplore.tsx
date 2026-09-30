@@ -35,11 +35,11 @@ const platform: Card[] = [
       "Real deployments, real numbers — see what ArQonnect changed for clients across healthcare, real estate and ecommerce.",
   },
   {
-    href: "/pricing",
+    href: "/contact",
     icon: "pricing",
-    label: "Pricing",
+    label: "Book a demo",
     highlight:
-      "One flat rate replaces $1,600+ of separate tools. Calculate your exact monthly cost.",
+      "Custom quotes after a scoped demo — no public plan cards. Tell us your channels and we will map the build.",
   },
   {
     href: "/enterprise",

@@ -56,8 +56,8 @@ export default function FaqPageClient() {
             <Link href="/contact" className="story-cta-primary">
               Book a demo →
             </Link>
-            <Link href="/pricing" className="story-cta-ghost">
-              Compare plans
+            <Link href="/contact" className="story-cta-ghost">
+              Book a demo
             </Link>
           </div>
         </RevealOnScroll>

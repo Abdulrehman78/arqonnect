@@ -183,10 +183,10 @@ export default function Faq() {
               Book a Demo →
             </Link>
             <Link
-              href="/pricing"
+              href="/contact"
               className="inline-flex items-center rounded-full border border-line bg-panel/60 px-7 py-3.5 text-sm font-semibold text-text backdrop-blur-sm transition-all hover:border-cyan/40 no-underline"
             >
-              See pricing
+              Book a demo
             </Link>
           </div>
         </FadeUp>
