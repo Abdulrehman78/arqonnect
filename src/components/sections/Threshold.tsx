@@ -60,8 +60,8 @@ export default function Threshold(): React.ReactElement {
             <span className="banner-heading-muted">Every channel.</span>
           </h2>
           <p className="room-body mx-auto mt-4 max-w-xl text-base leading-relaxed sm:text-lg">
-            Keep scrolling — Phase 0 and Phase 1 open into twenty-one pieces of the
-            AI Twin Platform: one inbox that never drops a customer.
+            Keep scrolling — twenty-one pieces of the AI Twin Platform open up:
+            one inbox that never drops a customer.
           </p>
         </div>
 

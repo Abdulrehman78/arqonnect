@@ -70,7 +70,7 @@ const STAT_CARDS: FilmCard[] = [
     metric: "7",
     title: "Languages supported",
     line: "Auto-detect and reply in the customer's language.",
-    tags: ["Phase 1", "RTL ready"],
+    tags: ["6 languages", "RTL ready"],
     href: "/faq",
   },
   {

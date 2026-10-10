@@ -31,7 +31,7 @@ export const SERVICES_STORY_META: HomePanelMeta[] = [
     id: "threshold",
     eyebrow: "Services",
     title: "The product",
-    sub: "Phase 0 and Phase 1",
+    sub: "One complete platform",
     tone: "dark",
   },
   {
@@ -44,8 +44,8 @@ export const SERVICES_STORY_META: HomePanelMeta[] = [
   {
     id: "capabilities",
     eyebrow: "Capabilities",
-    title: "By phase",
-    sub: "Platform then Twin",
+    title: "Full platform",
+    sub: "Inbox, Twin, CRM, booking",
     tone: "dark",
   },
   {

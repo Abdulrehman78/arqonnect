@@ -258,7 +258,7 @@ export const DEMO_FLOW = [
   "Open the automatically created contact and its conversation history.",
   "Show Business Twin settings: services, tone, hours and reply restrictions.",
   "Show how an admin uploads or updates approved knowledge.",
-  "In Phase 1, demonstrate a real calendar slot being offered and confirmed.",
+  "Demonstrate a real calendar slot being offered and confirmed.",
 ] as const;
 
 export const VALUE_CARDS = [
@@ -280,7 +280,7 @@ export const VALUE_CARDS = [
   },
   {
     title: "Multilingual",
-    body: "Detects the customer's language and replies in the same one — up to six languages in Phase 1.",
+    body: "Detects the customer's language and replies in the same one — up to six languages.",
   },
   {
     title: "Self-service updates",

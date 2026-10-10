@@ -10,9 +10,13 @@ export const SHOW_PRICING_PLANS = false;
 export const SITE = {
   name: "ArQonnect",
   tagline: "AI Twin Platform for customer conversations",
-  /** Demo booking / sales inbox */
-  email: "abdulrehman@arqonnect.io",
-  location: "Lahore, Pakistan",
+  /** Support / demo inbox */
+  email: "Support@arqonnect.io",
+  phone: "+923065101041",
+  phoneDisplay: "92306-5101041",
+  whatsappUrl: "https://wa.me/923065101041",
+  address: "4A, R Block Johar Town, Lahore",
+  location: "4A, R Block Johar Town, Lahore",
   footerBlurb:
     "ArQonnect helps businesses respond consistently, organize customer relationships and keep people in control.",
 } as const;
@@ -138,11 +142,11 @@ export const HOW_IT_WORKS = {
 export const FEATURES = {
   eyebrow: "Services",
   title: "What the product includes",
-  lead: "Phase 0 creates the branded communication platform. Phase 1 adds the complete Business Twin, CRM and booking experience.",
+  lead: "The complete AI Twin Platform: branded inbox, Business Twin, CRM and booking — delivered as one product.",
   phases: [
     {
-      id: "phase-0",
-      label: "Phase 0",
+      id: "platform",
+      label: "Platform",
       title: "Branded communication platform",
       items: [
         {
@@ -184,8 +188,8 @@ export const FEATURES = {
       ],
     },
     {
-      id: "phase-1",
-      label: "Phase 1",
+      id: "twin",
+      label: "Business Twin",
       title: "AI Business Twin & operating tools",
       items: [
         {
@@ -252,7 +256,7 @@ export const DEMO_FLOW = {
     "Open the automatically created contact and its conversation history.",
     "Show Business Twin settings: services, tone, hours and reply restrictions.",
     "Show how an admin uploads or updates approved knowledge.",
-    "In Phase 1, demonstrate a real calendar slot being offered and confirmed.",
+    "Demonstrate a real calendar slot being offered and confirmed.",
   ],
 } as const;
 
@@ -278,7 +282,7 @@ export const VALUE = {
     },
     {
       title: "Speak their language",
-      body: "Detects the customer's language and replies in the same one — up to six languages after Phase 1.",
+      body: "Detects the customer's language and replies in the same one — up to six languages.",
     },
     {
       title: "Chats into booked appointments",
@@ -312,35 +316,35 @@ export const VALUE = {
 } as const;
 
 export const PRICING = {
-  eyebrow: "SaaS pricing",
-  title: "Direct-to-client monthly plans",
-  lead: "Setup fee for all tiers: $500–$2,000 one-time, waived or discounted for annual commitment.",
+  eyebrow: "Engagement pricing",
+  title: "Custom quotes after a scoped demo",
+  lead: "Flexible and itinerary-based. We scope channels, Twin setup and growth services with you — no fixed public plan cards.",
   plans: [
     {
       id: "starter",
-      name: "Starter",
-      price: "$499–$599/mo",
+      name: "Starter scope",
+      price: "Custom quote",
       audience: "Solo-ish practices testing the water",
       popular: false,
       channels: "Web widget only",
       languages: "1 language (client's choice)",
-      included: "1 location, ~500 conversations/mo, standard booking integration",
+      included: "1 location, conversation volume scoped on demo, standard booking integration",
     },
     {
       id: "growth",
-      name: "Growth",
-      price: "$699–$899/mo",
+      name: "Growth scope",
+      price: "Custom quote",
       audience: "Core ICP — 5–50 employee clinics/brokerages",
       popular: true,
       channels: "Web widget + WhatsApp",
       languages: "3 languages",
       included:
-        "Up to 3 locations, ~2,000 conversations/mo, CRM sync (1 CRM), basic reporting dashboard",
+        "Up to 3 locations, volume scoped on demo, CRM sync (1 CRM), basic reporting dashboard",
     },
     {
       id: "scale",
-      name: "Scale",
-      price: "$1,500–$2,500/mo",
+      name: "Scale scope",
+      price: "Custom quote",
       audience: "Multi-location chains, larger brokerages",
       popular: false,
       channels: "All 4 channels (Web + WhatsApp + Instagram + Messenger)",
@@ -350,32 +354,32 @@ export const PRICING = {
     },
   ],
   addons: [
-    { label: "Additional channel beyond tier's set", price: "+$100–$200/mo each" },
-    { label: "Additional language beyond tier's set", price: "+$50–$100/mo each" },
-    { label: "CRM automation build-out", price: "+$400–$800/mo" },
-    { label: "Additional locations", price: "+$100–$150/mo each" },
+    { label: "Additional channel beyond base scope", price: "Quoted on demo" },
+    { label: "Additional language beyond base scope", price: "Quoted on demo" },
+    { label: "CRM automation build-out", price: "Quoted on demo" },
+    { label: "Additional locations", price: "Quoted on demo" },
   ],
   activation: {
     title: "One-time activation",
-    lead: "Project-based, no recurring SaaS fee. Optional maintenance retainer after the support window ends: $200–$500/mo.",
+    lead: "Project-based and itinerary-scoped. Optional maintenance retainer after the support window — priced on the demo.",
     tiers: [
       {
         name: "Basic activation",
-        price: "$2,000–$3,500",
+        price: "Custom quote",
         channels: "Web widget only",
         languages: "1 language",
         includes: "Bot build + training + integration, 30-day support",
       },
       {
         name: "Full activation",
-        price: "$5,000–$8,000",
+        price: "Custom quote",
         channels: "Web widget + WhatsApp",
         languages: "3 languages",
         includes: "Bot + CRM integration, 60-day support",
       },
       {
         name: "Enterprise activation",
-        price: "$10,000–$15,000+",
+        price: "Custom quote",
         channels: "All 4 channels",
         languages: "All 6 languages",
         includes: "Multi-location rollout, custom workflows, dedicated onboarding, 90-day support",
@@ -402,7 +406,7 @@ export const FAQ = {
     },
     {
       q: "Which languages does it support?",
-      a: "Phase 0 supports English, Urdu and Roman Urdu. Phase 1 expands to six languages — English, Urdu, Roman Urdu, Arabic, French and Spanish — with automatic detection and same-language replies, including Arabic right-to-left display.",
+      a: "ArQonnect supports six languages — English, Urdu, Roman Urdu, Arabic, French and Spanish — with automatic detection and same-language replies, including Arabic right-to-left display.",
     },
     {
       q: "Do our customers need to install anything?",

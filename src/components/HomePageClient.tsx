@@ -25,6 +25,8 @@ import {
 import { HERO_VIDEO, MARKETS_VIDEO } from "@/lib/brand";
 import { HOME_PANEL_META, HOME_STORY_META } from "@/lib/homePanels";
 import { COMPARISON, VALUE } from "@/lib/siteContent";
+import Team from "@/components/sections/Team";
+import GlobalPresence from "@/components/sections/GlobalPresence";
 
 const CHANNEL_TICKER = [
   "WhatsApp",
@@ -198,6 +200,8 @@ export default function HomePageClient() {
       <InfiniteMarquee items={CHANNEL_TICKER} speedSec={28} />
       <HomeStoryScroll chapters={buildStoryChapters()} label="Product story" />
       <InfiniteMarquee items={VALUE_TICKER} speedSec={36} />
+      <Team />
+      <GlobalPresence />
     </main>
   );
 }

@@ -24,7 +24,7 @@ const panels = Object.fromEntries(
       return {
         title,
         desc: room?.body ?? "",
-        tag: PHASE_0_ROOMS.some((r) => r.title === title) ? "Phase 0" : "Phase 1",
+        tag: "Included",
       };
     }),
   ])

@@ -45,12 +45,12 @@ type CatalogItem = {
   image: string;
 };
 
-function mapRooms(rooms: RoomCard[], phase: string, start: number): CatalogItem[] {
+function mapRooms(rooms: RoomCard[], start: number): CatalogItem[] {
   return rooms.map((room, i) => ({
-    key: `${phase}-${room.title}`,
+    key: room.title,
     index: String(start + i).padStart(2, "0"),
     room: ROOM_NAMES[room.title] ?? room.title,
-    phase,
+    phase: "Platform",
     title: room.title,
     body: room.body,
     tags: room.tags,
@@ -59,8 +59,8 @@ function mapRooms(rooms: RoomCard[], phase: string, start: number): CatalogItem[
 }
 
 const catalog = [
-  ...mapRooms(PHASE_0_ROOMS, "Phase 0", 1),
-  ...mapRooms(PHASE_1_ROOMS, "Phase 1", PHASE_0_ROOMS.length + 1),
+  ...mapRooms(PHASE_0_ROOMS, 1),
+  ...mapRooms(PHASE_1_ROOMS, PHASE_0_ROOMS.length + 1),
 ];
 
 export default function ServicesStory() {
@@ -78,8 +78,8 @@ export default function ServicesStory() {
             <span className="ai-title-line" />
           </h2>
           <p className="mt-3 text-base text-text-dim">
-            Phase 0 sets up the branded communication platform. Phase 1 adds the full
-            Business Twin, CRM and booking experience on top of it.
+            Branded inbox, Business Twin, CRM and booking — the full platform,
+            delivered as one product.
           </p>
         </FadeUp>
 
@@ -103,7 +103,7 @@ export default function ServicesStory() {
                       {s.index} · {s.room}
                     </span>
                     <span className="font-mono text-[10px] uppercase tracking-wider text-text-dimmer">
-                      {s.phase}
+                      Included
                     </span>
                   </div>
                   <h3 className="mt-3 text-lg font-semibold tracking-tight text-text">

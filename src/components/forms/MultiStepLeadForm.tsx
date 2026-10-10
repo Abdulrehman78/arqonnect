@@ -9,8 +9,8 @@ const SERVICES = [
   "WhatsApp / Instagram / Messenger",
   "AI Business Twin",
   "CRM & booking",
-  "White-label / Phase 0",
-  "Full Phase 1 rollout",
+  "White-label platform",
+  "Full Business Twin rollout",
 ];
 
 const BUDGETS = [

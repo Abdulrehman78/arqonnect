@@ -95,13 +95,22 @@ function ContactBook(): ReactElement {
         >
           <div>
             <p className="text-sm text-text-dim">
-              {SITE.location}
+              {SITE.address}
               <br />
               <a
                 href={`mailto:${SITE.email}`}
                 className="text-accent no-underline hover:underline"
               >
                 {SITE.email}
+              </a>
+              <br />
+              <a
+                href={SITE.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-2 text-accent no-underline hover:underline"
+              >
+                WhatsApp · {SITE.phoneDisplay}
               </a>
             </p>
             <div className="mt-8 flex flex-wrap gap-3">

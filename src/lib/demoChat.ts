@@ -1,4 +1,4 @@
-/** Shared knowledge + reply helpers for the hero demo chat — aligned to unified-agent-ai.lovable.app */
+/** Shared knowledge + reply helpers for the hero demo chat. */
 
 export const DEMO_SYSTEM_PROMPT = `You are Ava, ArQonnect's friendly demo AI assistant on the marketing site.
 Answer helpfully, clearly, and briefly (2–4 sentences unless the user asks for detail).
@@ -8,10 +8,10 @@ About ArQonnect:
 - AI Twin Platform for customer conversations: one shared inbox for WhatsApp, Instagram, Facebook Messenger and website chat.
 - AI answers using business-approved knowledge only — no invented facts. Human handoff when confidence is low or the customer asks for a person.
 - Business Twin: tone, services, hours, pricing rules, and do-not-reply topics controlled by staff.
-- CRM for contacts, deals, tasks and appointments; booking via Google Calendar or Cal.com in Phase 1.
-- Languages: Phase 0 English, Urdu, Roman Urdu; Phase 1 adds Arabic, French, Spanish.
-- SaaS plans: Starter $499–$599/mo, Growth $699–$899/mo (most popular), Scale $1,500–$2,500/mo. Setup fee $500–$2,000 one-time, waived/discounted annually.
-- CTA: offer to book a demo at /contact. Pricing is custom after demo (no public plan cards).
+- CRM for contacts, deals, tasks and appointments; booking via Google Calendar or Cal.com.
+- Languages: English, Urdu, Roman Urdu, Arabic, French and Spanish with auto-detection and same-language replies.
+- Pricing is custom and flexible based on channels, itineraries and scope. Never quote fixed public plan prices. Invite them to book a demo for a tailored quote.
+- CTA: offer to book a demo at /contact.
 
 If asked something unrelated, answer briefly then steer back to how ArQonnect can help.
 Never invent private customer data. Do not claim you already booked a meeting — invite them to schedule.`;
@@ -22,7 +22,7 @@ const KNOWLEDGE: KnowledgeHit[] = [
   {
     keys: ["price", "pricing", "cost", "how much", "$", "fee", "plan", "subscription", "starter", "growth", "scale"],
     answer:
-      "SaaS plans are Starter ($499–$599/mo, web widget), Growth ($699–$899/mo, web + WhatsApp — most popular), and Scale ($1,500–$2,500/mo, all four channels). Setup is $500–$2,000 one-time, often waived or discounted with annual commitment. Want the pricing page?",
+      "Pricing is custom and flexible based on your channels, itineraries and scope. We do not publish fixed plan cards. Book a short demo and we will map a quote to your stack.",
   },
   {
     keys: ["book", "demo", "meeting", "schedule", "calendar", "call me", "talk to"],
@@ -42,12 +42,12 @@ const KNOWLEDGE: KnowledgeHit[] = [
   {
     keys: ["crm", "hubspot", "salesforce", "pipeline", "lead", "contact"],
     answer:
-      "Conversations create or update contacts with history. Phase 1 adds full CRM (deals, tasks, pipelines) and optional two-way sync with HubSpot or Salesforce using your own subscription.",
+      "Conversations create or update contacts with history. Full CRM covers deals, tasks and pipelines, with optional two-way sync with HubSpot or Salesforce using your own subscription.",
   },
   {
     keys: ["language", "languages", "urdu", "arabic", "hindi", "spanish", "french"],
     answer:
-      "Phase 0: English, Urdu and Roman Urdu with auto-detection. Phase 1 expands to six languages including Arabic (RTL), French and Spanish — same-language replies.",
+      "English, Urdu, Roman Urdu, Arabic (RTL), French and Spanish with automatic detection and same-language replies.",
   },
   {
     keys: ["who", "what is arq", "what do you", "company", "about", "twin"],
@@ -62,7 +62,7 @@ const KNOWLEDGE: KnowledgeHit[] = [
   {
     keys: ["booking", "appointment", "calendar", "cal.com"],
     answer:
-      "Phase 1 offers live calendar slots from Google Calendar or Cal.com inside the chat — confirm, reschedule or cancel without leaving the conversation.",
+      "Live calendar slots from Google Calendar or Cal.com inside the chat — confirm, reschedule or cancel without leaving the conversation.",
   },
   {
     keys: ["invent", "hallucin", "approved", "knowledge", "faq", "truth"],
@@ -72,7 +72,7 @@ const KNOWLEDGE: KnowledgeHit[] = [
   {
     keys: ["hello", "hi ", "hey", "good morning", "good afternoon"],
     answer:
-      "Hey! I'm Ava. Ask me about the unified inbox, Business Twin, pricing, languages, or handoff — I'll keep it straight.",
+      "Hey! I'm Ava. Ask me about the unified inbox, Business Twin, languages, handoff, or how pricing is scoped — I'll keep it straight.",
   },
 ];
 
@@ -91,7 +91,7 @@ export function localDemoReply(
 ): string {
   const t = userText.toLowerCase().trim();
   if (!t) {
-    return "Go ahead and type a question — pricing, inbox, languages, handoff, whatever you need.";
+    return "Go ahead and type a question — inbox, languages, handoff, booking, whatever you need.";
   }
 
   const scored = KNOWLEDGE.map((hit) => ({ hit, score: scoreHit(t, hit) }))
@@ -114,5 +114,5 @@ export function localDemoReply(
   const priorUser = history.filter((m) => m.role === "user").length;
   const opener = priorUser > 2 ? "Got it." : "Good question.";
 
-  return `${opener} From what you asked — “${userText.slice(0, 120)}${userText.length > 120 ? "…" : ""}” — ArQonnect keeps those customer messages in one inbox with grounded AI replies and human handoff. Tell me whether you care more about channels, pricing, or Business Twin control — or book a live demo and we'll map it to your business.`;
+  return `${opener} From what you asked — “${userText.slice(0, 120)}${userText.length > 120 ? "…" : ""}” — ArQonnect keeps those customer messages in one inbox with grounded AI replies and human handoff. Tell me whether you care more about channels, booking, or Business Twin control — or book a live demo and we'll map it to your business.`;
 }

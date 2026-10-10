@@ -68,7 +68,7 @@ const previews: Preview[] = [
     bullets: [
       "No credit card for the demo",
       "Written quote after scoping",
-      "Talk to abdulrehman@arqonnect.io",
+      "Talk to Support@arqonnect.io",
     ],
     accent: "#EAA46B",
   },

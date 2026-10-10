@@ -1,4 +1,4 @@
-/** Shared language list for homepage rail — Phase 1 languages. */
+/** Shared language list for homepage rail. */
 export type Language = {
   code: string;
   name: string;
