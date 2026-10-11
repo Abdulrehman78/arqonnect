@@ -1,0 +1,28 @@
+# ArQonnect
+
+> ArQonnect is an AI twin platform for customer conversations. Businesses manage WhatsApp, Instagram, Messenger, and website chat in one inbox, answered by AI they control, with human handoff built in.
+
+## Product
+- Homepage: https://www.arqonnect.io/
+- How it works: https://www.arqonnect.io/process
+- Services: https://www.arqonnect.io/services
+- Live demo: https://www.arqonnect.io/demo
+- Pricing: https://www.arqonnect.io/pricing
+- FAQ: https://www.arqonnect.io/faq
+- Book a demo: https://www.arqonnect.io/contact
+
+## App
+- Sign in: https://app.arqonnect.io/sign-in
+- Product app: https://app.arqonnect.io/app
+
+## Legal
+- Privacy: https://www.arqonnect.io/legal/privacy
+- Terms: https://www.arqonnect.io/legal/terms
+- Cookies: https://www.arqonnect.io/legal/cookies
+- Security: https://www.arqonnect.io/legal/security
+- DPA: https://www.arqonnect.io/legal/dpa
+- Data deletion: https://www.arqonnect.io/legal/data-deletion
+
+## Contact
+- Email: abdulrehman@arqonnect.io
+- Location: Lahore, Pakistan

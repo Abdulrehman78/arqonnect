@@ -9,7 +9,8 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 import CookieNotice from "@/components/CookieNotice";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import GsapProvider from "@/components/ui/GsapProvider";
-import { PRIORITY_VIDEO } from "@/lib/preloadVideos";
+
+const SITE_URL = "https://www.arqonnect.io";
 
 export const metadata: Metadata = {
   title: {
@@ -18,7 +19,28 @@ export const metadata: Metadata = {
   },
   description:
     "ArQonnect helps businesses manage WhatsApp, Instagram, Messenger and website chat in one inbox — answered by AI you control, with human handoff built in.",
-  metadataBase: new URL("https://arqonnect.io"),
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "ArQonnect",
+    url: SITE_URL,
+    title: "ArQonnect — AI Twin Platform for Customer Conversations",
+    description:
+      "One inbox for WhatsApp, Instagram, Messenger and web chat. AI replies you control, with human handoff.",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ArQonnect — AI Twin Platform for Customer Conversations",
+    description:
+      "One inbox for WhatsApp, Instagram, Messenger and web chat. AI replies you control, with human handoff.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 };
 
 export default function RootLayout({
@@ -44,16 +66,9 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/icon.svg?v=4" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/logo.png?v=4" />
-        <link rel="shortcut icon" href="/icon.svg?v=4" />
-        <link
-          rel="preload"
-          href={PRIORITY_VIDEO}
-          as="video"
-          type="video/mp4"
-          fetchPriority="high"
-        />
+        <link rel="icon" href="/icon.svg?v=5" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="shortcut icon" href="/icon.svg?v=5" />
       </head>
       <body className="relative">
         <SmoothScroll />

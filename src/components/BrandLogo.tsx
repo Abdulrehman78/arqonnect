@@ -6,7 +6,7 @@
 import Image from "next/image";
 
 /** Source pixel size of /logo.png (keep in sync when the asset is replaced). */
-const INTRINSIC = { w: 2661, h: 1636 } as const;
+const INTRINSIC = { w: 640, h: 393 } as const;
 
 const SIZES = {
   /** Compact header — readable but does not inflate bar height */
