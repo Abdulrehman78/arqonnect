@@ -10,8 +10,8 @@ About ArQonnect:
 - Business Twin: tone, services, hours, pricing rules, and do-not-reply topics controlled by staff.
 - CRM for contacts, deals, tasks and appointments; booking via Google Calendar or Cal.com.
 - Languages: English, Urdu, Roman Urdu, Arabic, French and Spanish with auto-detection and same-language replies.
-- Pricing is custom and flexible based on channels, itineraries and scope. Never quote fixed public plan prices. Invite them to book a demo for a tailored quote.
-- CTA: offer to book a demo at /contact.
+- Pricing is custom and flexible based on channels, itineraries and scope. Never quote fixed public plan prices. Invite them to book a meeting on Cal.com for a tailored quote.
+- CTA: offer to book a meeting at https://cal.com/abdul-rehman/30min (opens in a new tab). Support email: Support@arqonnect.io.
 
 If asked something unrelated, answer briefly then steer back to how ArQonnect can help.
 Never invent private customer data. Do not claim you already booked a meeting — invite them to schedule.`;
@@ -22,12 +22,12 @@ const KNOWLEDGE: KnowledgeHit[] = [
   {
     keys: ["price", "pricing", "cost", "how much", "$", "fee", "plan", "subscription", "starter", "growth", "scale"],
     answer:
-      "Pricing is custom and flexible based on your channels, itineraries and scope. We do not publish fixed plan cards. Book a short demo and we will map a quote to your stack.",
+      "Pricing is custom and flexible based on your channels, itineraries and scope. We do not publish fixed plan cards. Book a 30-minute meeting on Cal.com (https://cal.com/abdul-rehman/30min) and we will map a quote to your stack.",
   },
   {
     keys: ["book", "demo", "meeting", "schedule", "calendar", "call me", "talk to"],
     answer:
-      "You can book a live demo tailored to your channels, tone and booking flow from the Book a demo page. We'll show grounded replies and human handoff on your use case.",
+      "Book a live 30-minute meeting on Cal.com: https://cal.com/abdul-rehman/30min. We will tailor the demo to your channels, tone and booking flow. Prefer email? Support@arqonnect.io.",
   },
   {
     keys: ["human", "handoff", "person", "agent", "transfer", "unsure", "confident"],

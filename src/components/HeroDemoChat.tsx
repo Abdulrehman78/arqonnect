@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { AVA_WELCOME } from "@/lib/siteContent";
+import { AVA_WELCOME, CAL_BOOKING_URL } from "@/lib/siteContent";
 
 type Msg = { id: string; who: "user" | "bot" | "typing"; text: string };
 
@@ -396,9 +396,14 @@ export default function HeroDemoChat({
           </motion.form>
           <p className="mt-2.5 text-center text-[10px] tracking-wide text-text/50">
             Demo agent ·{" "}
-            <Link href="/contact" className="text-electric-2/80 no-underline hover:text-electric-2">
+            <a
+              href={CAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-electric-2/80 no-underline hover:text-electric-2"
+            >
               Book a human demo
-            </Link>
+            </a>
             {" · "}
             <Link href="/demo" className="text-electric-2/80 no-underline hover:text-electric-2">
               Full demo

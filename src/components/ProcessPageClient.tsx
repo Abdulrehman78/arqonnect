@@ -4,6 +4,7 @@ import Link from "next/link";
 import RoomVideoBackdrop from "@/components/ui/RoomVideoBackdrop";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import { BookDemoLink } from "@/components/BookDemoLink";
 import { InboxFlowDiagram, PROCESS_ICONS } from "@/components/ui/ProductIcons";
 import { HERO_VIDEO, MARKETS_VIDEO } from "@/lib/brand";
 import { HOW_IT_WORKS } from "@/lib/siteContent";
@@ -74,9 +75,9 @@ export default function ProcessPageClient() {
             </h2>
           </header>
           <div className="story-cta-actions" data-reveal>
-            <Link href="/contact" className="story-cta-primary">
+            <BookDemoLink source="process_page" className="story-cta-primary">
               Book a demo →
-            </Link>
+            </BookDemoLink>
             <Link href="/demo" className="story-cta-ghost">
               Demo flow
             </Link>

@@ -150,6 +150,16 @@ export function BrowserFrame({
   );
 }
 
+function isExternalHref(href: string): boolean {
+  return /^https?:\/\//i.test(href);
+}
+
+const primaryBtnClass =
+  "ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-6 py-3 text-sm font-semibold text-[#0B0F12] transition-all hover:bg-[#C87D46] hover:shadow-[0_0_24px_rgba(234,164,107,0.45)] no-underline";
+
+const ghostBtnClass =
+  "inline-flex items-center rounded-full border border-line bg-panel/60 px-6 py-3 text-sm font-semibold text-text backdrop-blur-sm transition-all hover:border-gold/50 hover:text-gold no-underline";
+
 export function BtnPrimary({
   href,
   children,
@@ -159,14 +169,18 @@ export function BtnPrimary({
   children: React.ReactNode;
   className?: string;
 }): React.ReactElement {
+  const cls = `${primaryBtnClass} ${className}`;
   return (
     <HoverLift>
-      <Link
-        href={href}
-        className={`ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-6 py-3 text-sm font-semibold text-[#0B0F12] transition-all hover:bg-[#C87D46] hover:shadow-[0_0_24px_rgba(234,164,107,0.45)] no-underline ${className}`}
-      >
-        {children}
-      </Link>
+      {isExternalHref(href) ? (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+          {children}
+        </a>
+      ) : (
+        <Link href={href} className={cls}>
+          {children}
+        </Link>
+      )}
     </HoverLift>
   );
 }
@@ -180,14 +194,18 @@ export function BtnGhost({
   children: React.ReactNode;
   className?: string;
 }): React.ReactElement {
+  const cls = `${ghostBtnClass} ${className}`;
   return (
     <HoverLift>
-      <Link
-        href={href}
-        className={`inline-flex items-center rounded-full border border-line bg-panel/60 px-6 py-3 text-sm font-semibold text-text backdrop-blur-sm transition-all hover:border-gold/50 hover:text-gold no-underline ${className}`}
-      >
-        {children}
-      </Link>
+      {isExternalHref(href) ? (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+          {children}
+        </a>
+      ) : (
+        <Link href={href} className={cls}>
+          {children}
+        </Link>
+      )}
     </HoverLift>
   );
 }

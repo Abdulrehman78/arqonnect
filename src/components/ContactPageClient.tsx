@@ -7,9 +7,9 @@ import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import AiAmbient from "@/components/ui/AiAmbient";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import MultiStepLeadForm from "@/components/forms/MultiStepLeadForm";
+import { BookDemoLink } from "@/components/BookDemoLink";
 import { HERO_VIDEO } from "@/lib/brand";
 import { FINAL_CTA, PROVIDE, SITE } from "@/lib/siteContent";
-import { trackBookDemo } from "@/lib/analytics";
 
 function ContactHook(): ReactElement {
   return (
@@ -30,12 +30,16 @@ function ContactHook(): ReactElement {
           <p className="story-lead story-lead--center">{FINAL_CTA.body}</p>
         </header>
         <div className="story-cta-actions" data-reveal>
-          <a href="#book" className="story-cta-primary" data-magnetic onClick={() => trackBookDemo("contact_banner")}>
-            Book a demo →
+          <BookDemoLink
+            source="contact_banner"
+            className="story-cta-primary"
+            data-magnetic
+          >
+            Book a meeting on Cal.com →
+          </BookDemoLink>
+          <a href="#book" className="story-cta-ghost" data-cursor="view">
+            Prefer a written brief
           </a>
-          <Link href="/process" className="story-cta-ghost" data-cursor="view">
-            How it works
-          </Link>
         </div>
         <p className="mt-6 text-center text-sm text-text-dim" data-reveal>
           {FINAL_CTA.note}
@@ -83,11 +87,17 @@ function ContactBook(): ReactElement {
             Next step
           </p>
           <h2 className="story-heading">
-            Book a live demo
-            <span>for your channels.</span>
+            Book a live meeting
+            <span>or send a brief.</span>
           </h2>
           <p className="story-lead">{FINAL_CTA.body}</p>
         </header>
+
+        <div className="mt-8" data-reveal>
+          <BookDemoLink source="contact_book_section" className="story-cta-primary">
+            Open Cal.com booking →
+          </BookDemoLink>
+        </div>
 
         <div
           className="mt-10 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start"
@@ -98,10 +108,17 @@ function ContactBook(): ReactElement {
               {SITE.address}
               <br />
               <a
-                href={`mailto:${SITE.email}`}
+                href={`mailto:${SITE.emails.support}`}
                 className="text-accent no-underline hover:underline"
               >
-                {SITE.email}
+                {SITE.emails.support}
+              </a>
+              <br />
+              <a
+                href={`mailto:${SITE.emails.hello}`}
+                className="text-accent no-underline hover:underline"
+              >
+                {SITE.emails.hello}
               </a>
               <br />
               <a

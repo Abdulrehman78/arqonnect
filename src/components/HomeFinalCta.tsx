@@ -5,6 +5,7 @@ import RoomVideoBackdrop from "@/components/ui/RoomVideoBackdrop";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import AiAmbient from "@/components/ui/AiAmbient";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import { BookDemoLink } from "@/components/BookDemoLink";
 import { HERO_VIDEO } from "@/lib/brand";
 import { FINAL_CTA, PROVIDE } from "@/lib/siteContent";
 
@@ -30,15 +31,15 @@ export default function HomeFinalCta() {
         </header>
 
         <div className="story-cta-actions" data-reveal>
-          <Link
-            href={FINAL_CTA.primary.href}
+          <BookDemoLink
+            source="home_final_cta"
             className="story-cta-primary"
             data-cursor="book"
             data-cursor-label="Book"
             data-magnetic
           >
             {FINAL_CTA.primary.label} →
-          </Link>
+          </BookDemoLink>
           <Link href={FINAL_CTA.secondary.href} className="story-cta-ghost" data-cursor="view">
             {FINAL_CTA.secondary.label}
           </Link>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import BrandLogo from "@/components/BrandLogo";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
+import { BookDemoLink } from "@/components/BookDemoLink";
 import { APP_URL, NAV_LINKS, SITE } from "@/lib/siteContent";
 import { LEGAL_LINKS } from "@/lib/legalContent";
 
@@ -45,12 +46,12 @@ export default function Footer() {
                   {l.label}
                 </Link>
               ))}
-              <Link
-                href="/contact"
+              <BookDemoLink
+                source="footer_product"
                 className="text-sm text-text-dim no-underline transition-colors hover:text-gold"
               >
                 Book a demo
-              </Link>
+              </BookDemoLink>
               <a
                 href={`${APP_URL}/sign-in`}
                 className="text-sm text-text-dim no-underline transition-colors hover:text-gold"
@@ -84,10 +85,16 @@ export default function Footer() {
             <div className="mt-4 flex flex-col gap-2.5">
               <span className="text-sm text-text-dimmer">{SITE.address}</span>
               <a
-                href={`mailto:${SITE.email}`}
+                href={`mailto:${SITE.emails.support}`}
                 className="text-sm text-text-dim no-underline transition-colors hover:text-gold"
               >
-                {SITE.email}
+                {SITE.emails.support}
+              </a>
+              <a
+                href={`mailto:${SITE.emails.hello}`}
+                className="text-sm text-text-dim no-underline transition-colors hover:text-gold"
+              >
+                {SITE.emails.hello}
               </a>
               <a
                 href={SITE.whatsappUrl}

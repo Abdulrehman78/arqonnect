@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { FadeUp } from "@/components/ui/Motion";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
+import { CAL_BOOKING_URL } from "@/lib/siteContent";
 
 type Preview = {
   href: string;
@@ -59,14 +60,14 @@ const previews: Preview[] = [
     accent: "#EAA46B",
   },
   {
-    href: "/contact",
+    href: CAL_BOOKING_URL,
     icon: "pricing",
-    eyebrow: "Demo",
+    eyebrow: "Book a meeting",
     title: "Custom quotes after a scoped demo.",
     description:
-      "We do not publish fixed plan cards right now. Book a demo and we will scope channels, Twin setup, and growth services to your stack.",
+      "We do not publish fixed plan cards. Book 30 minutes on Cal.com and we will scope channels, Twin setup, and growth services to your stack.",
     bullets: [
-      "No credit card for the demo",
+      "Opens Cal.com in a new tab",
       "Written quote after scoping",
       "Talk to Support@arqonnect.io",
     ],
@@ -193,13 +194,25 @@ export default function PagePreviews() {
                     </li>
                   ))}
                 </ul>
-                <Link
-                  href={p.href}
-                  className="mt-7 inline-flex items-center gap-1.5 text-sm font-medium no-underline transition-transform hover:translate-x-1"
-                  style={{ color: p.accent }}
-                >
-                  Explore {p.eyebrow} <span aria-hidden="true">→</span>
-                </Link>
+                {/^https?:\/\//i.test(p.href) ? (
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-7 inline-flex items-center gap-1.5 text-sm font-medium no-underline transition-transform hover:translate-x-1"
+                    style={{ color: p.accent }}
+                  >
+                    Book a meeting <span aria-hidden="true">→</span>
+                  </a>
+                ) : (
+                  <Link
+                    href={p.href}
+                    className="mt-7 inline-flex items-center gap-1.5 text-sm font-medium no-underline transition-transform hover:translate-x-1"
+                    style={{ color: p.accent }}
+                  >
+                    Explore {p.eyebrow} <span aria-hidden="true">→</span>
+                  </Link>
+                )}
               </FadeUp>
             </div>
           ))}

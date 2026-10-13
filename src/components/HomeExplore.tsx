@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
+import { CAL_BOOKING_URL } from "@/lib/siteContent";
 
 type Card = {
   href: string;
@@ -35,11 +36,11 @@ const platform: Card[] = [
       "Real deployments, real numbers — see what ArQonnect changed for clients across healthcare, real estate and ecommerce.",
   },
   {
-    href: "/contact",
+    href: CAL_BOOKING_URL,
     icon: "pricing",
-    label: "Book a demo",
+    label: "Book a meeting",
     highlight:
-      "Custom quotes after a scoped demo — no public plan cards. Tell us your channels and we will map the build.",
+      "Schedule 30 minutes on Cal.com. Custom quotes after a scoped demo — no public plan cards.",
   },
   {
     href: "/enterprise",
@@ -122,12 +123,23 @@ function CardGrid({ items }: { items: Card[] }) {
                 {c.highlight}
               </p>
             </div>
-            <Link
-              href={c.href}
-              className="ai-link-arrow mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-electric-2 no-underline transition-transform group-hover:translate-x-1"
-            >
-              Explore <span aria-hidden="true">→</span>
-            </Link>
+            {/^https?:\/\//i.test(c.href) ? (
+              <a
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ai-link-arrow mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-electric-2 no-underline transition-transform group-hover:translate-x-1"
+              >
+                Book now <span aria-hidden="true">→</span>
+              </a>
+            ) : (
+              <Link
+                href={c.href}
+                className="ai-link-arrow mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-electric-2 no-underline transition-transform group-hover:translate-x-1"
+              >
+                Explore <span aria-hidden="true">→</span>
+              </Link>
+            )}
           </div>
         </MotionItem>
       ))}

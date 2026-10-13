@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
-import PricingPageClient from "@/components/PricingPageClient";
+import { redirect } from "next/navigation";
+import { CAL_BOOKING_URL } from "@/lib/siteContent";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "Book a demo",
   description:
-    "Direct-to-client monthly plans — Starter, Growth and Scale — plus add-ons and one-time activation.",
+    "Book a 30-minute ArQonnect demo on Cal.com. Custom quotes after a scoped meeting — no public plan cards.",
+  robots: { index: false, follow: true },
 };
 
+/** Pricing is retired — send visitors straight to Cal.com booking. */
 export default function PricingPage() {
-  return <PricingPageClient />;
+  redirect(CAL_BOOKING_URL);
 }

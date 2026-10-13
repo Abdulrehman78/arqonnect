@@ -7,9 +7,9 @@
 - How it works: https://www.arqonnect.io/process
 - Services: https://www.arqonnect.io/services
 - Live demo: https://www.arqonnect.io/demo
-- Pricing: https://www.arqonnect.io/pricing
 - FAQ: https://www.arqonnect.io/faq
-- Book a demo: https://www.arqonnect.io/contact
+- Contact: https://www.arqonnect.io/contact
+- Book a meeting (Cal.com): https://cal.com/abdul-rehman/30min
 
 ## App
 - Sign in: https://app.arqonnect.io/sign-in
@@ -24,5 +24,7 @@
 - Data deletion: https://www.arqonnect.io/legal/data-deletion
 
 ## Contact
-- Email: abdulrehman@arqonnect.io
+- Support: Support@arqonnect.io
+- General: hello@arqonnect.io
+- Compliance: Compliance@arqonnect.io
 - Location: Lahore, Pakistan

@@ -1,10 +1,12 @@
 /** Services page content aligned to arqonnect-ai-twin-services.html */
 
+import { CAL_BOOKING_URL } from "@/lib/siteContent";
+
 export const SERVICES_HERO = {
   kicker: "ArQonnect product guide",
   title: "One Twin. Every channel.",
   body: "Keep scrolling — two phases, twenty-one pieces, one inbox that never drops a customer across WhatsApp, Instagram, Messenger and web chat. Answers come from your approved knowledge. A human is one tap away.",
-  primary: { href: "/contact", label: "Book a Demo" },
+  primary: { href: CAL_BOOKING_URL, label: "Book a Demo" },
   secondary: { href: "#how-it-works", label: "See how it works" },
 } as const;
 

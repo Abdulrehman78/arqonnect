@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Section, SectionHeader } from "@/components/ui/PageSection";
 import { FadeUp } from "@/components/ui/Motion";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
+import { CAL_BOOKING_URL } from "@/lib/siteContent";
 
 type FaqItem = { q: string; a: string };
 type FaqGroup = { label: string; items: FaqItem[] };
@@ -73,7 +74,7 @@ const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "How much does ArQonnect cost?",
-        a: "Plans start with a one-time setup and a flat monthly fee that typically replaces $1,600+ of separate CRM, funnel, SMS and reporting tools with one connected system — see the full side-by-side breakdown in the pricing section above.",
+        a: "We do not publish fixed plan cards. Book a 30-minute meeting on Cal.com and we will scope setup, monthly engagement and channels to your stack. Prefer email? Support@arqonnect.io.",
       },
       {
         q: "How fast can we actually launch?",
@@ -176,17 +177,19 @@ export default function Faq() {
             no ticket queue.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/contact"
+            <a
+              href={CAL_BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-7 py-3.5 text-sm font-semibold text-[#0B0F12] transition-all hover:bg-[#C87D46] hover:shadow-[0_0_32px_rgba(234,164,107,0.4)] no-underline"
             >
-              Book a Demo →
-            </Link>
+              Book a Meeting →
+            </a>
             <Link
               href="/contact"
               className="inline-flex items-center rounded-full border border-line bg-panel/60 px-7 py-3.5 text-sm font-semibold text-text backdrop-blur-sm transition-all hover:border-cyan/40 no-underline"
             >
-              Book a demo
+              Contact form
             </Link>
           </div>
         </FadeUp>

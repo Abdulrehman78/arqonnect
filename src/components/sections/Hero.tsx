@@ -8,6 +8,7 @@ import HeroVideoBackdrop from "@/components/ui/HeroVideoBackdrop";
 import { GiggleText, useWelcomeReady } from "@/components/ui/GiggleText";
 import { useCheapMotion } from "@/components/ui/Motion";
 import { HERO } from "@/lib/siteContent";
+import { BookDemoLink } from "@/components/BookDemoLink";
 
 export default function Hero(): React.ReactElement {
   const ready = useWelcomeReady();
@@ -89,12 +90,12 @@ export default function Hero(): React.ReactElement {
               whileTap={{ scale: 0.98 }}
               data-magnetic
             >
-              <Link
-                href={HERO.primaryCta.href}
+              <BookDemoLink
+                source="hero_primary"
                 className="ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-6 py-3 text-sm font-semibold text-[#0B0F12] no-underline shadow-[0_8px_32px_rgba(0,0,0,0.55),0_0_28px_rgba(234,164,107,0.5)] transition-all hover:bg-[#C87D46]"
               >
                 {HERO.primaryCta.label}
-              </Link>
+              </BookDemoLink>
             </motion.div>
             <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.98 }} data-magnetic>
               <Link

@@ -5,6 +5,7 @@ import Link from "next/link";
 import RoomVideoBackdrop from "@/components/ui/RoomVideoBackdrop";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import { BookDemoLink } from "@/components/BookDemoLink";
 import { HERO_VIDEO } from "@/lib/brand";
 import { FAQ } from "@/lib/siteContent";
 
@@ -53,11 +54,11 @@ export default function FaqPageClient() {
           </div>
 
           <div className="story-cta-actions mt-12" data-reveal>
-            <Link href="/contact" className="story-cta-primary">
-              Book a demo →
-            </Link>
+            <BookDemoLink source="faq_primary" className="story-cta-primary">
+              Book a meeting →
+            </BookDemoLink>
             <Link href="/contact" className="story-cta-ghost">
-              Book a demo
+              Contact form
             </Link>
           </div>
         </RevealOnScroll>

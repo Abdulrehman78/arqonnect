@@ -7,7 +7,7 @@ import { navAccents, themeFromPath } from "@/lib/pageThemes";
 import ThemeToggle from "@/components/ThemeToggle";
 import BrandLogo from "@/components/BrandLogo";
 import { APP_URL, NAV_LINKS } from "@/lib/siteContent";
-import { trackBookDemo } from "@/lib/analytics";
+import { BookDemoLink } from "@/components/BookDemoLink";
 
 const SIGN_IN_URL = `${APP_URL}/sign-in`;
 
@@ -50,7 +50,6 @@ export default function Nav() {
     return () => window.removeEventListener("keydown", onKey);
   }, [menuOpen]);
 
-  const contactActive = isActivePath(pathname, "/contact");
   const accent = navAccents[themeFromPath(pathname)];
   const overMedia = !scrolled && !menuOpen;
 
@@ -123,21 +122,15 @@ export default function Nav() {
           >
             Sign in
           </a>
-          <Link
-            href="/contact"
-            aria-current={contactActive ? "page" : undefined}
-            className={`ai-cta-breath ai-cta-shine hidden md:inline-flex items-center whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold no-underline transition-all lg:px-5 lg:text-sm ${
-              contactActive
-                ? accent.ctaActive
-                : `${accent.ctaDefault} ${accent.ctaHover}`
-            }`}
+          <BookDemoLink
+            source="nav_desktop"
+            className={`ai-cta-breath ai-cta-shine hidden md:inline-flex items-center whitespace-nowrap rounded-full px-4 py-2 text-xs font-semibold no-underline transition-all lg:px-5 lg:text-sm ${accent.ctaDefault} ${accent.ctaHover}`}
             data-magnetic
             data-cursor="book"
             data-cursor-label="Book"
-            onClick={() => trackBookDemo("nav_desktop")}
           >
             Book a Demo
-          </Link>
+          </BookDemoLink>
 
           <button
             type="button"
@@ -192,17 +185,14 @@ export default function Nav() {
           >
             Sign in
           </a>
-          <Link
-            href="/contact"
+          <BookDemoLink
+            source="nav_mobile"
             className="nav-overlay-cta"
             style={{ transitionDelay: menuOpen ? `${110 + links.length * 40}ms` : "0ms" }}
-            onClick={() => {
-              trackBookDemo("nav_mobile");
-              setMenuOpen(false);
-            }}
+            onClick={() => setMenuOpen(false)}
           >
             Book a Demo →
-          </Link>
+          </BookDemoLink>
         </nav>
       </div>
     </>

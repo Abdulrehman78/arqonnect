@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
 import { PHASE_0_ROOMS, PHASE_1_ROOMS } from "@/lib/servicesPageContent";
+import { CAL_BOOKING_URL } from "@/lib/siteContent";
 
 const ALL_CAPABILITIES = [...PHASE_0_ROOMS, ...PHASE_1_ROOMS];
 
@@ -45,7 +46,7 @@ export default function Capabilities() {
       </FadeUp>
 
       <FadeUp className="mt-12 flex flex-wrap items-center gap-4">
-        <BtnPrimary href="/contact">Book a demo →</BtnPrimary>
+        <BtnPrimary href={CAL_BOOKING_URL}>Book a demo →</BtnPrimary>
         <BtnGhost href="#templates">See workflows</BtnGhost>
       </FadeUp>
     </Section>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import RoomVideoBackdrop from "@/components/ui/RoomVideoBackdrop";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import { BookDemoLink } from "@/components/BookDemoLink";
 import { HERO_VIDEO } from "@/lib/brand";
 import { DEMO_FLOW } from "@/lib/siteContent";
 
@@ -43,9 +44,9 @@ export default function DemoPageClient() {
           </ol>
 
           <div className="story-cta-actions mt-12" data-reveal>
-            <Link href="/contact" className="story-cta-primary">
+            <BookDemoLink source="demo_page" className="story-cta-primary">
               Book a live demo →
-            </Link>
+            </BookDemoLink>
             <Link href="/process" className="story-cta-ghost">
               How it works
             </Link>

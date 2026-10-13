@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/PageSection";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
-import { FINAL_CTA } from "@/lib/siteContent";
+import { CAL_BOOKING_URL, FINAL_CTA } from "@/lib/siteContent";
 import { CAPABILITY_GROUPS, PHASE_0_ROOMS, PHASE_1_ROOMS } from "@/lib/servicesPageContent";
 
 const allRooms = [...PHASE_0_ROOMS, ...PHASE_1_ROOMS];
@@ -75,12 +75,14 @@ export default function Templates() {
                   <p className="mt-2 text-sm leading-relaxed text-text-dim">
                     {card.desc}
                   </p>
-                  <Link
-                    href="/contact"
+                  <a
+                    href={CAL_BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-5 inline-block text-sm text-accent no-underline transition-transform group-hover:translate-x-1"
                   >
                     Book a demo →
-                  </Link>
+                  </a>
                 </Card>
               </MotionItem>
             ))}
@@ -99,12 +101,14 @@ export default function Templates() {
             {FINAL_CTA.body}
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link
+            <a
               href={FINAL_CTA.primary.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="ai-cta-shine inline-flex items-center rounded-full bg-[#EAA46B] px-7 py-3.5 text-sm font-semibold text-[#0B0F12] no-underline transition-all hover:bg-[#C87D46]"
             >
               {FINAL_CTA.primary.label} →
-            </Link>
+            </a>
             <Link
               href={FINAL_CTA.secondary.href}
               className="inline-flex items-center rounded-full border border-line bg-panel/60 px-7 py-3.5 text-sm font-semibold text-text no-underline transition-all hover:border-glass"

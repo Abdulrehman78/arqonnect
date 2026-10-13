@@ -4,14 +4,27 @@
 
 export const APP_URL = "https://app.arqonnect.io";
 
-/** When false, nav hides Pricing and plan cards are not shown. */
+/**
+ * Company Cal.com booking link. "Book a demo / meeting" CTAs open this
+ * in a new tab. Override via Netlify env without a code change.
+ */
+export const CAL_BOOKING_URL =
+  process.env.NEXT_PUBLIC_CAL_BOOKING_URL?.trim() ||
+  "https://cal.com/abdul-rehman/30min";
+
+/** Pricing plan cards are retired — quotes happen on the demo call. */
 export const SHOW_PRICING_PLANS = false;
 
 export const SITE = {
   name: "ArQonnect",
   tagline: "AI Twin Platform for customer conversations",
-  /** Support / demo inbox */
+  /** Primary support / demo inbox (case-preserving for display). */
   email: "Support@arqonnect.io",
+  emails: {
+    support: "Support@arqonnect.io",
+    hello: "hello@arqonnect.io",
+    compliance: "Compliance@arqonnect.io",
+  },
   phone: "+923065101041",
   phoneDisplay: "92306-5101041",
   whatsappUrl: "https://wa.me/923065101041",
@@ -33,8 +46,8 @@ export const HERO = {
   title: "Every customer message, one inbox",
   sub: "answered by AI you control.",
   body: "ArQonnect helps a business manage customer messages from WhatsApp, Instagram, Facebook Messenger and its website in one shared inbox. The AI answers using business-approved information, follows your tone and rules, and transfers to a person whenever confidence is low or the customer requests human help.",
-  primaryCta: { href: "/contact", label: "Book a demo" },
-  secondaryCta: { href: "/process", label: "How it works" },
+  primaryCta: { href: CAL_BOOKING_URL, label: "Book a demo", external: true },
+  secondaryCta: { href: "/process", label: "How it works", external: false },
 } as const;
 
 export const PITCH = {
@@ -316,9 +329,9 @@ export const VALUE = {
 } as const;
 
 export const PRICING = {
-  eyebrow: "Engagement pricing",
+  eyebrow: "Book a meeting",
   title: "Custom quotes after a scoped demo",
-  lead: "Flexible and itinerary-based. We scope channels, Twin setup and growth services with you — no fixed public plan cards.",
+  lead: "We do not publish fixed plan cards. Book a 30-minute meeting and we will scope channels, Twin setup and growth services with you.",
   plans: [
     {
       id: "starter",
@@ -422,9 +435,9 @@ export const FAQ = {
 export const FINAL_CTA = {
   title: "Stop losing customers to unanswered messages.",
   body: "See your own business knowledge answering real customer questions — in a live demo tailored to your channels, your tone and your booking flow.",
-  note: "Setup fee waived or discounted with an annual commitment.",
-  primary: { href: "/contact", label: "Book a demo" },
-  secondary: { href: "/process", label: "How it works" },
+  note: "Opens Cal.com in a new tab. Prefer email? Write Support@arqonnect.io.",
+  primary: { href: CAL_BOOKING_URL, label: "Book a demo", external: true },
+  secondary: { href: "/process", label: "How it works", external: false },
 } as const;
 
 export const PROVIDE = {
@@ -433,4 +446,4 @@ export const PROVIDE = {
 } as const;
 
 export const AVA_WELCOME =
-  "Hi — I'm Ava, ArQonnect's AI assistant. I can help you explore our unified inbox, Business Twin, pricing, and how we'd fit your channels. What would you like to know?";
+  "Hi — I'm Ava, ArQonnect's AI assistant. I can help you explore our unified inbox, Business Twin, how pricing is scoped on a demo, and how we'd fit your channels. Ask anything, or book a meeting on Cal.com.";
