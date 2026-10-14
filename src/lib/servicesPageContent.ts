@@ -2,6 +2,42 @@
 
 import { CAL_BOOKING_URL } from "@/lib/siteContent";
 
+/** Highlighted growth / digital add-ons shown under Services. */
+export const ADDITIONAL_SERVICES = [
+  {
+    title: "SEO",
+    body: "Classic search visibility so buyers find you on Google — technical fixes, content, and local or national strategy.",
+  },
+  {
+    title: "AEO",
+    body: "Answer Engine Optimization — structure content so assistants can extract and cite it with confidence.",
+  },
+  {
+    title: "GEO",
+    body: "Generative Engine Optimization — earn citations inside AI answers (ChatGPT, Gemini, Perplexity, and similar).",
+  },
+  {
+    title: "AIO",
+    body: "AI Overview readiness so you show up when search engines summarize the answer on the results page.",
+  },
+  {
+    title: "Web development",
+    body: "Sites, landing pages, and conversion paths built to feed your Twin inbox — not static brochure pages.",
+  },
+  {
+    title: "Mobile development",
+    body: "Native or hybrid apps when your offer needs a mobile surface connected to the same conversation stack.",
+  },
+  {
+    title: "CRM & funnels",
+    body: "Organize leads, deals, and follow-ups so every booked chat lands somewhere your team can run.",
+  },
+  {
+    title: "Ads & social",
+    body: "Paid and organic social that sends traffic to pages your agent can close — structure, creative, and SMM.",
+  },
+] as const;
+
 export const SERVICES_HERO = {
   kicker: "ArQonnect product guide",
   title: "One Twin. Every channel.",
