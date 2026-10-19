@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "How it works",
   description:
     "From connecting channels to managing the customer relationship — seven steps with ArQonnect.",
+  alternates: { canonical: "/process" },
 };
 
 export default function ProcessPage() {

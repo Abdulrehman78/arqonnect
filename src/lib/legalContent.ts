@@ -218,8 +218,8 @@ export const LEGAL_DOCS: LegalDoc[] = [
           ],
           [
             "Website analytics (optional)",
-            "Google Analytics, when enabled and consented on the marketing site",
-            "Aggregated page views, device/browser type, referrer",
+            "Google Analytics 4 (consent-gated) and Ahrefs Web Analytics on the marketing site",
+            "Aggregated page views, device/browser type, referrer, SEO traffic signals",
           ],
         ],
       },
@@ -420,7 +420,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h3", text: "Analytics (optional / production only)" },
       {
         type: "p",
-        text: "When website analytics are enabled in production, our analytics provider may set cookies used to measure aggregated traffic and page usage on https://arqonnect.io. These are not advertising cookies. You can block them with browser settings, extensions, or Global Privacy Control / Do Not Track signals; we treat those signals as a preference against optional analytics.",
+        text: "When website analytics are enabled in production, Google Analytics 4 (consent-gated) may set cookies used to measure aggregated traffic and page usage on https://www.arqonnect.io. We also load Ahrefs Web Analytics (analytics.ahrefs.com) to measure SEO-related traffic; Ahrefs Web Analytics is designed to operate without advertising cookies. You can block analytics with browser settings, extensions, or Global Privacy Control / Do Not Track signals; we treat those signals as a preference against optional Google Analytics.",
       },
       {
         type: "table",

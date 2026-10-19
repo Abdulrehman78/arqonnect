@@ -17,21 +17,21 @@ const platform: Card[] = [
     icon: "services",
     label: "Services",
     highlight:
-      "Chat, voice, websites, funnels, CRM, SEO/AEO/GEO and ready-made agent templates — the full stack in one place.",
+      "Unified inbox, Business Twin, CRM, booking, and SEO/AEO/GEO growth services in one place.",
   },
   {
-    href: "/crm",
+    href: "/services#additional-services",
     icon: "crm",
-    label: "CRM & Automation",
+    label: "CRM & growth",
     highlight:
-      "Every call, chat and lead writes straight into HubSpot, Salesforce or your CRM of choice — automatically.",
+      "Contacts, deals and optional HubSpot or Salesforce sync, plus SEO, AEO and development add-ons.",
   },
   {
-    href: "/case-studies",
+    href: "/demo",
     icon: "case-studies",
-    label: "Case Studies",
+    label: "Live demo",
     highlight:
-      "Real deployments, real numbers — see what ArQonnect changed for clients across healthcare, real estate and ecommerce.",
+      "See grounded AI replies, human handoff and booking on a live demo tailored to your channels.",
   },
   {
     href: "/pricing",
@@ -41,68 +41,68 @@ const platform: Card[] = [
       "Starter, Growth, and Scale plans with clear monthly fees and setup. Book a demo when you are ready.",
   },
   {
-    href: "/enterprise",
+    href: "/pricing#compare",
     icon: "enterprise",
-    label: "Enterprise",
+    label: "Scale & white-label",
     highlight:
-      "Security guardrails, analytics and deployment built for organizations that need scale and control.",
+      "Multi-location Scale plan and white-label deployments scoped to your brand and domain.",
   },
   {
-    href: "/resources",
+    href: "/faq",
     icon: "resources",
-    label: "Resources",
-    highlight: "Guides, industry insight and answers to the questions we get asked most.",
+    label: "FAQ",
+    highlight: "Straight answers on handoff, languages, knowledge grounding and what you provide.",
   },
   {
     href: "/contact",
     icon: "contact",
     label: "Contact",
-    highlight: "Book a demo, or find us across the US, UK, Canada, Australia and Europe.",
+    highlight: "Book a demo, or reach Support@arqonnect.io and our Lahore team.",
   },
 ];
 
 const story: Card[] = [
   {
-    href: "/why",
+    href: "/process",
     icon: "why",
     label: "Why ArQonnect",
-    highlight: "Why businesses hire an agent instead of babysitting more software.",
+    highlight: "One inbox, approved knowledge, human control — how the Twin fits your team.",
   },
   {
-    href: "/values",
+    href: "/process",
     icon: "values",
-    label: "Our Values",
-    highlight: "The principles every build runs on, no matter the client.",
+    label: "How it works",
+    highlight: "From connecting channels to managing the customer relationship, step by step.",
   },
   {
     href: "/demo",
     icon: "demo",
     label: "Live Demo",
-    highlight: "Try the exact chat and voice agent that answers real client calls.",
+    highlight: "Try the chat agent that answers with your approved knowledge.",
   },
   {
-    href: "/see-it-work",
+    href: "/services",
     icon: "see-it-work",
-    label: "See It Work",
-    highlight: "A look at the AI workforce running across real deployments.",
+    label: "Product guide",
+    highlight: "Phase 0 and Phase 1 capabilities across inbox, Twin, CRM and booking.",
   },
   {
-    href: "/proof",
+    href: "/pricing",
     icon: "proof",
-    label: "Proof & Live Stats",
-    highlight: "Live numbers — calls handled, latency, cost per minute, CSAT.",
+    label: "Plans & setup",
+    highlight: "Published SaaS pricing with setup fees and conversation allowances.",
   },
   {
     href: "/process",
     icon: "process",
     label: "Our Process",
-    highlight: "How we scope, build and deploy your AI workforce, step by step.",
+    highlight: "How we scope, build and deploy your AI Twin, step by step.",
   },
   {
-    href: "/about",
+    href: "/contact",
     icon: "about",
-    label: "About Us",
-    highlight: "The story behind ArQonnect, straight from our founder.",
+    label: "Contact us",
+    highlight: "Talk to the team, book a demo, or email Support@arqonnect.io.",
   },
 ];
 
@@ -110,7 +110,7 @@ function CardGrid({ items }: { items: Card[] }) {
   return (
     <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {items.map((c) => (
-        <MotionItem key={c.href}>
+        <MotionItem key={`${c.label}-${c.href}`}>
           <div className="motion-card group flex h-full flex-col justify-between rounded-[18px] border border-glass bg-panel/60 p-6 transition-colors hover:border-accent/50 hover:bg-panel-2">
             <div>
               <div className="ai-icon-float mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-glass bg-glass-inner text-electric-2">

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Book a Demo",
   description:
     "Book a live ArQonnect demo — see grounded AI replies, human handoff and booking on your channels.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {
