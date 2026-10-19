@@ -12,8 +12,8 @@ export const CAL_BOOKING_URL =
   process.env.NEXT_PUBLIC_CAL_BOOKING_URL?.trim() ||
   "https://cal.com/abdul-rehman/30min";
 
-/** Pricing plan cards are retired — quotes happen on the demo call. */
-export const SHOW_PRICING_PLANS = false;
+/** Public SaaS plans on /pricing (required for MoR / Paddle domain review). */
+export const SHOW_PRICING_PLANS = true;
 
 export const SITE = {
   name: "ArQonnect",
@@ -38,6 +38,7 @@ export const NAV_LINKS = [
   { href: "/process", label: "How it works" },
   { href: "/services", label: "Services" },
   { href: "/demo", label: "Demo" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/faq", label: "FAQ" },
 ] as const;
 
@@ -329,76 +330,177 @@ export const VALUE = {
 } as const;
 
 export const PRICING = {
-  eyebrow: "Book a meeting",
-  title: "Custom quotes after a scoped demo",
-  lead: "We do not publish fixed plan cards. Book a 30-minute meeting and we will scope channels, Twin setup and growth services with you.",
+  eyebrow: "Simple plans. Real connections.",
+  title: "ArQonnect pricing",
+  titleMuted: "Built for your next stage.",
+  lead: "One AI twin. Every customer conversation. Choose the plan that moves your business forward.",
+  badges: [
+    "Done-for-you setup",
+    "Human support, always",
+    "No hidden platform fees",
+  ],
+  footnote:
+    "3-day SaaS trial available. Monthly plans, cancel anytime. Prices exclude tax and third-party usage costs (Meta messaging, model APIs, calendar providers).",
+  billingNote:
+    "Subscriptions are billed by Paddle as Merchant of Record. Card statements may show Paddle / Paddle.com. See Terms and Refund Policy.",
   plans: [
     {
       id: "starter",
-      name: "Starter scope",
-      price: "Custom quote",
-      audience: "Solo-ish practices testing the water",
+      name: "Starter",
+      blurb: "A smarter start for your business.",
+      monthly: 499,
+      setup: 2000,
       popular: false,
-      channels: "Web widget only",
-      languages: "1 language (client's choice)",
-      included: "1 location, conversation volume scoped on demo, standard booking integration",
+      cta: "Get started with Starter",
+      featureEyebrow: "Your foundation, connected",
+      features: [
+        "1 business location",
+        "500 AI conversations / month",
+        "Web chat channel",
+        "1 business twin",
+        "Contact management & booking",
+        "2 team seats",
+        "Email support",
+      ],
     },
     {
       id: "growth",
-      name: "Growth scope",
-      price: "Custom quote",
-      audience: "Core ICP — 5–50 employee clinics/brokerages",
+      name: "Growth",
+      blurb: "More connections. More possibilities.",
+      monthly: 899,
+      setup: 4000,
       popular: true,
-      channels: "Web widget + WhatsApp",
-      languages: "3 languages",
-      included:
-        "Up to 3 locations, volume scoped on demo, CRM sync (1 CRM), basic reporting dashboard",
+      cta: "Get started with Growth",
+      featureEyebrow: "Everything in Starter, plus",
+      features: [
+        "Up to 2 business locations",
+        "2,000 AI conversations / month",
+        "Web chat + WhatsApp",
+        "A business twin for each location",
+        "Full CRM & appointment booking",
+        "5 team seats · 5 workflow rules",
+        "Email & chat support",
+      ],
     },
     {
       id: "scale",
-      name: "Scale scope",
-      price: "Custom quote",
-      audience: "Multi-location chains, larger brokerages",
+      name: "Scale",
+      blurb: "Power your multi-location business.",
+      monthly: 1499,
+      setup: 6500,
       popular: false,
-      channels: "All 4 channels (Web + WhatsApp + Instagram + Messenger)",
-      languages: "All 6 languages",
-      included:
-        "Up to 10 locations, unlimited conversations, multi-CRM, custom workflows, priority support, quarterly strategy review",
+      cta: "Get started with Scale",
+      featureEyebrow: "Everything in Growth, plus",
+      features: [
+        "Up to 3 business locations",
+        "6,000 AI conversations / month",
+        "All 4 messaging channels",
+        "Business twins with custom rules",
+        "Full CRM + HubSpot or Salesforce",
+        "15 team seats · unlimited workflows",
+        "Voice notes & priority support",
+      ],
     },
   ],
-  addons: [
-    { label: "Additional channel beyond base scope", price: "Quoted on demo" },
-    { label: "Additional language beyond base scope", price: "Quoted on demo" },
-    { label: "CRM automation build-out", price: "Quoted on demo" },
-    { label: "Additional locations", price: "Quoted on demo" },
-  ],
-  activation: {
-    title: "One-time activation",
-    lead: "Project-based and itinerary-scoped. Optional maintenance retainer after the support window — priced on the demo.",
-    tiers: [
+  comparison: {
+    eyebrow: "The details, without the guesswork",
+    title: "Find your perfect fit.",
+    rows: [
+      { label: "Business locations", starter: "1", growth: "2", scale: "3" },
       {
-        name: "Basic activation",
-        price: "Custom quote",
-        channels: "Web widget only",
-        languages: "1 language",
-        includes: "Bot build + training + integration, 30-day support",
+        label: "AI conversations / month",
+        starter: "500",
+        growth: "2,000",
+        scale: "6,000",
+      },
+      { label: "Team seats", starter: "2", growth: "5", scale: "15" },
+      {
+        label: "Messaging channels",
+        starter: "Web chat",
+        growth: "Web + WhatsApp",
+        scale: "All 4 channels",
       },
       {
-        name: "Full activation",
-        price: "Custom quote",
-        channels: "Web widget + WhatsApp",
-        languages: "3 languages",
-        includes: "Bot + CRM integration, 60-day support",
+        label: "Appointment booking",
+        starter: "Included",
+        growth: "Included",
+        scale: "Included",
       },
       {
-        name: "Enterprise activation",
-        price: "Custom quote",
-        channels: "All 4 channels",
-        languages: "All 6 languages",
-        includes: "Multi-location rollout, custom workflows, dedicated onboarding, 90-day support",
+        label: "CRM",
+        starter: "Contact management",
+        growth: "Full CRM",
+        scale: "Full CRM + sync",
+      },
+      {
+        label: "Workflow rules",
+        starter: "—",
+        growth: "5 rules",
+        scale: "Unlimited",
+      },
+      {
+        label: "Dedicated instance & branding",
+        starter: "—",
+        growth: "—",
+        scale: "Quoted (white-label)",
+      },
+      {
+        label: "Support response",
+        starter: "2 business days",
+        growth: "1 business day",
+        scale: "4 business hours",
       },
     ],
   },
+  pillars: [
+    {
+      title: "Trained on your business",
+      body: "Your knowledge. Your voice. Customer answers that feel like you.",
+    },
+    {
+      title: "Every conversation, connected",
+      body: "Bring your channels together. Never miss the next opportunity.",
+    },
+    {
+      title: "Built and managed for you",
+      body: "From the first setup to daily support, we stay with you.",
+    },
+  ],
+  whiteLabel: {
+    eyebrow: "White-label",
+    title: "Want ArQonnect under your own brand?",
+    body: "White-label deployments are scoped with your team: your domain, your branding, and a dedicated instance. Tell us what you need and we will put a proposal together.",
+  },
+  faqs: [
+    {
+      q: "What is included in the one-time setup?",
+      a: "We connect your channels, load your business knowledge, configure your AI business twin, and train your team. White-label also includes your branding, dedicated instance, and the integrations in your plan.",
+    },
+    {
+      q: "Are there any additional costs?",
+      a: "Plan prices cover the ArQonnect platform. You pay separately for third-party usage you choose (Meta messaging fees, AI model accounts where required, calendar providers, and optional HubSpot/Salesforce seats). Taxes are calculated at checkout by Paddle.",
+    },
+    {
+      q: "What happens if I reach my conversation limit?",
+      a: "Automated AI replies pause until the next month or you upgrade. Your inbox, history, and data stay available, and your team can keep replying manually. We do not bill silent overages.",
+    },
+    {
+      q: "Can I change or cancel my plan?",
+      a: "Yes. Upgrade or downgrade with us any time. Cancel from the dashboard; access continues through the end of the paid period. See the Refund Policy for first-invoice refunds.",
+    },
+    {
+      q: "How does annual billing work?",
+      a: "Yearly billing gives you one month free (pay for 11 months). Charged in advance through Paddle. Monthly remains available.",
+    },
+    {
+      q: "What is the difference between SaaS and white-label?",
+      a: "SaaS plans run on ArQonnect branding at app.arqonnect.io. White-label is a scoped deployment on your domain and brand with a dedicated instance, quoted separately.",
+    },
+    {
+      q: "Who processes payments?",
+      a: "Paddle is our Merchant of Record. Paddle handles checkout, tax, invoices, and card chargebacks. Statements may show Paddle. Billing questions: Compliance@arqonnect.io.",
+    },
+  ],
 } as const;
 
 export const FAQ = {
@@ -446,4 +548,4 @@ export const PROVIDE = {
 } as const;
 
 export const AVA_WELCOME =
-  "Hi — I'm Ava, ArQonnect's AI assistant. I can help you explore our unified inbox, Business Twin, how pricing is scoped on a demo, and how we'd fit your channels. Ask anything, or book a meeting on Cal.com.";
+  "Hi — I'm Ava, ArQonnect's AI assistant. I can help you explore our unified inbox, Business Twin, Starter/Growth/Scale pricing, and how we'd fit your channels. Ask anything, or book a meeting on Cal.com.";

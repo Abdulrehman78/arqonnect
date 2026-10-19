@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
-import { CAL_BOOKING_URL } from "@/lib/siteContent";
+import PricingPageClient from "@/components/PricingPageClient";
 
 export const metadata: Metadata = {
-  title: "Book a demo",
+  title: "Pricing",
   description:
-    "Book a 30-minute ArQonnect demo on Cal.com. Custom quotes after a scoped meeting — no public plan cards.",
-  robots: { index: false, follow: true },
+    "ArQonnect SaaS plans: Starter $499, Growth $899, Scale $1,499 per month plus setup. Web chat, WhatsApp, Instagram, Messenger. Billed via Paddle.",
+  alternates: { canonical: "/pricing" },
+  openGraph: {
+    title: "ArQonnect pricing",
+    description:
+      "Starter, Growth, and Scale plans for your AI business twin. Clear monthly pricing, done-for-you setup, cancel anytime.",
+    url: "/pricing",
+  },
 };
 
-/** Pricing is retired — send visitors straight to Cal.com booking. */
 export default function PricingPage() {
-  redirect(CAL_BOOKING_URL);
+  return <PricingPageClient />;
 }

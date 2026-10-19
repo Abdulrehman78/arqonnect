@@ -4,8 +4,6 @@ import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { FadeUp } from "@/components/ui/Motion";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
-import { CAL_BOOKING_URL } from "@/lib/siteContent";
-
 type Preview = {
   href: string;
   icon: string;
@@ -60,16 +58,16 @@ const previews: Preview[] = [
     accent: "#EAA46B",
   },
   {
-    href: CAL_BOOKING_URL,
+    href: "/pricing",
     icon: "pricing",
-    eyebrow: "Book a meeting",
-    title: "Custom quotes after a scoped demo.",
+    eyebrow: "Pricing",
+    title: "Starter, Growth, and Scale.",
     description:
-      "We do not publish fixed plan cards. Book 30 minutes on Cal.com and we will scope channels, Twin setup, and growth services to your stack.",
+      "Clear monthly plans and setup fees for your AI business twin. Book a demo when you are ready to go live.",
     bullets: [
-      "Opens Cal.com in a new tab",
-      "Written quote after scoping",
-      "Talk to Support@arqonnect.io",
+      "From $499/mo + setup",
+      "Web, WhatsApp, Instagram, Messenger",
+      "Billed via Paddle (Merchant of Record)",
     ],
     accent: "#EAA46B",
   },

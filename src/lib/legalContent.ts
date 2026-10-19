@@ -30,7 +30,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
     title: "Privacy Policy",
     description:
       "How ArQonnect collects, uses, shares and protects personal information for business customers and end-users.",
-    updated: "2026-09-28",
+    updated: "2026-10-19",
     blocks: [
       {
         type: "p",
@@ -62,7 +62,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
         items: [
           "Account data: name, work email, organization name, job title, phone number (optional).",
           "Authentication data: handled by our authentication provider. We store only the resulting user ID and email; passwords are never sent to our servers.",
-          "Billing data: handled by our PCI-DSS-compliant Merchant of Record. We store the last 4 digits of the card, the billing country, and the subscription status only.",
+          "Billing data: handled by Paddle (our PCI-DSS-compliant Merchant of Record). We store limited metadata such as the last 4 digits of the card (if provided), the billing country, and the subscription status only. Full card numbers are not stored on ArQonnect servers.",
           "Usage data: login timestamps, dashboard pages visited, features toggled, conversation volume, AI token spend.",
           "Integration credentials: Channel-provider API keys and Meta Business credentials you paste into the dashboard. These are encrypted at rest with AES-256-GCM and decrypted only at the moment of an outbound API call.",
           "Knowledge-base content: documents, FAQs and policies you upload to train your AI agent.",
@@ -208,7 +208,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
           ],
           [
             "Billing (Merchant of Record)",
-            "PCI-DSS-compliant MoR named on your invoice",
+            "Paddle.com Market Ltd / Paddle (or successor MoR named on your invoice)",
             "Payment method tokens, billing address, tax IDs, invoice metadata",
           ],
           [
@@ -277,7 +277,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
     title: "Terms of Service",
     description:
       "Binding terms between ArQonnect and customers who create an account or use the platform.",
-    updated: "2026-09-28",
+    updated: "2026-10-19",
     blocks: [
       {
         type: "p",
@@ -286,7 +286,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "1. The service" },
       {
         type: "p",
-        text: "ArQonnect is a software-as-a-service (SaaS) platform delivered digitally and accessed through a web browser at https://app.arqonnect.io (marketing site: https://arqonnect.io). It enables businesses to run AI-powered conversations across WhatsApp, Instagram, Messenger and website chat, ground replies in their own knowledge base, launch broadcasts, and hand off to their support team whenever a human touch is needed.",
+        text: "ArQonnect is a software-as-a-service (SaaS) platform delivered digitally and accessed through a web browser at https://app.arqonnect.io (marketing site: https://www.arqonnect.io and https://arqonnect.io). It enables businesses to run AI-powered conversations across WhatsApp, Instagram, Messenger and website chat, ground replies in their own knowledge base, launch broadcasts, and hand off to their support team whenever a human touch is needed. Current public plan prices and allowances are published at https://www.arqonnect.io/pricing.",
       },
       { type: "h2", text: "2. Account & eligibility" },
       {
@@ -302,19 +302,20 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "ul",
         items: [
-          "Subscription fees are billed monthly (or annually, where offered) in advance via our PCI-DSS-compliant Merchant of Record (MoR). The MoR entity named on your invoice collects payment, calculates applicable tax, issues receipts, and handles card chargebacks; ArQonnect provides the software subscription you are purchasing.",
-          "Card charges may appear on your statement under the MoR legal name rather than \"ArQonnect\". For billing or refund questions, contact Compliance@arqonnect.io; include your invoice number.",
-          "Prices are listed exclusive of applicable taxes. Tax is computed at checkout based on your billing location.",
-          "Monthly conversation allowance. Each plan includes a monthly conversation allowance, published on our pricing page (for example Starter ~500 conversations/mo, Growth ~2,000 conversations/mo, Scale unlimited where stated). A conversation is a continuous thread with an end-user on a connected channel. Allowances reset at the start of each calendar month (UTC).",
-          "What happens at the allowance. When an organization reaches its allowance, automated AI replies pause until the next month begins or the plan is upgraded. Nothing else stops. Your inbox, conversation history and data stay fully accessible, and your team can keep replying manually without interruption. We never bill you silently for overages.",
-          "You may cancel your subscription at any time from the dashboard. Cancellation takes effect at the end of the current billing period; we do not pro-rate partial months unless required by law.",
-          "We may change prices on at least 30 days' notice. Continuing to use the service after a price change means you accept the new price.",
+          "Subscription fees and eligible one-time setup fees are billed via Paddle (Paddle.com Market Ltd and affiliated entities), our PCI-DSS-compliant Merchant of Record (MoR). Paddle collects payment, calculates and remits applicable tax, issues receipts and invoices, and handles card chargebacks. ArQonnect provides the digital software subscription and related services you purchase. Buyer checkout is also subject to Paddle's Buyer Terms where presented at payment.",
+          "Card charges may appear on your statement under \"Paddle\", \"Paddle.com\", or a similar MoR descriptor rather than \"ArQonnect\". For billing or refund questions, contact Compliance@arqonnect.io and include your invoice number; you may also use Paddle buyer support where directed on your receipt.",
+          "Prices are listed on https://www.arqonnect.io/pricing exclusive of applicable taxes. Tax is computed at checkout based on your billing location. Third-party usage (Meta messaging fees, AI model providers, calendar providers, optional CRM seats) is billed by those providers and is not included in ArQonnect plan fees unless an order form says otherwise.",
+          "Plans (Starter, Growth, Scale) include a monthly AI conversation allowance published on the pricing page (Starter 500, Growth 2,000, Scale 6,000 conversations/month unless an order form states otherwise). A conversation is a continuous thread with an end-user on a connected channel. Allowances reset at the start of each calendar month (UTC).",
+          "What happens at the allowance. When an organization reaches its allowance, automated AI replies pause until the next month begins or the plan is upgraded. Your inbox, conversation history and data stay fully accessible, and your team can keep replying manually. We never bill silent overages.",
+          "One-time setup fees cover channel connection, knowledge loading, Business Twin configuration and team training for the scoped plan. Setup fees are listed per plan on the pricing page and may be invoiced with or before the first subscription period.",
+          "You may cancel your subscription at any time from the dashboard (or by emailing Support@arqonnect.io). Cancellation takes effect at the end of the current billing period; we do not pro-rate partial months unless required by law.",
+          "We may change prices on at least 30 days' notice. Continuing to use the service after a price change means you accept the new price for the next renewal.",
         ],
       },
       { type: "h2", text: "4. Refund policy (30-day money-back guarantee)" },
       {
         type: "p",
-        text: "New subscribers may request a full refund within 30 days of their first paid invoice if the service does not meet their expectations. Refunds are processed within 5–10 business days back to the original payment method. Full eligibility, exclusions and the request process are in the Refund Policy.",
+        text: "New subscribers may request a full refund of their first paid subscription invoice within 30 days if the service does not meet their expectations. Setup-fee refunds, if any, follow the Refund Policy. Refunds are processed within 5–10 business days back to the original payment method via Paddle. Full eligibility, exclusions and the request process are in the Refund Policy at https://www.arqonnect.io/legal/refund.",
       },
       { type: "h2", text: "5. Acceptable use" },
       {
@@ -456,28 +457,39 @@ export const LEGAL_DOCS: LegalDoc[] = [
   {
     slug: "refund",
     title: "Refund Policy",
-    description: "30-day money-back guarantee for new ArQonnect subscriptions.",
-    updated: "2026-09-28",
+    description:
+      "30-day money-back guarantee for new ArQonnect subscriptions, setup fees, and how refunds are processed via Paddle.",
+    updated: "2026-10-19",
     blocks: [
       {
         type: "p",
-        text: "30-day money-back guarantee for new paid subscriptions, subject to the eligibility and exclusions below.",
+        text: "This Refund Policy applies to digital SaaS purchases of ArQonnect (Starter, Growth, Scale and related setup fees) sold through our website and billed by Paddle as Merchant of Record. It is designed to be clear for customers and for payment-network / MoR review.",
       },
       {
         type: "p",
-        text: "We want you to be confident that ArQonnect is the right platform for your business. If it is not, you can request a full refund within 30 days of your first paid invoice.",
+        text: "We want you to be confident that ArQonnect is the right platform for your business. If it is not, you can request a full refund of your first paid subscription invoice within 30 days, subject to the rules below.",
       },
-      { type: "h2", text: "1. Eligibility" },
+      { type: "h2", text: "1. Subscription eligibility (30-day money-back)" },
       {
         type: "ul",
         items: [
-          "You must request the refund within 30 days of the date of your first paid invoice on a new account.",
-          "The refund covers the most recent invoice only. Earlier invoices (from prior subscription periods) are not refundable.",
-          "The guarantee applies to monthly and annual self-serve plans (Starter, Growth, Scale). Custom Enterprise contracts are governed by the refund terms in the signed order form.",
-          "Add-on usage charges (over-quota AI conversations, template messages, additional storage) are not refundable because they reflect third-party costs we have already incurred on your behalf.",
+          "You must request the refund within 30 days of the date of your first paid subscription invoice on a new account.",
+          "The guarantee covers that first subscription invoice only. Later renewals and earlier periods are not refundable under this guarantee.",
+          "The guarantee applies to monthly and annual self-serve plans (Starter, Growth, Scale) listed at https://www.arqonnect.io/pricing. Custom Enterprise or white-label contracts follow the refund terms in the signed order form.",
+          "Add-on and third-party usage charges (Meta template messages, AI model usage billed by providers, optional CRM seats, extra storage) are not refundable by ArQonnect because they reflect costs already incurred with third parties.",
         ],
       },
-      { type: "h2", text: "2. Exclusions" },
+      { type: "h2", text: "2. One-time setup fees" },
+      {
+        type: "ul",
+        items: [
+          "Setup fees pay for done-for-you onboarding work (channel connection, knowledge loading, Twin configuration, training) for your scoped plan.",
+          "If we have not started scoped setup work, you may request a full setup-fee refund within 14 days of payment.",
+          "If scoped setup work has started, setup fees are non-refundable except where required by law or where we fail to deliver the agreed scoped go-live for reasons solely on our side after you provided required materials and access on time. In that case you may request a setup-fee refund within 14 days of the missed go-live date.",
+          "Delays caused by missing customer content, delayed approvals, third-party account holds (including Meta), or customer-requested scope changes do not qualify for a setup-fee refund.",
+        ],
+      },
+      { type: "h2", text: "3. Exclusions" },
       {
         type: "p",
         text: "We may decline a refund where the account has clearly been used in bad faith, including:",
@@ -490,34 +502,34 @@ export const LEGAL_DOCS: LegalDoc[] = [
           "fraudulent payment, chargebacks already filed with the card issuer, or repeated refund requests across multiple accounts.",
         ],
       },
-      { type: "h2", text: "3. How to request a refund" },
+      { type: "h2", text: "4. How to request a refund" },
       {
         type: "ul",
         items: [
           'Email Compliance@arqonnect.io from the email address registered on your account, with the subject line "Refund request".',
-          "Include your organization name, the invoice number, and (optional) a short note on what didn't work for you. We use this to improve the product.",
-          "We confirm receipt within 1 business day and process the refund within 5–10 business days back to the original payment method. Bank settlement times depend on your card issuer.",
+          "Include your organization name, the Paddle / invoice number, and (optional) a short note on what did not work for you.",
+          "We confirm receipt within 1 business day and process approved refunds within 5–10 business days back to the original payment method via Paddle. Bank settlement times depend on your card issuer.",
         ],
       },
-      { type: "h2", text: "4. Cancellation vs. refund" },
+      { type: "h2", text: "5. Cancellation vs. refund" },
       {
         type: "p",
-        text: "Cancelling your subscription stops future renewals; it does not automatically refund the most recent invoice. If you want both, cancel from the dashboard and email us as above.",
+        text: "Cancelling your subscription stops future renewals; it does not automatically refund the most recent invoice. If you want both, cancel from the dashboard (or email Support@arqonnect.io) and submit a refund request as above while still within the eligible window.",
       },
-      { type: "h2", text: "5. Payment processor" },
+      { type: "h2", text: "6. Payment processor (Paddle)" },
       {
         type: "p",
-        text: "Subscription payments are handled by our PCI-DSS-compliant Merchant of Record (MoR). The MoR collects applicable taxes, issues invoices, and handles chargebacks on our behalf. Refunds are issued via the same processor. The active MoR is named on your invoice.",
+        text: "Subscription and eligible setup payments are handled by Paddle as our PCI-DSS-compliant Merchant of Record. Paddle collects applicable taxes, issues invoices and receipts, and handles chargebacks. Refunds are issued via the same processor. Your receipt and invoice name the MoR entity. Paddle's own buyer terms and refund practices may also apply where presented at checkout; where they conflict with mandatory consumer law, the higher consumer protection prevails.",
       },
-      { type: "h2", text: "6. Statutory consumer rights" },
+      { type: "h2", text: "7. Statutory consumer rights" },
       {
         type: "p",
-        text: "Where you purchase as a consumer in the EU, UK or another jurisdiction with mandatory withdrawal rights (e.g. the 14-day EU right of withdrawal), this policy is in addition to, and does not affect, those rights. Our 30-day guarantee is more generous than the EU minimum.",
+        text: "Where you purchase as a consumer in the EU, UK or another jurisdiction with mandatory withdrawal rights (for example the 14-day EU right of withdrawal for distance contracts), this policy is in addition to, and does not reduce, those rights. Our 30-day subscription guarantee is intended to be at least as generous as the common EU minimum for eligible digital services, subject to lawful exceptions for digital content supplied with consent.",
       },
-      { type: "h2", text: "7. Contact" },
+      { type: "h2", text: "8. Contact" },
       {
         type: "p",
-        text: "Refund questions: Compliance@arqonnect.io. General billing questions: Compliance@arqonnect.io.",
+        text: "Refund and billing: Compliance@arqonnect.io. Product support: Support@arqonnect.io. Pricing: https://www.arqonnect.io/pricing.",
       },
     ],
   },
@@ -690,7 +702,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "6. Sub-processors (Annex III)" },
       {
         type: "p",
-        text: "The Controller authorizes ArQonnect to engage Sub-processors in the following categories: authentication, cloud hosting and storage, messaging channel delivery (including Meta for WhatsApp, Instagram and Messenger), AI model inference, email delivery, billing (Merchant of Record named on the invoice), error monitoring, and optional website analytics. A current named list is available to the Controller on request at Compliance@arqonnect.io. We will notify subscribers in writing at least 30 days before adding or replacing a Sub-processor that materially changes how their data is handled.",
+        text: "The Controller authorizes ArQonnect to engage Sub-processors in the following categories: authentication, cloud hosting and storage, messaging channel delivery (including Meta for WhatsApp, Instagram and Messenger), AI model inference, email delivery, billing via Paddle as Merchant of Record (or successor MoR named on the invoice), error monitoring, and optional website analytics. A current named list is available to the Controller on request at Compliance@arqonnect.io. We will notify subscribers in writing at least 30 days before adding or replacing a Sub-processor that materially changes how their data is handled.",
       },
       { type: "h2", text: "7. International transfers" },
       {
@@ -865,7 +877,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "7. Payments" },
       {
         type: "p",
-        text: "We do not store full card numbers on ArQonnect servers. Subscription payments are processed by a PCI-DSS-compliant Merchant of Record; only limited billing metadata (such as last four digits, country, and subscription status) is retained in our systems. See Terms §3 and the Refund Policy.",
+        text: "We do not store full card numbers on ArQonnect servers. Subscription and setup payments are processed by Paddle as our PCI-DSS-compliant Merchant of Record; only limited billing metadata (such as last four digits, country, and subscription status) is retained in our systems. See Terms §3, the Refund Policy, and https://www.arqonnect.io/pricing.",
       },
       { type: "h2", text: "8. Your responsibilities" },
       {

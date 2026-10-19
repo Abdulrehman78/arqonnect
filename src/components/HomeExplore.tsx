@@ -4,8 +4,6 @@ import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
-import { CAL_BOOKING_URL } from "@/lib/siteContent";
-
 type Card = {
   href: string;
   icon: string;
@@ -36,11 +34,11 @@ const platform: Card[] = [
       "Real deployments, real numbers — see what ArQonnect changed for clients across healthcare, real estate and ecommerce.",
   },
   {
-    href: CAL_BOOKING_URL,
+    href: "/pricing",
     icon: "pricing",
-    label: "Book a meeting",
+    label: "Pricing",
     highlight:
-      "Schedule 30 minutes on Cal.com. Custom quotes after a scoped demo — no public plan cards.",
+      "Starter, Growth, and Scale plans with clear monthly fees and setup. Book a demo when you are ready.",
   },
   {
     href: "/enterprise",

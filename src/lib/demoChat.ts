@@ -10,8 +10,8 @@ About ArQonnect:
 - Business Twin: tone, services, hours, pricing rules, and do-not-reply topics controlled by staff.
 - CRM for contacts, deals, tasks and appointments; booking via Google Calendar or Cal.com.
 - Languages: English, Urdu, Roman Urdu, Arabic, French and Spanish with auto-detection and same-language replies.
-- Pricing is custom and flexible based on channels, itineraries and scope. Never quote fixed public plan prices. Invite them to book a meeting on Cal.com for a tailored quote.
-- CTA: offer to book a meeting at https://cal.com/abdul-rehman/30min (opens in a new tab). Support email: Support@arqonnect.io.
+- Public SaaS pricing (USD): Starter $499/mo + $2,000 setup; Growth $899/mo + $4,000 setup; Scale $1,499/mo + $6,500 setup. Yearly = 1 month free. Details: https://www.arqonnect.io/pricing. White-label is quoted separately. Payments via Paddle (Merchant of Record).
+- CTA: offer to book a meeting at https://cal.com/abdul-rehman/30min (opens in a new tab) or send them to /pricing. Support email: Support@arqonnect.io.
 
 If asked something unrelated, answer briefly then steer back to how ArQonnect can help.
 Never invent private customer data. Do not claim you already booked a meeting — invite them to schedule.`;
@@ -22,7 +22,7 @@ const KNOWLEDGE: KnowledgeHit[] = [
   {
     keys: ["price", "pricing", "cost", "how much", "$", "fee", "plan", "subscription", "starter", "growth", "scale"],
     answer:
-      "Pricing is custom and flexible based on your channels, itineraries and scope. We do not publish fixed plan cards. Book a 30-minute meeting on Cal.com (https://cal.com/abdul-rehman/30min) and we will map a quote to your stack.",
+      "Public plans are on https://www.arqonnect.io/pricing — Starter $499/mo ($2,000 setup), Growth $899/mo ($4,000 setup), Scale $1,499/mo ($6,500 setup). Yearly billing includes one month free. Book a demo on Cal.com (https://cal.com/abdul-rehman/30min) to pick the right plan. Payments are processed by Paddle.",
   },
   {
     keys: ["book", "demo", "meeting", "schedule", "calendar", "call me", "talk to"],
@@ -72,7 +72,7 @@ const KNOWLEDGE: KnowledgeHit[] = [
   {
     keys: ["hello", "hi ", "hey", "good morning", "good afternoon"],
     answer:
-      "Hey! I'm Ava. Ask me about the unified inbox, Business Twin, languages, handoff, or how pricing is scoped — I'll keep it straight.",
+      "Hey! I'm Ava. Ask me about the unified inbox, Business Twin, languages, handoff, or Starter/Growth/Scale pricing — I'll keep it straight.",
   },
 ];
 

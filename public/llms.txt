@@ -7,9 +7,16 @@
 - How it works: https://www.arqonnect.io/process
 - Services: https://www.arqonnect.io/services
 - Live demo: https://www.arqonnect.io/demo
+- Pricing: https://www.arqonnect.io/pricing
 - FAQ: https://www.arqonnect.io/faq
 - Contact: https://www.arqonnect.io/contact
 - Book a meeting (Cal.com): https://cal.com/abdul-rehman/30min
+
+## Pricing (USD, excl. tax)
+- Starter: $499/mo + $2,000 setup — web chat, 500 conversations, 1 location
+- Growth: $899/mo + $4,000 setup — web + WhatsApp, 2,000 conversations, up to 2 locations
+- Scale: $1,499/mo + $6,500 setup — all 4 channels, 6,000 conversations, up to 3 locations
+- Yearly billing: 1 month free. Payments via Paddle (Merchant of Record).
 
 ## App
 - Sign in: https://app.arqonnect.io/sign-in
@@ -20,6 +27,8 @@
 - Terms: https://www.arqonnect.io/legal/terms
 - Cookies: https://www.arqonnect.io/legal/cookies
 - Security: https://www.arqonnect.io/legal/security
+- Refund: https://www.arqonnect.io/legal/refund
+- Acceptable use: https://www.arqonnect.io/legal/acceptable-use
 - DPA: https://www.arqonnect.io/legal/dpa
 - Data deletion: https://www.arqonnect.io/legal/data-deletion
 
