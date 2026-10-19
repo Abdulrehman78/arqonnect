@@ -45,9 +45,15 @@ export default function FaqPageClient() {
                       {isOpen ? "−" : "+"}
                     </span>
                   </button>
-                  {isOpen && (
-                    <p className="mt-3 text-sm leading-relaxed text-text-dim">{item.a}</p>
-                  )}
+                  {/* Always in the DOM for crawlers / AI search (audit: collapsed FAQ crawlability). */}
+                  <p
+                    className={`mt-3 text-sm leading-relaxed text-text-dim ${
+                      isOpen ? "" : "sr-only"
+                    }`}
+                    aria-hidden={!isOpen}
+                  >
+                    {item.a}
+                  </p>
                 </div>
               );
             })}

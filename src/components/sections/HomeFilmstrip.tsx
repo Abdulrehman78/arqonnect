@@ -67,7 +67,7 @@ const STAT_CARDS: FilmCard[] = [
   {
     id: "languages",
     metricLabel: "Languages",
-    metric: "7",
+    metric: "6",
     title: "Languages supported",
     line: "Auto-detect and reply in the customer's language.",
     tags: ["6 languages", "RTL ready"],
@@ -87,7 +87,7 @@ const STAT_CARDS: FilmCard[] = [
     metricLabel: "Truth",
     metric: "1",
     title: "Source of approved truth",
-    line: "No invented facts — handoff when confidence is low.",
+    line: "Responses use approved knowledge, with human handoff when confidence is low.",
     tags: ["Approved", "Audit-ready"],
     href: "/services",
   },

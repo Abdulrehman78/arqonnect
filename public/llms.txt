@@ -3,37 +3,43 @@
 > ArQonnect is an AI twin platform for customer conversations. Businesses manage WhatsApp, Instagram, Messenger, and website chat in one inbox, answered by AI they control, with human handoff built in.
 
 ## Product
-- Homepage: https://www.arqonnect.io/
-- How it works: https://www.arqonnect.io/process
-- Services: https://www.arqonnect.io/services
-- Live demo: https://www.arqonnect.io/demo
-- Pricing: https://www.arqonnect.io/pricing
-- FAQ: https://www.arqonnect.io/faq
-- Contact: https://www.arqonnect.io/contact
-- Book a meeting (Cal.com): https://cal.com/abdul-rehman/30min
+
+- [Homepage](https://www.arqonnect.io/): Product overview and value proposition
+- [How it works](https://www.arqonnect.io/process): Seven-step setup from channels to CRM
+- [Services](https://www.arqonnect.io/services): Twin platform capabilities and growth add-ons
+- [Live demo](https://www.arqonnect.io/demo): What prospects see in a scoped demo
+- [Pricing](https://www.arqonnect.io/pricing): Starter, Growth, and Scale SaaS plans
+- [FAQ](https://www.arqonnect.io/faq): Buyer questions on handoff, languages, and knowledge
+- [Contact](https://www.arqonnect.io/contact): Book a demo or reach the team
+- [About](https://www.arqonnect.io/about): Company, leadership, and contact roles
+- [Book a meeting](https://cal.com/abdul-rehman/30min): 30-minute Cal.com demo booking
 
 ## Pricing (USD, excl. tax)
+
 - Starter: $499/mo + $2,000 setup — web chat, 500 conversations, 1 location
 - Growth: $899/mo + $4,000 setup — web + WhatsApp, 2,000 conversations, up to 2 locations
 - Scale: $1,499/mo + $6,500 setup — all 4 channels, 6,000 conversations, up to 3 locations
 - Yearly billing: 1 month free. Payments via Paddle (Merchant of Record).
 
 ## App
-- Sign in: https://app.arqonnect.io/sign-in
-- Product app: https://app.arqonnect.io/app
+
+- [Sign in](https://app.arqonnect.io/sign-in): Customer dashboard sign-in
+- [Product app](https://app.arqonnect.io/app): Logged-in ArQonnect application
 
 ## Legal
-- Privacy: https://www.arqonnect.io/legal/privacy
-- Terms: https://www.arqonnect.io/legal/terms
-- Cookies: https://www.arqonnect.io/legal/cookies
-- Security: https://www.arqonnect.io/legal/security
-- Refund: https://www.arqonnect.io/legal/refund
-- Acceptable use: https://www.arqonnect.io/legal/acceptable-use
-- DPA: https://www.arqonnect.io/legal/dpa
-- Data deletion: https://www.arqonnect.io/legal/data-deletion
+
+- [Privacy Policy](https://www.arqonnect.io/legal/privacy)
+- [Terms of Service](https://www.arqonnect.io/legal/terms)
+- [Cookie Policy](https://www.arqonnect.io/legal/cookies)
+- [Security](https://www.arqonnect.io/legal/security)
+- [Refund Policy](https://www.arqonnect.io/legal/refund)
+- [Acceptable Use](https://www.arqonnect.io/legal/acceptable-use)
+- [Data Processing Agreement](https://www.arqonnect.io/legal/dpa)
+- [Data Deletion](https://www.arqonnect.io/legal/data-deletion)
 
 ## Contact
-- Support: Support@arqonnect.io
+
+- Support / demo: Support@arqonnect.io
 - General: hello@arqonnect.io
-- Compliance: Compliance@arqonnect.io
-- Location: Lahore, Pakistan
+- Compliance / privacy: Compliance@arqonnect.io
+- Location: 4A, R Block Johar Town, Lahore, Pakistan

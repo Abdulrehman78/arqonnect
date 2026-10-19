@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FaqPageClient from "@/components/FaqPageClient";
+import FaqJsonLd from "@/components/FaqJsonLd";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -9,5 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function FaqPage() {
-  return <FaqPageClient />;
+  return (
+    <>
+      <FaqJsonLd />
+      <FaqPageClient />
+    </>
+  );
 }

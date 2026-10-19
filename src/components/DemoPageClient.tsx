@@ -21,8 +21,8 @@ export default function DemoPageClient() {
               {DEMO_FLOW.eyebrow}
             </p>
             <h1 className="story-heading">
-              Recommended
-              <span>demonstration flow</span>
+              A live demo
+              <span>of your AI Twin</span>
             </h1>
             <p className="story-lead">{DEMO_FLOW.lead}</p>
           </header>

@@ -39,6 +39,7 @@ export const NAV_LINKS = [
   { href: "/services", label: "Services" },
   { href: "/demo", label: "Demo" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
 ] as const;
 
@@ -57,7 +58,7 @@ export const PITCH = {
     "ArQonnect gives your business one place to manage customer conversations across WhatsApp, Instagram, Messenger and web chat. It answers common questions using your approved knowledge, captures customer details, supports appointment booking and brings in a human whenever needed. Your team stays in control of the information, the rules and the final customer experience.",
   pills: [
     "Instant replies, 24/7",
-    "No invented facts",
+    "Approved knowledge only",
     "Human handoff built in",
     "Booked appointments from chat",
     "Six languages",
@@ -260,17 +261,17 @@ export const FEATURES = {
 } as const;
 
 export const DEMO_FLOW = {
-  eyebrow: "Demo",
-  title: "Recommended demonstration flow",
-  lead: "Lead with the customer experience and business control. Do not describe ArQonnect as an uncontrolled chatbot.",
+  eyebrow: "What you will see",
+  title: "A live demo of your AI Twin",
+  lead: "In a short call we walk through how ArQonnect answers with your approved knowledge, keeps humans in control, and books appointments from chat. You leave knowing exactly what go-live looks like for your channels.",
   steps: [
-    "Show all channels in one inbox.",
-    "Open a customer question and show the AI reply with its supporting source.",
-    "Ask for a human and show the conversation being transferred to an agent.",
-    "Open the automatically created contact and its conversation history.",
-    "Show Business Twin settings: services, tone, hours and reply restrictions.",
-    "Show how an admin uploads or updates approved knowledge.",
-    "Demonstrate a real calendar slot being offered and confirmed.",
+    "See WhatsApp, Instagram, Messenger and web chat land in one shared inbox.",
+    "Ask a real customer-style question and watch a grounded AI reply with its supporting source.",
+    "Request a human and watch the conversation transfer to an agent while AI replies stop.",
+    "Open the contact record created from the chat, with history attached.",
+    "Review Business Twin controls: services, tone, hours and topics the AI must not answer.",
+    "See how your team uploads or updates approved knowledge without a code deploy.",
+    "Book a real calendar slot from chat (Google Calendar or Cal.com) and confirm it.",
   ],
 } as const;
 
@@ -284,7 +285,7 @@ export const VALUE = {
     },
     {
       title: "Approved knowledge only",
-      body: "Replies are built from information you upload and approve. The AI will not invent facts.",
+      body: "Replies are built from information you upload and approve, with human handoff when confidence is low.",
     },
     {
       title: "Human control, always",

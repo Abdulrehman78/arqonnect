@@ -41,7 +41,7 @@ const CHANNEL_TICKER = [
 
 const VALUE_TICKER = [
   "Instant replies, 24/7",
-  "No invented facts",
+  "Approved knowledge only",
   "Human handoff built in",
   "Booked appointments from chat",
   "Six languages",

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import DemoPageClient from "@/components/DemoPageClient";
 
 export const metadata: Metadata = {
-  title: "Demo",
+  title: "Live demo",
   description:
-    "Recommended demonstration flow — lead with customer experience and business control, not an uncontrolled chatbot.",
+    "See what an ArQonnect demo covers: unified inbox, grounded AI replies, human handoff, CRM contacts and appointment booking.",
   alternates: { canonical: "/demo" },
 };
 
