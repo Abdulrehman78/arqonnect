@@ -4,9 +4,12 @@
 
 ## Product
 
-- [Homepage](https://www.arqonnect.io/): Product overview and value proposition
-- [How it works](https://www.arqonnect.io/process): Seven-step setup from channels to CRM
+- [Homepage](https://www.arqonnect.io/): Product overview — one inbox, AI Twin, human handoff
 - [Services](https://www.arqonnect.io/services): Twin platform capabilities and growth add-ons
+- [Industries](https://www.arqonnect.io/industries): Clinics, real estate, retail, services, hospitality
+- [Case studies](https://www.arqonnect.io/case-studies): Representative Twin deployment scenarios
+- [ROI calculator](https://www.arqonnect.io/roi): Illustrative cost of missed chats vs plan pricing
+- [How it works](https://www.arqonnect.io/process): Setup from channels to CRM
 - [Live demo](https://www.arqonnect.io/demo): What prospects see in a scoped demo
 - [Pricing](https://www.arqonnect.io/pricing): Starter, Growth, and Scale SaaS plans
 - [FAQ](https://www.arqonnect.io/faq): Buyer questions on handoff, languages, and knowledge

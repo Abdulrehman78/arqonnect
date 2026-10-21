@@ -75,7 +75,7 @@ export default function Nav() {
           className="hidden min-w-0 xl:flex xl:justify-center"
           aria-label="Main navigation"
         >
-          <ul className="flex items-center gap-0.5">
+          <ul className="flex flex-wrap items-center justify-center gap-0.5">
             {links.map((l) => {
               const active = isActivePath(pathname, l.href);
               return (
@@ -83,7 +83,7 @@ export default function Nav() {
                   <Link
                     href={l.href}
                     aria-current={active ? "page" : undefined}
-                    className={`relative whitespace-nowrap rounded-lg px-3 py-2 text-[13px] font-medium no-underline transition-colors ${
+                    className={`relative whitespace-nowrap rounded-lg px-2 py-2 text-[12px] font-medium no-underline transition-colors xl:px-2.5 xl:text-[13px] ${
                       active
                         ? overMedia
                           ? "text-nav-media"

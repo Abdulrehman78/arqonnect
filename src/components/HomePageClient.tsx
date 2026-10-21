@@ -3,78 +3,103 @@
 import Link from "next/link";
 import Hero from "@/components/sections/Hero";
 import HomeFinalCta from "@/components/HomeFinalCta";
-import {
-  HomeFilmCard,
-  HomePitchIntro,
-  PILLAR_CARDS,
-  STAT_CARDS,
-} from "@/components/sections/HomeFilmstrip";
-import LanguageRail from "@/components/ui/LanguageRail";
-import HomeHorizontalScroll, {
-  type HomePanel,
-} from "@/components/ui/HomeHorizontalScroll";
-import HomeStoryScroll from "@/components/ui/HomeStoryScroll";
-import InfiniteMarquee from "@/components/ui/InfiniteMarquee";
-import RoomVideoBackdrop from "@/components/ui/RoomVideoBackdrop";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
-import {
-  InboxFlowDiagram,
-  VALUE_ICONS,
-} from "@/components/ui/ProductIcons";
-import { HERO_VIDEO, MARKETS_VIDEO } from "@/lib/brand";
-import { HOME_PANEL_META, HOME_STORY_META } from "@/lib/homePanels";
-import { COMPARISON, VALUE } from "@/lib/siteContent";
-import Team from "@/components/sections/Team";
-import GlobalPresence from "@/components/sections/GlobalPresence";
+import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
+import { InboxFlowDiagram, VALUE_ICONS } from "@/components/ui/ProductIcons";
+import { BookDemoLink } from "@/components/BookDemoLink";
+import { COMPARISON, ADDITIONAL_SERVICES_TEASER } from "@/lib/siteContent";
+import { CASE_STUDIES, HOME_OFFER, INDUSTRIES } from "@/lib/marketingPages";
 
-const CHANNEL_TICKER = [
-  "WhatsApp",
-  "Instagram",
-  "Messenger",
-  "Web chat",
-  "One inbox",
-  "Human handoff",
-  "Approved knowledge",
-  "Appointment booking",
-];
+function ChannelsSection() {
+  return (
+    <section className="relative overflow-hidden border-b border-line bg-bg px-4 py-20 sm:px-6 md:py-24">
+      <SchemeOverlay />
+      <RevealOnScroll className="relative mx-auto max-w-6xl">
+        <header className="max-w-2xl">
+          <p className="story-kicker">
+            <span className="ai-live-dot" />
+            {HOME_OFFER.channelsEyebrow}
+          </p>
+          <h2 className="story-heading mt-3">
+            {HOME_OFFER.channelsTitle}
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-text-dim">
+            {HOME_OFFER.channelsBody}
+          </p>
+        </header>
+        <div className="mt-10" data-reveal>
+          <InboxFlowDiagram />
+        </div>
+        <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" data-reveal>
+          {["WhatsApp Business", "Instagram Direct", "Facebook Messenger", "Website chat"].map(
+            (c) => (
+              <li
+                key={c}
+                className="rounded-[14px] border border-line bg-panel/50 px-4 py-3 text-sm font-medium text-text"
+              >
+                {c}
+              </li>
+            )
+          )}
+        </ul>
+      </RevealOnScroll>
+    </section>
+  );
+}
 
-const VALUE_TICKER = [
-  "Instant replies, 24/7",
-  "Approved knowledge only",
-  "Human handoff built in",
-  "Booked appointments from chat",
-  "Six languages",
-  "One audit-ready history",
-];
+function TrustSection() {
+  return (
+    <section className="relative overflow-hidden border-b border-line bg-bg-alt px-4 py-20 sm:px-6 md:py-24">
+      <SchemeOverlay />
+      <div className="relative mx-auto max-w-6xl">
+        <FadeUp>
+          <p className="story-kicker">
+            <span className="ai-live-dot" />
+            {HOME_OFFER.trustEyebrow}
+          </p>
+          <h2 className="story-heading mt-3 max-w-2xl">{HOME_OFFER.trustTitle}</h2>
+        </FadeUp>
+        <Stagger className="mt-12 grid gap-5 md:grid-cols-3">
+          {HOME_OFFER.trustItems.map((item, i) => {
+            const Icon = VALUE_ICONS[i % VALUE_ICONS.length];
+            return (
+              <MotionItem key={item.title}>
+                <article className="h-full rounded-[18px] border border-line bg-panel/50 p-6">
+                  <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line bg-bg/40 text-gold">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-display text-lg font-semibold text-text">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-text-dim">{item.body}</p>
+                </article>
+              </MotionItem>
+            );
+          })}
+        </Stagger>
+      </div>
+    </section>
+  );
+}
 
 function ComparisonSection() {
   return (
-    <section className="story-room story-proof relative overflow-hidden border-b border-line bg-bg-alt">
-      <RoomVideoBackdrop src={MARKETS_VIDEO} />
-      <SchemeOverlay className="z-[1]" intensity="room" quiet />
-      <RevealOnScroll className="story-chapter-inner relative z-10">
-        <header className="story-chapter-header">
+    <section className="relative overflow-hidden border-b border-line bg-bg px-4 py-20 sm:px-6 md:py-24">
+      <SchemeOverlay />
+      <RevealOnScroll className="relative mx-auto max-w-6xl">
+        <header className="max-w-2xl">
           <p className="story-kicker">
             <span className="ai-live-dot" />
             {COMPARISON.eyebrow}
           </p>
-          <h2 className="story-heading">
-            Every unanswered message
-            <span>is a customer choosing someone else.</span>
-          </h2>
+          <h2 className="story-heading mt-3">{COMPARISON.title}</h2>
         </header>
-
-        <div className="mt-8" data-reveal>
-          <InboxFlowDiagram />
-          <p className="mt-4 text-center font-mono text-[11px] uppercase tracking-[0.14em] text-text-dimmer">
-            Channels → grounded AI → one inbox → human when needed
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-8 lg:grid-cols-2" data-reveal>
-          <div className="story-channel">
-            <h3>{COMPARISON.withoutTitle}</h3>
+        <div className="mt-10 grid gap-6 lg:grid-cols-2" data-reveal>
+          <div className="rounded-[18px] border border-line bg-panel/40 p-6">
+            <h3 className="font-display text-lg font-semibold text-text">
+              {COMPARISON.withoutTitle}
+            </h3>
             <ul className="mt-4 space-y-3 text-sm text-text-dim">
               {COMPARISON.without.map((item) => (
                 <li key={item} className="flex gap-2">
@@ -84,8 +109,10 @@ function ComparisonSection() {
               ))}
             </ul>
           </div>
-          <div className="story-channel">
-            <h3>{COMPARISON.withTitle}</h3>
+          <div className="rounded-[18px] border border-accent/35 bg-panel/60 p-6">
+            <h3 className="font-display text-lg font-semibold text-text">
+              {COMPARISON.withTitle}
+            </h3>
             <ul className="mt-4 space-y-3 text-sm text-text-dim">
               {COMPARISON.with.map((item) => (
                 <li key={item} className="flex gap-2">
@@ -101,107 +128,194 @@ function ComparisonSection() {
   );
 }
 
-function ValueSection() {
+function StepsSection() {
   return (
-    <section className="story-room story-markets relative overflow-hidden border-b border-line bg-bg">
-      <RoomVideoBackdrop src={HERO_VIDEO} />
-      <SchemeOverlay className="z-[1]" intensity="room" quiet />
-      <RevealOnScroll className="story-chapter-inner relative z-10">
-        <header className="story-chapter-header">
+    <section className="relative overflow-hidden border-b border-line bg-bg-alt px-4 py-20 sm:px-6 md:py-24">
+      <SchemeOverlay />
+      <div className="relative mx-auto max-w-6xl">
+        <FadeUp>
           <p className="story-kicker">
             <span className="ai-live-dot" />
-            {VALUE.eyebrow}
+            {HOME_OFFER.stepsEyebrow}
           </p>
-          <h2 className="story-heading">
-            What clients get
-            <span>in plain language.</span>
-          </h2>
-        </header>
-        <div className="story-channel-rail">
-          {VALUE.items.map((item, i) => {
-            const Icon = VALUE_ICONS[i % VALUE_ICONS.length];
-            return (
-              <article
-                key={item.title}
-                className="story-channel"
-                data-reveal
-                style={{ ["--i" as string]: i }}
-              >
-                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line bg-panel/60 text-gold">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
+          <h2 className="story-heading mt-3 max-w-2xl">{HOME_OFFER.stepsTitle}</h2>
+        </FadeUp>
+        <Stagger className="mt-12 grid gap-5 md:grid-cols-3">
+          {HOME_OFFER.steps.map((s) => (
+            <MotionItem key={s.num}>
+              <article className="h-full rounded-[18px] border border-line bg-panel/50 p-6">
+                <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
+                  {s.num}
+                </p>
+                <h3 className="mt-3 font-display text-lg font-semibold text-text">
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-text-dim">{s.body}</p>
               </article>
-            );
-          })}
-        </div>
-        <div className="story-foot" data-reveal>
-          <span>
-            <em>4</em> channels · <em>7</em> languages · <em>1</em> inbox
-          </span>
-          <Link href="/services">See services →</Link>
-        </div>
-      </RevealOnScroll>
+            </MotionItem>
+          ))}
+        </Stagger>
+        <FadeUp className="mt-8">
+          <Link
+            href="/process"
+            className="text-sm font-semibold text-accent no-underline hover:underline"
+          >
+            Full process →
+          </Link>
+        </FadeUp>
+      </div>
     </section>
   );
 }
 
-function buildFilmPanels(): HomePanel[] {
-  const meta = Object.fromEntries(HOME_PANEL_META.map((m) => [m.id, m]));
-  return [
-    { meta: meta.hero, node: <Hero /> },
-    { meta: meta.pitch, node: <HomePitchIntro /> },
-    {
-      meta: meta.converse,
-      node: <HomeFilmCard card={PILLAR_CARDS[0]} />,
-    },
-    {
-      meta: meta.coordinate,
-      node: <HomeFilmCard card={PILLAR_CARDS[1]} low />,
-    },
-    {
-      meta: meta.control,
-      node: <HomeFilmCard card={PILLAR_CARDS[2]} />,
-    },
-    {
-      meta: meta["stat-channels"],
-      node: <HomeFilmCard card={STAT_CARDS[0]} low />,
-    },
-    {
-      meta: meta["stat-languages"],
-      node: <HomeFilmCard card={STAT_CARDS[1]} />,
-    },
-    {
-      meta: meta["stat-coverage"],
-      node: <HomeFilmCard card={STAT_CARDS[2]} low />,
-    },
-    {
-      meta: meta["stat-truth"],
-      node: <HomeFilmCard card={STAT_CARDS[3]} />,
-    },
-  ];
+function IndustriesTeaser() {
+  return (
+    <section className="relative overflow-hidden border-b border-line bg-bg px-4 py-20 sm:px-6 md:py-24">
+      <SchemeOverlay />
+      <div className="relative mx-auto max-w-6xl">
+        <FadeUp className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <p className="story-kicker">
+              <span className="ai-live-dot" />
+              {INDUSTRIES.eyebrow}
+            </p>
+            <h2 className="story-heading mt-3">{INDUSTRIES.title}</h2>
+          </div>
+          <Link
+            href="/industries"
+            className="shrink-0 text-sm font-semibold text-accent no-underline hover:underline"
+          >
+            All industries →
+          </Link>
+        </FadeUp>
+        <Stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {INDUSTRIES.items.slice(0, 6).map((ind) => (
+            <MotionItem key={ind.slug}>
+              <Link
+                href={`/industries#${ind.slug}`}
+                className="block h-full rounded-[18px] border border-line bg-panel/50 p-5 no-underline transition-colors hover:border-accent/40"
+              >
+                <h3 className="font-display text-base font-semibold text-text">
+                  {ind.name}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-text-dim">
+                  {ind.summary}
+                </p>
+              </Link>
+            </MotionItem>
+          ))}
+        </Stagger>
+      </div>
+    </section>
+  );
 }
 
-function buildStoryChapters() {
-  const meta = Object.fromEntries(HOME_STORY_META.map((m) => [m.id, m]));
-  return [
-    { meta: meta.comparison, node: <ComparisonSection /> },
-    { meta: meta.value, node: <ValueSection /> },
-    { meta: meta.cta, node: <HomeFinalCta /> },
-  ];
+function GrowthTeaser() {
+  return (
+    <section className="relative overflow-hidden border-b border-line bg-bg-alt px-4 py-20 sm:px-6 md:py-24">
+      <SchemeOverlay />
+      <div className="relative mx-auto max-w-6xl">
+        <FadeUp>
+          <p className="story-kicker">
+            <span className="ai-live-dot" />
+            {HOME_OFFER.growthEyebrow}
+          </p>
+          <h2 className="story-heading mt-3 max-w-2xl">{HOME_OFFER.growthTitle}</h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-dim">
+            {HOME_OFFER.growthBody}
+          </p>
+        </FadeUp>
+        <Stagger className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {ADDITIONAL_SERVICES_TEASER.map((s) => (
+            <MotionItem key={s}>
+              <div className="rounded-[14px] border border-line bg-panel/50 px-4 py-3 text-sm font-medium text-text">
+                {s}
+              </div>
+            </MotionItem>
+          ))}
+        </Stagger>
+        <FadeUp className="mt-8 flex flex-wrap gap-4">
+          <Link
+            href="/services#additional-services"
+            className="text-sm font-semibold text-accent no-underline hover:underline"
+          >
+            Additional services →
+          </Link>
+          <Link
+            href="/roi"
+            className="text-sm font-semibold text-accent no-underline hover:underline"
+          >
+            ROI calculator →
+          </Link>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+function CasesTeaser() {
+  return (
+    <section className="relative overflow-hidden border-b border-line bg-bg px-4 py-20 sm:px-6 md:py-24">
+      <SchemeOverlay />
+      <div className="relative mx-auto max-w-6xl">
+        <FadeUp className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <p className="story-kicker">
+              <span className="ai-live-dot" />
+              {CASE_STUDIES.eyebrow}
+            </p>
+            <h2 className="story-heading mt-3">{CASE_STUDIES.title}</h2>
+            <p className="mt-4 text-base leading-relaxed text-text-dim">
+              {CASE_STUDIES.lead}
+            </p>
+          </div>
+          <Link
+            href="/case-studies"
+            className="shrink-0 text-sm font-semibold text-accent no-underline hover:underline"
+          >
+            View scenarios →
+          </Link>
+        </FadeUp>
+        <Stagger className="mt-10 grid gap-4 md:grid-cols-3">
+          {CASE_STUDIES.items.map((c) => (
+            <MotionItem key={c.id}>
+              <article className="h-full rounded-[18px] border border-line bg-panel/50 p-5">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-text-dimmer">
+                  {c.industry}
+                </p>
+                <h3 className="mt-2 font-display text-base font-semibold text-text">
+                  {c.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-text-dim">{c.summary}</p>
+              </article>
+            </MotionItem>
+          ))}
+        </Stagger>
+        <FadeUp className="mt-10">
+          <BookDemoLink
+            source="home_cases_cta"
+            className="ai-cta-shine inline-flex items-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-[#0B0F12] no-underline hover:bg-accent-dim"
+          >
+            Book a demo →
+          </BookDemoLink>
+        </FadeUp>
+      </div>
+    </section>
+  );
 }
 
 export default function HomePageClient() {
   return (
     <main aria-label="ArQonnect home">
-      <LanguageRail />
-      <HomeHorizontalScroll panels={buildFilmPanels()} runwayPerPanel={1.15} />
-      <InfiniteMarquee items={CHANNEL_TICKER} speedSec={28} />
-      <HomeStoryScroll chapters={buildStoryChapters()} label="Product story" />
-      <InfiniteMarquee items={VALUE_TICKER} speedSec={36} />
-      <Team />
-      <GlobalPresence />
+      <Hero />
+      <ChannelsSection />
+      <TrustSection />
+      <ComparisonSection />
+      <StepsSection />
+      <IndustriesTeaser />
+      <GrowthTeaser />
+      <CasesTeaser />
+      <HomeFinalCta />
     </main>
   );
 }

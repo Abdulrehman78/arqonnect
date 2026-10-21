@@ -31,25 +31,26 @@ export const SITE = {
   address: "4A, R Block Johar Town, Lahore",
   location: "4A, R Block Johar Town, Lahore",
   footerBlurb:
-    "ArQonnect helps businesses respond consistently, organize customer relationships and keep people in control.",
+    "One inbox for WhatsApp, Instagram, Messenger and web chat. AI Twin replies from your approved knowledge, with human handoff and optional SEO/AEO growth services.",
 } as const;
 
 export const NAV_LINKS = [
-  { href: "/process", label: "How it works" },
   { href: "/services", label: "Services" },
-  { href: "/demo", label: "Demo" },
+  { href: "/industries", label: "Industries" },
+  { href: "/case-studies", label: "Case studies" },
+  { href: "/roi", label: "ROI calculator" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/process", label: "How it works" },
   { href: "/about", label: "About" },
-  { href: "/faq", label: "FAQ" },
 ] as const;
 
 export const HERO = {
-  kicker: "AI Twin Platform for customer conversations",
-  title: "Every customer message, one inbox",
-  sub: "answered by AI you control.",
-  body: "ArQonnect helps a business manage customer messages from WhatsApp, Instagram, Facebook Messenger and its website in one shared inbox. The AI answers using business-approved information, follows your tone and rules, and transfers to a person whenever confidence is low or the customer requests human help.",
+  kicker: "WhatsApp · Instagram · Messenger · Web chat",
+  title: "Every conversation, handled.",
+  sub: "One inbox. AI you control. Humans when it matters.",
+  body: "ArQonnect unifies your customer messages, replies from your approved knowledge, cites its sources, and hands off the moment it should not speak. Plus growth services (SEO, AEO, development) when you need to get found, not only answered.",
   primaryCta: { href: CAL_BOOKING_URL, label: "Book a demo", external: true },
-  secondaryCta: { href: "/process", label: "How it works", external: false },
+  secondaryCta: { href: "/services", label: "See what you get", external: false },
 } as const;
 
 export const PITCH = {
@@ -536,11 +537,11 @@ export const FAQ = {
 } as const;
 
 export const FINAL_CTA = {
-  title: "Stop losing customers to unanswered messages.",
-  body: "See your own business knowledge answering real customer questions — in a live demo tailored to your channels, your tone and your booking flow.",
+  title: "Bring your channels. Leave with a live Twin.",
+  body: "On a short demo we map your inbox, knowledge, booking rules and any growth services you need. You see grounded replies before you commit.",
   note: "Opens Cal.com in a new tab. Prefer email? Write Support@arqonnect.io.",
   primary: { href: CAL_BOOKING_URL, label: "Book a demo", external: true },
-  secondary: { href: "/process", label: "How it works", external: false },
+  secondary: { href: "/roi", label: "Try ROI calculator", external: false },
 } as const;
 
 export const PROVIDE = {
@@ -549,4 +550,16 @@ export const PROVIDE = {
 } as const;
 
 export const AVA_WELCOME =
-  "Hi — I'm Ava, ArQonnect's AI assistant. I can help you explore our unified inbox, Business Twin, Starter/Growth/Scale pricing, and how we'd fit your channels. Ask anything, or book a meeting on Cal.com.";
+  "Hi — I'm Ava, ArQonnect's AI assistant. I can help you explore our unified inbox, Business Twin, Starter/Growth/Scale pricing, industries, and growth services. Ask anything, or book a meeting on Cal.com.";
+
+/** Homepage teaser chips for additional / growth services. */
+export const ADDITIONAL_SERVICES_TEASER = [
+  "SEO",
+  "AEO",
+  "GEO",
+  "AIO",
+  "Web development",
+  "Mobile development",
+  "CRM & funnels",
+  "Ads & social",
+] as const;

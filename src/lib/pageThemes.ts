@@ -33,10 +33,14 @@ export const navAccents: Record<BannerTheme, NavAccent> = {
 export function themeFromPath(pathname: string): BannerTheme {
   if (pathname === "/") return "home";
   if (pathname.startsWith("/services")) return "services";
+  if (pathname.startsWith("/industries")) return "services";
+  if (pathname.startsWith("/case-studies")) return "cases";
+  if (pathname.startsWith("/roi")) return "pricing";
   if (pathname.startsWith("/pricing")) return "pricing";
   if (pathname.startsWith("/contact")) return "contact";
   if (pathname.startsWith("/process")) return "services";
   if (pathname.startsWith("/demo")) return "home";
+  if (pathname.startsWith("/about")) return "resources";
   if (pathname.startsWith("/faq")) return "resources";
   return "home";
 }
