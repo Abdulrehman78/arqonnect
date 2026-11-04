@@ -244,7 +244,7 @@ export default function HeroDemoChat({
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-gold" />
                 </span>
-                Online · replies instantly
+                Online · AI assistant
               </p>
             </div>
           </motion.div>

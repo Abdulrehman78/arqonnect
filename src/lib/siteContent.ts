@@ -1,28 +1,32 @@
 /**
  * Canonical ArQonnect marketing-site copy.
+ * Product domain (arqonnect.io) = SaaS software only. Agency work = arqonnect.cloud.
  */
+
+import { PADDLE, PRODUCT_CATEGORY, SERVICES_CLOUD_URL } from "@/lib/compliance";
+
+export { PADDLE, PRODUCT_CATEGORY, SERVICES_CLOUD_URL };
 
 export const APP_URL = "https://app.arqonnect.io";
 
 /**
- * Company Cal.com booking link. "Book a demo / meeting" CTAs open this
- * in a new tab. Override via Netlify env without a code change.
+ * Company Cal.com booking link. Override via Amplify env without a code change.
  */
 export const CAL_BOOKING_URL =
   process.env.NEXT_PUBLIC_CAL_BOOKING_URL?.trim() ||
-  "https://cal.com/abdul-rehman/30min";
+  "https://cal.com/abdulrehman-qureshi-5z2o21";
 
 /** Public SaaS plans on /pricing (required for MoR / Paddle domain review). */
 export const SHOW_PRICING_PLANS = true;
 
 export const SITE = {
   name: "ArQonnect",
-  tagline: "AI Twin Platform for customer conversations",
-  /** Primary support / demo inbox (case-preserving for display). */
-  email: "Support@arqonnect.io",
+  tagline: "Unified inbox software for customer messaging",
+  /** Primary commercial contact (replaces hello@). */
+  email: "abdulrehman@arqonnect.io",
   emails: {
-    support: "Support@arqonnect.io",
-    hello: "hello@arqonnect.io",
+    support: "abdulrehman@arqonnect.io",
+    hello: "abdulrehman@arqonnect.io",
     compliance: "Compliance@arqonnect.io",
   },
   phone: "+923065101041",
@@ -31,26 +35,195 @@ export const SITE = {
   address: "4A, R Block Johar Town, Lahore",
   location: "4A, R Block Johar Town, Lahore",
   footerBlurb:
-    "One inbox for WhatsApp, Instagram, Messenger and web chat. AI Twin replies from your approved knowledge, with human handoff and optional SEO/AEO growth services.",
+    "Cloud software that unifies WhatsApp, Instagram, Messenger and web chat into one operator inbox. Knowledge-grounded replies, source citations, and human handoff. Subscription billed by Paddle as Merchant of Record.",
+  servicesCloudUrl: SERVICES_CLOUD_URL,
+  servicesCloudLabel: "Implementation & digital services",
 } as const;
 
+/**
+ * Top-level nav. Mega menus (Product / Developers / Resources) are in NAV_MENUS.
+ * Keep Industries, Case studies, ROI visible per client request.
+ */
 export const NAV_LINKS = [
-  { href: "/services", label: "Services" },
+  { href: "/product", label: "Product" },
   { href: "/industries", label: "Industries" },
   { href: "/case-studies", label: "Case studies" },
   { href: "/roi", label: "ROI calculator" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/process", label: "How it works" },
+  { href: "/developers", label: "Developers" },
   { href: "/about", label: "About" },
 ] as const;
 
+/** Flat header links alongside mega menus (Product / Developers / Resources). */
+export const TOP_LINKS = [
+  { href: "/industries", label: "Industries" },
+  { href: "/case-studies", label: "Case studies" },
+  { href: "/roi", label: "ROI calculator" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/about", label: "About" },
+] as const;
+
+export type NavStatus = "live" | "beta" | "soon";
+
+export type NavMenu = {
+  id: "product" | "developers" | "resources";
+  label: string;
+  featured?: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    href: string;
+    cta: string;
+  };
+  columns: {
+    heading: string;
+    items: {
+      label: string;
+      href: string;
+      blurb?: string;
+      status?: NavStatus;
+    }[];
+  }[];
+};
+
+/** Clonvo-style mega-nav, ArQonnect routes and copper-theme chrome. */
+export const NAV_MENUS: NavMenu[] = [
+  {
+    id: "product",
+    label: "Product",
+    featured: {
+      eyebrow: "Software subscription",
+      title: "One inbox. Controlled replies.",
+      body: "Connect Meta channels, load approved knowledge, and run the operator inbox in app.arqonnect.io.",
+      href: "/product",
+      cta: "Product overview",
+    },
+    columns: [
+      {
+        heading: "Platform",
+        items: [
+          {
+            label: "How it works",
+            href: "/process",
+            blurb: "Connect channels, load knowledge, go live.",
+          },
+          {
+            label: "Unified inbox",
+            href: "/product#inbox",
+            blurb: "WhatsApp, Instagram, Messenger, web chat.",
+          },
+          {
+            label: "Knowledge & citations",
+            href: "/product#knowledge",
+            blurb: "Replies grounded in your approved docs.",
+          },
+          {
+            label: "Human handoff",
+            href: "/product#handoff",
+            blurb: "Staff take over when confidence is low.",
+          },
+        ],
+      },
+      {
+        heading: "Outcomes",
+        items: [
+          {
+            label: "Industries",
+            href: "/industries",
+            blurb: "Clinics, property, retail, and more.",
+          },
+          {
+            label: "Case studies",
+            href: "/case-studies",
+            blurb: "How teams use the software.",
+          },
+          {
+            label: "ROI calculator",
+            href: "/roi",
+            blurb: "Model inbox coverage vs staff time.",
+          },
+          {
+            label: "Live demo",
+            href: "/demo",
+            blurb: "Try the product walkthrough.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "developers",
+    label: "Developers",
+    featured: {
+      eyebrow: "Docs",
+      title: "Integrate on your terms",
+      body: "Webhooks, web chat embed, and API notes for teams wiring ArQonnect into existing stacks.",
+      href: "/developers",
+      cta: "Developer hub",
+    },
+    columns: [
+      {
+        heading: "Build",
+        items: [
+          {
+            label: "Overview",
+            href: "/developers",
+            blurb: "Architecture and auth model.",
+          },
+          {
+            label: "Webhooks",
+            href: "/developers/webhooks",
+            blurb: "Inbound channel events.",
+          },
+          {
+            label: "Web chat",
+            href: "/developers/web-chat",
+            blurb: "Embed the site widget.",
+          },
+          {
+            label: "Security",
+            href: "/legal/security",
+            blurb: "Controls and disclosure.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "resources",
+    label: "Resources",
+    featured: {
+      eyebrow: "Separate company",
+      title: "Need web, SEO, or AI delivery?",
+      body: "Project-based digital services are sold by ArQonnect Cloud, not as part of this SaaS subscription.",
+      href: SERVICES_CLOUD_URL,
+      cta: "Visit arqonnect.cloud",
+    },
+    columns: [
+      {
+        heading: "Company",
+        items: [
+          { label: "About", href: "/about", blurb: "Who builds the product." },
+          { label: "Contact", href: "/contact", blurb: "Talk to us." },
+          { label: "FAQ", href: "/faq", blurb: "Product questions." },
+          {
+            label: "Security",
+            href: "/legal/security",
+            blurb: "Trust overview.",
+          },
+        ],
+      },
+    ],
+  },
+] as const;
+
 export const HERO = {
-  kicker: "WhatsApp · Instagram · Messenger · Web chat",
+  kicker: "B2B SaaS · WhatsApp · Instagram · Messenger · Web chat",
   title: "Every conversation, handled.",
-  sub: "One inbox. AI you control. Humans when it matters.",
-  body: "ArQonnect unifies your customer messages, replies from your approved knowledge, cites its sources, and hands off the moment it should not speak. Plus growth services (SEO, AEO, development) when you need to get found, not only answered.",
+  sub: "One inbox. Software you control. Humans when it matters.",
+  body: "ArQonnect is cloud software for customer messaging. Unify channels, reply from approved knowledge with citations, and hand off to your team the moment the product should not speak.",
   primaryCta: { href: CAL_BOOKING_URL, label: "Book a demo", external: true },
-  secondaryCta: { href: "/services", label: "See what you get", external: false },
+  secondaryCta: { href: "/product", label: "See the product", external: false },
 } as const;
 
 export const PITCH = {
@@ -191,7 +364,7 @@ export const FEATURES = {
         },
         {
           title: "Voice notes",
-          body: "Transcribe inbound WhatsApp voice notes and reply with audio in English or Urdu; voice cloning uses the client's provider key.",
+          body: "Transcribe inbound WhatsApp voice notes and reply with text or approved text-to-speech audio. ArQonnect does not offer voice cloning of real people.",
         },
         {
           title: "Languages",
@@ -294,7 +467,7 @@ export const VALUE = {
     },
     {
       title: "Never miss a message",
-      body: "Inbound messages across all channels land in the inbox — the AI replies instantly, around the clock.",
+      body: "Inbound messages across channels land in one inbox. Configured AI can reply when enabled, with human handoff available.",
     },
     {
       title: "Speak their language",
@@ -310,7 +483,7 @@ export const VALUE = {
     },
     {
       title: "Your brand, your tone",
-      body: "The Business Twin mirrors your services, pricing rules, hours and do-not-reply topics — not a generic chatbot.",
+      body: "The Business Twin mirrors your services, pricing rules, hours and do-not-reply topics — configuration you control inside the software.",
     },
     {
       title: "Audit-ready history",
@@ -342,7 +515,7 @@ export const PRICING = {
     "No hidden platform fees",
   ],
   footnote:
-    "3-day SaaS trial available. Monthly plans, cancel anytime. Prices exclude tax and third-party usage costs (Meta messaging, model APIs, calendar providers).",
+    "3-day SaaS trial available. Monthly plans, cancel anytime. Enterprise and custom: unlimited workspaces and channel numbers (contact sales). Prices exclude tax and third-party usage costs (Meta messaging, model APIs, calendar providers).",
   billingNote:
     "Subscriptions are billed by Paddle as Merchant of Record. Card statements may show Paddle / Paddle.com. See Terms and Refund Policy.",
   plans: [
@@ -356,7 +529,8 @@ export const PRICING = {
       cta: "Get started with Starter",
       featureEyebrow: "Your foundation, connected",
       features: [
-        "1 business location",
+        "1 workspace",
+        "Up to 2 channel numbers",
         "500 AI conversations / month",
         "Web chat channel",
         "1 business twin",
@@ -375,10 +549,12 @@ export const PRICING = {
       cta: "Get started with Growth",
       featureEyebrow: "Everything in Starter, plus",
       features: [
-        "Up to 2 business locations",
+        "3 branch subworkspaces",
+        "Up to 5 channel numbers",
         "2,000 AI conversations / month",
         "Web chat + WhatsApp",
-        "A business twin for each location",
+        "Business twins per branch",
+        "Email automation (guardrailed)",
         "Full CRM & appointment booking",
         "5 team seats · 5 workflow rules",
         "Email & chat support",
@@ -394,9 +570,11 @@ export const PRICING = {
       cta: "Get started with Scale",
       featureEyebrow: "Everything in Growth, plus",
       features: [
-        "Up to 3 business locations",
+        "10 branch subworkspaces",
+        "Up to 15 channel numbers",
         "6,000 AI conversations / month",
         "All 4 messaging channels",
+        "Email automation (guardrailed)",
         "Business twins with custom rules",
         "Full CRM + HubSpot or Salesforce",
         "15 team seats · unlimited workflows",
@@ -408,7 +586,19 @@ export const PRICING = {
     eyebrow: "The details, without the guesswork",
     title: "Find your perfect fit.",
     rows: [
-      { label: "Business locations", starter: "1", growth: "2", scale: "3" },
+      { label: "Workspaces", starter: "1", growth: "1 + 3 branches", scale: "1 + 10 branches" },
+      {
+        label: "Channel numbers (max)",
+        starter: "2",
+        growth: "5",
+        scale: "15",
+      },
+      {
+        label: "Email automation (guardrailed)",
+        starter: "Not included",
+        growth: "Included",
+        scale: "Included",
+      },
       {
         label: "AI conversations / month",
         starter: "500",
@@ -436,15 +626,21 @@ export const PRICING = {
       },
       {
         label: "Workflow rules",
-        starter: "—",
+        starter: "Not included",
         growth: "5 rules",
         scale: "Unlimited",
       },
       {
         label: "Dedicated instance & branding",
-        starter: "—",
-        growth: "—",
+        starter: "Not included",
+        growth: "Not included",
         scale: "Quoted (white-label)",
+      },
+      {
+        label: "Enterprise / custom limits",
+        starter: "Contact sales",
+        growth: "Contact sales",
+        scale: "Contact sales",
       },
       {
         label: "Support response",
@@ -456,35 +652,35 @@ export const PRICING = {
   },
   pillars: [
     {
-      title: "Trained on your business",
-      body: "Your knowledge. Your voice. Customer answers that feel like you.",
+      title: "Configured on your knowledge",
+      body: "Your approved documents and rules. Replies that stay inside what you allow.",
     },
     {
       title: "Every conversation, connected",
-      body: "Bring your channels together. Never miss the next opportunity.",
+      body: "One software inbox for the channels you enable. Nothing lost between apps.",
     },
     {
-      title: "Built and managed for you",
-      body: "From the first setup to daily support, we stay with you.",
+      title: "Self-serve after activation",
+      body: "Admins update knowledge and settings in the dashboard. No agency retainer required to run the product.",
     },
   ],
   whiteLabel: {
-    eyebrow: "White-label",
+    eyebrow: "White-label software",
     title: "Want ArQonnect under your own brand?",
-    body: "White-label deployments are scoped with your team: your domain, your branding, and a dedicated instance. Tell us what you need and we will put a proposal together.",
+    body: "White-label is a software deployment option (your domain, branding, dedicated instance), quoted as a SaaS configuration. It is not a custom software build project.",
   },
   faqs: [
     {
-      q: "What is included in the one-time setup?",
-      a: "We connect your channels, load your business knowledge, configure your AI business twin, and train your team. White-label also includes your branding, dedicated instance, and the integrations in your plan.",
+      q: "What is the one-time setup fee?",
+      a: "It is a one-time software activation charge: connect channels, load your knowledge pack, configure plan limits, and walk your admins through the dashboard. It is not a consulting engagement, website build, or SEO project. Ongoing use is the monthly/yearly subscription.",
     },
     {
       q: "Are there any additional costs?",
-      a: "Plan prices cover the ArQonnect platform. You pay separately for third-party usage you choose (Meta messaging fees, AI model accounts where required, calendar providers, and optional HubSpot/Salesforce seats). Taxes are calculated at checkout by Paddle.",
+      a: "Plan prices cover the ArQonnect software. You pay separately for third-party usage you choose (Meta messaging fees, model APIs where required, calendar providers, optional HubSpot/Salesforce seats). Taxes are calculated at checkout by Paddle.",
     },
     {
       q: "What happens if I reach my conversation limit?",
-      a: "Automated AI replies pause until the next month or you upgrade. Your inbox, history, and data stay available, and your team can keep replying manually. We do not bill silent overages.",
+      a: "Automated assisted replies pause until the next month or you upgrade. Your inbox, history, and data stay available, and your team can keep replying manually. We do not bill silent overages.",
     },
     {
       q: "Can I change or cancel my plan?",
@@ -495,12 +691,12 @@ export const PRICING = {
       a: "Yearly billing gives you one month free (pay for 11 months). Charged in advance through Paddle. Monthly remains available.",
     },
     {
-      q: "What is the difference between SaaS and white-label?",
-      a: "SaaS plans run on ArQonnect branding at app.arqonnect.io. White-label is a scoped deployment on your domain and brand with a dedicated instance, quoted separately.",
+      q: "Do you sell SEO, websites, or custom development here?",
+      a: "No. arqonnect.io sells the SaaS subscription only. Project-based web, SEO, AEO, and related delivery are offered by ArQonnect Cloud at arqonnect.cloud under a separate statement of work.",
     },
     {
       q: "Who processes payments?",
-      a: "Paddle is our Merchant of Record. Paddle handles checkout, tax, invoices, and card chargebacks. Statements may show Paddle. Billing questions: Compliance@arqonnect.io.",
+      a: `${PADDLE.processorBlurb} Billing questions: Compliance@arqonnect.io.`,
     },
   ],
 } as const;
@@ -537,9 +733,9 @@ export const FAQ = {
 } as const;
 
 export const FINAL_CTA = {
-  title: "Bring your channels. Leave with a live Twin.",
-  body: "On a short demo we map your inbox, knowledge, booking rules and any growth services you need. You see grounded replies before you commit.",
-  note: "Opens Cal.com in a new tab. Prefer email? Write Support@arqonnect.io.",
+  title: "Bring your channels. Leave with a live workspace.",
+  body: "On a short product demo we map your inbox, knowledge, and booking rules inside the software. You see grounded replies before you subscribe.",
+  note: "Opens Cal.com in a new tab. Prefer email? Write abdulrehman@arqonnect.io.",
   primary: { href: CAL_BOOKING_URL, label: "Book a demo", external: true },
   secondary: { href: "/roi", label: "Try ROI calculator", external: false },
 } as const;
@@ -550,16 +746,13 @@ export const PROVIDE = {
 } as const;
 
 export const AVA_WELCOME =
-  "Hi — I'm Ava, ArQonnect's AI assistant. I can help you explore our unified inbox, Business Twin, Starter/Growth/Scale pricing, industries, and growth services. Ask anything, or book a meeting on Cal.com.";
+  "Hi, I am Ava on the ArQonnect marketing site. I can help you explore the SaaS product: unified inbox, Business Twin, Starter/Growth/Scale pricing, industries, and docs. For web/SEO/project work see arqonnect.cloud. Book a product demo on Cal.com anytime.";
 
-/** Homepage teaser chips for additional / growth services. */
-export const ADDITIONAL_SERVICES_TEASER = [
-  "SEO",
-  "AEO",
-  "GEO",
-  "AIO",
-  "Web development",
-  "Mobile development",
-  "CRM & funnels",
-  "Ads & social",
-] as const;
+/** Homepage CTA toward the separate services company (not sold on this domain). */
+export const CLOUD_SERVICES_CTA = {
+  eyebrow: "Need delivery beyond the software?",
+  title: "Project work lives on ArQonnect Cloud",
+  body: "Web development, AI transformation, SEO, AEO, GEO, mobile apps, CRM automation, and implementation training are sold by our services company under a statement of work. They are not part of the ArQonnect SaaS subscription billed on this site.",
+  href: SERVICES_CLOUD_URL,
+  label: "Explore arqonnect.cloud",
+} as const;

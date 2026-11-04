@@ -146,12 +146,12 @@ export const PHASE_0_ROOMS: RoomCard[] = [
   {
     title: "Broadcasts",
     body: "Send approved WhatsApp templates to selected audiences following Meta's messaging-window rules.",
-    tags: ["Templates", "Meta-compliant"],
+    tags: ["Templates", "Messaging-window aware"],
     shot: "analytics",
   },
   {
     title: "Voice notes",
-    body: "Transcribe inbound WhatsApp voice notes and reply with audio in English or Urdu; voice cloning uses the client's provider key.",
+    body: "Transcribe inbound WhatsApp voice notes and reply with text or approved text-to-speech audio. ArQonnect does not offer voice cloning of real people.",
     tags: ["Transcribe", "Audio reply"],
     shot: "inbox",
   },

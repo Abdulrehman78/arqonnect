@@ -6,13 +6,14 @@ import SiteChrome from "@/components/SiteChrome";
 import SiteScripts from "@/components/SiteScripts";
 import Preloader from "@/components/Preloader";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import AhrefsAnalytics from "@/components/AhrefsAnalytics";
 import JsonLd from "@/components/JsonLd";
 import CookieNotice from "@/components/CookieNotice";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import GsapProvider from "@/components/ui/GsapProvider";
 
 const SITE_URL = "https://www.arqonnect.io";
-const OG_IMAGE = "/images/hero-banner.jpg";
+const OG_IMAGE = "/images/og-default.png";
 
 export const metadata: Metadata = {
   title: {
@@ -85,12 +86,6 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="shortcut icon" href="/icon.svg?v=5" />
         <JsonLd />
-        {/* Ahrefs Web Analytics — required in <head> for arqonnect.io property */}
-        <script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="8MHp6nAm6aLpqOxaoLzPjQ"
-          async
-        />
       </head>
       <body className="relative">
         <SmoothScroll />
@@ -105,6 +100,7 @@ export default function RootLayout({
         <SiteScripts />
         <CookieNotice />
         <GoogleAnalytics />
+        <AhrefsAnalytics />
       </body>
     </html>
   );

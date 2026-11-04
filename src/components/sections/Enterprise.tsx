@@ -42,7 +42,7 @@ const features = [
   {
     num: "06",
     title: "Compliance-Ready",
-    desc: "Built to meet SOC 2, HIPAA and PCI-adjacent standards — the ones your industry already runs on.",
+    desc: "Access controls, encryption, audit logs, and contractual DPA/MSA options for enterprise reviews. We do not claim SOC 2, HIPAA, or ISO 27001 certification unless a current attestation is published.",
   },
 ];
 
@@ -105,9 +105,9 @@ export default function Enterprise() {
             </div>
             <div className="grid grid-cols-2 gap-3 p-5 md:p-6">
               {[
-                { label: "Uptime SLA", value: "99.9%" },
+                { label: "Uptime", value: "MSA terms" },
                 { label: "First agent live", value: "< 7 days" },
-                { label: "Support", value: "24/7" },
+                { label: "Support", value: "Priority" },
                 { label: "Access", value: "SSO + RBAC" },
               ].map((stat) => (
                 <div

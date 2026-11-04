@@ -20,8 +20,12 @@ export const LEGAL_LINKS: { href: string; label: string }[] = [
   { href: "/legal/cookies", label: "Cookie Policy" },
   { href: "/legal/refund", label: "Refund Policy" },
   { href: "/legal/acceptable-use", label: "Acceptable Use" },
+  { href: "/legal/messaging-consent", label: "Messaging Consent" },
+  { href: "/legal/ai-transparency", label: "AI Transparency" },
+  { href: "/legal/meta-integration", label: "Meta Integration" },
   { href: "/legal/dpa", label: "Data Processing Agreement" },
   { href: "/legal/data-deletion", label: "Data Deletion" },
+  { href: "/legal/imprint", label: "Legal Notice" },
 ];
 
 export const LEGAL_DOCS: LegalDoc[] = [
@@ -50,8 +54,8 @@ export const LEGAL_DOCS: LegalDoc[] = [
           "Website: https://arqonnect.io",
           "App: https://app.arqonnect.io",
           "API: https://api.arqonnect.io",
-          "Support: Support@arqonnect.io",
-          "General contact: hello@arqonnect.io",
+          "Support: abdulrehman@arqonnect.io",
+          "General contact: abdulrehman@arqonnect.io",
           "Privacy / compliance: Compliance@arqonnect.io",
         ],
       },
@@ -65,7 +69,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
           "Billing data: handled by Paddle (our PCI-DSS-compliant Merchant of Record). We store limited metadata such as the last 4 digits of the card (if provided), the billing country, and the subscription status only. Full card numbers are not stored on ArQonnect servers.",
           "Usage data: login timestamps, dashboard pages visited, features toggled, conversation volume, AI token spend.",
           "Integration credentials: Channel-provider API keys and Meta Business credentials you paste into the dashboard. These are encrypted at rest with AES-256-GCM and decrypted only at the moment of an outbound API call.",
-          "Knowledge-base content: documents, FAQs and policies you upload to train your AI agent.",
+          "Knowledge-base content: documents, FAQs and policies you upload to ground your AI agent.",
         ],
       },
       { type: "h3", text: "2.2 From end-users (your customers' customers)" },
@@ -133,12 +137,12 @@ export const LEGAL_DOCS: LegalDoc[] = [
       },
       {
         type: "p",
-        text: "Meta Platform Data is used only to: (1) route messages between businesses and their customers, (2) power AI-assisted responses within Meta's 24-hour customer service window, (3) provide conversation analytics to the business account holder, and (4) enable human-agent handoff when the AI cannot resolve a query or escalation is requested. Data obtained from Meta APIs is not combined with data from other sources for advertising or profiling purposes.",
+        text: "Meta Platform Data is used only to: (1) route messages between businesses and their customers, (2) power customer-authorized AI-assisted replies grounded in that business's knowledge base, (3) provide conversation analytics to the business account holder, and (4) enable human-agent handoff when the AI cannot resolve a query or escalation is requested. The WhatsApp customer-care 24-hour messaging window is WhatsApp-specific; Instagram and Messenger follow their own entry points and messaging windows. Data obtained from Meta APIs is not combined with data from other sources for advertising or profiling purposes. Meta is an independent platform provider, not an ArQonnect sub-processor.",
       },
       { type: "h2", text: "5. AI disclosure" },
       {
         type: "p",
-        text: "ArQonnect provides AI-powered messaging agents that interact with end-users on behalf of businesses. These agents use large-language-model (LLM) inference and retrieval-augmented generation (RAG) to produce responses. End-users may therefore be communicating with an AI rather than a human representative. Our agents are configured to identify themselves as AI when directly asked. Human support agents are available and will take over the conversation when the AI cannot resolve a query or when escalation is requested. This disclosure is provided to align with transparency expectations under applicable AI and platform policies, including Meta's platform policies.",
+        text: "ArQonnect provides AI-powered messaging agents that interact with end-users on behalf of businesses. These agents use large-language-model (LLM) inference and retrieval-augmented generation (RAG) over customer-provided FAQs and documents. End-users may therefore be communicating with an AI rather than a human representative. Where EU AI Act transparency rules apply (and as a product default), the first AI reply in a conversation includes a clear notice that the assistant is automated, unless the AI nature is already obvious from the channel context. Human support agents are available and will take over when the AI cannot resolve a query or when escalation is requested. See /legal/ai-transparency for limitations and data handling. ArQonnect does not offer voice cloning of real people or deceptive impersonation tools.",
       },
       { type: "h2", text: "6. Data retention" },
       {
@@ -253,7 +257,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "12. WhatsApp opt-in & messaging consent" },
       {
         type: "p",
-        text: "ArQonnect requires its business customers to obtain explicit opt-in consent from end-users before sending business-initiated WhatsApp template messages on their behalf. Acceptable opt-in mechanisms include website forms, WhatsApp keyword reply, and in-person consent. End-users can opt out at any time by replying STOP to any WhatsApp message; opt-out records are kept for at least 5 years and broadcast lists are updated within 24 hours of an opt-out request. ArQonnect does not send unsolicited messages.",
+        text: "ArQonnect requires its business customers to obtain explicit opt-in consent from end-users before sending business-initiated WhatsApp template messages on their behalf. Acceptable opt-in mechanisms include website forms, WhatsApp keyword reply, and in-person consent. End-users can opt out at any time by replying STOP to any WhatsApp message; opt-out records are kept for at least 5 years. After a valid opt-out, further business-initiated sends are blocked immediately at the send gate, and suppression is propagated to queued campaigns and audience syncs within one business day. ArQonnect does not send unsolicited messages.",
       },
       { type: "h2", text: "13. Children" },
       {
@@ -268,7 +272,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "15. Contact" },
       {
         type: "p",
-        text: "Privacy questions, data subject requests, and DPA requests: Compliance@arqonnect.io. General inquiries: hello@arqonnect.io. Postal mail to ArQonnect, Lahore, Pakistan.",
+        text: "Privacy questions, data subject requests, and DPA requests: Compliance@arqonnect.io. General inquiries: abdulrehman@arqonnect.io. Postal mail to ArQonnect, Lahore, Pakistan.",
       },
     ],
   },
@@ -308,7 +312,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
           "Plans (Starter, Growth, Scale) include a monthly AI conversation allowance published on the pricing page (Starter 500, Growth 2,000, Scale 6,000 conversations/month unless an order form states otherwise). A conversation is a continuous thread with an end-user on a connected channel. Allowances reset at the start of each calendar month (UTC).",
           "What happens at the allowance. When an organization reaches its allowance, automated AI replies pause until the next month begins or the plan is upgraded. Your inbox, conversation history and data stay fully accessible, and your team can keep replying manually. We never bill silent overages.",
           "One-time setup fees cover channel connection, knowledge loading, Business Twin configuration and team training for the scoped plan. Setup fees are listed per plan on the pricing page and may be invoiced with or before the first subscription period.",
-          "You may cancel your subscription at any time from the dashboard (or by emailing Support@arqonnect.io). Cancellation takes effect at the end of the current billing period; we do not pro-rate partial months unless required by law.",
+          "You may cancel your subscription at any time from the dashboard (or by emailing abdulrehman@arqonnect.io). Cancellation takes effect at the end of the current billing period; we do not pro-rate partial months unless required by law.",
           "We may change prices on at least 30 days' notice. Continuing to use the service after a price change means you accept the new price for the next renewal.",
         ],
       },
@@ -339,7 +343,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "6. AI disclosure" },
       {
         type: "p",
-        text: "ArQonnect powers messaging with AI-driven automation. End-users may be communicating with an artificial-intelligence system rather than a human representative. This automation is configured to identify itself as AI when directly asked, and you agree not to disable that identification feature. Your human support team stays in the loop and takes over the moment the AI cannot resolve a query or an end-user requests escalation. This disclosure supports transparency expectations under applicable AI and Meta platform policies.",
+        text: "ArQonnect powers messaging with AI-driven automation. End-users may be communicating with an artificial-intelligence system rather than a human representative. Where applicable law requires (and as a product default), the first AI reply includes a clear automated-assistant notice. You agree not to disable required transparency notices. Your human support team stays in the loop and takes over when the AI cannot resolve a query or an end-user requests escalation. See /legal/ai-transparency. ArQonnect does not claim Meta partnership or endorsement.",
       },
       { type: "h2", text: "7. Your content & data" },
       {
@@ -353,7 +357,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "8. Service availability" },
       {
         type: "p",
-        text: "We target 99.5% monthly uptime for the dashboard and webhook ingestion. Enterprise customers may receive a higher contractual SLA (including service credits) only where stated in a signed order form. Scheduled maintenance is announced at least 48 hours in advance whenever possible.",
+        text: "We operate the service with commercially reasonable care and aim for high availability of the dashboard and webhook ingestion. Any contractual uptime percentage, service credits, or RTO/RPO figures apply only if stated in a signed enterprise MSA or SLA. Scheduled maintenance is announced in advance whenever possible. We do not guarantee Meta, WhatsApp, Instagram, Messenger, or third-party LLM availability.",
       },
       { type: "h2", text: "9. Suspension & termination" },
       {
@@ -420,7 +424,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h3", text: "Analytics (optional / production only)" },
       {
         type: "p",
-        text: "When website analytics are enabled in production, Google Analytics 4 (consent-gated) may set cookies used to measure aggregated traffic and page usage on https://www.arqonnect.io. We also load Ahrefs Web Analytics (analytics.ahrefs.com) to measure SEO-related traffic; Ahrefs Web Analytics is designed to operate without advertising cookies. You can block analytics with browser settings, extensions, or Global Privacy Control / Do Not Track signals; we treat those signals as a preference against optional Google Analytics.",
+        text: "When website analytics are enabled in production, Google Analytics 4 and Ahrefs Web Analytics (analytics.ahrefs.com) load only after you Accept analytics on the cookie notice (or an equivalent preference). Both measure aggregated traffic / SEO-related usage on https://www.arqonnect.io. Reject optional, browser blockers, Global Privacy Control, or Do Not Track are treated as a preference against these optional analytics.",
       },
       {
         type: "table",
@@ -514,7 +518,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "5. Cancellation vs. refund" },
       {
         type: "p",
-        text: "Cancelling your subscription stops future renewals; it does not automatically refund the most recent invoice. If you want both, cancel from the dashboard (or email Support@arqonnect.io) and submit a refund request as above while still within the eligible window.",
+        text: "Cancelling your subscription stops future renewals; it does not automatically refund the most recent invoice. If you want both, cancel from the dashboard (or email abdulrehman@arqonnect.io) and submit a refund request as above while still within the eligible window.",
       },
       { type: "h2", text: "6. Payment processor (Paddle)" },
       {
@@ -529,7 +533,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "8. Contact" },
       {
         type: "p",
-        text: "Refund and billing: Compliance@arqonnect.io. Product support: Support@arqonnect.io. Pricing: https://www.arqonnect.io/pricing.",
+        text: "Refund and billing: Compliance@arqonnect.io. Product support: abdulrehman@arqonnect.io. Pricing: https://www.arqonnect.io/pricing.",
       },
     ],
   },
@@ -595,18 +599,20 @@ export const LEGAL_DOCS: LegalDoc[] = [
         type: "ul",
         items: [
           "Opt-in is mandatory. You may only send business-initiated WhatsApp template messages to contacts who have explicitly opted in. Accepted methods include: (a) a website form with a clear WhatsApp consent checkbox, (b) in-person consent recorded on paper or in your CRM, (c) keyword opt-in by WhatsApp reply (e.g., the customer replies YES to subscribe), or (d) any other mechanism permitted by Meta's WhatsApp Business Policy. You must retain proof of consent for each contact for at least 5 years and surface that proof on request from us, Meta, or the contact themselves. ArQonnect reserves the right to suspend, without notice, any account found contacting non-opted-in recipients.",
-          "Use approved templates outside the 24-hour window. Free-form messages are only allowed within Meta's 24-hour customer service window. ArQonnect enforces this automatically and switches to template mode when the window is closed.",
-          "Honour opt-outs within 24 hours. If a recipient replies STOP / UNSUBSCRIBE, you must remove them from all broadcast lists within one business day.",
-          "Do not exceed your tier's send limits. Until your WhatsApp number is officially scaled by Meta, do not send more than 250 outbound template messages per day per number without our approval.",
+          "Use approved WhatsApp templates outside the WhatsApp 24-hour customer-care window. Free-form WhatsApp messages are only allowed inside that WhatsApp window. Instagram and Messenger follow their own messaging windows and entry rules. ArQonnect enforces channel-specific controls and switches to template mode when a WhatsApp window is closed.",
+          "Honour opt-outs immediately. If a recipient replies STOP / UNSUBSCRIBE (or equivalent), further business-initiated sends must stop at once. Remove them from broadcast audiences and syncs within one business day.",
+          "Respect Meta throughput and ArQonnect caps. Meta applies its own WABA messaging tiers. ArQonnect may also enforce an internal plan or safety cap (for example 250 outbound template messages per day per number on unverified / low-tier numbers). Do not treat any ArQonnect cap as Meta's universal limit.",
           "No identical content from many numbers. Sending the same message body from rotating numbers to evade rate limits is grounds for immediate termination and a Meta policy report.",
           "Templates must match approved content. Modifying variables is allowed; modifying the template body invalidates the approval.",
+          "Broadcasts and campaigns may only target opted-in audiences with approved templates. Purchased or scraped lists and unsolicited bulk messaging are prohibited.",
         ],
       },
       { type: "h2", text: "3. AI behaviour" },
       {
         type: "ul",
         items: [
-          "You may not configure the AI to claim to be human when an end-user directly asks. It must identify itself as AI on request.",
+          "You may not configure the AI to claim to be human. Where required, the first AI reply must disclose that the assistant is automated, and it must still identify as AI if asked.",
+          "You may not use ArQonnect for deceptive impersonation, voice cloning of a real person without lawful consent, deepfakes, or synthetic media intended to mislead.",
           "You may not use ArQonnect to generate content that is harmful, deceptive, defamatory, harassing, or that targets a person based on a protected characteristic.",
           "You may not use the platform to generate or distribute non-consensual intimate imagery, content sexualising minors, or medical / legal advice without appropriate licensure.",
           "You are responsible for the accuracy of your knowledge-base uploads. Misleading product claims, regulated health/financial advice, or unsubstantiated claims are your liability, not ours.",
@@ -702,7 +708,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "6. Sub-processors (Annex III)" },
       {
         type: "p",
-        text: "The Controller authorizes ArQonnect to engage Sub-processors in the following categories: authentication, cloud hosting and storage, messaging channel delivery (including Meta for WhatsApp, Instagram and Messenger), AI model inference, email delivery, billing via Paddle as Merchant of Record (or successor MoR named on the invoice), error monitoring, and optional website analytics. A current named list is available to the Controller on request at Compliance@arqonnect.io. We will notify subscribers in writing at least 30 days before adding or replacing a Sub-processor that materially changes how their data is handled.",
+        text: "The Controller authorizes ArQonnect to engage Sub-processors in the following categories: authentication, cloud hosting and storage, WhatsApp Business API infrastructure partners where used, AI model inference, email delivery, error monitoring, and optional website analytics. Meta Platforms is an independent platform provider for WhatsApp, Instagram and Messenger (not automatically an ArQonnect sub-processor). Paddle acts as Merchant of Record for subscription billing (or successor MoR named on the invoice). A current named list is available to the Controller on request at Compliance@arqonnect.io. We will notify subscribers in writing at least 30 days before adding or replacing a Sub-processor that materially changes how their data is handled.",
       },
       { type: "h2", text: "7. International transfers" },
       {
@@ -892,6 +898,162 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "p",
         text: "Security questions and responsible disclosure: Compliance@arqonnect.io.",
+      },
+    ],
+  },
+  {
+    slug: "ai-transparency",
+    title: "AI Transparency",
+    description:
+      "How ArQonnect AI assistants work, first-interaction disclosure, human handoff, limitations, and data handling.",
+    updated: "2026-11-04",
+    blocks: [
+      {
+        type: "p",
+        text: "ArQonnect AI replies are grounded in FAQs, documents, and policies uploaded by the business customer. The system retrieves relevant passages and asks an LLM to draft a reply. It does not claim unrestricted general knowledge or capabilities that are not shipped.",
+      },
+      { type: "h2", text: "1. First-interaction disclosure" },
+      {
+        type: "p",
+        text: "Where EU AI Act transparency rules apply (and as a product default), the first AI reply in a conversation includes a clear notice that the assistant is automated, unless the AI nature is already obvious from the channel context. A statement on this page alone is not a substitute for in-product notice.",
+      },
+      { type: "h2", text: "2. Human escalation" },
+      {
+        type: "p",
+        text: "End-users can request a person. Low-confidence, complaint, sensitive, or unknown queries are handed to the business customer's human inbox when configured. Agent availability is controlled by the customer.",
+      },
+      { type: "h2", text: "3. Limitations" },
+      {
+        type: "ul",
+        items: [
+          "Answers may be incorrect or outdated if knowledge is stale.",
+          "Pricing, medical, legal, and financial claims must stay within approved knowledge and lawful customer workflows.",
+          "ArQonnect does not offer voice cloning of real people, deepfakes, or deceptive impersonation tools.",
+        ],
+      },
+      { type: "h2", text: "4. Data handling" },
+      {
+        type: "p",
+        text: "Prompts may include the end-user message, retrieved knowledge chunks, and limited conversation context. LLM vendors and retention are described in the Privacy Policy. Meta Business Solution Data is not used to train or improve shared / general models where prohibited. Tenant data is isolated.",
+      },
+      { type: "h2", text: "5. Contact" },
+      {
+        type: "p",
+        text: "Questions: Compliance@arqonnect.io",
+      },
+    ],
+  },
+  {
+    slug: "meta-integration",
+    title: "Meta Integration Disclosure",
+    description:
+      "How ArQonnect connects to WhatsApp, Instagram and Messenger, asset ownership, and customer responsibilities.",
+    updated: "2026-11-04",
+    blocks: [
+      {
+        type: "p",
+        text: "ArQonnect is an independent software provider. WhatsApp, Instagram, Facebook, and Messenger are Meta products and marks. ArQonnect does not claim affiliation, endorsement, or official Meta partner status unless a verified program status and approved wording exist.",
+      },
+      { type: "h2", text: "1. Connection model" },
+      {
+        type: "p",
+        text: "Customers authorize ArQonnect (and, where applicable, WhatsApp Business API infrastructure partners) to perform selected messaging actions on selected Meta assets via OAuth / Embedded Signup and customer-approved permissions. The provider route is shown at connection time in the product.",
+      },
+      { type: "h2", text: "2. Asset ownership" },
+      {
+        type: "p",
+        text: "Business Portfolio, WABA, phone numbers, Instagram professional accounts, and Facebook Pages remain under the customer's Meta account and control unless a separate written arrangement says otherwise. Disconnecting ArQonnect stops new API actions through our product; it does not delete those Meta assets.",
+      },
+      { type: "h2", text: "3. Customer obligations" },
+      {
+        type: "ul",
+        items: [
+          "Accept applicable Meta and WhatsApp Business terms.",
+          "Maintain admin control of connected Meta assets.",
+          "Obtain channel-specific opt-in, use approved templates, and honour opt-outs.",
+          "Follow the Acceptable Use Policy and Meta messaging / commerce policies.",
+        ],
+      },
+      { type: "h2", text: "4. Availability" },
+      {
+        type: "p",
+        text: "Meta may approve, reject, restrict, suspend, or change APIs. ArQonnect cannot guarantee verification, App Review outcomes, message delivery, or Meta uptime.",
+      },
+    ],
+  },
+  {
+    slug: "messaging-consent",
+    title: "Messaging Consent Guidelines",
+    description:
+      "Opt-in, opt-out, messaging windows, and broadcast rules for ArQonnect customers.",
+    updated: "2026-11-04",
+    blocks: [
+      {
+        type: "p",
+        text: "These guidelines apply to business-initiated messages sent through ArQonnect on WhatsApp, Instagram, Messenger, and website chat. Channel rules differ.",
+      },
+      { type: "h2", text: "1. Opt-in" },
+      {
+        type: "ul",
+        items: [
+          "Business-initiated WhatsApp template messages require prior opt-in permitted by Meta's WhatsApp Business Policy.",
+          "Purchased, rented, or scraped contact lists are prohibited.",
+          "Retain proof of consent and produce it on request.",
+        ],
+      },
+      { type: "h2", text: "2. Opt-out" },
+      {
+        type: "p",
+        text: "After a valid opt-out, further business-initiated sends stop immediately at the send gate. Audience and campaign syncs must reflect the suppression within one business day.",
+      },
+      { type: "h2", text: "3. Messaging windows" },
+      {
+        type: "p",
+        text: "WhatsApp free-form replies follow Meta's WhatsApp customer-care messaging window. Instagram and Messenger use their own entry points and windows.",
+      },
+      { type: "h2", text: "4. Broadcasts" },
+      {
+        type: "ul",
+        items: [
+          "Only opted-in audiences and approved template content.",
+          "Respect Meta quality / throughput tiers and any ArQonnect plan or safety caps. Cap figures are not automatically Meta's universal limits.",
+          "No number rotation or evasion of rate or quality limits.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "imprint",
+    title: "Legal Notice",
+    description:
+      "Legal identity and contact details for ArQonnect.",
+    updated: "2026-11-04",
+    blocks: [
+      {
+        type: "p",
+        text: "This Legal Notice identifies the operator of the ArQonnect service. Final registered-entity details must match invoices, checkout, Meta/YCloud applications, and counsel-approved records.",
+      },
+      { type: "h2", text: "1. Operator" },
+      {
+        type: "ul",
+        items: [
+          "Trade name: ArQonnect",
+          "Operating base: Lahore, Pakistan",
+          "Website: https://www.arqonnect.io",
+          "App: https://app.arqonnect.io",
+          "Support: abdulrehman@arqonnect.io",
+          "Privacy / compliance: Compliance@arqonnect.io",
+        ],
+      },
+      { type: "h2", text: "2. Independence" },
+      {
+        type: "p",
+        text: "ArQonnect is an independent software provider. It is not a bank, payment institution, or licensed telecommunications carrier. It is not affiliated with or endorsed by Meta Platforms, Inc. Message delivery on WhatsApp, Instagram, and Messenger uses Meta's Business Messaging APIs and authorised infrastructure partners disclosed in our Privacy Policy.",
+      },
+      { type: "h2", text: "3. Payments" },
+      {
+        type: "p",
+        text: "Subscription orders are conducted by our online reseller Paddle.com, which is the Merchant of Record for those orders. See Terms and Refund Policy.",
       },
     ],
   },

@@ -31,7 +31,7 @@ export default function Reel() {
                   <span className="reel-ai-dot h-2.5 w-2.5 rounded-full bg-accent animate-pulse" />
                   <div>
                     <b className="text-sm text-text">Your business</b>
-                    <span className="block text-xs text-text-dimmer">online · replies instantly</span>
+                    <span className="block text-xs text-text-dimmer">online · AI assistant</span>
                   </div>
                 </div>
                 <div className="reel-phone-body space-y-3 p-4" id="reelChatBody">

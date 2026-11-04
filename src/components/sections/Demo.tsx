@@ -154,7 +154,7 @@ export default function Demo() {
                 <span className="h-2.5 w-2.5 rounded-full bg-accent animate-pulse" />
                 <div>
                   <b className="text-sm text-text">ArQonnect Assistant</b>
-                  <span className="block text-xs text-text-dimmer">Usually replies instantly</span>
+                  <span className="block text-xs text-text-dimmer">AI assistant · human handoff</span>
                 </div>
               </div>
               <div ref={chatBodyRef} id="chatDemoBody" className="max-h-72 space-y-3 overflow-y-auto p-4">
