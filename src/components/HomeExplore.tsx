@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { SITE } from "@/lib/siteContent";
 import { Icon } from "@/components/Icon";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
@@ -57,7 +58,7 @@ const platform: Card[] = [
     href: "/contact",
     icon: "contact",
     label: "Contact",
-    highlight: "Book a demo, or reach Support@arqonnect.io and our Lahore team.",
+    highlight: `Book a demo, or reach ${SITE.emails.demo} and our Lahore team.`,
   },
 ];
 
@@ -102,7 +103,7 @@ const story: Card[] = [
     href: "/contact",
     icon: "about",
     label: "Contact us",
-    highlight: "Talk to the team, book a demo, or email Support@arqonnect.io.",
+    highlight: `Talk to the team, book a demo, or email ${SITE.emails.demo}.`,
   },
 ];
 

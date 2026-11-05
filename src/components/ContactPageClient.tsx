@@ -108,17 +108,31 @@ function ContactBook(): ReactElement {
               {SITE.address}
               <br />
               <a
-                href={`mailto:${SITE.emails.support}`}
+                href={`mailto:${SITE.emails.demo}`}
                 className="text-accent no-underline hover:underline"
               >
-                {SITE.emails.support}
+                Demo · {SITE.emails.demo}
               </a>
               <br />
               <a
-                href={`mailto:${SITE.emails.hello}`}
+                href={`mailto:${SITE.emails.support}`}
                 className="text-accent no-underline hover:underline"
               >
-                {SITE.emails.hello}
+                Support · {SITE.emails.support}
+              </a>
+              <br />
+              <a
+                href={`mailto:${SITE.emails.info}`}
+                className="text-accent no-underline hover:underline"
+              >
+                Info · {SITE.emails.info}
+              </a>
+              <br />
+              <a
+                href={`tel:${SITE.phone}`}
+                className="text-accent no-underline hover:underline"
+              >
+                {SITE.phoneDisplay}
               </a>
               <br />
               <a

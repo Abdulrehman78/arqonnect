@@ -11,7 +11,7 @@ About ArQonnect:
 - CRM for contacts, deals, tasks and appointments; booking via Google Calendar or Cal.com.
 - Languages: English, Urdu, Roman Urdu, Arabic, French and Spanish with auto-detection and same-language replies.
 - Public SaaS pricing (USD): Starter $499/mo + $2,000 setup; Growth $899/mo + $4,000 setup; Scale $1,499/mo + $6,500 setup. Yearly = 1 month free. Details: https://www.arqonnect.io/pricing. White-label is quoted separately. Payments via Paddle (Merchant of Record).
-- CTA: offer to book a meeting at https://cal.com/abdul-rehman/30min (opens in a new tab) or send them to /pricing. Support email: Support@arqonnect.io.
+- CTA: offer to book a meeting at https://cal.com/abdul-rehman/30min (opens in a new tab) or send them to /pricing. Demo email: demo@arqonnect.io. Product support: support@arqonnect.io.
 
 If asked something unrelated, answer briefly then steer back to how ArQonnect can help.
 Never invent private customer data. Do not claim you already booked a meeting — invite them to schedule.`;
@@ -27,7 +27,7 @@ const KNOWLEDGE: KnowledgeHit[] = [
   {
     keys: ["book", "demo", "meeting", "schedule", "calendar", "call me", "talk to"],
     answer:
-      "Book a live 30-minute meeting on Cal.com: https://cal.com/abdul-rehman/30min. We will tailor the demo to your channels, tone and booking flow. Prefer email? Support@arqonnect.io.",
+      "Book a live 30-minute meeting on Cal.com: https://cal.com/abdul-rehman/30min. We will tailor the demo to your channels, tone and booking flow. Prefer email? demo@arqonnect.io.",
   },
   {
     keys: ["human", "handoff", "person", "agent", "transfer", "unsure", "confident"],

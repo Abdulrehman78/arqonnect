@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Section, SectionHeader } from "@/components/ui/PageSection";
 import { FadeUp } from "@/components/ui/Motion";
 import SchemeOverlay from "@/components/ui/SchemeOverlay";
-import { CAL_BOOKING_URL } from "@/lib/siteContent";
+import { CAL_BOOKING_URL, SITE } from "@/lib/siteContent";
 
 type FaqItem = { q: string; a: string };
 type FaqGroup = { label: string; items: FaqItem[] };
@@ -74,7 +74,7 @@ const faqGroups: FaqGroup[] = [
     items: [
       {
         q: "How much does ArQonnect cost?",
-        a: "We do not publish fixed plan cards. Book a 30-minute meeting on Cal.com and we will scope setup, monthly engagement and channels to your stack. Prefer email? Support@arqonnect.io.",
+        a: `We do not publish fixed plan cards. Book a 30-minute meeting on Cal.com and we will scope setup, monthly engagement and channels to your stack. Prefer email? ${SITE.emails.demo}.`,
       },
       {
         q: "How fast can we actually launch?",

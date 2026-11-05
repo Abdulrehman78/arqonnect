@@ -85,16 +85,28 @@ export default function Footer() {
             <div className="mt-4 flex flex-col gap-2.5">
               <span className="text-sm text-text-dimmer">{SITE.address}</span>
               <a
+                href={`mailto:${SITE.emails.demo}`}
+                className="text-sm text-text-dim no-underline transition-colors hover:text-gold"
+              >
+                Demo · {SITE.emails.demo}
+              </a>
+              <a
                 href={`mailto:${SITE.emails.support}`}
                 className="text-sm text-text-dim no-underline transition-colors hover:text-gold"
               >
-                {SITE.emails.support}
+                Support · {SITE.emails.support}
               </a>
               <a
-                href={`mailto:${SITE.emails.hello}`}
+                href={`mailto:${SITE.emails.info}`}
                 className="text-sm text-text-dim no-underline transition-colors hover:text-gold"
               >
-                {SITE.emails.hello}
+                Info · {SITE.emails.info}
+              </a>
+              <a
+                href={`tel:${SITE.phone}`}
+                className="text-sm text-text-dim no-underline transition-colors hover:text-gold"
+              >
+                {SITE.phoneDisplay}
               </a>
               <a
                 href={SITE.whatsappUrl}
@@ -103,7 +115,7 @@ export default function Footer() {
                 className="inline-flex items-center gap-2 text-sm text-text-dim no-underline transition-colors hover:text-gold"
               >
                 <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
-                <span>{SITE.phoneDisplay}</span>
+                <span>WhatsApp · {SITE.phoneDisplay}</span>
               </a>
             </div>
           </MotionItem>

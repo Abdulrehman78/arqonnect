@@ -22,16 +22,17 @@ export const SHOW_PRICING_PLANS = true;
 export const SITE = {
   name: "ArQonnect",
   tagline: "Unified inbox software for customer messaging",
-  /** Primary commercial contact (replaces hello@). */
-  email: "abdulrehman@arqonnect.io",
+  /** Primary general inquiry (forms, partnerships). */
+  email: "info@arqonnect.io",
   emails: {
-    support: "abdulrehman@arqonnect.io",
-    hello: "abdulrehman@arqonnect.io",
+    demo: "demo@arqonnect.io",
+    support: "support@arqonnect.io",
+    info: "info@arqonnect.io",
     compliance: "Compliance@arqonnect.io",
   },
-  phone: "+923065101041",
-  phoneDisplay: "92306-5101041",
-  whatsappUrl: "https://wa.me/923065101041",
+  phone: "+923222599852",
+  phoneDisplay: "0322-2599852",
+  whatsappUrl: "https://wa.me/923222599852",
   address: "4A, R Block Johar Town, Lahore",
   location: "4A, R Block Johar Town, Lahore",
   footerBlurb:
@@ -735,7 +736,7 @@ export const FAQ = {
 export const FINAL_CTA = {
   title: "Bring your channels. Leave with a live workspace.",
   body: "On a short product demo we map your inbox, knowledge, and booking rules inside the software. You see grounded replies before you subscribe.",
-  note: "Opens Cal.com in a new tab. Prefer email? Write abdulrehman@arqonnect.io.",
+  note: "Opens Cal.com in a new tab. Prefer email? Write demo@arqonnect.io.",
   primary: { href: CAL_BOOKING_URL, label: "Book a demo", external: true },
   secondary: { href: "/roi", label: "Try ROI calculator", external: false },
 } as const;

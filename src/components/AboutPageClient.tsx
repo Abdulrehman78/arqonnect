@@ -19,14 +19,19 @@ const LEADERSHIP = [
 
 const CONTACTS = [
   {
-    role: "Support & demo",
+    role: "Demo & sales",
+    email: SITE.emails.demo,
+    note: "Book a product demo or discuss plans and onboarding.",
+  },
+  {
+    role: "Product support",
     email: SITE.emails.support,
-    note: "Primary public contact for product questions and demo booking.",
+    note: "Help with your workspace, channels, and day-to-day product questions.",
   },
   {
     role: "General",
-    email: SITE.emails.hello,
-    note: "Partnerships and general inquiries.",
+    email: SITE.emails.info,
+    note: "Partnerships, press, and general inquiries.",
   },
   {
     role: "Compliance & privacy",

@@ -1,3 +1,5 @@
+import { SITE } from "@/lib/siteContent";
+
 const SITE_URL = "https://www.arqonnect.io";
 
 /** Organization + WebSite + SoftwareApplication for rich results / AI crawlers. */
@@ -14,7 +16,8 @@ export default function JsonLd() {
           "@type": "ImageObject",
           url: `${SITE_URL}/logo.png`,
         },
-        email: "Support@arqonnect.io",
+        email: SITE.emails.info,
+        telephone: SITE.phone,
         address: {
           "@type": "PostalAddress",
           streetAddress: "4A, R Block Johar Town",
@@ -25,8 +28,20 @@ export default function JsonLd() {
         contactPoint: [
           {
             "@type": "ContactPoint",
+            contactType: "sales",
+            email: SITE.emails.demo,
+            availableLanguage: ["English", "Urdu"],
+          },
+          {
+            "@type": "ContactPoint",
             contactType: "customer support",
-            email: "Support@arqonnect.io",
+            email: SITE.emails.support,
+            availableLanguage: ["English", "Urdu"],
+          },
+          {
+            "@type": "ContactPoint",
+            contactType: "general inquiries",
+            email: SITE.emails.info,
             availableLanguage: ["English", "Urdu"],
           },
         ],

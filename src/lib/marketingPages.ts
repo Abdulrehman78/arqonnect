@@ -12,11 +12,11 @@ export const INDUSTRIES = {
       slug: "healthcare",
       name: "Clinics & healthcare",
       summary:
-        "Appointment booking, FAQs, after-hours triage, and family multi-booking under one contact.",
+        "Appointment booking and non-clinical FAQs only — hours, directions, admin prep, and family multi-booking under one contact.",
       outcomes: [
         "Book and reschedule from chat",
-        "Approved medical/admin FAQs only",
-        "Human handoff for clinical questions",
+        "Approved admin and scheduling FAQs only",
+        "Human handoff for clinical or urgent questions",
       ],
     },
     {
@@ -87,11 +87,11 @@ export const CASE_STUDIES = {
       industry: "Healthcare",
       title: "Clinic cut after-hours booking friction",
       summary:
-        "WhatsApp and web chat share one inbox. The Twin offers live calendar slots from approved services and hours, then hands off clinical questions.",
+        "WhatsApp and web chat share one inbox. The Twin offers live calendar slots from approved services and hours, answers non-clinical FAQs, and hands off clinical questions to staff.",
       metrics: [
         { label: "Channels", value: "WhatsApp + web" },
         { label: "Focus", value: "Bookings + FAQ" },
-        { label: "Control", value: "Human for clinical" },
+        { label: "Control", value: "Staff for clinical" },
       ],
     },
     {
