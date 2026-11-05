@@ -757,3 +757,15 @@ export const CLOUD_SERVICES_CTA = {
   href: SERVICES_CLOUD_URL,
   label: "Explore arqonnect.cloud",
 } as const;
+
+/** Teaser chips on the homepage — sold on arqonnect.cloud, not this SaaS domain. */
+export const ADDITIONAL_SERVICES_TEASER = [
+  "SEO",
+  "AEO",
+  "GEO",
+  "Web development",
+  "Mobile apps",
+  "CRM automation",
+  "AI transformation",
+  "Implementation training",
+] as const;

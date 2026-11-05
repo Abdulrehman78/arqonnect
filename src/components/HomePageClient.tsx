@@ -8,7 +8,11 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import { FadeUp, Stagger, MotionItem } from "@/components/ui/Motion";
 import { InboxFlowDiagram, VALUE_ICONS } from "@/components/ui/ProductIcons";
 import { BookDemoLink } from "@/components/BookDemoLink";
-import { COMPARISON, ADDITIONAL_SERVICES_TEASER } from "@/lib/siteContent";
+import {
+  ADDITIONAL_SERVICES_TEASER,
+  CLOUD_SERVICES_CTA,
+  COMPARISON,
+} from "@/lib/siteContent";
 import { CASE_STUDIES, HOME_OFFER, INDUSTRIES } from "@/lib/marketingPages";
 
 function ChannelsSection() {
@@ -235,12 +239,14 @@ function GrowthTeaser() {
           ))}
         </Stagger>
         <FadeUp className="mt-8 flex flex-wrap gap-4">
-          <Link
-            href="/services#additional-services"
+          <a
+            href={CLOUD_SERVICES_CTA.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm font-semibold text-accent no-underline hover:underline"
           >
-            Additional services →
-          </Link>
+            {CLOUD_SERVICES_CTA.label} →
+          </a>
           <Link
             href="/roi"
             className="text-sm font-semibold text-accent no-underline hover:underline"
