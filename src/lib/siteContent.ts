@@ -30,11 +30,14 @@ export const SITE = {
     info: "info@arqonnect.io",
     compliance: "Compliance@arqonnect.io",
   },
-  phone: "+923222599852",
-  phoneDisplay: "0322-2599852",
-  whatsappUrl: "https://wa.me/923222599852",
-  address: "4A, R Block Johar Town, Lahore",
-  location: "4A, R Block Johar Town, Lahore",
+  phone: "+923204525049",
+  phoneDisplay: "0320-4525049",
+  whatsappUrl: "https://wa.me/923204525049",
+  legalEntity: "M/S ArQonnect",
+  address:
+    "HOUSE NO 691-A1 Haider Road Township, Lahore, Punjab 54000, Pakistan",
+  location:
+    "HOUSE NO 691-A1 Haider Road Township, Lahore, Punjab 54000, Pakistan",
   footerBlurb:
     "Cloud software that unifies WhatsApp, Instagram, Messenger and web chat into one operator inbox. Knowledge-grounded replies, source citations, and human handoff. Subscription billed by Paddle as Merchant of Record.",
   servicesCloudUrl: SERVICES_CLOUD_URL,

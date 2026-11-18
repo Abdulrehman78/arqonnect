@@ -48,9 +48,9 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "ul",
         items: [
-          "Legal entity: ArQonnect (operating from Lahore, Pakistan)",
+          "Legal entity: M/S ArQonnect (operating from Lahore, Pakistan)",
           "Country of operation: Pakistan",
-          "Registered address: 4A, R Block Johar Town, Lahore, Pakistan",
+          "Registered address: HOUSE NO 691-A1 Haider Road Township, Lahore, Punjab 54000, Pakistan",
           "Website: https://arqonnect.io",
           "App: https://app.arqonnect.io",
           "API: https://api.arqonnect.io",
@@ -272,7 +272,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
       { type: "h2", text: "15. Contact" },
       {
         type: "p",
-        text: "Privacy questions, data subject requests, and DPA requests: Compliance@arqonnect.io. General inquiries: info@arqonnect.io. Product support: support@arqonnect.io. Postal mail: ArQonnect, 4A, R Block Johar Town, Lahore, Pakistan.",
+        text: "Privacy questions, data subject requests, and DPA requests: Compliance@arqonnect.io. General inquiries: info@arqonnect.io. Product support: support@arqonnect.io. Postal mail: M/S ArQonnect, HOUSE NO 691-A1 Haider Road Township, Lahore, Punjab 54000, Pakistan. Phone: +923204525049.",
       },
     ],
   },
@@ -1037,8 +1037,10 @@ export const LEGAL_DOCS: LegalDoc[] = [
       {
         type: "ul",
         items: [
+          "Legal name: M/S ArQonnect",
           "Trade name: ArQonnect",
-          "Operating base: 4A, R Block Johar Town, Lahore, Pakistan",
+          "Registered address: HOUSE NO 691-A1 Haider Road Township, Lahore, Punjab 54000, Pakistan",
+          "Phone: +923204525049",
           "Website: https://www.arqonnect.io",
           "App: https://app.arqonnect.io",
           "Demo: demo@arqonnect.io",

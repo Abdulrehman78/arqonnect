@@ -10,7 +10,8 @@ export default function JsonLd() {
       {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,
-        name: "ArQonnect",
+        name: "M/S ArQonnect",
+        alternateName: "ArQonnect",
         url: SITE_URL,
         logo: {
           "@type": "ImageObject",
@@ -20,8 +21,10 @@ export default function JsonLd() {
         telephone: SITE.phone,
         address: {
           "@type": "PostalAddress",
-          streetAddress: "4A, R Block Johar Town",
+          streetAddress: "HOUSE NO 691-A1 Haider Road Township",
           addressLocality: "Lahore",
+          addressRegion: "Punjab",
+          postalCode: "54000",
           addressCountry: "PK",
         },
         sameAs: [],
